@@ -1,0 +1,127 @@
+-- BackEnd
+[] inicializar Backend
+[] estructura de carpetas
+    [] /models (Users, Roles, Books, etc.)
+    [] /routes (usersRoutes, clubsRoutes, etc.)
+    [] /controllers (usersController, clubsController, etc.)
+    [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
+
+  MODELOS
+[] Users
+[] Role
+[] Books
+[] ReadingClub
+[] UserClub (tabla intermedia)
+[] Comments
+[] Review
+[] ReviewRating (verif si mismo usuario verifica +1 vez)
+
+VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
+
+[] Definir FKs en Express
+    Usuario belongsTo Rol
+    Usuario belongsToMany ClubLectura (through: UsuarioClub)
+    ClubLectura belongsToMany Usuario (through: UsuarioClub)
+    ClubLectura belongsTo Libro (libro_actual)
+    Usuario hasMany Reseña, Comentario, Valoraciones
+    Reseña hasMany Comentario
+    Valoraciones belongsTo Usuario y a Reseña
+
+
+-- CRUD (Logica de Backend)
+  Auth (usar hash de contraseña - bcrypt)
+[] Registro
+[] Login
+
+  Usuario
+[] GET /users
+[] GET /users/:id
+[] PUT /users/:id
+[] DELETE /users/:id
+
+  ClubLectura
+[] POST /clubs
+[] GET /clubs
+[] POST /clubs/:id/join
+[] GET /users/:id/clubs
+
+  Libros
+[] POST /clubs/:id/current-book
+
+  Reseñas y Comentarios
+[] POST /reviews
+[] POST /reviews/:id/comments
+[] POST /reviews/:id/rating
+[] PUT /reviews/:id
+[] PUT /reviews/:id/comments
+[] PUT /reviews/:id/rating
+
+→ TODO ESTO SE RESUME A:
+📂 Controllers
+    [] UserController
+    [] AuthController
+    [] ClubsController
+    [] ReviewsController
+    [] CommentsController
+    [] RatingsController
+
+🔁 Routes
+    [] Rutas de autenticación (register, login)
+    [] Rutas de usuario (/users, /users/:id, etc.)
+    [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
+    [] Rutas de libros actuales (/clubs/:id/current-book)
+    [] Rutas de reseñas, comentarios y valoraciones
+
+
+-- FrontEnd
+
+[X] Setear proyecto (npm create)
+[] Pantallas principales
+ - [] Landing inicial
+ - [] Login
+ - [] Registro
+ - [] Panel de Usuario (perfil, clubes) - Editar perfil
+ - [] Home Page (Lista de clubes)
+ - [] Detalle de Club
+ - [] Dashboard de Moderadores de Club
+ - [] Crear Club
+ - [] Crear reseña
+ - [] Crear Comentario
+ - [] Valorar reseñas (incluir vista de promedio de rating)
+
+
+[] Proteccion de rutas segun rol
+[] Manejo de 404 / 500
+[] Dashboard para SuperAdmin (Manejo de users y clubes)
+    GET /admin/users → lista todos los usuarios (con sus roles)
+    PUT /admin/users/:id → cambiar el rol de un usuario
+    DELETE /admin/users/:id → eliminar usuarios si lo permitís
+    GET /admin/clubs → todos los clubes
+    DELETE /admin/clubs/:id → eliminar clubes si lo necesitás
+
+[] Dashboard para Admin (Manejo de clubes)
+    GET /admin/clubs/:id/members → usuarios de su club
+    GET /admin/clubs/:id/reviews → reseñas en su club
+    DELETE /admin/reviews/:id → moderar contenido
+    DELETE /admin/comments/:id → moderar comentarios
+
+-- Extras para front:
+[] Loaders
+[] Mensajes de éxito / error con Modal
+[] Validaciones de formularios
+
+[] Filtro y búsqueda de clubes
+[] (SOLO SI HAY TIEMPO) Subir imagen de perfil o portada del club -- Multer
+
+
+-- Solo Admin
+🔐 Rutas especiales para Admin y SuperAdmin
+
+[] GET /admin/users → listado de usuarios (solo superadmin)
+[] PUT /admin/users/:id → cambiar rol de usuario (solo superadmin)
+[] DELETE /admin/users/:id → eliminar usuario (opcional)
+[] GET /admin/clubs → todos los clubes (solo superadmin)
+[] DELETE /admin/clubs/:id → eliminar club (opcional)
+[] GET /admin/clubs/:id/members → miembros del club (admin o superadmin)
+[] DELETE /admin/reviews/:id → moderar reseña (admin o superadmin)
+[] DELETE /admin/comments/:id → moderar comentario (admin o superadmin)
