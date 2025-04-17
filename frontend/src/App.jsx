@@ -8,6 +8,7 @@ function App() {
       <NavBar />
       <h1>Hola!</h1>
       <p>TPI Programacion 3</p>
+      <h1>holaaa</h1>
     </>
   )
 }
