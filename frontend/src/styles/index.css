@@ -1,0 +1,230 @@
+:root {
+  /* Tipografías */
+  --principal-font: "Merriweather", sans-serif;
+  --body-font: "Inter", system-ui, -apple-system;
+  --body-secondary-font: "Nunito", system-ui, -apple-system;
+  --body-alternative-font: "Karla", system-ui, -apple-system;
+
+  --font-color-light: #2e2e2e;
+  --font-color-dark: white;
+
+  --bg-color-dark: #7c5a41;
+  --bg-color-light: #fafafa;
+
+  /* Botones */
+  --btn-bgc-primary: #fff552;
+  --btn-bgc-primary-hover: #c5be37;
+  --btn-color-primary: #2e2e2e;
+  --btn-font-size: 1.5rem;
+
+  --border-radius: 8px;
+
+  /* Colores */
+  --violeta-oscuro: #553a8c;
+  --violeta-robado: #8c52ff;
+  --violeta-claro: #886dbf;
+  --lavander: #d8d8f6;
+  --medio-gris: #706980;
+  --blanco-suave: #fafafa;
+  --marron-suave: #aaa76f;
+
+  --bgc-input: #786578;
+  --border-input: #aaa76f;
+
+  --bg-color-footer: #2c2c34;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body.light {
+  background-color: var(--bg-color-light);
+}
+
+body.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--font-color-dark);
+}
+
+/* Por defecto */
+body {
+  background-color: var(--bg-color-light);
+  color: var(--font-color-light);
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.6rem;
+}
+
+h1,
+h2 {
+  font-family: var(--principal-font);
+}
+
+p {
+  font-family: var(--body-alternative-font);
+  font-size: 1.6rem;
+}
+
+span {
+  font-size: 1.4rem;
+}
+
+button {
+  background-color: var(--btn-bgc-primary);
+  color: var(--btn-color-primary);
+  font-size: var(--btn-font-size);
+  border: none;
+  padding: 8px 10px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  cursor: pointer;
+  background-color: var(--btn-bgc-primary-hover);
+}
+
+button.action {
+  background-color: white;
+  color: var(--violeta-robado);
+}
+
+button.action:hover {
+  background-color: #e4e4e4;
+}
+
+.form-container {
+  background-color: var(--bg-color-footer);
+  margin: auto;
+  padding: 2rem;
+  border-radius: var(--border-radius);
+  max-width: 400px;
+  box-shadow: 0 4px 16px black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  color: var(--font-color-dark);
+  gap: 1.5rem;
+  text-align: left;
+}
+
+/* Grupo de formulario que estará en columna */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Grupo de formulario que deberá estar alineado */
+.form-group.inline {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+label {
+  font-family: "Inter", sans-serif;
+  font-size: 1.7rem;
+}
+
+input,
+textarea,
+select {
+  font-family: var(--body-font);
+  font-size: 1.6rem;
+  padding: 1rem 2rem;
+  border: 1px solid var(--border-input);
+  border-radius: var(--border-radius);
+  background-color: var(--bgc-input);
+  color: var(--font-color-dark);
+  transition: border-color 0.3s ease, background-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--violeta-robado);
+  background-color: #b9abb9;
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(140, 82, 255, 0.2);
+}
+
+input[type="submit"],
+button[type="submit"] {
+  font-weight: bold;
+  margin: auto;
+}
+
+/* Estilo subrayado de link */
+.link-subrayado {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.4rem;
+  text-decoration: underline;
+  color: var(--font-color-dark);
+}
+
+.link-subrayado.oscuro {
+  color: var(--font-color-light);
+}
+
+.link-subrayado:hover {
+  cursor: pointer;
+}
+
+/* Estilo Link como Botón Primario (Amarillo) */
+.link-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  background-color: var(--btn-bgc-primary);
+  color: var(--btn-color-primary);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: var(--body-font);
+  font-size: var(--btn-font-size);
+  transition: background-color 0.3s ease-in-out;
+}
+
+.link-button:hover {
+  cursor: pointer;
+  background-color: var(--btn-bgc-primary-hover);
+}
+
+/* Estilo Link como Botón Secundario (Blanco con violeta) */
+.link-button.secondary {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--border-radius);
+  background-color: transparent;
+  color: var(--violeta-robado);
+  border: 2px solid var(--violeta-robado);
+  text-decoration: none;
+  font-weight: bold;
+  font-family: var(--body-font);
+  font-size: var(--btn-font-size);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.link-button.secondary:hover {
+  background-color: var(--violeta-robado);
+  color: white;
+}
