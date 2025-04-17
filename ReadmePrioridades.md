@@ -5,6 +5,7 @@
 1. Usuarios
 2. Clubs de Lectura
 3. Reseñas
+4. Actividad
 
 **FUNCIONALIDADES**
 - Autenticacion
@@ -45,6 +46,8 @@ DELETE /reviews/:id
 
 **-- Otras cosas del Enunciado:**
 * SPA con react-router
+    * Not Found - Error 404
+    * Manejo de errores - Error 500
 * Validacion de form
 * Context  ->  Manejo de usuario logueado, su rol y token
 * Custom Hook  ->  useAuth() o useFetch() por ejemplo
