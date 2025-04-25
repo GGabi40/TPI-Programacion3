@@ -14,7 +14,7 @@ const TopNav = () => {
 
         <div className="buttons">
             <Link to="/" className="link-button">Login</Link>
-            <Link to="/" className="link-button">Register</Link>
+            <Link to="/register" className="link-button">Register</Link>
         </div>
     </nav>
   )
