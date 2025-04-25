@@ -230,7 +230,7 @@ button[type="submit"] {
   display: inline-block;
   padding: 0.75rem 1.5rem;
   border-radius: var(--border-radius);
-  background-color: transparent;
+  background-color: #fff;
   color: var(--violeta-robado);
   border: 2px solid var(--violeta-robado);
   text-decoration: none;
@@ -241,8 +241,8 @@ button[type="submit"] {
 }
 
 .link-button.secondary:hover {
-  background-color: var(--violeta-robado);
-  color: white;
+  background-color: rgb(222, 221, 221);
+  color: #553a8c;
 }
 
 .container {
@@ -309,6 +309,28 @@ footer .contacto {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+.redes-sociales a {
+  color: var(--bg-color-light);
+  transition: color 0.3s ease;
+}
+
+.redes-sociales a:hover {
+  color: var(--violeta-robado);
+}
+
+#goTop {
+  position: fixed;
+  padding: 10px;
+  border-radius: 10px;
+  background: #fafafa;
+  box-shadow: 0 0 8px var(--violeta-oscuro);
+  margin: 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  cursor: pointer;
 }
 
 @media (max-width:400px) {
