@@ -189,6 +189,15 @@ button[type="submit"] {
   margin: auto;
 }
 
+#crearCuenta{
+  color: white;
+}
+
+#redireccion{
+  color: white;
+  font-size: 15px;
+}
+
 /* Estilo subrayado de link */
 .link-subrayado {
   display: block;
