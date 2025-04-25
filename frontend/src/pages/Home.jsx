@@ -20,9 +20,23 @@ const Home = () => {
           </div>
         
         <main className="container">
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolore modi natus omnis voluptatibus cum nihil sint illo, beatae sed inventore rerum provident aliquam corporis neque laborum voluptates saepe! Tempora!</p>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolore modi natus omnis voluptatibus cum nihil sint illo, beatae sed inventore rerum provident aliquam corporis neque laborum voluptates saepe! Tempora!</p>
-          <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ab dolore modi natus omnis voluptatibus cum nihil sint illo, beatae sed inventore rerum provident aliquam corporis neque laborum voluptates saepe! Tempora!</p>
+          <section className="cards">
+            <div className="card-ad">
+              <div className="icon"></div>
+              <h4>Únase a Clubes de Lectura</h4>
+              <p>Explore clubes temáticos según tus géneros favoritos.</p>
+            </div>
+            <div className="card-ad">
+              <div className="icon"></div>
+              <h4>Comente y Comparta</h4>
+              <p>Participe en debates, dejá tus opiniones y descubra nuevos puntos de vista.</p>
+            </div>
+            <div className="card-ad">
+              <div className="icon"></div>
+              <h4>Agenda de Lectura</h4>
+              <p>Siga el ritmo del club con calendarios, fechas de discusión y recordatorios.</p>
+            </div>
+          </section>
         </main>
         <Footer />
     </div>
