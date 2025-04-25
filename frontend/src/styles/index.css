@@ -1,6 +1,7 @@
 :root {
   /* Tipografías */
   --principal-font: "Merriweather", sans-serif;
+  --secondary-font: 'Raleway', system-ui;
   --body-font: "Inter", system-ui, -apple-system;
   --body-secondary-font: "Nunito", system-ui, -apple-system;
   --body-alternative-font: "Karla", system-ui, -apple-system;
@@ -246,6 +247,10 @@ button[type="submit"] {
   padding: 3rem;
 }
 
+.text-align {
+  text-align: center;
+}
+
 /* Home Container */
 
 .home-container {
@@ -293,4 +298,31 @@ footer .contacto {
   display: flex;
   flex-direction: row;
   gap: 10px;
+}
+
+@media (max-width:400px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+  
+  h2 {
+    font-size: 2.2rem;
+  }
+  
+  h3 {
+    font-size: 1.6rem;
+  }
+
+  footer {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    align-items: center;
+    justify-content: start;
+  }
+
+  .legal, .nosotros, .contacto {
+    text-align: center;
+  }
+  
 }
