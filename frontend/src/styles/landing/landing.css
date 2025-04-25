@@ -1,0 +1,111 @@
+.banner {
+    background: no-repeat center url(../../assets/img/landing-page/club.webp);
+    background-size: cover;
+    width: 100vw;
+    object-fit: cover;
+    min-height: 420px;
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    color: white;
+}
+
+.banner h3 {
+    font-family: var(--secondary-font);
+    font-size: 2.6rem;
+    font-weight: bold;
+    filter: drop-shadow(1px 1px 8px black);
+    padding: 2rem 3rem;
+}
+
+.banner-text {
+    text-align: center;
+    font-size: 2rem;
+    filter: drop-shadow(0 0 8px black);
+    padding: 5rem;
+    max-width: 900px;
+}
+
+.cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+}
+
+.card-ad {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px var(--marron-suave);
+    width: 330px;
+    height: 250px;
+    padding: 1rem 3rem;
+    text-align: center;
+    animation: appers 1s ease-in;
+    transition: transform 0.2s ease-in-out;
+}
+
+.card-ad:hover {
+    cursor: pointer;
+    transform: scale(1.005);
+}
+
+.card-ad h4 {
+    font-size: 1.8rem;
+    font-family: 'Nunito', sans-serif;
+}
+
+.card-ad .icon {
+    font-size: 1.6rem;
+}
+
+.banner-action {
+    width: 100vw;
+    padding: 4rem 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    background-color: var(--violeta-robado);
+
+    color: white;
+}
+
+.action {
+    font-weight: 600;
+    font-size: 2rem;
+    padding: 12px;
+}
+
+/* Media Query */
+@media (max-width:400px) {
+    .banner h3 {
+        font-size: 2.3rem;
+        padding: 0;
+    }    
+
+    .banner-text {
+        font-size: 1.8rem;
+    }
+}
+
+@keyframes appers {
+    0% {
+        transform: translateY(-8px);
+        opacity: 0;
+    }
+    100% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}

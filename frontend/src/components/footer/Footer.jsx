@@ -28,7 +28,12 @@ const Footer = () => {
         <Link to='/' className='link-subrayado'>Términos y Condiciones</Link>
         <Link to='/' className='link-subrayado'>Política de Privacidad</Link>
       </div>
+
+      <div className='grupo'>
+        <span>Hecho con 💖 por Grupo 1 | TPI Programacion 3</span>
+      </div>
     </footer>
+    
   )
 }
 
