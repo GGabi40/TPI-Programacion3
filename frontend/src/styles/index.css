@@ -113,7 +113,9 @@ button:hover {
 }
 
 button.action {
+  font-family: var(--body-font);
   background-color: white;
+  text-transform: uppercase;
   color: var(--violeta-robado);
 }
 
@@ -272,7 +274,16 @@ footer {
   flex-wrap: wrap;
   justify-content: space-around;
   align-items: center;
-  padding: 2rem 0.8rem;
+  padding: 2rem 0 0 0;
+}
+
+.grupo {
+  display: block;
+  font-family: var(--body-font);
+  width: 100vw;
+  padding: 5px;
+  background: #000;
+  text-align: center;
 }
 
 footer img {

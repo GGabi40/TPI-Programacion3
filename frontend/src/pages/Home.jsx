@@ -38,6 +38,13 @@ const Home = () => {
             </div>
           </section>
         </main>
+        
+        <div className="banner-action">
+            <h2>¿List@ para unirse a nuestra comunidad?</h2>
+            <p>Cree su cuenta y empiece a compartir lecturas hoy mismo</p>
+            <button className="action">Crear Cuenta</button>
+        </div>
+
         <Footer />
     </div>
   )
