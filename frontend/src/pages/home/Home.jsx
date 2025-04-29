@@ -1,9 +1,9 @@
 import React from "react";
-import TopNav from "../components/nav/TopNav";
-import Footer from "../components/footer/Footer";
+import TopNav from "../../components/nav/TopNav";
+import Footer from "../../components/footer/Footer";
 
-import "../styles/landing/landing.css";
-import GoToTop from "../components/goToTop/GoToTop";
+import "./home.css";
+import GoToTop from "../../components/goToTop/GoToTop";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
