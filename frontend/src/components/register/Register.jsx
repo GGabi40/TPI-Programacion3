@@ -1,8 +1,12 @@
 import React from 'react'
+import TopNav from '../nav/TopNav'
+import Footer from '../footer/Footer'
 
 const Register = () => {
     return (
         <div>
+            <TopNav />
+
             <div className='form-container'>
             <h2 id='crearCuenta'>CREE SU CUENTA</h2>
             <br />
@@ -26,6 +30,8 @@ const Register = () => {
                     <button type="submit">Crear Cuenta</button>
                 </form>
                 </div>
+                
+                <Footer />
         </div>
     )
 }
