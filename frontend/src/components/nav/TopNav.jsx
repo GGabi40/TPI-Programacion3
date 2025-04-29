@@ -6,7 +6,7 @@ import logo from '../../assets/img/logo/Logo-InkLink.webp';
 
 const TopNav = () => {
   return (
-    <nav>
+    <nav id='topNav'>
         <div className="logo">
             <img src={logo} alt="Logo Inklink" />
             <h1>InkLink</h1>

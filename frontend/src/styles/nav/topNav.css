@@ -1,4 +1,4 @@
-nav {
+#topNav {
     box-sizing: border-box;
     width: 100%;
     background-color: var(--violeta-robado);
@@ -10,6 +10,7 @@ nav {
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 10px;
 }
 
 .logo {
@@ -32,13 +33,13 @@ img {
 }
 
 @media (max-width:600px) {
-    nav {
+    #topNav {
         padding: 1rem 2rem;
     }
 }
 
 @media (max-width:500px) {
-    nav {
+    #topNav {
         flex-direction: column;
     }
 }

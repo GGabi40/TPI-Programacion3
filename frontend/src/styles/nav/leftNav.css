@@ -1,0 +1,68 @@
+#leftNav {
+    position: fixed;
+    max-width: 200px;
+    height: 100vh;
+    background-color: var(--violeta-robado);
+    padding: 1rem 10rem;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    position: absolute;
+    top: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+}
+
+.nav-usuario {
+    font-size: 1.2rem;
+    margin-top: 15px;
+    text-align: center;
+}
+
+img {
+    filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.535));
+    aspect-ratio: 1;
+    display: inline;
+    height: 100px;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-btn {
+    text-align: center;
+    min-width: 120px;
+}
+
+.quienes-somos {
+    position: absolute;
+    bottom: 0;
+    background-color: black;
+    width: 100%;
+    text-align: center;
+}
+
+@media (max-width:600px) {
+    #leftNav {
+        padding: 1rem 2rem;
+    }
+}
+
+@media (max-width:500px) {
+    #leftNav {
+        flex-direction: column;
+    }
+}
