@@ -79,9 +79,9 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 [X] Setear proyecto (npm create)
 [] Pantallas principales
- - [] Landing inicial
+ - [X] Landing inicial
  - [] Login
- - [] Registro
+ - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [] Home Page (Lista de clubes)
  - [] Detalle de Club
@@ -93,7 +93,7 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 
 [] Proteccion de rutas segun rol
-[] Manejo de 404 / 500
+[X] Manejo de 404 / 500
 [] Dashboard para SuperAdmin (Manejo de users y clubes)
     GET /admin/users → lista todos los usuarios (con sus roles)
     PUT /admin/users/:id → cambiar el rol de un usuario

@@ -2,6 +2,7 @@ import React from 'react'
 import LeftNav from '../nav/LeftNav'
 import { Routes, Route } from 'react-router'
 import Clubes from '../clubes/Clubes'
+import GoToTop from '../goToTop/GoToTop'
 
 const Dashboard = () => {
   return (
@@ -15,6 +16,8 @@ const Dashboard = () => {
             <Route path='mis-clubes' />
             <Route path='descubre' />
         </Routes>
+
+        <GoToTop />
     </div>
   )
 }
