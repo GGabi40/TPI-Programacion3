@@ -124,78 +124,109 @@ button.action:hover {
 }
 
 .form-container {
-  background-color: var(--bg-color-footer);
+  background: rgba(44, 44, 52, 0.9); /* semi-transparente tipo glassmorphism */
   margin: auto;
-  padding: 2rem;
+  padding: 3rem;
   border-radius: var(--border-radius);
-  max-width: 400px;
-  box-shadow: 0 4px 16px black;
+  max-width: 420px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  animation: fadeIn 0.8s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
 }
 
 form {
   display: flex;
   flex-direction: column;
   color: var(--font-color-dark);
-  gap: 1.5rem;
+  gap: 1.7rem;
   text-align: left;
+  font-family: var(--body-font);
 }
 
-/* Grupo de formulario que estará en columna */
-.form-group {
+.logo-form {
   display: flex;
   flex-direction: column;
-  gap: 0.5rem;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
-/* Grupo de formulario que deberá estar alineado */
-.form-group.inline {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 1rem;
+.logo-form > img {
+  height: 90px;
+  filter: drop-shadow(0 0 10px rgba(140, 82, 255, 0.3));
 }
 
 label {
-  font-family: "Inter", sans-serif;
-  font-size: 1.7rem;
+  font-family: var(--secondary-font);
+  font-size: 1.4rem;
+  letter-spacing: 0.5px;
+  color: var(--lavander);
 }
 
 input,
-textarea,
-select {
-  font-family: var(--body-font);
-  font-size: 1.6rem;
-  padding: 1rem 2rem;
-  border: 1px solid var(--border-input);
+select,
+textarea {
+  font-size: 1.4rem;
+  padding: 0.8rem 1.2rem;
+  border: 1px solid transparent;
   border-radius: var(--border-radius);
-  background-color: var(--bgc-input);
-  color: var(--font-color-dark);
-  transition: border-color 0.3s ease, background-color 0.3s ease;
+  background-color: rgba(200, 180, 255, 0.15);
+  color: white;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
 }
 
-input:focus,
-textarea:focus,
-select:focus {
+input::placeholder {
+  color: #d0c4d7;
+}
+
+input:focus {
   border-color: var(--violeta-robado);
-  background-color: #b9abb9;
-  outline: none;
+  background-color: rgba(200, 180, 255, 0.059);
   box-shadow: 0 0 0 2px rgba(140, 82, 255, 0.2);
+  outline: none;
 }
 
-input[type="submit"],
 button[type="submit"] {
-  font-weight: bold;
-  margin: auto;
+  font-family: var(--secondary-font);
+  background-color: var(--violeta-robado);
+  color: white;
+  padding: 0.9rem;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  margin-top: 1rem;
 }
 
-#crearCuenta{
-  color: white;
+button[type="submit"]:hover {
+  background-color: var(--violeta-claro);
+  transform: translateY(-2px);
 }
 
-#redireccion{
+#crearCuenta {
   color: white;
-  font-size: 15px;
+  font-family: var(--principal-font);
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+#redireccion {
+  color: #cfc6dc;
+  font-size: 1.3rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+#redireccion:hover {
+  color: white;
 }
 
 /* Estilo subrayado de link */
@@ -260,6 +291,78 @@ button[type="submit"] {
 
 .text-align {
   text-align: center;
+}
+
+.margin {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+/* Fondo animado de Register */
+.background-animated {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  overflow: hidden;
+  z-index: -1;
+}
+
+.light-orb {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, 
+    rgba(108, 49, 163, 0.6) 0%, 
+    rgba(255, 255, 255, 0.1) 70%
+  );
+  border-radius: 50%;
+  filter: blur(60px);
+  animation: floatOrb 20s ease-in-out infinite;
+}
+
+@keyframes floatOrb {
+  0% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(80vw, 10vh);
+  }
+  50% {
+    transform: translate(40vw, 60vh);
+  }
+  75% {
+    transform: translate(10vw, 30vh);
+  }
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* Home Container */
