@@ -79,9 +79,9 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 [X] Setear proyecto (npm create)
 [] Pantallas principales
- - [] Landing inicial
+ - [X] Landing inicial
  - [] Login
- - [] Registro
+ - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [] Home Page (Lista de clubes)
  - [] Detalle de Club

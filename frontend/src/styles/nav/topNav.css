@@ -13,7 +13,7 @@
     margin-bottom: 10px;
 }
 
-.logo {
+#topNav > .logo {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -21,13 +21,13 @@
     gap: 5px;
 }
 
-img {
+img.imgLogo {
     aspect-ratio: 1;
     display: inline;
     height: 100px;
 }
 
-.buttons {
+.buttons.top {
     display: flex;
     gap: 10px;
 }
