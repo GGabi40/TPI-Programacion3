@@ -24,14 +24,19 @@
 }
 
 .error-image {
-  max-width: 300px;
+  max-width: 250px;
   margin-bottom: 1.5rem;
   animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .error-title {
@@ -57,5 +62,28 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@media (max-width: 480px) {
+  .error-code {
+    font-size: 5rem;
+  }
+
+  .error-title {
+    font-size: 1.8rem;
+  }
+
+  .error-description {
+    font-size: 1rem;
+    padding: 0 1rem;
+  }
+
+  .error-image {
+    max-width: 220px;
+  }
+
+  .error-container {
+    padding: 1rem;
   }
 }
