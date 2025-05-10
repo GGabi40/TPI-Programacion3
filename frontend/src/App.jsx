@@ -4,6 +4,9 @@ import Register from "./components/register/Register";
 import Home from "./pages/home/Home"; // landing Page
 import Dashboard from "./components/dashboard/Dashboard"; // dashboard
 import NotFound from "./components/error/notFound/NotFound"; // error 404
+import NewClub from "./components/newclub/NewClub"; //create club
+import ModifyClub from "./components/modifyClub/ModifyClub"; //modify club
+
 
 function App() {
   return (
@@ -14,6 +17,8 @@ function App() {
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/register" element={<Register />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/newclub" element={<NewClub />} />
+        <Route path="/modifyclub" element={<ModifyClub />} />
 
       </Routes>
     </BrowserRouter>
