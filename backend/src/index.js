@@ -1,8 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 
-import { port } from './config/db.js';
+import { port, sequelize } from './config/db.js';
+import './models/Book.js';
 
+import BookRoutes from './routes/books.routes.js';
 const app = express();
 
 app.use(cors({
@@ -11,7 +13,10 @@ app.use(cors({
 
 
 try {
+    await sequelize.sync();
+
     app.use(express.json());
+    app.use('/', BookRoutes);
 
     app.listen(port, () => {
         console.log(`Corriendo servidor en http://localhost:${port}`);

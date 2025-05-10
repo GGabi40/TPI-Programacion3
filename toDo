@@ -11,7 +11,7 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
   MODELOS
 [] Users
 [] Role
-[] Books
+[OK] Books
 [] ReadingClub
 [] UserClub (tabla intermedia)
 [] Comments
@@ -49,6 +49,12 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
   Libros
 [] POST /clubs/:id/current-book
+
+[OK] GET /books                 -- falta proteger rutas
+[OK] GET /books/:id             -- falta proteger rutas
+[OK] PUT /books/:id             -- falta proteger rutas
+[OK] DELETE /books/:id          -- falta proteger rutas
+
 
   Reseñas y Comentarios
 [] POST /reviews
