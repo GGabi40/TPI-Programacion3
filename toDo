@@ -133,3 +133,6 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 [] GET /clubs/:id/members → miembros del club (Todos)
 [] DELETE /admin/clubs/:id → eliminar miembro de un club (admin o superadmin)
+
+[] PUT /books/:id → Actualiza libros (solo superadmin)
+[] DELETE /books/:id → Borra libros (solo superadmin)
