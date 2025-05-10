@@ -3,14 +3,13 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 -- BackEnd
 [] inicializar Backend
 [] estructura de carpetas
-    [] /models (Users, Roles, Books, etc.)
+    [] /models (Users, Books, etc.)
     [] /routes (usersRoutes, clubsRoutes, etc.)
     [] /controllers (usersController, clubsController, etc.)
     [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
 [] Users
-[] Role
 [OK] Books
 [] ReadingClub
 [] UserClub (tabla intermedia)
