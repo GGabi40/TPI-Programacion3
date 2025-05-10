@@ -3,15 +3,14 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 -- BackEnd
 [] inicializar Backend
 [] estructura de carpetas
-    [] /models (Users, Roles, Books, etc.)
+    [] /models (Users, Books, etc.)
     [] /routes (usersRoutes, clubsRoutes, etc.)
     [] /controllers (usersController, clubsController, etc.)
     [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
 [] Users
-[] Role
-[] Books
+[OK] Books
 [] ReadingClub
 [] UserClub (tabla intermedia)
 [] Comments
@@ -50,6 +49,12 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
   Libros
 [] POST /clubs/:id/current-book
 
+[OK] GET /books                 -- falta proteger rutas
+[OK] GET /books/:id             -- falta proteger rutas
+[OK] PUT /books/:id             -- falta proteger rutas
+[OK] DELETE /books/:id          -- falta proteger rutas
+
+
   Reseñas y Comentarios
 [] POST /reviews
 [] POST /reviews/:id/comments
@@ -85,12 +90,14 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [] Home Page (Lista de clubes)
  - [] Detalle de Club
- - [] Dashboard de Moderadores de Club
+ - [] Dashboard de Moderadores de Club - permiso de Admin -> maneja dashboard
  - [] Crear Club
- - [] Crear reseña
- - [] Crear Comentario
+ - [] Crear reseña -> textarea
+ - [] Crear Comentario -> textarea
  - [] Valorar reseñas (incluir vista de promedio de rating)
-
+ - [] Validaciones de formularios
+ - [] Filtro y búsqueda de clubes
+ - [] Mensajes de éxito / error con React-Toastify
 
 [] Proteccion de rutas segun rol
 [X] Manejo de 404 / 500
@@ -101,19 +108,16 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
     GET /admin/clubs → todos los clubes
     DELETE /admin/clubs/:id → eliminar clubes si lo necesitás
 
-[] Dashboard para Admin (Manejo de clubes)
+[] Dashboard para Admin (Manejo de clubes) -- se puede cambiar
     GET /admin/clubs/:id/members → usuarios de su club
     GET /admin/clubs/:id/reviews → reseñas en su club
     DELETE /admin/reviews/:id → moderar contenido
     DELETE /admin/comments/:id → moderar comentarios
 
+
 -- Extras para front:
 [] Loaders
-[] Mensajes de éxito / error con Modal
-[] Validaciones de formularios
-
-[] Filtro y búsqueda de clubes
-[] (SOLO SI HAY TIEMPO) Subir imagen de perfil o portada del club -- Multer
+[] Lista intermedia de creador de clubes
 
 
 -- Solo Admin
@@ -121,9 +125,14 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 [] GET /admin/users → listado de usuarios (solo superadmin)
 [] PUT /admin/users/:id → cambiar rol de usuario (solo superadmin)
-[] DELETE /admin/users/:id → eliminar usuario (opcional)
-[] GET /admin/clubs → todos los clubes (solo superadmin)
-[] DELETE /admin/clubs/:id → eliminar club (opcional)
-[] GET /admin/clubs/:id/members → miembros del club (admin o superadmin)
+[] DELETE /admin/users/:id → eliminar usuario (opcional)       -  bloqueo extremo
+[] GET /admin/clubs → todos los clubes (admin o superadmin)
+[] DELETE /admin/clubs/:id → eliminar club (admin o superadmin)
 [] DELETE /admin/reviews/:id → moderar reseña (admin o superadmin)
 [] DELETE /admin/comments/:id → moderar comentario (admin o superadmin)
+
+[] GET /clubs/:id/members → miembros del club (Todos)
+[] DELETE /admin/clubs/:id → eliminar miembro de un club (admin o superadmin)
+
+[] PUT /books/:id → Actualiza libros (solo superadmin)
+[] DELETE /books/:id → Borra libros (solo superadmin)
