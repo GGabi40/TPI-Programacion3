@@ -1,12 +1,13 @@
 import React from "react";
 import Footer from "../footer/Footer";
-
+import TopNav from "../nav/TopNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link } from "react-router";
 
 const Register = () => {
   return (
     <div>
+      <TopNav showRegisterButton={false} />
       <div className="background-animated">
         <div className="light-orb"></div>
       </div>
