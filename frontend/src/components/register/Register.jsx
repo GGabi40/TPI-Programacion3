@@ -4,7 +4,7 @@ import TopNav from "../nav/TopNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-import { errorToast, successToast } from '../../toast/NotificationToast';
+import { errorToast, successToast } from '../toast/NotificationToast';
 
 const Register = () => {
   const [userName, setUserName] = useState("");
