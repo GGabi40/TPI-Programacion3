@@ -34,7 +34,7 @@ export const validatePassword = (
 };
 
 // Valida fecha, recibe como argumento: fecha
-export const validateDate = (reqDate) => {
+export const validateDate = (reqDate, allowFutureDate) => {
   if (!reqDate) return false;
 
   const dateFormat = /^\d{4}-\d{2}-\d{2}$/;   // YYYY-MM-DD
@@ -42,10 +42,15 @@ export const validateDate = (reqDate) => {
 
   const date = new Date(reqDate);
 
-  if (isNaN(date.getTime())) return false; // verif si la fecha es válida
+  // verif si la fecha es válida
+  if (isNaN(date.getTime())) return false;
 
-  const today = new Date();
-  if (date > today) return false; // verif que no sea una fecha futura
+  // verif si se permite fecha futura, si no se permite (false):
+  //    verif que lo ingresado no sea una fecha futura
+  if (!allowFutureDate) {
+    const today = new Date();
+    if (date > today) return false;
+  }
 
   return true;
 };

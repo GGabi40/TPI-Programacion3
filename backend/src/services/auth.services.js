@@ -9,7 +9,7 @@ import { User } from "../models/User.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
-// register User
+// Register User
 export const registerUser = async (req, res) => {
     const result = validateRegisterUser(req.body);
 
@@ -42,7 +42,7 @@ export const registerUser = async (req, res) => {
 };
 
 
-// login User
+// Login User
 export const loginUser = async (req, res) => {
     const result = validateLoginUser(req.body);
 
@@ -78,6 +78,38 @@ export const loginUser = async (req, res) => {
 };
 
 
+// Muestra todos los usuarios -- solo superadmin
+export const getAllUsers = async (req,res) => {
+    const users = await User.findAll({
+            attributes: { exclude: ['password'] } // evita mostrar password
+        });
+
+    if (!users) return res.status(404).json({ message: 'No se encontraron usuarios' });
+
+    res.status(200).json(users);
+};
+
+
+// Muestra un usuario -- solo superadmin
+export const getUserById = async (req,res) => {
+    try {
+        const { id } = req.params;
+
+        const user = await User.findByPk(id, {
+            attributes: { exclude: ['password'] }
+        });
+
+        if (!user) return res.status(404).json({ message: 'Usuario no encontrado ' });
+
+        res.status(200).json(user);
+    } catch (error) {
+        console.error('Error al buscar el usuario:', error.message);
+        res.status(500).json({ message: 'Error del servidor' });
+    }
+    
+};
+
+
 // --------
 // Funciones de validación
 const validateRegisterUser = (req) => {
@@ -106,7 +138,7 @@ const validateRegisterUser = (req) => {
         };
     }
 
-    if (!birthday || !validateDate(birthday)) {
+    if (!birthday || !validateDate(birthday, false)) {
         return {
             error: true,
             message: "Fecha de nacimiento inválida",
