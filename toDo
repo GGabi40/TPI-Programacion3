@@ -9,10 +9,9 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
     [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
-[] Users
+[OK] Users
 [OK] Books
-[] ReadingClub
-[] UserClub (tabla intermedia)
+[] ReadClub
 [] Comments
 [] Review
 [] ReviewRating (verif si mismo usuario verifica +1 vez)
@@ -31,37 +30,37 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 -- CRUD (Logica de Backend)
   Auth (usar hash de contraseña - bcrypt)
-[] Registro
-[] Login
+[OK] Registro
+[OK] Login
 
   Usuario
-[] GET /users
-[] GET /users/:id
-[] PUT /users/:id
-[] DELETE /users/:id
+[] GET api/users
+[] GET api/users/:id
+[] PUT api/users/:id
+[] DELETE api/users/:id
 
   ClubLectura
-[] POST /clubs
-[] GET /clubs
-[] POST /clubs/:id/join
-[] GET /users/:id/clubs
+[] POST api/clubs
+[] GET api/clubs
+[] POST api/clubs/:id/join
+[] GET api/users/:id/clubs
 
   Libros
-[] POST /clubs/:id/current-book
+[] POST api/clubs/:id/current-book
 
-[OK] GET /books                 -- falta proteger rutas
-[OK] GET /books/:id             -- falta proteger rutas
-[OK] PUT /books/:id             -- falta proteger rutas
-[OK] DELETE /books/:id          -- falta proteger rutas
+[OK] GET api/books                 -- falta proteger rutas
+[OK] GET api/books/:id             -- falta proteger rutas
+[OK] PUT api/books/:id             -- falta proteger rutas
+[OK] DELETE api/books/:id          -- falta proteger rutas
 
 
   Reseñas y Comentarios
-[] POST /reviews
-[] POST /reviews/:id/comments
-[] POST /reviews/:id/rating
-[] PUT /reviews/:id
-[] PUT /reviews/:id/comments
-[] PUT /reviews/:id/rating
+[] POST api/reviews
+[] POST api/reviews/:id/comments
+[] POST api/reviews/:id/rating
+[] PUT api/reviews/:id
+[] PUT api/reviews/:id/comments
+[] PUT api/reviews/:id/rating
 
 → TODO ESTO SE RESUME A:
 📂 Controllers
@@ -73,7 +72,7 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
     [] RatingsController
 
 🔁 Routes
-    [] Rutas de autenticación (register, login)
+    [OK] Rutas de autenticación (register, login)
     [] Rutas de usuario (/users, /users/:id, etc.)
     [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
     [] Rutas de libros actuales (/clubs/:id/current-book)
@@ -134,5 +133,5 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 [] GET /clubs/:id/members → miembros del club (Todos)
 [] DELETE /admin/clubs/:id → eliminar miembro de un club (admin o superadmin)
 
-[] PUT /books/:id → Actualiza libros (solo superadmin)
-[] DELETE /books/:id → Borra libros (solo superadmin)
+[] PUT api/books/:id → Actualiza libros (solo superadmin)
+[] DELETE api/books/:id → Borra libros (solo superadmin)
