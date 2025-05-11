@@ -23,6 +23,8 @@ function App() {
           <Route path="/clubes" element={<Clubes />} />
           <Route path="/clubDetails" element={<ClubDetails />} />
           <Route path="*" element={<NotFound />} />
+          <Route path="/modifyclub" element={<ModifyClub />} />
+          <Route path="/newclub" element={<NewClub />} />
         </Routes>
       </BrowserRouter>
 

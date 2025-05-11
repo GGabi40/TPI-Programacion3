@@ -1,6 +1,7 @@
 import React from 'react'
 import LeftNav from '../nav/LeftNav';
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
+import FooterSmall from '../footer/FooterSmall';
 
 const ModifyClub = () => {
   return (
@@ -17,7 +18,7 @@ const ModifyClub = () => {
         </div>
 
         <h2 id="crearNuevoClub" className="text-align">
-          ACTUALIZAR UN NUEVO CLUB
+          ACTUALIZAR CLUB
         </h2>
         <br />
         <form>
@@ -63,6 +64,7 @@ const ModifyClub = () => {
           
         </form>
       </div>
+      <FooterSmall />
     </div>
   )
 }
