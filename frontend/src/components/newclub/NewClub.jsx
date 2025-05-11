@@ -1,8 +1,9 @@
 import React from "react";
-import Footer from "../footer/Footer";
+
 import LeftNav from '../nav/LeftNav';
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import FooterSmall from '../footer/FooterSmall';
 
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link } from "react-router";
@@ -126,7 +127,7 @@ const NewClub = () => {
         </form>
       </div>
 
-    
+      <FooterSmall />
 
     </div>
   )

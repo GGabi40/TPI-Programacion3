@@ -556,3 +556,30 @@ footer .contacto {
   }
   
 }
+
+
+
+/* Probando footer mas pequeño */
+
+.nombre-pagina{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  color: #886dbf;
+}
+
+footer .footer-small {
+    display: flex;
+    flex-direction: row;
+    gap: 1px;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  .logo-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 7rem;
+}
