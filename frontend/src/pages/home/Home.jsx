@@ -16,7 +16,7 @@ import { Link } from "react-router";
 const Home = () => {
   return (
     <div className="home-container">
-      <TopNav showRegisterButton={true} />
+      <TopNav />
 
       <main className="container">
         <h2 className="text-align">

@@ -1,12 +1,14 @@
 import React from 'react';
 import '../../styles/nav/topNav.css';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 import { useState } from 'react';
 
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import Register from '../register/Register';
 
-const TopNav = ({ showRegisterButton }) => {
+const TopNav = () => {
+  const location = useLocation();
+
   return (
     <nav id='topNav'>
         <div className="logo top">
@@ -16,7 +18,7 @@ const TopNav = ({ showRegisterButton }) => {
 
         <div className="buttons top">
             <Link to="/" className="link-button">Login</Link>
-            {showRegisterButton && (
+            {location.pathname !== '/register' && (
             <Link to="/register" className="link-button">Register</Link>
             )}
         </div>
