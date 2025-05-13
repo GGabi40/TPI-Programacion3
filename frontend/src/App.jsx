@@ -23,6 +23,7 @@ function App() {
           <Route path="/modifyclub" element={<ModifyClub />} />
           <Route path="/newclub" element={<NewClub />} />
           <Route path="/misclubes" element={<MisClubes />} />
+          
         </Routes>
       </BrowserRouter>
 

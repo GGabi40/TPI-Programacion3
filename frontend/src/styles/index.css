@@ -609,5 +609,34 @@ footer .footer-small {
 
 .btn-cards{
   display: flex;
-  
+  gap: 10px;
+  margin-left: 450px;
 }
+
+.club-cards-parent2 p{
+  width: 100%;
+  position: static;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  margin-inline-start: 25em;
+  color: #886dbf;
+}
+
+#btn-add{
+  position: absolute;
+  align-items: end;
+  width: 50px;
+  padding: 10px;
+  border-radius: 10px;
+  background:rgba(60, 5, 112, 0.6);
+  box-shadow: 0 0 8px var(--violeta-oscuro);
+  margin-bottom: 60px;
+  margin-right: 20px;
+  bottom: 0;
+  right: 0;
+  z-index: 9999;
+  cursor: pointer;
+}
+
+
