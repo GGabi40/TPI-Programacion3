@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { port, sequelize } from './config/db.js';
 import './models/Book.js';
 import './models/User.js';
+import './models/Review.js';
 
 import BookRoutes from './routes/books.routes.js';
 import AuthRoutes from './routes/auth.routes.js';
