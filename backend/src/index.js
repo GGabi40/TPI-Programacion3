@@ -5,9 +5,11 @@ import dotenv from 'dotenv';
 import { port, sequelize } from './config/db.js';
 import './models/Book.js';
 import './models/User.js';
+import './models/Review.js';
 
 import BookRoutes from './routes/books.routes.js';
 import AuthRoutes from './routes/auth.routes.js';
+import ReviewRoutes from './routes/review.routes.js';
 
 dotenv.config();
 const app = express();
@@ -23,6 +25,7 @@ try {
     app.use(express.json());
     app.use('/api', BookRoutes);
     app.use('/api', AuthRoutes);
+    app.use('/api', ReviewRoutes);
 
     app.listen(port, () => {
         console.log(`Corriendo servidor en http://localhost:${port}`);
