@@ -6,7 +6,7 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
     [OK] /models (Users, Books, etc.)
     [OK] /routes (usersRoutes, clubsRoutes, etc.)
     [OK] /controllers (usersController, clubsController, etc.)
-    [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
+    [OK] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
 [OK] Users
@@ -36,8 +36,8 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
   Usuario
 [OK] GET api/users
 [OK] GET api/users/:id
-[] PUT api/users/:id
-[] DELETE api/users/:id
+[OK] PUT api/profile
+[OK] DELETE api/users/:id -- solo admin
 
   ClubLectura
 [] POST api/clubs
