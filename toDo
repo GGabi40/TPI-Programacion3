@@ -1,20 +1,19 @@
 COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 
 -- BackEnd
-[] inicializar Backend
-[] estructura de carpetas
-    [] /models (Users, Books, etc.)
-    [] /routes (usersRoutes, clubsRoutes, etc.)
-    [] /controllers (usersController, clubsController, etc.)
-    [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
+[OK] inicializar Backend
+[OK] estructura de carpetas
+    [OK] /models (Users, Books, etc.)
+    [OK] /routes (usersRoutes, clubsRoutes, etc.)
+    [OK] /controllers (usersController, clubsController, etc.)
+    [OK] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
-[] Users
+[OK] Users
 [OK] Books
-[] ReadingClub
-[] UserClub (tabla intermedia)
+[] ReadClub
 [] Comments
-[] Review
+[OK] Review
 [] ReviewRating (verif si mismo usuario verifica +1 vez)
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
@@ -31,50 +30,49 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 -- CRUD (Logica de Backend)
   Auth (usar hash de contraseña - bcrypt)
-[] Registro
-[] Login
+[OK] Registro
+[OK] Login
 
   Usuario
-[] GET /users
-[] GET /users/:id
-[] PUT /users/:id
-[] DELETE /users/:id
+[OK] GET api/users
+[OK] GET api/users/:id
+[OK] PUT api/profile
+[OK] DELETE api/users/:id -- solo admin
 
   ClubLectura
-[] POST /clubs
-[] GET /clubs
-[] POST /clubs/:id/join
-[] GET /users/:id/clubs
+[] POST api/clubs
+[] GET api/clubs
+[] POST api/clubs/:id/join
+[] GET api/users/:id/clubs
 
   Libros
-[] POST /clubs/:id/current-book
+[] POST api/clubs/:id/current-book
 
-[OK] GET /books                 -- falta proteger rutas
-[OK] GET /books/:id             -- falta proteger rutas
-[OK] PUT /books/:id             -- falta proteger rutas
-[OK] DELETE /books/:id          -- falta proteger rutas
+[OK] GET api/books                 -- falta proteger rutas
+[OK] GET api/books/:id             -- falta proteger rutas
+[OK] PUT api/books/:id             -- falta proteger rutas
+[OK] DELETE api/books/:id          -- falta proteger rutas
 
 
   Reseñas y Comentarios
-[] POST /reviews
-[] POST /reviews/:id/comments
-[] POST /reviews/:id/rating
-[] PUT /reviews/:id
-[] PUT /reviews/:id/comments
-[] PUT /reviews/:id/rating
+[] POST api/reviews
+[] POST api/reviews/:id/comments
+[] POST api/reviews/:id/rating
+[] PUT api/reviews/:id
+[] PUT api/reviews/:id/comments
+[] PUT api/reviews/:id/rating
 
 → TODO ESTO SE RESUME A:
 📂 Controllers
-    [] UserController
-    [] AuthController
+    [OK] AuthController
     [] ClubsController
     [] ReviewsController
     [] CommentsController
     [] RatingsController
 
 🔁 Routes
-    [] Rutas de autenticación (register, login)
-    [] Rutas de usuario (/users, /users/:id, etc.)
+    [OK] Rutas de autenticación (register, login)
+    [OK] Rutas de usuario (/users, /users/:id, etc.)
     [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
     [] Rutas de libros actuales (/clubs/:id/current-book)
     [] Rutas de reseñas, comentarios y valoraciones
@@ -88,15 +86,15 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
  - [] Login
  - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
- - [] Home Page (Lista de clubes)
+ - [OK] Home Page (Lista de clubes)
  - [] Detalle de Club
  - [] Dashboard de Moderadores de Club - permiso de Admin -> maneja dashboard
- - [] Crear Club
+ - [OK] Crear Club
  - [] Crear reseña -> textarea
  - [] Crear Comentario -> textarea
  - [] Valorar reseñas (incluir vista de promedio de rating)
  - [] Validaciones de formularios
- - [] Filtro y búsqueda de clubes
+ - [OK] Filtro y búsqueda de clubes
  - [] Mensajes de éxito / error con React-Toastify
 
 [] Proteccion de rutas segun rol
@@ -134,5 +132,5 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 [] GET /clubs/:id/members → miembros del club (Todos)
 [] DELETE /admin/clubs/:id → eliminar miembro de un club (admin o superadmin)
 
-[] PUT /books/:id → Actualiza libros (solo superadmin)
-[] DELETE /books/:id → Borra libros (solo superadmin)
+[] PUT api/books/:id → Actualiza libros (solo superadmin)
+[] DELETE api/books/:id → Borra libros (solo superadmin)
