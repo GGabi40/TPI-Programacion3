@@ -30,15 +30,21 @@ GET /reviews
 PUT /reviews/:id
 DELETE /reviews/:id
 
+- Activity (Actividades)
+POST /activity
+GET /activity
+PUT /activity/:id
+DELETE /activity/:id
+
 
 -- FRONTEND --
 
 **Pantallas mínimas necesarias:**
 
-* Login
+* Login  [falta-poco]
 * Registro  [OK]
 * Home con listado de clubs  [falta-poco]
-* Detalle de un club con sus reseñas
+* Detalle de un club con sus reseñas  [falta-poco]
 * Panel de usuario (perfil simple y clubs)
 * Dashboard Admin (crear/modificar/eliminar clubs)
 * Dashboard Superadmin (gestión de usuarios y roles)

@@ -11,10 +11,11 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
   MODELOS
 [OK] Users
 [OK] Books
-[] ReadClub
-[] Comments
+[OK] Club
 [OK] Review
+[] Comments
 [] ReviewRating (verif si mismo usuario verifica +1 vez)
+[] Activity
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
@@ -39,15 +40,28 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 [OK] PUT api/profile
 [OK] DELETE api/users/:id -- solo admin
 
-  ClubLectura
-[] POST api/clubs
-[] GET api/clubs
+  Club
+[OK] POST api/clubs             -- falta proteger rutas
+[OK] GET api/clubs              -- falta proteger rutas
+[OK] PUT api/clubs/:id          -- falta proteger rutas
+[OK] DELETE api/clubs/:id       -- falta proteger rutas
+
+-- isActive será un borrado lógico
+-- DELETE es un destroy
+
+
 [] POST api/clubs/:id/join
 [] GET api/users/:id/clubs
 
-  Libros
-[] POST api/clubs/:id/current-book
 
+  ACTIVITY
+[] POST api/activity
+[] GET api/activity
+[] GET api/activity/:id
+[] PUT api/activity/:id
+[] DELETE api/activity/:id
+
+  LIBROS
 [OK] GET api/books                 -- falta proteger rutas
 [OK] GET api/books/:id             -- falta proteger rutas
 [OK] PUT api/books/:id             -- falta proteger rutas
@@ -65,8 +79,8 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 → TODO ESTO SE RESUME A:
 📂 Controllers
     [OK] AuthController
-    [] ClubsController
-    [] ReviewsController
+    [OK] ClubsController
+    [OK] ReviewsController
     [] CommentsController
     [] RatingsController
 
