@@ -125,7 +125,8 @@ button.action:hover {
 }
 
 .form-container {
-  background: rgba(44, 44, 52, 0.9); /* semi-transparente tipo glassmorphism */
+  background: rgba(44, 44, 52, 0.9);
+  /* semi-transparente tipo glassmorphism */
   margin: auto;
   padding: 3rem;
   border-radius: var(--border-radius);
@@ -137,8 +138,15 @@ button.action:hover {
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 form {
@@ -157,7 +165,7 @@ form {
   margin-bottom: 1.5rem;
 }
 
-.logo-form > img {
+.logo-form>img {
   height: 90px;
   filter: drop-shadow(0 0 10px rgba(140, 82, 255, 0.3));
 }
@@ -323,10 +331,9 @@ button[type="submit"]:hover {
   position: absolute;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle, 
-    rgba(108, 49, 163, 0.6) 0%, 
-    rgba(255, 255, 255, 0.1) 70%
-  );
+  background: radial-gradient(circle,
+      rgba(108, 49, 163, 0.6) 0%,
+      rgba(255, 255, 255, 0.1) 70%);
   border-radius: 50%;
   filter: blur(60px);
   animation: floatOrb 20s ease-in-out infinite;
@@ -336,15 +343,19 @@ button[type="submit"]:hover {
   0% {
     transform: translate(0, 0);
   }
+
   25% {
     transform: translate(80vw, 10vh);
   }
+
   50% {
     transform: translate(40vw, 60vh);
   }
+
   75% {
     transform: translate(10vw, 30vh);
   }
+
   100% {
     transform: translate(0, 0);
   }
@@ -354,9 +365,11 @@ button[type="submit"]:hover {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -366,9 +379,11 @@ button[type="submit"]:hover {
   0% {
     background-position: 0% 50%;
   }
+
   50% {
     background-position: 100% 50%;
   }
+
   100% {
     background-position: 0% 50%;
   }
@@ -396,69 +411,6 @@ button[type="submit"]:hover {
 
 hr {
   margin-bottom: 2.5rem;
-}
-
-/* Card de Clubes */
-
-.club-cards-parent {
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-items: flex-start;
-  align-items: flex-start;
-  gap: 4rem;
-}
-
-.club-card-child {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  color: var(--bg-color-light);
-  height: 200px;
-  width: 250px;
-  border-radius: 8px;
-  box-shadow: 0 0 8px #43411ab1;
-  padding: 1.5rem;
-  text-align: center;
-
-  transition: transform 0.3s ease-in-out;
-}
-
-.club-card-child p {
-  font-size: 2rem;
-  font-weight: bold;
-  font-family: var(--body-secondary-font);
-}
-
-.club-card-child:hover {
-  cursor: pointer;
-  transform: scale(1.005);
-}
-
-.red {
-  background: linear-gradient(
-    45deg, 
-    red, 
-    rgb(255, 86, 128)
-  );
-}
-
-.blue {
-  background: linear-gradient(
-    45deg, 
-    blue, 
-    rgb(141, 226, 255)
-  );
-}
-
-.violet {
-  background: linear-gradient(
-    45deg, 
-    rgb(147, 74, 147), 
-    rgb(85, 4, 125)
-  );
 }
 
 /* Footer */
@@ -539,15 +491,71 @@ footer .contacto {
   cursor: pointer;
 }
 
+
+/* Probando footer mas pequeño */
+
+.nombre-pagina {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  color: #886dbf;
+}
+
+footer.footer-small {
+  display: flex;
+  flex-direction: row;
+  gap: 1px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.logo-footer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 7rem;
+}
+
+
+/* MEDIA QUERY */
+
+@media (max-width:710px) {
+  footer {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .footer {
+    width: 100%;
+    text-align: center;
+  }
+
+  .logo-footer img {
+    height: 120px;
+  }
+
+  .redes-sociales {
+    justify-content: center;
+    gap: 15px;
+  }
+
+  .grupo {
+    width: 100%;
+    padding: 10px;
+  }
+}
+
 @media (max-width:400px) {
   h1 {
     font-size: 2.6rem;
   }
-  
+
   h2 {
     font-size: 2.2rem;
   }
-  
+
   h3 {
     font-size: 1.6rem;
   }
@@ -560,92 +568,10 @@ footer .contacto {
     justify-content: start;
   }
 
-  .legal, .nosotros, .contacto {
+  .legal,
+  .nosotros,
+  .contacto {
     text-align: center;
   }
-  
+
 }
-
-
-
-/* Probando footer mas pequeño */
-
-.nombre-pagina{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
-  color: #886dbf;
-}
-
-footer .footer-small {
-    display: flex;
-    flex-direction: row;
-    gap: 1px;
-    align-items: center;
-    justify-content: space-around;
-  }
-
-  .logo-footer {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding-left: 7rem;
-}
-
-
-
-/*Probando para el menu de los clubes*/
-/*falta ver bien jaja*/
-
-.hero-club{
-  margin-left: 200px;
-  margin-right: 20px;
-  padding: 1.5rem;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-auto-rows: auto;
-}
-
-.club-cards-parent2 {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-items: flex-start;
-  align-items: flex-start;
-  gap: 4rem;
-}
-
-.btn-cards{
-  display: flex;
-  gap: 10px;
-  margin-left: 450px;
-}
-
-.club-cards-parent2 p{
-  width: 100%;
-  position: static;
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-  margin-inline-start: 25em;
-  color: #886dbf;
-}
-
-#btn-add{
-  position: absolute;
-  align-items: end;
-  width: 50px;
-  padding: 10px;
-  border-radius: 10px;
-  background:rgba(60, 5, 112, 0.6);
-  box-shadow: 0 0 8px var(--violeta-oscuro);
-  margin-bottom: 60px;
-  margin-right: 20px;
-  bottom: 0;
-  right: 0;
-  z-index: 9999;
-  cursor: pointer;
-}
-
-

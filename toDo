@@ -1,19 +1,19 @@
 COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 
 -- BackEnd
-[] inicializar Backend
-[] estructura de carpetas
-    [] /models (Users, Books, etc.)
-    [] /routes (usersRoutes, clubsRoutes, etc.)
-    [] /controllers (usersController, clubsController, etc.)
-    [] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
+[OK] inicializar Backend
+[OK] estructura de carpetas
+    [OK] /models (Users, Books, etc.)
+    [OK] /routes (usersRoutes, clubsRoutes, etc.)
+    [OK] /controllers (usersController, clubsController, etc.)
+    [OK] /middlewares (authMiddleware, roleMiddleware, errorHandler, etc.)
 
   MODELOS
 [OK] Users
 [OK] Books
 [] ReadClub
 [] Comments
-[] Review
+[OK] Review
 [] ReviewRating (verif si mismo usuario verifica +1 vez)
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
@@ -34,10 +34,10 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 [OK] Login
 
   Usuario
-[] GET api/users
-[] GET api/users/:id
-[] PUT api/users/:id
-[] DELETE api/users/:id
+[OK] GET api/users
+[OK] GET api/users/:id
+[OK] PUT api/profile
+[OK] DELETE api/users/:id -- solo admin
 
   ClubLectura
 [] POST api/clubs
@@ -55,17 +55,16 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 
   Reseñas y Comentarios
-[] POST api/reviews
+[X] POST api/reviews
 [] POST api/reviews/:id/comments
 [] POST api/reviews/:id/rating
-[] PUT api/reviews/:id
+[X] PUT api/reviews/:id
 [] PUT api/reviews/:id/comments
 [] PUT api/reviews/:id/rating
 
 → TODO ESTO SE RESUME A:
 📂 Controllers
-    [] UserController
-    [] AuthController
+    [OK] AuthController
     [] ClubsController
     [] ReviewsController
     [] CommentsController
@@ -73,7 +72,7 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 🔁 Routes
     [OK] Rutas de autenticación (register, login)
-    [] Rutas de usuario (/users, /users/:id, etc.)
+    [OK] Rutas de usuario (/users, /users/:id, etc.)
     [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
     [] Rutas de libros actuales (/clubs/:id/current-book)
     [] Rutas de reseñas, comentarios y valoraciones
@@ -87,15 +86,15 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
  - [] Login
  - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
- - [] Home Page (Lista de clubes)
+ - [OK] Home Page (Lista de clubes)
  - [] Detalle de Club
  - [] Dashboard de Moderadores de Club - permiso de Admin -> maneja dashboard
- - [] Crear Club
+ - [OK] Crear Club
  - [] Crear reseña -> textarea
  - [] Crear Comentario -> textarea
  - [] Valorar reseñas (incluir vista de promedio de rating)
  - [] Validaciones de formularios
- - [] Filtro y búsqueda de clubes
+ - [OK] Filtro y búsqueda de clubes
  - [] Mensajes de éxito / error con React-Toastify
 
 [] Proteccion de rutas segun rol

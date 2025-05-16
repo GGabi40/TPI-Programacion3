@@ -77,37 +77,55 @@ export const loginUser = async (req, res) => {
 
 };
 
-
-// Muestra todos los usuarios -- solo superadmin
-export const getAllUsers = async (req,res) => {
-    const users = await User.findAll({
-            attributes: { exclude: ['password'] } // evita mostrar password
-        });
-
-    if (!users) return res.status(404).json({ message: 'No se encontraron usuarios' });
-
-    res.status(200).json(users);
-};
-
-
-// Muestra un usuario -- solo superadmin
-export const getUserById = async (req,res) => {
+// PUT - USER actualiza su propio perfil
+export const updateProfileAndPassword = async (req, res) => {
     try {
-        const { id } = req.params;
+        const { id } = req.user;
+        const { username, email, birthday, avatar, isActive, currentPassword, newPassword } = req.body;
+
+        const validationResult = validateUpdateProfileData(req);
+
+        if (validationResult.error) {
+            return res.status(400).json({ message: validationResult.message });
+        }
 
         const user = await User.findByPk(id, {
             attributes: { exclude: ['password'] }
         });
 
-        if (!user) return res.status(404).json({ message: 'Usuario no encontrado ' });
+        if (!user) {
+            return res.status(404).json({ message: 'Usuario no encontrado ' });
+        }
 
-        res.status(200).json(user);
+        user.username = username || user.username;
+        user.email = email || user.email;
+        user.birthday = birthday || user.birthday;
+        user.avatar = avatar || user.avatar;
+        user.isActive = isActive !== undefined ? isActive : user.isActive;
+
+        // si se envían datos para cambiar la contraseña:
+        if (currentPassword && newPassword) {
+            const isMatch = await bcrypt.compare(currentPassword, user.password);
+            if (!isMatch) {
+                return res.status(401).json({ message: 'La contraseña actual es incorrecta' });
+            }
+
+            const salt = await bcrypt.genSalt(10);
+            user.password = await bcrypt.hash(newPassword, salt);
+        }
+
+        await user.save().catch(error => {
+            console.error('Error al guardar el perfil: ', error.message);
+            res.status(500).json({ message: 'Error al guardar los cambios en el perfil' });
+        });
+
+        res.status(200).json({ message: 'Perfil actualizado correctamente', user });
     } catch (error) {
-        console.error('Error al buscar el usuario:', error.message);
-        res.status(500).json({ message: 'Error del servidor' });
+        console.error('Error al actualizar el perfil:', error.message);
+        res.status(500).json({ message: 'Error al actualizar el perfil' });
     }
-    
 };
+
 
 
 // --------
@@ -170,3 +188,46 @@ const validateLoginUser = (req) => {
 
     return result;
 }
+
+
+// Validación de Update
+const validateUpdateProfileData = (req) => {
+    const result = {
+        error: false,
+        message: "",
+    };
+
+    const { username, email, password, birthday } = req;
+
+    // En este código, se validan los datos solo si se envían
+
+    if (username && !validateString(username, null, 13)) {
+        return {
+            error: true,
+            message: "Nombre de usuario inválido",
+        };
+    }
+
+    if (email && !validateEmail(email)) {
+        return {
+            error: true,
+            message: "Email Inválido",
+        };
+    }
+
+    if (password && !validatePassword(password, 6, null, false, true)) {
+        return {
+            error: true,
+            message: "Contraseña Inválida",
+        };
+    }
+
+    if (birthday && !validateDate(birthday, false)) {
+        return {
+            error: true,
+            message: "Fecha de nacimiento inválida",
+        };
+    }
+
+    return result;
+};
