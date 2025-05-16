@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router";
+import { useState } from 'react';
 import Register from "./components/register/Register";
-
+import Login from "./components/login/Login"; // formulario login
+import Protected from "./components/protected/Protected";
 import Home from "./pages/home/Home"; // landing Page
 import Dashboard from "./components/dashboard/Dashboard"; // dashboard
 import NotFound from "./components/error/notFound/NotFound"; // error 404
@@ -13,24 +15,30 @@ import Clubes from "./components/clubes/Clubes";
 
 
 function App() {
+  const [isLogged, setIsLogged] = useState(false);
   return (
     <>
       <BrowserRouter>
 
         <Routes>
           {/* Ruta sin proteger - Home y NotFound */}
+          {/* agregue el register para que sea publica aunque no este logged */}
+          {/* agregar nav y footer en ambas */}
           <Route path="/" element={<Home />} />
-
-          {/* Acá todas estarán protegidas x Login */}
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
-          <Route path="/clubes" element={<Clubes />} />
-          <Route path="/clubDetails" element={<ClubDetails />} />
-          <Route path="/modifyclub" element={<ModifyClub />} />
-          <Route path="/newclub" element={<NewClub />} />
-          <Route path="/mis-clubes" element={<MisClubes />} />
+          <Route path="/login" element={<Login />} />
+            <Route path="*" element={<NotFound />} />
 
-          <Route path="*" element={<NotFound />} />
+            {/* Acá todas estarán protegidas x Login */}
+            {/* <Route element={<Protected />}> */}
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/clubes" element={<Clubes />} />
+              <Route path="/clubDetails" element={<ClubDetails />} />
+              <Route path="/modifyclub" element={<ModifyClub />} />
+              <Route path="/newclub" element={<NewClub />} />
+              <Route path="/mis-clubes" element={<MisClubes />} />
+
+            {/* </Route> */}
         </Routes>
       </BrowserRouter>
 
