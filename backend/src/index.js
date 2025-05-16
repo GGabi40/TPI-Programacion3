@@ -1,10 +1,15 @@
 import express from 'express';
 import cors from 'cors';
+import dotenv from 'dotenv';
 
 import { port, sequelize } from './config/db.js';
 import './models/Book.js';
+import './models/User.js';
 
 import BookRoutes from './routes/books.routes.js';
+import AuthRoutes from './routes/auth.routes.js';
+
+dotenv.config();
 const app = express();
 
 app.use(cors({
@@ -16,7 +21,8 @@ try {
     await sequelize.sync();
 
     app.use(express.json());
-    app.use('/', BookRoutes);
+    app.use('/api', BookRoutes);
+    app.use('/api', AuthRoutes);
 
     app.listen(port, () => {
         console.log(`Corriendo servidor en http://localhost:${port}`);

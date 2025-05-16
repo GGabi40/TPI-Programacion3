@@ -40,7 +40,7 @@ const MisClubes = () => {
                         <FontAwesomeIcon icon={faBook} size="3x" />
                         <p>Club de Misterio</p>
                         <div className='btn-cards'>
-                            <button type='submit'>Modificar</button>
+                            <button type='submit' onClick={handleClick}>Modificar</button>
                             <button type='submit'>Eliminar</button>
                         </div>
                             
@@ -50,7 +50,7 @@ const MisClubes = () => {
                         <FontAwesomeIcon icon={faBook} size="3x" />
                         <p>Club de Romance</p>
                         <div className='btn-cards'>
-                            <button type='submit'>Modificar</button>
+                            <button type='submit' onClick={handleClick}>Modificar</button>
                             <button type='submit'>Eliminar</button>
                         </div>
                         
