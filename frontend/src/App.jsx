@@ -7,24 +7,30 @@ import NotFound from "./components/error/notFound/NotFound"; // error 404
 import NewClub from "./components/newclub/NewClub"; //create club
 import ModifyClub from "./components/modifyClub/ModifyClub"; //modify club
 
+import ClubDetails from "./components/clubDetails/ClubDetails";
+import MisClubes from "./components/misClubes/MisClubes";
+import Clubes from "./components/clubes/Clubes";
+
 
 function App() {
   return (
     <>
       <BrowserRouter>
 
-
         <Routes>
+          {/* Ruta sin proteger - Home y NotFound */}
           <Route path="/" element={<Home />} />
+
+          {/* Acá todas estarán protegidas x Login */}
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/register" element={<Register />} />
           <Route path="/clubes" element={<Clubes />} />
           <Route path="/clubDetails" element={<ClubDetails />} />
-          <Route path="*" element={<NotFound />} />
           <Route path="/modifyclub" element={<ModifyClub />} />
           <Route path="/newclub" element={<NewClub />} />
-          <Route path="/misclubes" element={<MisClubes />} />
-          
+          <Route path="/mis-clubes" element={<MisClubes />} />
+
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
 

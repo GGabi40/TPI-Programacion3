@@ -2,7 +2,7 @@ import React from "react";
 import { useLocation, useNavigate } from "react-router";
 import { useEffect } from "react";
 import LeftNav from "../nav/LeftNav";
-import logo from "../../assets/img/logo/Logo-InkLink.webp";
+import logo from '../../assets/img/logo/Logo-InkLink.webp';
 
 const ClubDetails = () => {
     const location = useLocation();
