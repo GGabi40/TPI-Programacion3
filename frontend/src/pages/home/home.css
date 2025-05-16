@@ -64,6 +64,10 @@
     font-family: 'Nunito', sans-serif;
 }
 
+.card-ad p {
+    color: var(--font-color-light);
+}
+
 .card-ad .icon {
     font-size: 1.6rem;
 }
@@ -88,7 +92,7 @@
 }
 
 /* Media Query */
-@media (max-width:400px) {
+@media (max-width:630px) {
     .banner h3 {
         font-size: 2.3rem;
         padding: 0;
@@ -96,6 +100,14 @@
 
     .banner-text {
         font-size: 1.8rem;
+    }
+
+    .banner-action {
+        text-align: center;
+    }
+
+    .banner-action h2 {
+        font-size: 2.4rem;
     }
 }
 
