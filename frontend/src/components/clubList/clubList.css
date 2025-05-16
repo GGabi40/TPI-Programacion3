@@ -1,0 +1,29 @@
+.club-list {
+  margin-bottom: 2rem;
+}
+
+.club-list h2 {
+  margin-bottom: 10px;
+  font-family: var(--principal-font);
+}
+
+.club-cards-parent {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-items: flex-start;
+  align-items: flex-start;
+  gap: 4rem;
+}
+
+@media (max-width: 768px) {
+  .club-cards-parent {
+    justify-content: center;
+  }
+
+  .club-card-child {
+    width: 90%;
+    max-width: 320px;
+  }
+}

@@ -55,10 +55,10 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 
   Reseñas y Comentarios
-[] POST api/reviews
+[X] POST api/reviews
 [] POST api/reviews/:id/comments
 [] POST api/reviews/:id/rating
-[] PUT api/reviews/:id
+[X] PUT api/reviews/:id
 [] PUT api/reviews/:id/comments
 [] PUT api/reviews/:id/rating
 

@@ -3,6 +3,7 @@ import LeftNav from '../nav/LeftNav'
 import { Routes, Route } from 'react-router'
 import Clubes from '../clubes/Clubes'
 import GoToTop from '../goToTop/GoToTop'
+import MisClubes from '../misClubes/MisClubes'
 
 const Dashboard = () => {
   return (
@@ -10,10 +11,9 @@ const Dashboard = () => {
         <LeftNav />
 
         <Routes>
-            {/* FALTA AGREGAR ELEMENTOS */}
             <Route index element={<Clubes />} /> {/* /* PRINCIPAL - donde estan los clubes */}
             <Route path='mi-perfil' />
-            <Route path='mis-clubes' />
+            <Route path='mis-clubes' element={<MisClubes />} />
             <Route path='descubre' />
         </Routes>
 

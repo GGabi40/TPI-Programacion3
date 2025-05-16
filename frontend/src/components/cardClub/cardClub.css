@@ -1,0 +1,41 @@
+/* Card de Clubes */
+
+.club-card-child {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  color: var(--bg-color-light);
+  height: 200px;
+  width: 250px;
+  border-radius: var(--border-radius);
+  box-shadow: 0 0 8px #43411ab1;
+  padding: 1.5rem;
+  text-align: center;
+  transition: transform 0.3s ease-in-out;
+}
+
+.club-card-child p {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: var(--body-secondary-font);
+}
+
+.club-card-child:hover {
+  cursor: pointer;
+  transform: scale(1.005);
+}
+
+
+.red {
+  background: linear-gradient(45deg, red, rgb(255, 86, 128));
+}
+
+.blue {
+  background: linear-gradient(45deg, blue, rgb(141, 226, 255));
+}
+
+.violet {
+  background: linear-gradient(45deg, rgb(147, 74, 147), rgb(85, 4, 125));
+}
