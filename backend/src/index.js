@@ -7,11 +7,13 @@ import './models/Book.js';
 import './models/User.js';
 import './models/Review.js';
 import './models/Club.js';
+import './models/Activity.js';
 
 import BookRoutes from './routes/books.routes.js';
 import AuthRoutes from './routes/auth.routes.js';
 import ReviewRoutes from './routes/review.routes.js';
 import ClubRoutes from './routes/club.routes.js';
+import ActivityRoutes from './routes/activity.routes.js';
 
 dotenv.config();
 const app = express();
@@ -29,6 +31,7 @@ try {
     app.use('/api', AuthRoutes);
     app.use('/api', ReviewRoutes);
     app.use('/api', ClubRoutes);
+    app.use('/api', ActivityRoutes);
 
     app.listen(port, () => {
         console.log(`Corriendo servidor en http://localhost:${port}`);
