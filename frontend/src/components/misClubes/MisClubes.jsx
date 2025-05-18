@@ -1,10 +1,11 @@
 import React from "react";
 import { useNavigate } from "react-router";
 
-import LeftNav from '../nav/LeftNav';
-import Search from '../search/Search';
-import FooterSmall from '../footer/FooterSmall'
+import LeftNav from "../nav/LeftNav";
+import FooterSmall from "../footer/FooterSmall";
 import ClubList from "../clubList/ClubList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 const MisClubes = () => {
   const navigate = useNavigate();
@@ -41,17 +42,17 @@ const MisClubes = () => {
       <LeftNav />
       <div className="hero-container">
         <div className="hero-club">
+          <ClubList clubs={misClubes} title="Mis Clubes" showButtons={true} />
 
-          <ClubList clubs={misClubes} title='Mis Clubes' showButtons={true} />
-          
-          {/* Cambiar boton + */}
-          <button id="btn-add" type="submit" className="agregar-clubs">
-            <b>+</b>
+
+          <button class="cssbuttons-io-button">
+            <FontAwesomeIcon icon={faPlus} id="btn-plus" />
+            <span>Club</span>
           </button>
           <div className="break"></div>
         </div>
       </div>
-      <FooterSmall /> 
+      <FooterSmall />
     </>
   );
 };

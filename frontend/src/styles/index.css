@@ -560,6 +560,53 @@ footer.footer-small {
   transform: scale(0.95);
 }
 
+/* Boton de Agregar Club */
+
+.cssbuttons-io-button {
+  position: absolute;
+  top: 1rem;
+  right: 5rem;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  padding: 0.5em 1em;
+  color: white;
+  background: linear-gradient(
+    0deg,
+    var(--violeta-robado) 0%, 
+    var(--violeta-claro) 100%
+  );
+  border: none;
+  box-shadow: 0 0.7em 1.5em -0.5em var(--violeta-claro);
+  letter-spacing: 0.05em;
+  border-radius: 20em;
+  transition: all 0.3s ease;
+}
+
+.cssbuttons-io-button #btn-plus {
+  font-size: 2rem;
+  margin-right: 6px;
+}
+
+.cssbuttons-io-button:hover {
+  background: linear-gradient(
+    0deg,
+    var(--violeta-claro) 0%, 
+    var(--violeta-robado) 100%
+  );
+  box-shadow: 0 0.5em 1.5em -0.5em var(--violeta-robado);
+}
+
+.cssbuttons-io-button:active {
+  box-shadow: 0 0.3em 1em -0.5em var(--violeta-robado);
+  transform: scale(0.98);
+}
+
+
+
 /* MEDIA QUERY */
 
 @media (max-width: 710px) {
