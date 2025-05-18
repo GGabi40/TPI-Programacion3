@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../config/db.js";
 
-export const Activity = sequelize.define("activity",{
+
+export const Activity = sequelize.define("activity", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -19,7 +20,7 @@ export const Activity = sequelize.define("activity",{
     dateStart: {
         type: DataTypes.DATE,
         allowNull: false,
-        //defaultValue: () => new Date() la otra opcion que me dio el amigo es poner defaultValue: DataTypes.NOW
+        //defaultValue: DataTypes.NOW
         //las dos actividades que cree fueron una con cada forma y las dos me tira que es invalido el valor
     },
     dateEnd: {
@@ -30,7 +31,7 @@ export const Activity = sequelize.define("activity",{
         type: DataTypes.INTEGER,
         allowNull: false
     },
-    bookId:{
+    bookId: {
         type: DataTypes.INTEGER,
         allowNull: false
     }
