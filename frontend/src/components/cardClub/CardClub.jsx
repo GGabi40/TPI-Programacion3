@@ -22,8 +22,8 @@ const CardClub = ({ club, showButtons }) => {
       <p>{club.name}</p>
       {showButtons && (
         <div className="btn-cards">
-          <button type="submit">Modificar</button>
-          <button type="submit">Eliminar</button>
+          <button type="submit" className="btn-card">Modificar</button>
+          <button type="submit" className="btn-card">Eliminar</button>
         </div>
       )}
     </div>

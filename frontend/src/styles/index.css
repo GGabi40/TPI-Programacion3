@@ -517,7 +517,7 @@ footer.footer-small {
   display: flex;
   align-items: center;
   margin-bottom: 1.5rem;
-  max-width: 400px;
+  max-width: 300px;
   width: 100%;
   border-radius: 8px;
   overflow: hidden;
@@ -564,7 +564,7 @@ footer.footer-small {
 
 .cssbuttons-io-button {
   position: absolute;
-  top: 1rem;
+  top: 2rem;
   right: 5rem;
   display: flex;
   align-items: center;
@@ -576,7 +576,7 @@ footer.footer-small {
   color: white;
   background: linear-gradient(
     0deg,
-    var(--violeta-robado) 0%, 
+    var(--violeta-robado) 0%,
     var(--violeta-claro) 100%
   );
   border: none;
@@ -584,6 +584,7 @@ footer.footer-small {
   letter-spacing: 0.05em;
   border-radius: 20em;
   transition: all 0.3s ease;
+  z-index: 100;
 }
 
 .cssbuttons-io-button #btn-plus {
@@ -594,7 +595,7 @@ footer.footer-small {
 .cssbuttons-io-button:hover {
   background: linear-gradient(
     0deg,
-    var(--violeta-claro) 0%, 
+    var(--violeta-claro) 0%,
     var(--violeta-robado) 100%
   );
   box-shadow: 0 0.5em 1.5em -0.5em var(--violeta-robado);
@@ -605,9 +606,30 @@ footer.footer-small {
   transform: scale(0.98);
 }
 
-
-
 /* MEDIA QUERY */
+
+@media (max-width: 900px) {
+  footer.footer-small {
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .logo-footer {
+    padding-left: 0;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .logo-footer img {
+    height: 80px;
+    margin-bottom: 5px;
+  }
+
+  .nombre-pagina {
+    margin-bottom: 10px;
+  }
+}
 
 @media (max-width: 710px) {
   footer {
@@ -633,6 +655,28 @@ footer.footer-small {
   .grupo {
     width: 100%;
     padding: 10px;
+  }
+
+  .search-bar {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-container {
+    margin-left: 0;
+  }
+
+  .cssbuttons-io-button {
+    position: fixed;
+    top: unset;
+    bottom: 2rem;
+    right: 2rem;
+    padding: 0.6em 1.2em;
+  }
+
+  .cssbuttons-io-button span {
+    display: none;
   }
 }
 

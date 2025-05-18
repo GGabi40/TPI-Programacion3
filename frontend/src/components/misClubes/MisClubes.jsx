@@ -6,6 +6,7 @@ import FooterSmall from "../footer/FooterSmall";
 import ClubList from "../clubList/ClubList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import Search from "../search/Search";
 
 const MisClubes = () => {
   const navigate = useNavigate();
@@ -37,13 +38,18 @@ const MisClubes = () => {
     },
   ];
 
+  const handleSearch = (query) => {
+    console.log("Buscando desde Dashboard:", query);
+  };
+
   return (
     <>
       <LeftNav />
+      <Search onSearch={handleSearch} /> {/* Poner search dentro de Protected */}
+
       <div className="hero-container">
         <div className="hero-club">
           <ClubList clubs={misClubes} title="Mis Clubes" showButtons={true} />
-
 
           <button class="cssbuttons-io-button">
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />

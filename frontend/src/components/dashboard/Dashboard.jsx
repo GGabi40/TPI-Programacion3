@@ -16,7 +16,7 @@ const Dashboard = () => {
     <div>
         <LeftNav />
 
-        <Search onSearch={handleSearch} /> {/* Cuando esté Protected, poner Seacrh dentro:
+        <Search onSearch={handleSearch} /> {/* Cuando esté Protected, poner Search dentro:
                                             Actúa como un Layout, renderiza en todos los componentes */}
 
         <Routes>
