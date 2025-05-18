@@ -1,7 +1,7 @@
 :root {
   /* Tipografías */
   --principal-font: "Merriweather", sans-serif;
-  --secondary-font: 'Raleway', system-ui;
+  --secondary-font: "Raleway", system-ui;
   --body-font: "Inter", system-ui, -apple-system;
   --body-secondary-font: "Nunito", system-ui, -apple-system;
   --body-alternative-font: "Karla", system-ui, -apple-system;
@@ -10,7 +10,7 @@
   --font-color-dark: white;
 
   --bg-color-dark: #7c5a41;
-  --bg-color-light: #EDEDFF;
+  --bg-color-light: #ededff;
 
   /* Botones */
   --btn-bgc-primary: #fff552;
@@ -164,7 +164,7 @@ form {
   margin-bottom: 1.5rem;
 }
 
-.logo-form>img {
+.logo-form > img {
   height: 90px;
   filter: drop-shadow(0 0 10px rgba(140, 82, 255, 0.3));
 }
@@ -174,9 +174,8 @@ form {
   color: var(--blanco-suave);
   font-family: var(--principal-font);
   text-align: center;
-  
-  margin-bottom: 1rem;
 
+  margin-bottom: 1rem;
 }
 
 label {
@@ -258,7 +257,7 @@ button[type="submit"]:hover {
 /* Estilo subrayado de link */
 .link-subrayado {
   display: block;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-size: 1.4rem;
   text-decoration: underline;
   color: var(--font-color-dark);
@@ -340,9 +339,11 @@ button[type="submit"]:hover {
   position: absolute;
   width: 300px;
   height: 300px;
-  background: radial-gradient(circle,
-      rgba(108, 49, 163, 0.6) 0%,
-      rgba(255, 255, 255, 0.1) 70%);
+  background: radial-gradient(
+    circle,
+    rgba(108, 49, 163, 0.6) 0%,
+    rgba(255, 255, 255, 0.1) 70%
+  );
   border-radius: 50%;
   filter: blur(60px);
   animation: floatOrb 20s ease-in-out infinite;
@@ -472,7 +473,6 @@ footer .contacto {
   cursor: pointer;
 }
 
-
 /* Probando footer mas pequeño */
 
 .nombre-pagina {
@@ -503,9 +503,65 @@ footer.footer-small {
   gap: 1rem;
 }
 
+/* Search Bar */
+
+.search-bar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  max-width: 400px;
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--blanco-suave);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.184);
+  transition: box-shadow 0.3s ease;
+}
+
+.search-bar input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  font-family: var(--body-font);
+  color: var(--font-color-light);
+  background-color: var(--lavander);
+}
+
+.search-bar input::placeholder {
+  color: var(--medio-gris);
+  font-style: italic;
+}
+
+.search-btn {
+  background-color: var(--violeta-robado);
+  border: none;
+  padding: 0.7rem 1rem;
+  cursor: pointer;
+  color: var(--font-color-dark);
+  transition: background-color 0.3s ease;
+}
+
+.search-btn:hover {
+  background-color: var(--violeta-claro);
+  transform: scale(1.05);
+}
+
+.search-btn:active {
+  transform: scale(0.95);
+}
+
 /* MEDIA QUERY */
 
-@media (max-width:710px) {
+@media (max-width: 710px) {
   footer {
     flex-direction: column;
     gap: 20px;
@@ -532,7 +588,7 @@ footer.footer-small {
   }
 }
 
-@media (max-width:400px) {
+@media (max-width: 400px) {
   h1 {
     font-size: 2.6rem;
   }
@@ -558,5 +614,4 @@ footer.footer-small {
   .contacto {
     text-align: center;
   }
-
 }
