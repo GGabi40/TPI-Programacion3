@@ -6,6 +6,7 @@ import { useNavigate } from "react-router";
 import LeftNav from '../nav/LeftNav';
 import Search from '../search/Search';
 import FooterSmall from '../footer/FooterSmall'
+import ClubList from "../clubList/ClubList";
 
 const MisClubes = () => {
   const navigate = useNavigate();
@@ -13,6 +14,29 @@ const MisClubes = () => {
   const handleClick = () => {
     navigate("/modifyclub");
   };
+
+  const misClubes = [
+    {
+      name: "Club de Misterio",
+      description: "Lectura de novelas de misterio y suspenso.",
+      progress: "asincronica",
+      gender: "misterio",
+      interest: "Sherlock Holmes, Agatha Christie",
+      privacy: false,
+      restriction: false,
+      color: "violet",
+    },
+    {
+      name: "Club de Romance",
+      description: "Historias de amor y drama.",
+      progress: "sincronica",
+      gender: "romance",
+      interest: "Jane Austen, Nicholas Sparks",
+      privacy: true,
+      restriction: false,
+      color: "red",
+    },
+  ];
 
   return (
     <>
@@ -23,39 +47,9 @@ const MisClubes = () => {
           {/*probando aca decia hero-container */}
           <Search onSearch={(valor) => console.log("Buscando:", valor)} />
 
-          <h1>Mis clubes</h1>
-          <hr />
+          <ClubList clubs={misClubes} title='Mis Clubes' showButtons={true} />
           
-          <div className="club-cards-parent">
-            <div className="club-card-child violet">
-              <FontAwesomeIcon icon={faBook} size="3x" />
-              <p>Club de Lectura</p>
-              <div className="btn-cards">
-                <button type="submit" onClick={handleClick}>
-                  Modificar
-                </button>
-                <button type="submit">Eliminar</button>
-              </div>
-            </div>
-
-            <div className="club-card-child violet">
-              <FontAwesomeIcon icon={faBook} size="3x" />
-              <p>Club de Misterio</p>
-              <div className="btn-cards">
-                <button type="submit">Modificar</button>
-                <button type="submit">Eliminar</button>
-              </div>
-            </div>
-
-            <div className="club-card-child red">
-              <FontAwesomeIcon icon={faBook} size="3x" />
-              <p>Club de Romance</p>
-              <div className="btn-cards">
-                <button type="submit">Modificar</button>
-                <button type="submit">Eliminar</button>
-              </div>
-            </div>
-          </div>
+          {/* Cambiar boton + */}
           <button id="btn-add" type="submit" className="agregar-clubs">
             <b>+</b>
           </button>

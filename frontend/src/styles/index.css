@@ -126,7 +126,6 @@ button.action:hover {
 
 .form-container {
   background: rgba(44, 44, 52, 0.9);
-  /* semi-transparente tipo glassmorphism */
   margin: auto;
   padding: 3rem;
   border-radius: var(--border-radius);
@@ -371,34 +370,6 @@ button[type="submit"]:hover {
   }
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
 /* Home Container */
 
 .home-container {
@@ -527,6 +498,10 @@ footer.footer-small {
   padding-left: 7rem;
 }
 
+.btn-cards {
+  display: flex;
+  gap: 1rem;
+}
 
 /* MEDIA QUERY */
 
