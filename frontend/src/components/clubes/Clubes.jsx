@@ -55,8 +55,8 @@ const Clubes = () => {
   return (
     <div className="hero-container">
       
-      <ClubList clubs={misClubes} title='Mis Clubes' />
-      <ClubList clubs={descubreClubes} title='Descubre' />
+      <ClubList clubs={misClubes} title='Mis Clubes' showButtons={false} />
+      <ClubList clubs={descubreClubes} title='Descubre' showButtons={false} />
       
     </div>
   );
