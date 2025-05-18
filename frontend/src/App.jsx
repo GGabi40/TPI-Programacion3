@@ -27,16 +27,16 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
-            <Route path="*" element={<NotFound />} />
+          <Route path="*" element={<NotFound />} />
 
             {/* Acá todas estarán protegidas x Login */}
             {/* <Route element={<Protected />}> */}
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/clubes" element={<Clubes />} />
-              <Route path="/clubDetails" element={<ClubDetails />} />
-              <Route path="/modifyclub" element={<ModifyClub />} />
-              <Route path="/newclub" element={<NewClub />} />
-              <Route path="/mis-clubes" element={<MisClubes />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/clubes" element={<Clubes />} />
+            <Route path="/clubDetails" element={<ClubDetails />} />
+            <Route path="/modifyclub" element={<ModifyClub />} />
+            <Route path="/newclub" element={<NewClub />} />
+            <Route path="/mis-clubes" element={<MisClubes />} />
 
             {/* </Route> */}
         </Routes>

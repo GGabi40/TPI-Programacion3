@@ -1,6 +1,4 @@
 import React from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router";
 
 import LeftNav from '../nav/LeftNav';
@@ -43,9 +41,6 @@ const MisClubes = () => {
       <LeftNav />
       <div className="hero-container">
         <div className="hero-club">
-
-          {/*probando aca decia hero-container */}
-          <Search onSearch={(valor) => console.log("Buscando:", valor)} />
 
           <ClubList clubs={misClubes} title='Mis Clubes' showButtons={true} />
           
