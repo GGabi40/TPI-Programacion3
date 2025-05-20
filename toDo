@@ -13,20 +13,33 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 [OK] Books
 [OK] Club
 [OK] Review
+[OK] Activity
 [] Comments
 [] ReviewRating (verif si mismo usuario verifica +1 vez)
-[] Activity
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 [] Definir FKs en Express
-    Usuario belongsTo Rol
     Usuario belongsToMany ClubLectura (through: UsuarioClub)
-    ClubLectura belongsToMany Usuario (through: UsuarioClub)
-    ClubLectura belongsTo Libro (libro_actual)
+    ClubLectura hasMany Usuario (through: UsuarioClub)
+    Actividad belongsTo ClubLectura 
+    Libro belongsTo Actividad
     Usuario hasMany Reseña, Comentario, Valoraciones
     Reseña hasMany Comentario
     Valoraciones belongsTo Usuario y a Reseña
+
+1:N
+Usuario - Comentario
+Usuario - Reseña
+Usuario - Valoracion
+Reseña - Comentario
+Reseña - Valoracion
+Libro - Actividad
+Club - Actividad
+Club - Usuario
+
+N:M
+Usuario - Club
 
 
 -- CRUD (Logica de Backend)
@@ -88,8 +101,13 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
     [OK] Rutas de autenticación (register, login)
     [OK] Rutas de usuario (/users, /users/:id, etc.)
     [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
-    [] Rutas de libros actuales (/clubs/:id/current-book)
-    [] Rutas de reseñas, comentarios y valoraciones
+        -- rutas GET POST PUT DELETE [OK]
+        -- ruta /join [] -- todavia no esta -- falta relaciones
+    [OK] Rutas de libros actuales (/clubs/:id/current-book)
+    [OK] Rutas de reseñas
+        -- falta validar el token (autenticacion)
+    [] Rutas de Comentarios
+    [] Rutas de Valoracion de Reseñas
 
 
 -- FrontEnd
@@ -97,7 +115,7 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 [X] Setear proyecto (npm create)
 [] Pantallas principales
  - [X] Landing inicial
- - [] Login
+ - [X] Login
  - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [OK] Home Page (Lista de clubes)
@@ -110,6 +128,7 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
  - [] Validaciones de formularios
  - [OK] Filtro y búsqueda de clubes
  - [] Mensajes de éxito / error con React-Toastify
+ - [] Componente NewActivity 
 
 [] Proteccion de rutas segun rol
 [X] Manejo de 404 / 500
