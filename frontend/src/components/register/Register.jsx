@@ -152,7 +152,7 @@ const Register = () => {
 
           <p>
             ¿Ya tiene una cuenta?{" "}
-            <Link to="/" id="redireccion">
+            <Link to="/login" id="redireccion">
               Iniciar sesión
             </Link>
           </p>
