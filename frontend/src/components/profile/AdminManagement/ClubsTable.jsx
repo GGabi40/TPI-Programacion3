@@ -1,4 +1,6 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const ClubsTable = () => {
   const mockClubs = [
@@ -18,7 +20,7 @@ const ClubsTable = () => {
       description: "Exploramos el mundo con experimentos y debates.",
       restricted: true,
       interest: "Ciencia",
-      gender: "Femenino",
+      gender: "Ciencia",
       isActive: false,
       activityId: 102,
     },
@@ -39,7 +41,7 @@ const ClubsTable = () => {
           <tr>
             <th>ID</th>
             <th>Nombre</th>
-            <th>Descripción</th>
+            {/* <th>Descripción</th> */}
             <th>Restringido</th>
             <th>Interés</th>
             <th>Género</th>
@@ -52,7 +54,7 @@ const ClubsTable = () => {
             <tr key={club.id}>
               <td>{club.id}</td>
               <td>{club.name}</td>
-              <td>{club.description}</td>
+              {/* <td>{club.description}</td> */}
               <td>{club.restricted ? "Sí" : "No"}</td>
               <td>{club.interest}</td>
               <td>{club.gender}</td>
@@ -74,7 +76,7 @@ const ClubsTable = () => {
                   className="btn-delete"
                   onClick={() => handleDeleteClub(club.id)}
                 >
-                  Eliminar
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </td>
             </tr>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import Search from "../../search/Search";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 const UsersTable = () => {
   /* EJEMPLO CON USUARIOS RANDOM */
@@ -89,7 +91,7 @@ const UsersTable = () => {
                   className="btn-delete"
                   onClick={() => handleDeleteUser(u.id)}
                 >
-                  Eliminar
+                  <FontAwesomeIcon icon={faTrash} />
                 </button>
               </td>
             </tr>
