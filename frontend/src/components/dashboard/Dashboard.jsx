@@ -5,6 +5,7 @@ import Clubes from '../clubes/Clubes'
 import GoToTop from '../goToTop/GoToTop'
 import MisClubes from '../misClubes/MisClubes'
 import Search from '../search/Search'
+import Profile from '../profile/Profile'
 
 const Dashboard = () => {
 
@@ -16,12 +17,15 @@ const Dashboard = () => {
     <div>
         <LeftNav />
 
-        <Search onSearch={handleSearch} /> {/* Cuando esté Protected, poner Search dentro:
-                                            Actúa como un Layout, renderiza en todos los componentes */}
+        <Search 
+          onSearch={handleSearch} 
+          placeholder='Buscar...' 
+          showButton={true} 
+        />
 
         <Routes>
             <Route index element={<Clubes />} /> {/* /* PRINCIPAL - donde estan los clubes */}
-            <Route path='mi-perfil' />
+            <Route path="/mi-perfil" element={<Profile />} />
             <Route path='mis-clubes' element={<MisClubes />} />
             <Route path='descubre' />
         </Routes>

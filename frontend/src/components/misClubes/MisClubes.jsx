@@ -45,7 +45,11 @@ const MisClubes = () => {
   return (
     <>
       <LeftNav />
-      <Search onSearch={handleSearch} /> {/* Poner search dentro de Protected */}
+      <Search 
+          onSearch={handleSearch} 
+          placeholder='Buscar...' 
+          showButton={true} 
+      />
 
       <div className="hero-container">
         <div className="hero-club">

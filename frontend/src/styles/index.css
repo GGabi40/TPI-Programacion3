@@ -95,6 +95,10 @@ p {
   color: white;
 }
 
+p.dark {
+  color: var(--font-color-light);
+}
+
 span {
   font-size: 1.4rem;
 }
@@ -348,6 +352,7 @@ button[type="submit"]:hover {
   border-radius: 50%;
   filter: blur(60px);
   animation: floatOrb 20s ease-in-out infinite;
+  z-index: -1;
 }
 
 @keyframes floatOrb {
