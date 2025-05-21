@@ -10,64 +10,86 @@ import { Link } from "react-router";
 
 const NewClub = () => {
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const [name, setName] = useState("");
-    const [description, setDescription] = useState("");
-    const [progress, setProgress] = useState("");
-    const [gender, setGender] = useState("");
-    const [interest, setInterest] = useState("");
-    const [privacy, setPrivacy] = useState("");
-    const [restriction, setRestriction] = useState("");
+  const [name, setName] = useState("");
+  const [description, setDescription] = useState("");
+  const [progress, setProgress] = useState("");
+  const [gender, setGender] = useState("");
+  const [interest, setInterest] = useState("");
+  const [privacy, setPrivacy] = useState("");
+  const [restriction, setRestriction] = useState("");
 
-    const handleNameChange = (event) => {
-        setName(event.target.value);
+  const handleNameChange = (event) => {
+    setName(event.target.value);
+  }
+
+  const handleDescriptionChange = (event) => {
+    setDescription(event.target.value);
+  }
+
+  const handleProgressChange = (event) => {
+    setProgress(event.target.value);
+  }
+
+  const handleGenderChange = (event) => {
+    setGender(event.target.value);
+  }
+
+  const handleInterestChange = (event) => {
+    setInterest(event.target.value);
+  }
+
+  const handlePrivacyChange = (event) => {
+    setPrivacy(event.target.value);
+  }
+
+  const handleRestrictionChange = (event) => {
+    setRestriction(event.target.value);
+  }
+
+  const handleAddClub = async (e) => {
+    e.preventDefault();
+
+    const clubData = {
+      name,
+      description,
+      progress,
+      gender,
+      interest,
+      privacy,
+      restriction
+    };
+
+    try {
+      const res = await fetch("http://localhost:3000/clubs", {
+        method: "POST",
+        headers: { "Context-Type": "application/json" },
+        body: JSON.stringify(NewClub)
+      });
+
+      if (!res.ok) throw new Error("Falló crear nuevo club");
+
+      const newClub = await res.json();
+      onClubAdded(newClub);
+      setName("");
+      setDescription("");
+      setProgress("");
+      setGender("");
+      setInterest("");
+      setPrivacy("");
+      setRestriction("");
+    } catch (error) {
+      console.error(error);
     }
-    
-    const handleDescriptionChange = (event) => {
-        setDescription(event.target.value);
-    }
-
-    const handleProgressChange = (event) => {
-        setProgress(event.target.value);
-    }
-
-    const handleGenderChange = (event) => {
-        setGender(event.target.value);
-    }
-
-    const handleInterestChange = (event) => {
-        setInterest(event.target.value);
-    }
-
-    const handlePrivacyChange = (event) => {
-        setPrivacy(event.target.value);
-    }
-
-    const handleRestrictionChange = (event) => {
-        setRestriction(event.target.value);
-    }
-
-    const handleAddClub = async (e) => {
-        e.preventDefault();
-
-        const clubData = {
-            name,
-            description,
-            progress,
-            gender,
-            interest,
-            privacy,
-            restriction
-        }
 
 
-    }
+  }
 
 
   return (
     <div>
-    
+
       <LeftNav />
 
       <div className="background-animated">
@@ -88,7 +110,7 @@ const NewClub = () => {
           <input type="text" id="name" placeholder="Ej: Club de Ficción" />
 
           <label>Ingrese la Descripción:</label>
-          <input type="textarea" id="description" placeholder='Ingrese una breve descripcion' max={200}/>
+          <input type="textarea" id="description" placeholder='Ingrese una breve descripcion' max={200} />
 
           <label>Ingrese el Sistema de Progreso:</label>
           <select name="progress" id="progress">
@@ -116,14 +138,14 @@ const NewClub = () => {
           <input type="textarea" id="interest" placeholder="Autor / Vampiros / etc" />
 
           <label>Privacidad del Club:</label>
-          <input type="checkbox" id="privacy" name='privacy'/>
+          <input type="checkbox" id="privacy" name='privacy' />
 
           <label>Restricción de Edad:</label>
-          <input type="checkbox" id="restriction" name='restriction'/>
+          <input type="checkbox" id="restriction" name='restriction' />
 
           <button type="submit">Crear Club</button>
 
-          
+
         </form>
       </div>
 
