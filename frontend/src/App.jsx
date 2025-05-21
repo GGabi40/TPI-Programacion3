@@ -12,6 +12,7 @@ import ModifyClub from "./components/modifyClub/ModifyClub"; //modify club
 import ClubDetails from "./components/clubDetails/ClubDetails";
 import MisClubes from "./components/misClubes/MisClubes";
 import Clubes from "./components/clubes/Clubes";
+import Profile from "./components/profile/Profile";
 
 
 function App() {
@@ -32,8 +33,8 @@ function App() {
             {/* Acá todas estarán protegidas x Login */}
             {/* <Route element={<Protected />}> */}
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/clubes" element={<Clubes />} />
-            <Route path="/clubDetails" element={<ClubDetails />} />
+            <Route path="/mi-perfil" element={<Profile />} />
+            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
             <Route path="/modifyclub" element={<ModifyClub />} />
             <Route path="/newclub" element={<NewClub />} />
             <Route path="/mis-clubes" element={<MisClubes />} />

@@ -1,23 +1,29 @@
-import React from "react";
-import { useLocation, useNavigate } from "react-router";
+import React, { useState } from "react";
+import { useNavigate, useParams } from "react-router";
 import { useEffect } from "react";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
+import NotFound from "../error/notFound/NotFound";
 
 const ClubDetails = () => {
-    const location = useLocation();
-    const navigate = useNavigate();
-
-    const club = location.state?.club;
+    const { id } = useParams(); // más sencillo que useLocation
+    const [club, setClub] = useState(null);
+    // const navigate = useNavigate();
 
     useEffect(() => {
-        if(!club) {
-            navigate("/clubes");
-        }
-    }, [club, navigate]);
+        /* Acá consultamos con fetch por el ID
+        Ejemplo:
+        useEffect(() => {
+            fetch(`/api/clubs/${id}`)
+                .then((res) => res.json())
+                .then((data) => setClub(data))
+                .catch(() => setClub(null));
+        }, [id]);
+        */
+    }, [id]);
 
     if(!club) {
-        return null;
+        return <NotFound />;
     }
 
     const { name, description, progress, gender, interest, privacy, restriction } = club;
@@ -35,7 +41,7 @@ const ClubDetails = () => {
                 </div>
 
                 <h2 id="detalleClub" className="text-align">
-                    DETALLES DEL CLUB
+                    DETALLES DEL CLUB {id}
                 </h2>
                 <br />
                 <div className="details-container">

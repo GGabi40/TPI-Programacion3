@@ -1,22 +1,17 @@
 import React from "react";
+import { Link } from "react-router";
 import "./cardClub.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { useNavigate } from "react-router";
 
 /* Acá están los cards de cada club */
 const CardClub = ({ club, showButtons }) => {
-  const navigate = useNavigate();
-
-  const handleViewDetails = () => {
-    navigate("/clubDetails");
-  };
 
   return (
-    <div
+    <Link
+      to={`/clubDetails/${club.id}`}
       className={`club-card-child ${club.color}`}
-      onClick={handleViewDetails}
     >
       <FontAwesomeIcon icon={faBook} size="3x" />
       <p>{club.name}</p>
@@ -26,7 +21,7 @@ const CardClub = ({ club, showButtons }) => {
           <button type="submit" className="btn-card">Eliminar</button>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 

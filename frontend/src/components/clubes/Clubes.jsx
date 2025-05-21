@@ -8,6 +8,7 @@ const Clubes = () => {
   /* EJEMPLO CON MOCK */
   const misClubes = [
     {
+      id: 1,
       name: "Club de Lectura",
       description: "Un club para amantes de la lectura.",
       progress: "sincronica",
@@ -18,6 +19,7 @@ const Clubes = () => {
       color: "violet",
     },
     {
+      id: 2,
       name: "Club de Misterio",
       description: "Lectura de novelas de misterio y suspenso.",
       progress: "asincronica",
@@ -28,6 +30,7 @@ const Clubes = () => {
       color: "violet",
     },
     {
+      id:3,
       name: "Club de Romance",
       description: "Historias de amor y drama.",
       progress: "sincronica",
@@ -41,6 +44,7 @@ const Clubes = () => {
 
   const descubreClubes = [
     {
+      id: 1,
       name: "Club de Sherlock Holmes",
       description: "Amantes del detective más famoso.",
       progress: "asincronica",

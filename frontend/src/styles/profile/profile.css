@@ -1,0 +1,215 @@
+.profile-container {
+  display: flex;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.profile-card {
+  margin-left: 150px;
+  background: rgba(44, 44, 52, 0.9);
+  color: var(--font-color-dark);
+  border-radius: var(--border-radius);
+  padding: 2rem;
+  width: 90%;
+  max-width: 900px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
+  text-align: center;
+  font-family: var(--body-font);
+  border: 2px solid var(--violeta-claro);
+}
+
+.profile-card h2 {
+  font-family: var(--principal-font);
+  font-size: 1.8rem;
+  color: var(--btn-bgc-primary);
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.profile-card p {
+  font-family: var(--body-secondary-font);
+  color: white;
+  margin: 0.3rem 0;
+}
+
+.profile-avatar img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  margin-bottom: 1rem;
+  border: 3px solid var(--violeta-robado);
+  object-fit: cover;
+}
+
+.profile-status.active {
+  color: greenyellow;
+  font-weight: bold;
+}
+
+.profile-status.inactive {
+  color: red;
+  font-weight: bold;
+}
+
+.tools {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+@media (max-width: 1010px) {
+  .profile-card {
+    margin-left: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-card {
+    padding: 1.5rem;
+    width: 60%;
+  }
+}
+
+@media (max-width: 600px) {
+  .profile-card {
+    min-width: 360px;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .profile-card {
+    padding: 1rem;
+  }
+
+  .profile-card h2 {
+    font-size: 1.5rem;
+  }
+}
+
+
+
+/* SUPERADMIN */
+
+.superadmin-title {
+  font-family: var(--secondary-font);
+  font-size: 2.6rem;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.superadmin-title:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.user-table-container {
+  overflow-x: auto;
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--body-font);
+  background-color: var(--blanco-suave);
+  color: var(--font-color-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  border-radius: 8px;
+}
+
+.user-table th,
+.user-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid var(--lavander);
+}
+
+.user-table th {
+  background-color: var(--violeta-claro);
+  color: white;
+}
+
+.user-table tbody tr:hover {
+  background-color: var(--lavander);
+}
+
+.user-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--body-secondary-font);
+  background-color: var(--blanco-suave);
+  border: 1px solid var(--violeta-claro);
+  border-radius: var(--border-radius);
+  overflow-x: scroll;
+  box-shadow: 0 4px 12px rgba(85, 58, 140, 0.15);
+}
+
+.user-table th,
+.user-table td {
+  padding: 0.8rem;
+  border-bottom: 1px solid var(--lavander);
+  text-align: left;
+  font-size: 1.3rem;
+}
+
+.user-table th {
+  background-color: var(--violeta-claro);
+  color: white;
+}
+
+.status-active {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #c62828;
+  font-weight: bold;
+}
+
+.user-table button {
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 1.3rem;
+  margin-right: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--body-font);
+}
+
+.btn-edit {
+  background-color: var(--btn-bgc-primary);
+  border: 1px solid var(--marron-suave);
+  color: var(--btn-color-primary);
+}
+
+.btn-edit:hover {
+  background-color: var(--btn-bgc-primary-hover);
+}
+
+.btn-delete {
+  background-color: #ff6b6b;
+  border: none;
+  color: white;
+}
+
+.btn-delete:hover {
+  background-color: #e63946;
+}
+
+.status-active {
+  color: #2e7d32;
+  font-weight: bold;
+}
+
+.status-inactive {
+  color: #c62828;
+  font-weight: bold;
+}
+
+p.dark {
+  color: var(--font-color-light);
+  text-align: center;
+}
