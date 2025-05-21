@@ -33,7 +33,7 @@ function App() {
             {/* <Route element={<Protected />}> */}
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/clubes" element={<Clubes />} />
-            <Route path="/clubDetails" element={<ClubDetails />} />
+            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
             <Route path="/modifyclub" element={<ModifyClub />} />
             <Route path="/newclub" element={<NewClub />} />
             <Route path="/mis-clubes" element={<MisClubes />} />
