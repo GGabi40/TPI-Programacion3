@@ -27,6 +27,9 @@
   transform: scale(1.005);
 }
 
+a.club-card-child {
+  text-decoration: none;
+}
 
 .red {
   background: linear-gradient(45deg, red, rgb(255, 86, 128));
