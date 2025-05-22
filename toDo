@@ -30,16 +30,17 @@ VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
 1:N
 Usuario - Comentario
-Usuario - Reseña
 Usuario - Valoracion
 Reseña - Comentario
 Reseña - Valoracion
-Libro - Actividad
-Club - Actividad
-Club - Usuario
+
+Usuario - Reseña [OK]
+Libro - Actividad [OK]
+Club - Actividad [OK]
 
 N:M
-Usuario - Club
+Club - Usuario [OK]
+Usuario - Club [OK]
 
 
 -- CRUD (Logica de Backend)
