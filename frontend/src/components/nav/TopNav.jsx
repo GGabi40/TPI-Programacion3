@@ -13,7 +13,9 @@ const TopNav = () => {
   return (
     <nav id='topNav'>
       <div className="logo top">
-        <img src={logo} alt="Logo Inklink" className='imgLogo' />
+        <a href="/">
+
+          <img src={logo} alt="Logo Inklink" className='imgLogo' /> </a>
         <h1>InkLink</h1>
       </div>
 
