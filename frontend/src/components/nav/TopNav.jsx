@@ -14,16 +14,15 @@ const TopNav = () => {
     <nav id='topNav'>
       <div className="logo top">
         <a href="/">
-
           <img src={logo} alt="Logo Inklink" className='imgLogo' /> </a>
         <h1>InkLink</h1>
       </div>
 
       <div className="buttons top">
         {location.pathname !== '/login' && (
-          <Link to="/login" className="link-button">Login</Link>)}
+          <Link to="/login" className="link-button">Iniciar Sesión</Link>)}
         {location.pathname !== '/register' && (
-          <Link to="/register" className="link-button">Register</Link>
+          <Link to="/register" className="link-button">Registrarse</Link>
         )}
       </div>
     </nav>
