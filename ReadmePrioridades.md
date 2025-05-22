@@ -12,6 +12,7 @@
 [] Registro
 [] Login
 [] Acceso según rol (User, Admin, SuperAdmin)
+[] Relaciones entre tablas
 
 - SuperAdmin (Usuarios)
 GET /users
@@ -41,20 +42,22 @@ DELETE /activity/:id
 
 **Pantallas mínimas necesarias:**
 
-* Login  [falta-poco]
+* Login  [OK]
 * Registro  [OK]
-* Home con listado de clubs  [falta-poco]
+* Home con listado de clubs  [OK]
+* Descubre
 * Detalle de un club con sus reseñas  [falta-poco]
 * Panel de usuario (perfil simple y clubs)
-* Dashboard Admin (crear/modificar/eliminar clubs)
-* Dashboard Superadmin (gestión de usuarios y roles)
+* Dashboard Admin (crear/modificar/eliminar clubs) [falta-poco]
+* Dashboard Superadmin (gestión de usuarios y roles) [OK]
 
 
 **-- Otras cosas del Enunciado:**
 * SPA con react-router
     * Not Found - Error 404 [OK]
     * Manejo de errores - Error 500 - pagina [OK]
-* Validacion de form - back y front
-* Context  ->  Manejo de usuario logueado, su rol y token
-* Custom Hook  ->  useAuth() o useFetch() por ejemplo
-* Diseño cuidado  ->  	Que sea claro, sin errores ni cosas rotas
+* Validacion de form - back [OK] y front
+* Context  ->  Manejo de usuario logueado, su rol y token (useAuth())
+* Custom Hook  -> useFetch() || darkMode() - si hay tiempo
+
+* Diseño cuidado -> Que sea claro, sin errores ni cosas rotas ** VERIFICAR TODOS LOS BOTONES POSIBLES - anotar cuales no andan y no tocar más

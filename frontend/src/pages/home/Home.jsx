@@ -72,7 +72,7 @@ const Home = () => {
       <div className="banner-action">
         <h2>¿List@ para unirse a nuestra comunidad?</h2>
         <p>Cree su cuenta y empiece a compartir lecturas hoy mismo</p>
-        <Link className="link-button secondary">Crear Cuenta</Link>
+        <Link className="link-button secondary" to="/register">Crear Cuenta</Link>
       </div>
 
       <GoToTop />

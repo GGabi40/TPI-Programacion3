@@ -30,7 +30,6 @@ const Profile = () => {
           <h3 className="superadmin-title">Gestión de Usuarios (SuperAdmin)</h3>
           <UserTable />
 
-          {/* ESTO VA? */}
           <h3 className="superadmin-title">Gestión de Clubes (SuperAdmin)</h3>
           <ClubsTable /> 
         </div>
