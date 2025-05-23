@@ -40,7 +40,7 @@ function App() {
             <Route path="/modifyclub" element={<ModifyClub />} />
             <Route path="/newclub" element={<NewClub />} />
             <Route path="/mis-clubes" element={<MisClubes />} />
-            <Route path="/newactivity" element={<NewActivity />} />
+            <Route path="/newact" element={<NewActivity />} />
             <Route path="/descubre" element={<Descubre />} />
 
 
