@@ -61,7 +61,7 @@ const NewActivity = () => {
         } catch (error) {
             console.error(error);
         }
-        
+
     }
 
 
@@ -92,9 +92,11 @@ const NewActivity = () => {
                         <option value="asincronica">Forma Asincrónica</option>
                     </select>
 
-                    <label type="date" id="fechaInicio" value={fechaInicio} onChange={handleChange}>Fecha Inicio:</label>
+                    <label  id="fechaInicio" >Fecha Inicio:</label>
+                    <input type="date" value={fechaInicio} onChange={handleFechaInicioChange}/>
 
-                    <label type="date" id="fechaFin" value={fechaFin} onChange={handleChange}>Fecha Fin:</label>
+                    <label id="fechaFin">Fecha Fin:</label>
+                    <input type="date" value={fechaFin} onChange={handleFechaFinChange}/>
 
                     <button type="submit">Crear Actividad</button>
                 </form>

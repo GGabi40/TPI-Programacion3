@@ -78,7 +78,7 @@ const validateContent = (req) => {
     message: "",
   };
   const { content } = req;
-  if (!content || !validateString(content, 4, 13)) {
+  if (!content || !validateString(content, 4, 200)) {
     return {
       error: true,
       message: "El contenido no cumple los requisitos.",
