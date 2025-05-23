@@ -13,6 +13,8 @@ import ClubDetails from "./components/clubDetails/ClubDetails";
 import MisClubes from "./components/misClubes/MisClubes";
 import Clubes from "./components/clubes/Clubes";
 import Profile from "./components/profile/Profile";
+import NewActivity from "./components/newActivity/NewActivity";
+import Descubre from "./components/descubre/DescubreClubes";
 
 
 function App() {
@@ -38,6 +40,9 @@ function App() {
             <Route path="/modifyclub" element={<ModifyClub />} />
             <Route path="/newclub" element={<NewClub />} />
             <Route path="/mis-clubes" element={<MisClubes />} />
+            <Route path="/newactivity" element={<NewActivity />} />
+            <Route path="/descubre" element={<Descubre />} />
+
 
             {/* </Route> */}
         </Routes>
