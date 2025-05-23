@@ -28,6 +28,11 @@ export const Club = sequelize.define("club", {
         type: DataTypes.STRING,
         allowNull: false
     },
+    color:{
+        type: DataTypes.ENUM("blue", "red", "green", "purple", "acqua", "violet"),
+        allowNull: false,
+        defaultValue: "acqua"
+    },
     isActive:{
         type: DataTypes.BOOLEAN,
         allowNull: false,

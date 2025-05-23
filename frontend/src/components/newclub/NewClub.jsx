@@ -112,13 +112,6 @@ const NewClub = () => {
           <label>Ingrese la Descripción:</label>
           <input type="textarea" id="description" placeholder='Ingrese una breve descripcion' max={200} />
 
-          <label>Ingrese el Sistema de Progreso:</label>
-          <select name="progress" id="progress">
-            <option value="">Seleccione una opción</option>
-            <option value="sincronica">Forma Sincrónica</option>
-            <option value="asincronica">Forma Asincrónica</option>
-          </select>
-
           <label>Ingrese el Género:</label>
           <select name="gender" id="gender">
             <option value="">Seleccione una opción</option>
