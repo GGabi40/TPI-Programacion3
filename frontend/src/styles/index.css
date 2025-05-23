@@ -490,6 +490,9 @@ footer .contacto {
 }
 
 footer.footer-small {
+  /* position: absolute;
+  bottom: 0;
+  height: 200px; */
   display: flex;
   flex-direction: row;
   gap: 1px;
