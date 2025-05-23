@@ -8,6 +8,7 @@ import './models/User.js';
 import './models/Review.js';
 import './models/Club.js';
 import './models/Activity.js';
+import './models/ReviewRating.js';
 import './models/relation.js';
 
 import BookRoutes from './routes/books.routes.js';

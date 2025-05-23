@@ -46,6 +46,7 @@ DELETE /activity/:id
 * Registro  [OK]
 * Home con listado de clubs  [OK]
 * Descubre
+* NewActivity
 * Detalle de un club con sus reseñas  [falta-poco]
 * Panel de usuario (perfil simple y clubs)
 * Dashboard Admin (crear/modificar/eliminar clubs) [falta-poco]
