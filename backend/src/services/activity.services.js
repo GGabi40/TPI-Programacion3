@@ -21,18 +21,18 @@ export const getActivityById = async(req, res) => {
 
 //POST
 export const createNewActivity = async(req, res) => {
-    const {progress,isActive,dateStart,dateEnd,reviewId,bookId} = req.body;
+    const {progress,isActive,dateStart,dateEnd,bookId} = req.body;
 
-    if (!progress || !isActive || !reviewId || !bookId){
+    if (!progress || !bookId || !dateStart){
         return res.status(400).send({message:"Los campos son requeridos!"});
     }
-    const newActivity = await Activity.create({progress,isActive,dateStart,dateEnd,reviewId,bookId});
+    const newActivity = await Activity.create({progress,isActive,dateStart,dateEnd,bookId});
     res.json(newActivity);
 }
 
 //PUT-UPDATE
 export const updateActivity = async(req, res) => {
-    const {progress,isActive,dateStart,dateEnd,reviewId,bookId} = req.body;
+    const {progress,isActive,dateStart,dateEnd,bookId} = req.body;
 
     const {id} = req.params;
     const activity = await Activity.findByPk(id);
@@ -41,7 +41,7 @@ export const updateActivity = async(req, res) => {
         return res.status(404).send({message:"No se encontro ninguna actividad!"});
     }
     try {
-        await activity.update({progress,isActive,dateStart,dateEnd,reviewId,bookId});
+        await activity.update({progress,isActive,dateStart,dateEnd,bookId});
         res.json(activity);
     } catch (error) {
         console.error("Error: ", error);

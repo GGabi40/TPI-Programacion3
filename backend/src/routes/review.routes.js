@@ -1,5 +1,11 @@
 import { Router } from "express";
-import { createReview, deleteReview, getAllReviews, getReviewById, updateReview } from "../services/review.services.js";
+import {
+  createReview,
+  deleteReview,
+  getAllReviews,
+  getReviewById,
+  updateReview,
+} from "../services/review.services.js";
 
 const router = Router();
 router.post("/reviews", createReview);
