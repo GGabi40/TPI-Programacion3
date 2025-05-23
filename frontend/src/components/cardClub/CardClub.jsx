@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router";
 import "./cardClub.css";
 
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 
@@ -19,6 +20,9 @@ const CardClub = ({ club, showButtons }) => {
         <div className="btn-cards">
           <button type="submit" className="btn-card">Modificar</button>
           <button type="submit" className="btn-card">Eliminar</button>
+          <button type="submit" className="btn-card">
+            <FontAwesomeIcon icon={faPlus} id="btn-plus" />
+          </button>
         </div>
       )}
     </Link>

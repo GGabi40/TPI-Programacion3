@@ -42,3 +42,15 @@ a.club-card-child {
 .violet {
   background: linear-gradient(45deg, rgb(147, 74, 147), rgb(85, 4, 125));
 }
+
+.green {
+  background: linear-gradient(45deg, rgb(8, 66, 8), rgb(98, 183, 98));
+}
+
+.purple {
+  background: linear-gradient(45deg, rgb(146, 30, 90), rgb(87, 52, 120));
+}
+
+.acqua {
+  background: linear-gradient(45deg, rgb(22, 112, 133), rgb(58, 198, 216));
+}

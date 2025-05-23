@@ -33,7 +33,8 @@ const LeftNav = () => {
 
       <nav id="leftNav" className={isOpen ? "open" : "collapsed"}>
         <div className="logo">
-          <img src={logo} alt="Logo Inklink" className="imgLogo" />
+          <a href="/dashboard">
+          <img src={logo} alt="Logo Inklink" className="imgLogo" /> </a>
           <h1>InkLink</h1>
           <h3 className="nav-usuario">
             <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px" }} />
