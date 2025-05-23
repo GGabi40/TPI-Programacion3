@@ -1,7 +1,7 @@
 {
   "type": "excalidraw",
   "version": 2,
-  "source": "https://excalidraw.com",
+  "source": "https://marketplace.visualstudio.com/items?itemName=pomdtr.excalidraw-editor",
   "elements": [
     {
       "id": "mJBJNpl31THO-uXJRJI7J",
@@ -2681,14 +2681,1535 @@
       "updated": 1748037023309,
       "link": null,
       "locked": false
+    },
+    {
+      "id": "dKbIk9N-ySjRRutmx5xch",
+      "type": "text",
+      "x": -2206.233491448498,
+      "y": 1625.5227587731633,
+      "width": 1247.8482497435884,
+      "height": 84.1276550292968,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "ar",
+      "roundness": null,
+      "seed": 329654625,
+      "version": 94,
+      "versionNonce": 1650884929,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748037924569,
+      "link": null,
+      "locked": false,
+      "text": "Para hacer un Custom Hook, entonces:",
+      "fontSize": 67.30212402343746,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Para hacer un Custom Hook, entonces:",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "KMc-bFnyE8F2FMnaSd0hp",
+      "type": "text",
+      "x": -832.9005599299435,
+      "y": -979.3469159094539,
+      "width": 1074.095703125,
+      "height": 315,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "as",
+      "roundness": null,
+      "seed": 695442657,
+      "version": 178,
+      "versionNonce": 44633185,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038093301,
+      "link": null,
+      "locked": false,
+      "text": "Endpoint: es una URL específica dentro de una \nAPI que permite acceder a cierta información o funcionalidad.\n\nEjemplo:  http://localhost:3000  -> URL de BBDD\nEndpoints:   /api/books\n                /api/login\n                /api/register",
+      "fontSize": 36,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Endpoint: es una URL específica dentro de una \nAPI que permite acceder a cierta información o funcionalidad.\n\nEjemplo:  http://localhost:3000  -> URL de BBDD\nEndpoints:   /api/books\n                /api/login\n                /api/register",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "-09CdXc7Cialk4iJqUsmP",
+      "type": "text",
+      "x": -2110.7181999620307,
+      "y": 1786.159053304612,
+      "width": 890.8717651367188,
+      "height": 217.7027681852934,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "at",
+      "roundness": null,
+      "seed": 1159943137,
+      "version": 105,
+      "versionNonce": 654485135,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038247121,
+      "link": null,
+      "locked": false,
+      "text": "const API_URL = 'http://localhost:3000';\nconst endpoint = 'api/books'; // ejemplo\n\nfetch(`${API_URL}${endpoint}`)",
+      "fontSize": 43.54055363705868,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "const API_URL = 'http://localhost:3000';\nconst endpoint = 'api/books'; // ejemplo\n\nfetch(`${API_URL}${endpoint}`)",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "g4p3RewZMLC0FbpWpq91U",
+      "type": "text",
+      "x": -2109.3817899764736,
+      "y": 2091.7389232809746,
+      "width": 1137.743408203125,
+      "height": 272.1284602316167,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "au",
+      "roundness": null,
+      "seed": 1720479791,
+      "version": 322,
+      "versionNonce": 814948417,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038310225,
+      "link": null,
+      "locked": false,
+      "text": "Si se hace:\n    const { get } = useFetch('/books');\n\nSe hace un:  fetch('http://localhost:3000/api/books')\nCon un método GET (x defecto)",
+      "fontSize": 43.54055363705868,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Si se hace:\n    const { get } = useFetch('/books');\n\nSe hace un:  fetch('http://localhost:3000/api/books')\nCon un método GET (x defecto)",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "TwgMA90U2VvDWGwySYLds",
+      "type": "freedraw",
+      "x": -869.6071566677595,
+      "y": 1589.765722412685,
+      "width": 216.66656494140625,
+      "height": 984.4183349609377,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "aw",
+      "roundness": null,
+      "seed": 545300687,
+      "version": 132,
+      "versionNonce": 1096155407,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038711338,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          2.7778116861979925,
+          1.085052490234375
+        ],
+        [
+          5.5555216471354925,
+          1.085052490234375
+        ],
+        [
+          8.333333333333258,
+          1.085052490234375
+        ],
+        [
+          11.11114501953125,
+          1.085052490234375
+        ],
+        [
+          16.666666666666742,
+          9.418385823567633
+        ],
+        [
+          22.222188313802008,
+          14.973958333333258
+        ],
+        [
+          25,
+          26.085052490234375
+        ],
+        [
+          36.11114501953125,
+          34.41838582356763
+        ],
+        [
+          38.88885498046875,
+          45.52950541178393
+        ],
+        [
+          41.66666666666674,
+          51.085052490234375
+        ],
+        [
+          47.22218831380201,
+          59.41838582356763
+        ],
+        [
+          50,
+          67.75171915690112
+        ],
+        [
+          52.77781168619799,
+          78.86283874511719
+        ],
+        [
+          55.55552164713549,
+          89.97395833333326
+        ],
+        [
+          58.33333333333326,
+          101.08505249023438
+        ],
+        [
+          61.11114501953125,
+          112.19614664713549
+        ],
+        [
+          61.11114501953125,
+          123.30729166666674
+        ],
+        [
+          61.11114501953125,
+          134.41838582356763
+        ],
+        [
+          61.11114501953125,
+          142.75171915690112
+        ],
+        [
+          61.11114501953125,
+          151.08505249023438
+        ],
+        [
+          61.11114501953125,
+          159.41838582356763
+        ],
+        [
+          61.11114501953125,
+          167.75171915690112
+        ],
+        [
+          61.11114501953125,
+          178.862813313802
+        ],
+        [
+          58.33333333333326,
+          184.41838582356763
+        ],
+        [
+          58.33333333333326,
+          192.75171915690112
+        ],
+        [
+          52.77781168619799,
+          201.08505249023438
+        ],
+        [
+          52.77781168619799,
+          212.1961466471355
+        ],
+        [
+          50,
+          226.08505249023438
+        ],
+        [
+          50,
+          234.41838582356763
+        ],
+        [
+          47.22218831380201,
+          248.30729166666674
+        ],
+        [
+          44.44447835286451,
+          256.640625
+        ],
+        [
+          44.44447835286451,
+          264.97395833333326
+        ],
+        [
+          41.66666666666674,
+          273.30729166666674
+        ],
+        [
+          36.11114501953125,
+          287.1961466471355
+        ],
+        [
+          33.33333333333326,
+          298.30729166666674
+        ],
+        [
+          33.33333333333326,
+          309.41838582356763
+        ],
+        [
+          33.33333333333326,
+          317.7517191569011
+        ],
+        [
+          33.33333333333326,
+          326.0850524902344
+        ],
+        [
+          33.33333333333326,
+          337.1961466471355
+        ],
+        [
+          33.33333333333326,
+          348.30729166666674
+        ],
+        [
+          33.33333333333326,
+          362.1961466471355
+        ],
+        [
+          33.33333333333326,
+          376.0850524902344
+        ],
+        [
+          36.11114501953125,
+          392.7517191569011
+        ],
+        [
+          41.66666666666674,
+          409.41838582356763
+        ],
+        [
+          47.22218831380201,
+          428.862813313802
+        ],
+        [
+          52.77781168619799,
+          445.52947998046875
+        ],
+        [
+          63.88885498046875,
+          464.97395833333326
+        ],
+        [
+          72.22218831380201,
+          478.862813313802
+        ],
+        [
+          80.55552164713549,
+          487.1961466471355
+        ],
+        [
+          86.11114501953125,
+          498.30729166666674
+        ],
+        [
+          91.66656494140625,
+          503.862813313802
+        ],
+        [
+          97.22218831380201,
+          506.6406250000002
+        ],
+        [
+          99.99989827473951,
+          509.41838582356763
+        ],
+        [
+          102.77781168619799,
+          512.1961466471355
+        ],
+        [
+          105.55552164713549,
+          512.1961466471355
+        ],
+        [
+          108.33323160807299,
+          512.1961466471355
+        ],
+        [
+          108.33323160807299,
+          514.9739583333333
+        ],
+        [
+          102.77781168619799,
+          517.7517191569011
+        ],
+        [
+          97.22218831380201,
+          523.3072916666667
+        ],
+        [
+          91.66656494140625,
+          528.862813313802
+        ],
+        [
+          83.33323160807299,
+          534.4183349609377
+        ],
+        [
+          75,
+          542.7516682942708
+        ],
+        [
+          69.44447835286451,
+          548.3072916666667
+        ],
+        [
+          63.88885498046875,
+          556.6406250000002
+        ],
+        [
+          61.11114501953125,
+          562.1961466471355
+        ],
+        [
+          55.55552164713549,
+          573.3072916666667
+        ],
+        [
+          47.22218831380201,
+          587.1961466471355
+        ],
+        [
+          47.22218831380201,
+          601.0850016276042
+        ],
+        [
+          47.22218831380201,
+          612.1961466471355
+        ],
+        [
+          47.22218831380201,
+          626.0850016276042
+        ],
+        [
+          47.22218831380201,
+          639.9739583333333
+        ],
+        [
+          47.22218831380201,
+          653.862813313802
+        ],
+        [
+          47.22218831380201,
+          670.529479980469
+        ],
+        [
+          47.22218831380201,
+          684.4183349609377
+        ],
+        [
+          47.22218831380201,
+          695.529479980469
+        ],
+        [
+          47.22218831380201,
+          706.6406250000002
+        ],
+        [
+          47.22218831380201,
+          720.529479980469
+        ],
+        [
+          47.22218831380201,
+          731.6406250000002
+        ],
+        [
+          50,
+          739.9739583333333
+        ],
+        [
+          52.77781168619799,
+          753.862813313802
+        ],
+        [
+          55.55552164713549,
+          764.9739583333333
+        ],
+        [
+          58.33333333333326,
+          778.862813313802
+        ],
+        [
+          63.88885498046875,
+          789.9739583333333
+        ],
+        [
+          66.66666666666674,
+          803.862813313802
+        ],
+        [
+          66.66666666666674,
+          812.1961466471355
+        ],
+        [
+          66.66666666666674,
+          823.3072916666667
+        ],
+        [
+          66.66666666666674,
+          834.4183349609377
+        ],
+        [
+          69.44447835286451,
+          842.7516682942708
+        ],
+        [
+          69.44447835286451,
+          851.0850016276042
+        ],
+        [
+          69.44447835286451,
+          859.4183349609377
+        ],
+        [
+          69.44447835286451,
+          870.529479980469
+        ],
+        [
+          69.44447835286451,
+          878.862813313802
+        ],
+        [
+          66.66666666666674,
+          889.9739583333333
+        ],
+        [
+          61.11114501953125,
+          901.0850016276042
+        ],
+        [
+          52.77781168619799,
+          914.9739583333333
+        ],
+        [
+          47.22218831380201,
+          926.0850016276042
+        ],
+        [
+          41.66666666666674,
+          934.4183349609377
+        ],
+        [
+          36.11114501953125,
+          939.9739583333333
+        ],
+        [
+          30.555521647135492,
+          945.529479980469
+        ],
+        [
+          22.222188313802008,
+          956.6406250000002
+        ],
+        [
+          16.666666666666742,
+          962.1961466471355
+        ],
+        [
+          11.11114501953125,
+          964.9739583333333
+        ],
+        [
+          8.333333333333258,
+          970.529479980469
+        ],
+        [
+          2.7778116861979925,
+          970.529479980469
+        ],
+        [
+          -2.7778116861979925,
+          973.3072916666667
+        ],
+        [
+          -5.5555216471354925,
+          976.0850016276042
+        ],
+        [
+          -11.11114501953125,
+          978.862813313802
+        ],
+        [
+          -13.88885498046875,
+          978.862813313802
+        ],
+        [
+          -22.222188313802008,
+          981.6406250000002
+        ],
+        [
+          -27.777811686197992,
+          981.6406250000002
+        ],
+        [
+          -33.33333333333326,
+          981.6406250000002
+        ],
+        [
+          -38.88885498046875,
+          984.4183349609377
+        ],
+        [
+          -44.44447835286451,
+          984.4183349609377
+        ],
+        [
+          -47.22218831380201,
+          984.4183349609377
+        ],
+        [
+          -50,
+          984.4183349609377
+        ],
+        [
+          -55.55552164713549,
+          984.4183349609377
+        ],
+        [
+          -58.33333333333326,
+          984.4183349609377
+        ],
+        [
+          -63.88885498046875,
+          984.4183349609377
+        ],
+        [
+          -69.44447835286451,
+          984.4183349609377
+        ],
+        [
+          -72.22218831380201,
+          984.4183349609377
+        ],
+        [
+          -77.77781168619799,
+          984.4183349609377
+        ],
+        [
+          -83.33333333333326,
+          984.4183349609377
+        ],
+        [
+          -86.11114501953125,
+          984.4183349609377
+        ],
+        [
+          -91.66666666666674,
+          984.4183349609377
+        ],
+        [
+          -100,
+          984.4183349609377
+        ],
+        [
+          -100,
+          981.6406250000002
+        ],
+        [
+          -102.77781168619799,
+          981.6406250000002
+        ],
+        [
+          -105.55552164713549,
+          981.6406250000002
+        ],
+        [
+          -108.33333333333326,
+          981.6406250000002
+        ],
+        [
+          -108.33333333333326,
+          981.6406250000002
+        ]
+      ],
+      "pressures": [],
+      "simulatePressure": true,
+      "lastCommittedPoint": null
+    },
+    {
+      "id": "dzWEwSe5wJPs5pW3dGqNU",
+      "type": "text",
+      "x": -689.051635020624,
+      "y": 1772.491450765549,
+      "width": 1264.1575927734375,
+      "height": 177.75177001953108,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "ax",
+      "roundness": null,
+      "seed": 816416577,
+      "version": 231,
+      "versionNonce": 520388911,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038884794,
+      "link": null,
+      "locked": false,
+      "text": "Para definir bien un custom Hook hay que hacer todas \nlas posibilidades de CRUD: \nCREATE, READ, UPDATE, DELETE",
+      "fontSize": 47.40047200520829,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Para definir bien un custom Hook hay que hacer todas \nlas posibilidades de CRUD: \nCREATE, READ, UPDATE, DELETE",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "AibsFthwtyF7k26PPXkzh",
+      "type": "text",
+      "x": -639.0516350206237,
+      "y": 2021.8837440598213,
+      "width": 199.9799346923828,
+      "height": 45,
+      "angle": 0,
+      "strokeColor": "#e03131",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "ay",
+      "roundness": null,
+      "seed": 7800545,
+      "version": 81,
+      "versionNonce": 82144289,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038885975,
+      "link": null,
+      "locked": false,
+      "text": "useFetch.js",
+      "fontSize": 36,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "useFetch.js",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "S8zMGHVuS5dBJaW9ZiREm",
+      "type": "text",
+      "x": -686.273823334426,
+      "y": 2107.465409098883,
+      "width": 1534.215316496654,
+      "height": 1318.862813313802,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "az",
+      "roundness": null,
+      "seed": 649811521,
+      "version": 138,
+      "versionNonce": 442122127,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748038887575,
+      "link": null,
+      "locked": false,
+      "text": "import { useState } from 'react';\n\nconst API_URL = import.meta.env.VITE_BASE_SERVER_URL;\n\nexport const useFetch = (endpoint) => {\n  const [error, setError] = useState(null);\n\n  const buildUrl = (id = \"\") => `${API_URL}${endpoint}${id ? `/${id}` : \"\"}`;\n\n  const get = async (token = null) => {\n    try {\n      const res = await fetch(buildUrl(), {\n        headers: {\n          'Authorization': token ? `Bearer ${token}` : undefined,\n          'Content-Type': 'application/json',\n        }\n      });\n      const data = await res.json();\n      if (!res.ok) throw new Error(data.message);\n      return data;\n    } catch (err) {\n      setError(err.message);\n      return null;\n    }\n  };\n\n......",
+      "fontSize": 39.077416690779316,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "import { useState } from 'react';\n\nconst API_URL = import.meta.env.VITE_BASE_SERVER_URL;\n\nexport const useFetch = (endpoint) => {\n  const [error, setError] = useState(null);\n\n  const buildUrl = (id = \"\") => `${API_URL}${endpoint}${id ? `/${id}` : \"\"}`;\n\n  const get = async (token = null) => {\n    try {\n      const res = await fetch(buildUrl(), {\n        headers: {\n          'Authorization': token ? `Bearer ${token}` : undefined,\n          'Content-Type': 'application/json',\n        }\n      });\n      const data = await res.json();\n      if (!res.ok) throw new Error(data.message);\n      return data;\n    } catch (err) {\n      setError(err.message);\n      return null;\n    }\n  };\n\n......",
+      "autoResize": false,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "WowAo6bEdtdEPW_vuIxlE",
+      "type": "freedraw",
+      "x": 982.3769516667368,
+      "y": 2199.975924463267,
+      "width": 416.66666666666686,
+      "height": 133.33333333333348,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b01",
+      "roundness": null,
+      "seed": 1132516043,
+      "version": 61,
+      "versionNonce": 438969509,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748038919954,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          -4.47046915690089
+        ],
+        [
+          2.7777099609375,
+          -12.803802490234375
+        ],
+        [
+          11.111043294270985,
+          -26.69270833333303
+        ],
+        [
+          27.7777099609375,
+          -48.914896647135265
+        ],
+        [
+          38.88895670572924,
+          -65.58156331380178
+        ],
+        [
+          49.999999999999886,
+          -79.47046915690089
+        ],
+        [
+          58.33333333333337,
+          -87.80380249023438
+        ],
+        [
+          72.22229003906239,
+          -96.1371358235674
+        ],
+        [
+          83.33333333333337,
+          -98.91489664713527
+        ],
+        [
+          99.99999999999989,
+          -98.91489664713527
+        ],
+        [
+          124.99999999999989,
+          -98.91489664713527
+        ],
+        [
+          149.9999999999999,
+          -98.91489664713527
+        ],
+        [
+          180.55562337239587,
+          -96.1371358235674
+        ],
+        [
+          211.11104329427087,
+          -87.80380249023438
+        ],
+        [
+          241.66666666666686,
+          -79.47046915690089
+        ],
+        [
+          266.66666666666686,
+          -73.91489664713527
+        ],
+        [
+          288.88895670572936,
+          -60.026041666666515
+        ],
+        [
+          311.11104329427087,
+          -54.47046915690089
+        ],
+        [
+          330.55562337239587,
+          -43.359375
+        ],
+        [
+          344.44437662760436,
+          -32.24822998046875
+        ],
+        [
+          352.7777099609374,
+          -21.137135823567405
+        ],
+        [
+          361.11104329427087,
+          -7.24822998046875
+        ],
+        [
+          372.2222900390624,
+          1.085103352864735
+        ],
+        [
+          374.9999999999999,
+          9.41843668619822
+        ],
+        [
+          380.55562337239587,
+          12.196197509765625
+        ],
+        [
+          380.55562337239587,
+          17.75177001953125
+        ],
+        [
+          383.33333333333337,
+          17.75177001953125
+        ],
+        [
+          383.33333333333337,
+          14.973958333333485
+        ],
+        [
+          386.11104329427087,
+          9.41843668619822
+        ],
+        [
+          388.88895670572936,
+          -1.6927083333330302
+        ],
+        [
+          388.88895670572936,
+          -15.58156331380178
+        ],
+        [
+          388.88895670572936,
+          -26.69270833333303
+        ],
+        [
+          388.88895670572936,
+          -35.026041666666515
+        ],
+        [
+          388.88895670572936,
+          -48.914896647135265
+        ],
+        [
+          388.88895670572936,
+          -57.24822998046875
+        ],
+        [
+          388.88895670572936,
+          -65.58156331380178
+        ],
+        [
+          388.88895670572936,
+          -73.91489664713527
+        ],
+        [
+          388.88895670572936,
+          -68.359375
+        ],
+        [
+          391.66666666666686,
+          -57.24822998046875
+        ],
+        [
+          399.9999999999999,
+          -46.137135823567405
+        ],
+        [
+          402.7777099609374,
+          -35.026041666666515
+        ],
+        [
+          405.55562337239587,
+          -21.137135823567405
+        ],
+        [
+          411.11104329427087,
+          -7.24822998046875
+        ],
+        [
+          413.88895670572936,
+          -1.6927083333330302
+        ],
+        [
+          416.66666666666686,
+          6.640625
+        ],
+        [
+          416.66666666666686,
+          14.973958333333485
+        ],
+        [
+          416.66666666666686,
+          23.30729166666697
+        ],
+        [
+          416.66666666666686,
+          28.862864176432595
+        ],
+        [
+          413.88895670572936,
+          31.640625
+        ],
+        [
+          405.55562337239587,
+          31.640625
+        ],
+        [
+          394.44437662760436,
+          34.41843668619822
+        ],
+        [
+          372.2222900390624,
+          31.640625
+        ],
+        [
+          355.55562337239587,
+          31.640625
+        ],
+        [
+          336.11104329427087,
+          28.862864176432595
+        ],
+        [
+          313.88895670572936,
+          28.862864176432595
+        ],
+        [
+          302.7777099609374,
+          28.862864176432595
+        ],
+        [
+          299.9999999999999,
+          28.862864176432595
+        ],
+        [
+          297.2222900390624,
+          28.862864176432595
+        ],
+        [
+          297.2222900390624,
+          28.862864176432595
+        ]
+      ],
+      "pressures": [],
+      "simulatePressure": true,
+      "lastCommittedPoint": [
+        297.2222900390624,
+        28.862864176432595
+      ]
+    },
+    {
+      "id": "4Ytu6HZyyksVaStpW0Hlp",
+      "type": "text",
+      "x": 1504.5994451563201,
+      "y": 2224.3944120120955,
+      "width": 250.32444562150582,
+      "height": 54.41838582356741,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b02",
+      "roundness": null,
+      "seed": 1583605451,
+      "version": 34,
+      "versionNonce": 534932549,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748038931897,
+      "link": null,
+      "locked": false,
+      "text": "Para usarlo:",
+      "fontSize": 43.53470865885393,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Para usarlo:",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "bW-mLE7NXaBvbIqHB3E0J",
+      "type": "text",
+      "x": 1518.4881984115284,
+      "y": 2347.1981636396995,
+      "width": 267.9839172363281,
+      "height": 45,
+      "angle": 0,
+      "strokeColor": "#e03131",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b03",
+      "roundness": null,
+      "seed": 1745739525,
+      "version": 42,
+      "versionNonce": 1318284869,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748038945257,
+      "link": null,
+      "locked": false,
+      "text": "Componente.jsx",
+      "fontSize": 36,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Componente.jsx",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "ojOQTnxw6c1AFcLeoJp-k",
+      "type": "text",
+      "x": 1493.325975600776,
+      "y": 2483.8778765710144,
+      "width": 406.439453125,
+      "height": 54.41838582356741,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b04",
+      "roundness": null,
+      "seed": 619699659,
+      "version": 63,
+      "versionNonce": 1196290405,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748039073216,
+      "link": null,
+      "locked": false,
+      "text": "Para usarlo (GET):",
+      "fontSize": 43.53470865885393,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Para usarlo (GET):",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "T1wl6Xcx9M8vPx38zhKfF",
+      "type": "text",
+      "x": 1481.2663152735079,
+      "y": 2558.7868070316263,
+      "width": 801.2157592773438,
+      "height": 855,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b05",
+      "roundness": null,
+      "seed": 682142923,
+      "version": 43,
+      "versionNonce": 1710443429,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748039021443,
+      "link": null,
+      "locked": false,
+      "text": "import { useFetch } from '../hooks/useFetch';\nimport { useEffect } from 'react';\n\nconst MyComponent = () => {\n  const { get, error } = useFetch('/books');\n\n  useEffect(() => {\n    const fetchData = async () => {\n      const books = await get();\n      console.log(books);\n    };\n\n    fetchData();\n  }, []);\n\n  if (error) return <p>Error: {error}</p>;\n\n  return <div>Contenido acá</div>;\n};",
+      "fontSize": 36,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "import { useFetch } from '../hooks/useFetch';\nimport { useEffect } from 'react';\n\nconst MyComponent = () => {\n  const { get, error } = useFetch('/books');\n\n  useEffect(() => {\n    const fetchData = async () => {\n      const books = await get();\n      console.log(books);\n    };\n\n    fetchData();\n  }, []);\n\n  if (error) return <p>Error: {error}</p>;\n\n  return <div>Contenido acá</div>;\n};",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "X8zBRaTSdzCnDE01wC7RR",
+      "type": "freedraw",
+      "x": 2457.377155117258,
+      "y": 2417.857902816131,
+      "width": 105.55552164713572,
+      "height": 970.5294799804688,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b06",
+      "roundness": null,
+      "seed": 1643289637,
+      "version": 44,
+      "versionNonce": 1873973861,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748039075759,
+      "link": null,
+      "locked": false,
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          -2.77781168619822,
+          1.085052490234375
+        ],
+        [
+          -5.55552164713572,
+          17.75171915690089
+        ],
+        [
+          -27.77781168619822,
+          42.75171915690089
+        ],
+        [
+          -27.77781168619822,
+          84.4183858235674
+        ],
+        [
+          -27.77781168619822,
+          117.75171915690089
+        ],
+        [
+          -27.77781168619822,
+          167.7517191569009
+        ],
+        [
+          -27.77781168619822,
+          228.86281331380178
+        ],
+        [
+          -27.77781168619822,
+          301.0850524902344
+        ],
+        [
+          -36.11114501953125,
+          359.4183858235674
+        ],
+        [
+          -36.11114501953125,
+          412.19614664713527
+        ],
+        [
+          -44.444478352864735,
+          459.4183858235674
+        ],
+        [
+          -50,
+          498.3072916666665
+        ],
+        [
+          -52.77781168619822,
+          531.640625
+        ],
+        [
+          -58.333333333333485,
+          570.5294799804688
+        ],
+        [
+          -61.11114501953125,
+          598.3072916666665
+        ],
+        [
+          -69.44447835286473,
+          628.8628133138018
+        ],
+        [
+          -75,
+          653.8628133138018
+        ],
+        [
+          -75,
+          673.3072916666665
+        ],
+        [
+          -83.33333333333348,
+          698.3072916666665
+        ],
+        [
+          -86.11114501953125,
+          723.3072916666665
+        ],
+        [
+          -86.11114501953125,
+          745.5294799804688
+        ],
+        [
+          -86.11114501953125,
+          767.7516682942705
+        ],
+        [
+          -91.66666666666697,
+          784.4183349609375
+        ],
+        [
+          -94.44447835286473,
+          798.3072916666665
+        ],
+        [
+          -94.44447835286473,
+          820.5294799804688
+        ],
+        [
+          -100,
+          837.1961466471353
+        ],
+        [
+          -102.77781168619822,
+          853.8628133138018
+        ],
+        [
+          -102.77781168619822,
+          870.5294799804688
+        ],
+        [
+          -102.77781168619822,
+          887.1961466471353
+        ],
+        [
+          -102.77781168619822,
+          901.085001627604
+        ],
+        [
+          -102.77781168619822,
+          912.1961466471353
+        ],
+        [
+          -102.77781168619822,
+          920.5294799804688
+        ],
+        [
+          -105.55552164713572,
+          928.8628133138018
+        ],
+        [
+          -105.55552164713572,
+          937.1961466471353
+        ],
+        [
+          -105.55552164713572,
+          945.5294799804688
+        ],
+        [
+          -102.77781168619822,
+          951.085001627604
+        ],
+        [
+          -102.77781168619822,
+          956.640625
+        ],
+        [
+          -102.77781168619822,
+          962.1961466471353
+        ],
+        [
+          -100,
+          964.973958333333
+        ],
+        [
+          -100,
+          967.7516682942705
+        ],
+        [
+          -100,
+          970.5294799804688
+        ],
+        [
+          -100,
+          970.5294799804688
+        ]
+      ],
+      "pressures": [],
+      "simulatePressure": true,
+      "lastCommittedPoint": [
+        -100,
+        970.5294799804688
+      ]
+    },
+    {
+      "id": "vyVqf0KujyJ-uKyl85HfK",
+      "type": "text",
+      "x": 2526.3797185938206,
+      "y": 2477.844856551483,
+      "width": 432.55743408203125,
+      "height": 54.41838582356741,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b07",
+      "roundness": null,
+      "seed": 154309547,
+      "version": 102,
+      "versionNonce": 1730999333,
+      "isDeleted": false,
+      "boundElements": [],
+      "updated": 1748039081185,
+      "link": null,
+      "locked": false,
+      "text": "Para usarlo (POST):",
+      "fontSize": 43.53470865885393,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "Para usarlo (POST):",
+      "autoResize": true,
+      "lineHeight": 1.25
+    },
+    {
+      "id": "wcu0PqoX8M4C-qApizjhc",
+      "type": "text",
+      "x": 2522.3770533919974,
+      "y": 2570.105739461701,
+      "width": 855.6383056640625,
+      "height": 884.9942014961771,
+      "angle": 0,
+      "strokeColor": "#1e1e1e",
+      "backgroundColor": "transparent",
+      "fillStyle": "solid",
+      "strokeWidth": 2,
+      "strokeStyle": "solid",
+      "roughness": 1,
+      "opacity": 100,
+      "groupIds": [],
+      "frameId": null,
+      "index": "b09",
+      "roundness": null,
+      "seed": 1884261131,
+      "version": 105,
+      "versionNonce": 517987013,
+      "isDeleted": false,
+      "boundElements": null,
+      "updated": 1748039173641,
+      "link": null,
+      "locked": false,
+      "text": "const CreateReview = () => {\n  const { post, error } = useFetch('/reviews');\n  const { token } = useContext(AuthContext);\n\n  const handleSubmit = async (e) => {\n      e.preventDefault();\n\n    const data = {\n      activityId,\n      comment\n    };\n\n    const response = await post(data, token);\n\n    if (response) {\n      alert('Review enviada con éxito!');\n      setComment('');\n    }\n  };",
+      "fontSize": 37.262913747207456,
+      "fontFamily": 5,
+      "textAlign": "left",
+      "verticalAlign": "top",
+      "containerId": null,
+      "originalText": "const CreateReview = () => {\n  const { post, error } = useFetch('/reviews');\n  const { token } = useContext(AuthContext);\n\n  const handleSubmit = async (e) => {\n      e.preventDefault();\n\n    const data = {\n      activityId,\n      comment\n    };\n\n    const response = await post(data, token);\n\n    if (response) {\n      alert('Review enviada con éxito!');\n      setComment('');\n    }\n  };",
+      "autoResize": true,
+      "lineHeight": 1.25
     }
   ],
   "appState": {
     "gridSize": 20,
     "gridStep": 5,
     "gridModeEnabled": false,
-    "viewBackgroundColor": "#ffffff",
-    "lockedMultiSelections": {}
+    "viewBackgroundColor": "#ffffff"
   },
   "files": {}
 }
