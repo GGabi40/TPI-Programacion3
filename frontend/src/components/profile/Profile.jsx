@@ -38,10 +38,7 @@ const Profile = () => {
       {user.role === "admin" && (
         <div className="tools">
           <h3 className="superadmin-title">Gestión de Clubes (Admin)</h3>
-          <p>
-            Acá vendrían los clubes a administrar (Podría ser una tabla con
-            todos los clubes?)
-          </p>
+          <ClubsTable /> 
         </div>
       )}
 

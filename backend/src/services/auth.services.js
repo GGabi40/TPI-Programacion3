@@ -197,7 +197,7 @@ const validateUpdateProfileData = (req) => {
         message: "",
     };
 
-    const { username, email, password, birthday } = req;
+    const { username, email, password } = req;
 
     // En este código, se validan los datos solo si se envían
 

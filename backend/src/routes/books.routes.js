@@ -21,7 +21,7 @@ router.post('/books', createBook);
 router.put('/books/:id', updateBook);
 
 // Borrar libro de bbdd
-router.post('/books/:id', deleteBook);
+router.delete('/books/:id', deleteBook);
 
 
 export default router;

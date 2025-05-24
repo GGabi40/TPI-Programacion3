@@ -90,6 +90,7 @@ const UsersTable = () => {
                 <button
                   className="btn-delete"
                   onClick={() => handleDeleteUser(u.id)}
+                  title="Eliminar Usuario"
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>

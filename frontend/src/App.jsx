@@ -15,6 +15,7 @@ import Clubes from "./components/clubes/Clubes";
 import Profile from "./components/profile/Profile";
 import NewActivity from "./components/newActivity/NewActivity";
 import Descubre from "./components/descubre/DescubreClubes";
+import Books from "./components/Books";
 
 
 function App() {
@@ -42,6 +43,12 @@ function App() {
             <Route path="/mis-clubes" element={<MisClubes />} />
             <Route path="/newact" element={<NewActivity />} />
             <Route path="/descubre" element={<Descubre />} />
+
+
+
+            {/* PRUEBA DE CUSTOMHOOK - Put, GetAll y Delete */}
+            <Route path="/especial" element={<Books />} />
+
 
 
             {/* </Route> */}

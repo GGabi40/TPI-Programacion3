@@ -1,14 +1,17 @@
-import React from 'react'
+import React from "react";
 import Footer from "../footer/Footer";
 import TopNav from "../nav/TopNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
-import { useState, useRef } from 'react'
+import { useState, useRef } from "react";
 import { Link, useNavigate } from "react-router";
 import { validateEmail, validatePassword } from "../auth/Auth.services";
-import { errorToast, successToast } from '../toast/NotificationToast';
+import { errorToast, successToast } from "../toast/NotificationToast";
 
+import { useFetch } from "../hook/UseFetch";
 
-const Login = ({ setIsLogged }) => {
+const { post } = useFetch("/login");
+
+const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({ email: false, password: false });
@@ -17,53 +20,54 @@ const Login = ({ setIsLogged }) => {
   const passwordRef = useRef(null);
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
 
     if (!validateEmail(email)) {
       setErrors({ ...errors, email: true });
       emailRef.current.focus();
-      errorToast('Email invalido')
+      errorToast("Email invalido");
       return;
     } else {
-      setErrors({ ...errors, email: false })
+      setErrors({ ...errors, email: false });
     }
 
     if (!validatePassword(password, 1)) {
       setErrors({ ...errors, password: true });
-      errorToast('La contraseña es requerida')
+      errorToast("La contraseña es requerida");
       passwordRef.current.focus();
       return;
     } else {
-      setErrors({ ...errors, password: false })
+      setErrors({ ...errors, password: false });
     }
 
-    fetch("http://localhost:3000/api/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    })
-      .then(res => res.json())
-      .then(data => {
-        //esta linea ver
-        const token = data.token;
-        //
+    const userData = {
+      email,
+      password,
+    };
+
+    try {
+      const response = await post(userData);
+      const { token } = response;
+
+      if (token) {
         localStorage.setItem("inklink-token", token);
-        successToast("Inicio de sesión exitoso.")
-        setIsLogged(true);
+        
+        successToast("Inicio de sesión exitoso.");
         navigate("/dashboard");
-      })
-      .catch(err => {
-        errorToast("Error al iniciar sesión.")
-        return
-      });
+      } else {
+        errorToast("Credenciales inválidas o respuesta inesperada.");
+      }
+    } catch (e) {
+      console.error("error ", e);
+    }
   };
 
   const handleNavigateToRegister = () => {
@@ -71,7 +75,6 @@ const Login = ({ setIsLogged }) => {
   };
 
   return (
-
     <div>
       <TopNav />
       <div className="background-animated">
@@ -94,7 +97,9 @@ const Login = ({ setIsLogged }) => {
                 value={email}
                 ref={emailRef}
               />
-              {errors.email && <p className="error-text">El email es requerido.</p>}
+              {errors.email && (
+                <p className="error-text">El email es requerido.</p>
+              )}
             </div>
 
             <div className="form-group">
@@ -106,19 +111,21 @@ const Login = ({ setIsLogged }) => {
                 value={password}
                 ref={passwordRef}
               />
-              {errors.password && <p className="error-text">El password es requerido.</p>}
+              {errors.password && (
+                <p className="error-text">El password es requerido.</p>
+              )}
             </div>
             {/* achicar los botones */}
             <button type="submit">Iniciar sesión</button>
-            <button type="button" onClick={handleNavigateToRegister}>Registrarse</button>
+            <button type="button" onClick={handleNavigateToRegister}>
+              Registrarse
+            </button>
           </form>
         </div>
       </div>
       <Footer></Footer>
     </div>
-
   );
 };
-
 
 export default Login;
