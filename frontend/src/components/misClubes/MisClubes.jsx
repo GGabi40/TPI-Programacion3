@@ -9,11 +9,12 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
 
 const MisClubes = () => {
+
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    navigate("/modifyclub");
-  };
+  const handleClickCreate = () => {
+    navigate("/newclub");
+  }
 
   const misClubes = [
     {
@@ -55,7 +56,7 @@ const MisClubes = () => {
         <div className="hero-club">
           <ClubList clubs={misClubes} title="Mis Clubes" showButtons={true} />
 
-          <button class="cssbuttons-io-button">
+          <button class="cssbuttons-io-button" onClick={handleClickCreate}>
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
             <span>Club</span>
           </button>
