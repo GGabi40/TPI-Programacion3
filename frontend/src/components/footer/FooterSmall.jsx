@@ -10,7 +10,6 @@ import logo from "../../assets/img/logo/Logo-InkLink.webp";
 
 const FooterSmall = () => {
   return (
-    <div>
       <footer className='footer-small'>
         
             <div className="logo-footer">
@@ -58,7 +57,6 @@ const FooterSmall = () => {
               <span>Hecho con 💖 por Grupo 1 | TPI Programacion 3</span>
             </div>  
       </footer>
-    </div>
   )
 }
 

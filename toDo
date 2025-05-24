@@ -19,7 +19,7 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
-[] Definir FKs en Express
+[OK] Definir FKs en Express
     Usuario belongsToMany ClubLectura (through: UsuarioClub)
     ClubLectura hasMany Usuario (through: UsuarioClub)
     Actividad belongsTo ClubLectura 
@@ -64,16 +64,16 @@ Usuario - Club [OK]
 -- DELETE es un destroy
 
 
-[] POST api/clubs/:id/join
+[] POST api/clubs/:id/join   // POST a TABLA INTERMEDIA UsersClub
 [] GET api/users/:id/clubs
 
 
   ACTIVITY
-[] POST api/activity
-[] GET api/activity
-[] GET api/activity/:id
-[] PUT api/activity/:id
-[] DELETE api/activity/:id
+[OK] POST api/activity        -- falta proteger rutas
+[OK] GET api/activity         -- falta proteger rutas
+[OK] GET api/activity/:id     -- falta proteger rutas
+[OK] PUT api/activity/:id     -- falta proteger rutas
+[OK] DELETE api/activity/:id  -- falta proteger rutas
 
   LIBROS
 [OK] GET api/books                 -- falta proteger rutas
@@ -103,7 +103,7 @@ Usuario - Club [OK]
     [OK] Rutas de usuario (/users, /users/:id, etc.)
     [] Rutas de club de lectura (/clubs, /clubs/:id, /join, etc.)
         -- rutas GET POST PUT DELETE [OK]
-        -- ruta /join [] -- todavia no esta -- falta relaciones
+        -- ruta /join [] 
     [OK] Rutas de libros actuales (/clubs/:id/current-book)
     [OK] Rutas de reseñas
         -- falta validar el token (autenticacion)
@@ -120,8 +120,8 @@ Usuario - Club [OK]
  - [X] Registro
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [OK] Home Page (Lista de clubes)
- - [] Detalle de Club
- - [] Dashboard de Moderadores de Club - permiso de Admin -> maneja dashboard
+ - [] Detalle de Club     -- Falta
+ - [] Dashboard de Moderadores de Club -- [OK] SuperAdmin [] Admin [] UserComun
  - [OK] Crear Club
  - [] Crear reseña -> textarea
  - [] Crear Comentario -> textarea
