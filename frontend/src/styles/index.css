@@ -169,7 +169,7 @@ form {
   margin-bottom: 1.5rem;
 }
 
-.logo-form > img {
+.logo-form>img {
   height: 90px;
   filter: drop-shadow(0 0 10px rgba(140, 82, 255, 0.3));
 }
@@ -344,11 +344,9 @@ button[type="submit"]:hover {
   position: absolute;
   width: 300px;
   height: 300px;
-  background: radial-gradient(
-    circle,
-    rgba(108, 49, 163, 0.6) 0%,
-    rgba(255, 255, 255, 0.1) 70%
-  );
+  background: radial-gradient(circle,
+      rgba(108, 49, 163, 0.6) 0%,
+      rgba(255, 255, 255, 0.1) 70%);
   border-radius: 50%;
   filter: blur(60px);
   animation: floatOrb 20s ease-in-out infinite;
@@ -582,11 +580,9 @@ footer.footer-small {
   font-size: 14px;
   padding: 0.5em 1em;
   color: white;
-  background: linear-gradient(
-    0deg,
-    var(--violeta-robado) 0%,
-    var(--violeta-claro) 100%
-  );
+  background: linear-gradient(0deg,
+      var(--violeta-robado) 0%,
+      var(--violeta-claro) 100%);
   border: none;
   box-shadow: 0 0.7em 1.5em -0.5em var(--violeta-claro);
   letter-spacing: 0.05em;
@@ -601,11 +597,9 @@ footer.footer-small {
 }
 
 .cssbuttons-io-button:hover {
-  background: linear-gradient(
-    0deg,
-    var(--violeta-claro) 0%,
-    var(--violeta-robado) 100%
-  );
+  background: linear-gradient(0deg,
+      var(--violeta-claro) 0%,
+      var(--violeta-robado) 100%);
   box-shadow: 0 0.5em 1.5em -0.5em var(--violeta-robado);
 }
 
@@ -714,4 +708,47 @@ footer.footer-small {
   .contacto {
     text-align: center;
   }
+}
+
+
+
+/* color club selector */
+
+#colorSelector {
+  border: 1px solid;
+  border-radius: 30px;
+  padding: 20px;
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+
+#colorSelector:hover {
+  border-color: #799eba;
+}
+
+.color-option {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 5px;
+  cursor: pointer;
+  border: 1px solid rgb(72, 71, 71);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.color-option.selected {
+  transform: scale(1.2);
+  box-shadow: 0 0 8px #000;
+}
+
+/* seleccion de avatars en registro: */
+
+.selected {
+  border: 1px solid #4586a0;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #79379af1;
 }

@@ -1,3 +1,4 @@
+import { validateDate, validateString } from "../helper/validations.js";
 import { Activity } from "../models/Activity.js";
 
 //GET
@@ -64,4 +65,32 @@ export const deleteActivity = async(req, res) => {
         console.error("Error: ", error);
         returnres.status(500).send({message:"Algo fallo!!!"});
     }
+}
+
+//validacion
+const validateActivityData = (req) => {
+    const result = {
+        error: false,
+        message: "",
+    };
+    const {progress, dateStart, dateEnd} = req;
+    if (!progress || !validateString(progress, 1, 20)) {
+        return {
+            error: true,
+            message: "el progreso no cumple con los requisitos."
+        };
+    }
+    if (!dateStart || !validateDate(dateStart, false)) {
+        return {
+            error: true,
+            message: "la fecha de inicio no cumple con los requisitos."
+        };
+    }
+    if (!validateDate(dateEnd, true)) {
+        return {
+            error: true,
+            message: "la fecha de fin no cumple con los requisitos."
+        };
+    }
+    return result;
 }
