@@ -6,6 +6,7 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { errorToast, successToast } from '../toast/NotificationToast';
 
+import { useFetch } from "../hook/UseFetch";
 
 const Register = () => {
   const [userName, setUserName] = useState("");
@@ -16,7 +17,7 @@ const Register = () => {
   const [avatar, setAvatar] = useState("");
   const [errors, setErrors] = useState({ email: false, password: false });
   const navigate = useNavigate();
-
+  
   const handleUserNameChange = (event) => {
     setUserName(event.target.value)
   }
@@ -70,17 +71,18 @@ const Register = () => {
     }
 
     const newUser = {
-      userName,
+      username: userName,
       email,
       password,
-      confirmPassword,
-      birthdate,
+      birthday: birthdate,
       avatar
     };
 
     try {
+      const { post } = useFetch('/register');
 
-      // const { post } = useFetch('/register');
+      post(newUser);
+      console.log('Reza malena ', newUser);
 
       /* const res = await fetch("http://localhost:3000/register", {
         method: "POST",

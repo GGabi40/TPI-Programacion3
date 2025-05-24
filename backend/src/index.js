@@ -21,14 +21,15 @@ dotenv.config();
 const app = express();
 
 app.use(cors({
-    origin: 'http://localhost:5173'
+    origin: 'http://localhost:5173',
+    credentials: true
 }));
 
+app.use(express.json());
 
 try {
     await sequelize.sync();
 
-    app.use(express.json());
     app.use('/api', BookRoutes);
     app.use('/api', AuthRoutes);
     app.use('/api', ReviewRoutes);
