@@ -77,7 +77,7 @@ const NewActivity = () => {
                     <img src={logo} alt="Logo Inklink" />
                 </div>
 
-                <h2 id="crearNuevaActividad" className="text-align">
+                <h2 id="crearNuevaActividad" className="text-align title-form">
                     CREE UNA NUEVA ACTIVIDAD
                 </h2>
                 <br />

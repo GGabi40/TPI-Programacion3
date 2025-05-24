@@ -723,6 +723,7 @@ footer.footer-small {
   flex-wrap: wrap;
   gap: 10px;
   justify-content: center;
+  margin: auto;
 }
 
 #colorSelector:hover {
