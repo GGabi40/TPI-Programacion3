@@ -10,16 +10,7 @@ import {
 const router = Router();
 
 
-/* 
-
-await fetch('http://localhost:3000/activities', {
-    method: 'GET',
-    headers: {'Content-Type': 'application/json'}
-})
-
-*/
-
-//            endpoint
+//            endpoints
 router.get("/activities", getAllActivities);
 router.get("/activities/:id", getActivityById);
 router.post("/activities", createNewActivity);

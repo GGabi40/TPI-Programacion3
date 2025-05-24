@@ -79,7 +79,10 @@ const Register = () => {
     };
 
     try {
-      const res = await fetch("http://localhost:3000/register", {
+
+      // const { post } = useFetch('/register');
+
+      /* const res = await fetch("http://localhost:3000/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newUser)
@@ -89,7 +92,7 @@ const Register = () => {
         errorToast("Error al registrar usuario.")
       }
 
-      const userId = await res.json();
+      const userId = await res.json(); */
 
       successToast("Usuario registrado exitosamente. Inicie sesion para continuar.")
       navigate("/login");

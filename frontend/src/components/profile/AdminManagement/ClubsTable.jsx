@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
+
+import Search from "../../search/Search";
 
 const ClubsTable = () => {
   const mockClubs = [
@@ -26,6 +28,13 @@ const ClubsTable = () => {
     },
   ];
 
+  const [searchTerm, setSearchTerm] = useState("");
+  
+    // filtra usuarios de lista de usuarios
+    const filteredClubs = mockClubs.filter((c) =>
+      c.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
   const handleEditClub = (id) => {
     console.log("Editar club", id);
   };
@@ -36,6 +45,11 @@ const ClubsTable = () => {
 
   return (
     <div className="user-table-container">
+      <Search
+        onSearch={setSearchTerm}
+        placeholder="Buscar Club..."
+        showButton={false}
+      />
       <table className="user-table">
         <thead>
           <tr>
@@ -50,7 +64,7 @@ const ClubsTable = () => {
           </tr>
         </thead>
         <tbody>
-          {mockClubs.map((club) => (
+          {filteredClubs.map((club) => (
             <tr key={club.id}>
               <td>{club.id}</td>
               <td>{club.name}</td>
@@ -75,6 +89,7 @@ const ClubsTable = () => {
                 <button
                   className="btn-delete"
                   onClick={() => handleDeleteClub(club.id)}
+                  title="Eliminar Club"
                 >
                   <FontAwesomeIcon icon={faTrash} />
                 </button>
