@@ -6,12 +6,14 @@ import { Link, useNavigate } from "react-router";
 import { useState } from "react";
 import { errorToast, successToast } from '../toast/NotificationToast';
 
+
 const Register = () => {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthdate, setBirthdate] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [errors, setErrors] = useState({ email: false, password: false });
   const navigate = useNavigate();
 
@@ -35,10 +37,14 @@ const Register = () => {
     setBirthdate(event.target.value)
   }
 
+  const handleAvatarChange = (event) => {
+    setAvatar(event.target.value)
+  }
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if(!userName) {
+    if (!userName) {
       errorToast("El nombre de usuario es requerido.");
       return;
     }
@@ -53,12 +59,12 @@ const Register = () => {
       return;
     }
 
-    if(!confirmPassword) {
+    if (!confirmPassword) {
       errorToast("Las contraseñas no coinciden.");
       return;
     }
 
-    if(!birthdate) {
+    if (!birthdate) {
       errorToast("La fecha de nacimiento es requerida.");
       return;
     }
@@ -68,7 +74,8 @@ const Register = () => {
       email,
       password,
       confirmPassword,
-      birthdate
+      birthdate,
+      avatar
     };
 
     try {
@@ -91,6 +98,15 @@ const Register = () => {
       errorToast("Error al registrar usuario.");
     }
   }
+
+  const avatarList = [
+    "/avatars/avatar1.png",
+    "/avatars/avatar2.png",
+    "/avatars/avatar3.png",
+    "/avatars/avatar4.png",
+    "/avatars/avatar5.png",
+    "/avatars/avatar6.png"
+  ];
 
   return (
     <div>
@@ -147,6 +163,20 @@ const Register = () => {
             value={birthdate}
             onChange={handleBirthdateChange}
           />
+
+          <label>Seleccione un Avatar:</label>
+          <div className="avatar-selector">
+            {avatarList.map((avatarPath, index) => (
+              <img
+                key={index}
+                src={avatarPath}
+                alt={`Avatar ${index + 1}`}
+                onClick={() => setAvatar(avatarPath)}
+                className={avatar === avatarPath ? "selected" : ""}
+                style={{ width: "80px", height: "80px", cursor: "pointer", margin: "10px" }}
+              />
+            ))}
+          </div>
 
           <button type="submit">Crear Cuenta</button>
 

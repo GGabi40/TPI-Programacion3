@@ -19,6 +19,7 @@ const NewClub = () => {
   const [interest, setInterest] = useState("");
   const [privacy, setPrivacy] = useState("");
   const [restriction, setRestriction] = useState("");
+  const [color, setColor] = useState("");
 
   const handleNameChange = (event) => {
     setName(event.target.value);
@@ -48,6 +49,10 @@ const NewClub = () => {
     setRestriction(event.target.value);
   }
 
+  const handleColorChange = (event) => {
+    setColor(event.target.value);
+  }
+
   const handleAddClub = async (e) => {
     e.preventDefault();
 
@@ -58,7 +63,8 @@ const NewClub = () => {
       gender,
       interest,
       privacy,
-      restriction
+      restriction,
+      color
     };
 
     try {
@@ -79,12 +85,23 @@ const NewClub = () => {
       setInterest("");
       setPrivacy("");
       setRestriction("");
+      setColor("");
     } catch (error) {
       console.error(error);
     }
 
 
   }
+
+  const colorOptions = [
+    { value: "blue", gradient: "linear-gradient(45deg, blue, rgb(141, 226, 255))" },
+    { value: "purple", gradient: "linear-gradient(45deg, rgb(146, 30, 90), rgb(87, 52, 120))" },
+    { value: "red", gradient: "linear-gradient(45deg, red, rgb(255, 86, 128))" },
+    { value: "green", gradient: "linear-gradient(45deg, rgb(8, 66, 8), rgb(98, 183, 98))" },
+    { value: "acqua", gradient: "linear-gradient(45deg, rgb(22, 112, 133), rgb(58, 198, 216))" },
+    { value: "violet", gradient: "linear-gradient(45deg, rgb(147, 74, 147), rgb(85, 4, 125))" },
+  ];
+
 
 
   return (
@@ -129,6 +146,20 @@ const NewClub = () => {
 
           <label>Ingrese su Interés:</label>
           <input type="textarea" id="interest" placeholder="Autor / Vampiros / etc" />
+
+          <label>Ingrese el Color del Club:</label>
+          <div id="colorSelector" style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginBottom: '15px' }}>
+            {colorOptions.map((opt) => (
+              <div
+                key={opt.value}
+                onClick={() => setColor(opt.value)}
+                className={`color-option ${color === opt.value ? "selected" : ""}`}
+                style={{ background: opt.gradient }}
+                title={opt.value}
+              ></div>
+            ))}
+          </div>
+
 
           <label>Privacidad del Club:</label>
           <input type="checkbox" id="privacy" name='privacy' />
