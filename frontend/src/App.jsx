@@ -17,7 +17,7 @@ import NewActivity from "./components/newActivity/NewActivity";
 import Descubre from "./components/descubre/DescubreClubes";
 import Books from "./components/Books";
 import 'sweetalert2/dist/sweetalert2.min.css';
-
+import ProfileForm from "./components/profileForm/ProfileForm";
 
 function App() {
   const [isLogged, setIsLogged] = useState(false);
@@ -34,25 +34,25 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
 
-            {/* Acá todas estarán protegidas x Login */}
-            {/* <Route element={<Protected />}> */}
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/mi-perfil" element={<Profile />} />
-            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
-            <Route path="/modifyclub" element={<ModifyClub />} />
-            <Route path="/newclub" element={<NewClub />} />
-            <Route path="/mis-clubes" element={<MisClubes />} />
-            <Route path="/newact" element={<NewActivity />} />
-            <Route path="/descubre" element={<Descubre />} />
+          {/* Acá todas estarán protegidas x Login */}
+          {/* <Route element={<Protected />}> */}
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/mi-perfil" element={<Profile />} />
+          <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
+          <Route path="/modifyclub" element={<ModifyClub />} />
+          <Route path="/newclub" element={<NewClub />} />
+          <Route path="/mis-clubes" element={<MisClubes />} />
+          <Route path="/newact" element={<NewActivity />} />
+          <Route path="/descubre" element={<Descubre />} />
+          <Route path="/profileForm" element={<ProfileForm />} />
+
+
+          {/* PRUEBA DE CUSTOMHOOK - Put, GetAll y Delete */}
+          <Route path="/especial" element={<Books />} />
 
 
 
-            {/* PRUEBA DE CUSTOMHOOK - Put, GetAll y Delete */}
-            <Route path="/especial" element={<Books />} />
-
-
-
-            {/* </Route> */}
+          {/* </Route> */}
         </Routes>
       </BrowserRouter>
 

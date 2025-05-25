@@ -55,6 +55,9 @@ const LeftNav = () => {
           <Link to="/descubre" className="link-button nav-btn" onClick={closeMenu}>
             Descubre
           </Link>
+          <Link to="/profileForm" className="link-button nav-btn" onClick={closeMenu}>
+            Editar Perfil
+          </Link>
         </div>
 
         <span className="quienes-somos">Grupo 1 | TPI Programacion 3</span>
