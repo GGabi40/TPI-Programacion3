@@ -16,6 +16,7 @@ import AuthRoutes from './routes/auth.routes.js';
 import ReviewRoutes from './routes/review.routes.js';
 import ClubRoutes from './routes/club.routes.js';
 import ActivityRoutes from './routes/activity.routes.js';
+import ReviewRatingRoutes from './routes/reviewRating.routes.js'
 
 dotenv.config();
 const app = express();
@@ -35,6 +36,7 @@ try {
     app.use('/api', ReviewRoutes);
     app.use('/api', ClubRoutes);
     app.use('/api', ActivityRoutes);
+    app.use('/api', ReviewRatingRoutes);
 
     app.listen(port, () => {
         console.log(`Corriendo servidor en http://localhost:${port}`);

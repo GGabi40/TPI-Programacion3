@@ -16,8 +16,8 @@ Activity.belongsTo(Book, { foreignKey: 'bookId', targetKey: 'id' })
 Club.hasMany(Activity, { foreignKey: 'activityId' });
 Activity.belongsTo(Club, { foreignKey: 'activityId', targetKey: 'id' });
 
-// ReviewRating.belongsTo(User, { foreignKey: 'userId' });
-// ReviewRating.belongsTo(Review, { foreignKey: 'reviewId' });
+ReviewRating.belongsTo(User, { foreignKey: 'userId' });
+ReviewRating.belongsTo(Review, { foreignKey: 'reviewId' });
 
 User.hasMany(ReviewRating, { foreignKey: 'userId' });
 Review.hasMany(ReviewRating, { foreignKey: 'reviewId' });
