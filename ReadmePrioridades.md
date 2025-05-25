@@ -46,10 +46,10 @@ DELETE /activity/:id
 * Registro  [OK]
 * Home con listado de clubs  [OK]
 * Descubre
-* NewActivity
+* NewActivity [ok]
 * Detalle de un club con sus reseñas  [falta-poco]
 * Panel de usuario (perfil simple y clubs)
-* Dashboard Admin (crear/modificar/eliminar clubs) [falta-poco]
+* Dashboard Admin (crear/modificar/eliminar clubs) [ok]
 * Dashboard Superadmin (gestión de usuarios y roles) [OK]
 
 
@@ -59,6 +59,6 @@ DELETE /activity/:id
     * Manejo de errores - Error 500 - pagina [OK]
 * Validacion de form - back [OK] y front
 * Context  ->  Manejo de usuario logueado, su rol y token (useAuth())
-* Custom Hook  -> useFetch() || darkMode() - si hay tiempo
+* Custom Hook  -> useFetch() [ok]|| darkMode() - si hay tiempo
 
 * Diseño cuidado -> Que sea claro, sin errores ni cosas rotas ** VERIFICAR TODOS LOS BOTONES POSIBLES - anotar cuales no andan y no tocar más

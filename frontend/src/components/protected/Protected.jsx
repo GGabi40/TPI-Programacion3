@@ -1,10 +1,13 @@
 import React from 'react'
 import { Outlet, Navigate } from 'react-router';
+import { useContext } from 'react';
+import { isTokenValid } from '../services/auth/tokenValidation';
+import { AuthenticationContext } from '../services/auth.context';
 
 
-//se saca el islogged y se toma el token de local storage
-const Protected = ({isLogged}) => {
-    if (!isLogged) {
+const Protected = () => {
+    const {token} = useContext(AuthenticationContext);
+    if (!isTokenValid(token)) {
         return <Navigate to="/login" replace />;
     } else{
         return <Outlet/>
