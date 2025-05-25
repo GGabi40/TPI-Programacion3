@@ -15,7 +15,9 @@ const router = Router();
 //            endpoints
 router.get("/activities", verifyToken, getAllActivities);
 router.get("/activities/:id", verifyToken, getActivityById);
-router.post("/activities", verifyToken, roleMiddleware(['admin', 'superadmin']), createNewActivity);
+
+// ruta de admin/superadmin
+router.post("/clubs/:clubId/activities", verifyToken, roleMiddleware(['admin', 'superadmin']), createNewActivity);
 router.put("/activities/:id", verifyToken, roleMiddleware(['admin', 'superadmin']), updateActivity);
 router.delete("/activities/:id", verifyToken, roleMiddleware(['admin', 'superadmin']), deleteActivity);
 

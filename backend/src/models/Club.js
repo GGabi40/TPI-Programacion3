@@ -37,9 +37,5 @@ export const Club = sequelize.define("club", {
         type: DataTypes.BOOLEAN,
         allowNull: false,
         defaultValue: true
-    },
-    activityId:{
-        type: DataTypes.INTEGER,
-        allowNull: false
     }
 })

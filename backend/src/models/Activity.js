@@ -28,5 +28,9 @@ export const Activity = sequelize.define("activity", {
     bookId: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    clubId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 })

@@ -5,9 +5,11 @@ import { validateString } from "../helper/validations.js";
 //GET
 export const getAllClubs = async (req, res) => {
     const clubs = await Club.findAll();
-    if (!clubs) {
+
+    if (!clubs || clubs.length === 0) {
         return res.status(404).send({ message: "No se encontraron clubs!" });
     }
+    
     res.json(clubs);
 }
 
@@ -30,16 +32,15 @@ export const createNewClub = async (req, res) => {
 
     const { name, description, restricted, interest, gender, color, isActive, activityId } = req.body;
 
-    if (!name || !description || !interest || !gender || !activityId) {
-        return res.status(400).send({ message: "Los campos son requeridos!" });
-    }
     const newClub = await Club.create({ name, description, restricted, interest, gender, color, isActive, activityId });
     res.json(newClub);
 }
 
+
 //PUT-UPDATE(ES LO MISMO)
 export const updateClub = async (req, res) => {
     const result = validateClubData(req.body);
+    
     if (result.error) {
         return res.status(400).json({ message: result.message });
     }
