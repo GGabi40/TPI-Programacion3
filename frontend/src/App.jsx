@@ -39,7 +39,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/mi-perfil" element={<Profile />} />
             <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
-            <Route path="/modifyclub" element={<ModifyClub />} />
+            <Route path="/modifyclub/:id" element={<ModifyClub />} />
             <Route path="/newclub" element={<NewClub />} />
             <Route path="/mis-clubes" element={<MisClubes />} />
             <Route path="/newact" element={<NewActivity />} />

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 
 import LeftNav from "../nav/LeftNav";
@@ -7,37 +7,26 @@ import ClubList from "../clubList/ClubList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
+import { useFetch } from "../hook/useFetch";
+
+const {getAll} = useFetch("/clubs");
 
 const MisClubes = () => {
 
+  const [allClubs, setAllClubs] = useState([]);
   const navigate = useNavigate();
 
   const handleClickCreate = () => {
     navigate("/newclub");
   }
 
-  const misClubes = [
-    {
-      name: "Club de Misterio",
-      description: "Lectura de novelas de misterio y suspenso.",
-      progress: "asincronica",
-      gender: "misterio",
-      interest: "Sherlock Holmes, Agatha Christie",
-      privacy: false,
-      restriction: false,
-      color: "violet",
-    },
-    {
-      name: "Club de Romance",
-      description: "Historias de amor y drama.",
-      progress: "sincronica",
-      gender: "romance",
-      interest: "Jane Austen, Nicholas Sparks",
-      privacy: true,
-      restriction: false,
-      color: "red",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      const clubs = await getAll();
+      setAllClubs(clubs);
+    };
+    fetchData();
+  }, [allClubs]);
 
   const handleSearch = (query) => {
     console.log("Buscando desde Dashboard:", query);
@@ -54,7 +43,7 @@ const MisClubes = () => {
 
       <div className="hero-container">
         <div className="hero-club">
-          <ClubList clubs={misClubes} title="Mis Clubes" showButtons={true} />
+          <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} />
 
           <button class="cssbuttons-io-button" onClick={handleClickCreate}>
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />

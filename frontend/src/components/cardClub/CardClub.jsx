@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import "./cardClub.css";
 import { showConfirmAlert } from "../sweetAlert/ConfirmAlert";
@@ -7,35 +7,26 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
+import {useFetch} from "../hook/useFetch";
+
+const { del } = useFetch("/clubs");
 
 /* Acá están los cards de cada club */
 const CardClub = ({ club, showButtons }) => {
 
   const navigate = useNavigate();
 
-  const handleClickEdit = () => {
-    navigate("/modifyclub");
+  const handleClickEdit = (id) => {
+    navigate(`/modifyclub/${id}`);
   };
 
   const handleClickActivity = () => {
     navigate("/newact");
   }
 
-  const [showModal, setShowModal] = useState(false);
-
-  const handleClickDelete = (d) => {
-    d.stopPropagation();
-    setShowModal(true);
-  };
-
-  const handleConfirmDelete = () => {
-    console.log("Club eliminado");
-    setShowModal(false);
-  };
-
-  const handleCancelDelete = () => {
-    setShowModal(false);
-  };
+  const handleDelete = async (id) => {
+    await del(id);
+  }
 
   return (
     <div
@@ -46,14 +37,13 @@ const CardClub = ({ club, showButtons }) => {
       <p>{club.name}</p>
       {showButtons && (
         <div className="btn-cards">
-          <button type="submit" className="btn-card" onClick={handleClickEdit}>Modificar</button>
-          <button type="submit" className="btn-card" onClick={showConfirmAlert}>Eliminar</button>
-          <button type="submit" className="btn-card" onClick={handleClickActivity} title="Agregar Nueva Actividad">
+          <button type="submit" className="btn-card" onClick={() => handleClickEdit(club.id)}>Modificar</button>
+          <button type="submit" className="btn-card" onClick={() => showConfirmAlert(club.id, handleDelete)}>Eliminar</button>
+          <button type="submit" className="btn-card" onClick={() => handleClickActivity} title="Agregar Nueva Actividad">
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
           </button> 
         </div>
       )}
-      {showModal && (<ModalConfirmDelete onConfirm={handleConfirmDelete} onCancel={handleCancelDelete} />)}
     </div>
   );
 };
