@@ -10,6 +10,9 @@ import { ReviewRating } from "./ReviewRating.js";
 User.hasMany(Review, { foreignKey: 'userId' });
 Review.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
 
+Review.belongsTo(Activity, { foreignKey: 'activityId' });
+Activity.hasMany(Review, { foreignKey: 'userId' });
+
 Book.hasMany(Activity, { foreignKey: 'bookId' });
 Activity.belongsTo(Book, { foreignKey: 'bookId', targetKey: 'id' })
 

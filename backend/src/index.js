@@ -29,7 +29,7 @@ app.use(cors({
 app.use(express.json());
 
 try {
-    await sequelize.sync({ alter: true });
+    await sequelize.sync();
 
     app.use('/api', BookRoutes);
     app.use('/api', AuthRoutes);

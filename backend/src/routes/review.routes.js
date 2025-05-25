@@ -4,12 +4,14 @@ import {
   deleteReview,
   getAllReviews,
   getReviewById,
+  getReviewsByActivityId,
   updateReview,
 } from "../services/review.services.js";
 import { verifyToken } from "../middleware/authMiddleware.js";
 
 const router = Router();
 router.post("/reviews", verifyToken, createReview);
+router.get('/reviews/activity/:activityId', verifyToken, getReviewsByActivityId);
 router.get("/reviews", verifyToken, getAllReviews);
 router.get("/reviews/:id", verifyToken, getReviewById);
 router.put("/reviews/:id", verifyToken, updateReview);
