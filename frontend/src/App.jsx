@@ -16,6 +16,7 @@ import Profile from "./components/profile/Profile";
 import NewActivity from "./components/newActivity/NewActivity";
 import Descubre from "./components/descubre/DescubreClubes";
 import Books from "./components/Books";
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 
 function App() {
