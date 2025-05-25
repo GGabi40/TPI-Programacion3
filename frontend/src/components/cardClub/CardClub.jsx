@@ -39,7 +39,7 @@ const CardClub = ({ club, showButtons }) => {
         <div className="btn-cards">
           <button type="submit" className="btn-card" onClick={() => handleClickEdit(club.id)}>Modificar</button>
           <button type="submit" className="btn-card" onClick={() => showConfirmAlert(club.id, handleDelete)}>Eliminar</button>
-          <button type="submit" className="btn-card" onClick={() => handleClickActivity} title="Agregar Nueva Actividad">
+          <button type="submit" className="btn-card" onClick={handleClickActivity} title="Agregar Nueva Actividad">
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
           </button> 
         </div>
