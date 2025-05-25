@@ -34,6 +34,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
 
+<<<<<<< HEAD
           {/* Acá todas estarán protegidas x Login */}
           {/* <Route element={<Protected />}> */}
           <Route path="/dashboard" element={<Dashboard />} />
@@ -49,6 +50,18 @@ function App() {
 
           {/* PRUEBA DE CUSTOMHOOK - Put, GetAll y Delete */}
           <Route path="/especial" element={<Books />} />
+=======
+            {/* Acá todas estarán protegidas x Login */}
+            {/* <Route element={<Protected />}> */}
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mi-perfil" element={<Profile />} />
+            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
+            <Route path="/modifyclub/:id" element={<ModifyClub />} />
+            <Route path="/newclub" element={<NewClub />} />
+            <Route path="/mis-clubes" element={<MisClubes />} />
+            <Route path="/newact" element={<NewActivity />} />
+            <Route path="/descubre" element={<Descubre />} />
+>>>>>>> main
 
 
 

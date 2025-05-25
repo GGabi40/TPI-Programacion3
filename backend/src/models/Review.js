@@ -14,5 +14,9 @@ export const Review = sequelize.define("review", {
     userId: {
         type: DataTypes.INTEGER,
         allowNull: false
+    },
+    activityId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
     }
 })
