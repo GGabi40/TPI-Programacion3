@@ -47,9 +47,9 @@ export const useFetch = (endpoint) => {
         body: JSON.stringify(data),
       });
 
-      if (!res.ok) {
-        throw new Error("Error al hacer un POST.");
-      }
+      //if (!res.ok) {
+      //  throw new Error("Error al hacer un POST.");
+      //}
 
       const dataResponse = await res.json();
       return dataResponse;
