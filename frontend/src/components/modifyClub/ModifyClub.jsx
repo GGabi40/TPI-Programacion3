@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import ClubForm from '../clubForm/ClubForm';
 import { useNavigate, useParams } from 'react-router';
 import { useFetch } from '../hook/UseFetch';
@@ -23,7 +23,7 @@ const ModifyClub = () => {
   const handleEdit = async (data) => {
     const updated = await put(data, clubData.id);
     if (updated) {
-      navigate(`/clubDetails/${clubData.id}`);
+      console.log("club editado con exito, ", updated);
     }
   };
 
