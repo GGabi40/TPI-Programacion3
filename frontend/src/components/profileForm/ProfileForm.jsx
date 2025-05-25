@@ -26,11 +26,6 @@ const ProfileForm = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // if (!userName || !email || !birthdate) {
-        //     //si no carga ningun campo, no pasa nada
-        //     return;
-        // }
-
         try {
             successToast("Perfil actualizado correctamente.");
             setTimeout(() => navigate("/mi-perfil"), 1500); // 👈 
