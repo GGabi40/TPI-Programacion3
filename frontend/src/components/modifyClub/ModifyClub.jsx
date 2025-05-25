@@ -1,30 +1,35 @@
 import React from 'react'
 import ClubForm from '../clubForm/ClubForm';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
+import { useFetch } from '../hook/UseFetch';
+
+const { put, getById } = useFetch("/clubs");
 
 const ModifyClub = () => {
 
+  const { id } = useParams();
   const navigate = useNavigate();
 
+  const [clubData, setClubData] = useState(null);
+
+  useEffect(() => {
+    const fetchClub = async () => {
+      const club = await getById(id);
+      setClubData(club);
+    };
+    fetchClub();
+  }, [id]);
+
   const handleEdit = async (data) => {
-    const res = await fetch(`http://localhost:3000/clubs/${clubData.id}`, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
-    });
-    if (res.ok) {
+    const updated = await put(data, clubData.id);
+    if (updated) {
       navigate(`/clubDetails/${clubData.id}`);
     }
-  }
+  };
 
-  return (
-    <ClubForm
-      mode="edit"
-     //initialData={clubData}
-      onSubmit={handleEdit}
+  if (!clubData) return <p className='dark'>Cargando datos del club...</p>
 
-    />
-  )
+  return <ClubForm mode="edit" initialData={clubData} onSubmit={handleEdit} />
 }
 
 export default ModifyClub
