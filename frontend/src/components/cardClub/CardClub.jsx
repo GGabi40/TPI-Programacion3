@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import "./cardClub.css";
-import ModalConfirmDelete from "../modalDelete/ModalConfirmDelete";
-
-
+import { showConfirmAlert } from "../sweetAlert/ConfirmAlert";
+import Swal from "sweetalert2";
+import 'sweetalert2/dist/sweetalert2.min.css';
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
@@ -47,7 +47,7 @@ const CardClub = ({ club, showButtons }) => {
       {showButtons && (
         <div className="btn-cards">
           <button type="submit" className="btn-card" onClick={handleClickEdit}>Modificar</button>
-          <button type="submit" className="btn-card" onClick={handleClickDelete}>Eliminar</button>
+          <button type="submit" className="btn-card" onClick={showConfirmAlert}>Eliminar</button>
           <button type="submit" className="btn-card" onClick={handleClickActivity} title="Agregar Nueva Actividad">
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
           </button> 
