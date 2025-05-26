@@ -177,6 +177,11 @@ form {
   margin-bottom: 1.5rem;
 }
 
+.select-gender {
+  background-color: var(--bg-color-footer);
+  color: var(--bg-color-light);
+}
+
 .logo-form>img {
   height: 90px;
   filter: drop-shadow(0 0 10px rgba(140, 82, 255, 0.3));
@@ -334,6 +339,10 @@ button[type="submit"]:hover {
 .margin {
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+.space {
+  min-height: 20px;
 }
 
 /* Fondo animado de Register */

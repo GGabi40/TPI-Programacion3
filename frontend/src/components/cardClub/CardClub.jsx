@@ -25,7 +25,7 @@ const CardClub = ({ club, showButtons }) => {
   }
 
   const handleDelete = async (id) => {
-    await del(id);
+    const deleteClub = await del(id);
   }
 
   return (
