@@ -59,7 +59,7 @@ const Login = () => {
 
       if (token) {
         localStorage.setItem("inklink-token", token);
-        
+
         successToast("Inicio de sesión exitoso.");
         navigate("/dashboard");
       } else {
@@ -68,10 +68,6 @@ const Login = () => {
     } catch (e) {
       console.error("error ", e);
     }
-  };
-
-  const handleNavigateToRegister = () => {
-    navigate("/register");
   };
 
   return (
@@ -88,8 +84,7 @@ const Login = () => {
         <div className="form">
           <h3 className="title-form">NOS ALEGRA VERTE OTRA VEZ</h3>
           <form onSubmit={handleSubmit}>
-            <div className=".">
-              <input
+            <input
                 type="email"
                 className={errors.email ? "error-input" : ""}
                 placeholder="Ingrese su email:"
@@ -100,9 +95,7 @@ const Login = () => {
               {errors.email && (
                 <p className="error-text">El email es requerido.</p>
               )}
-            </div>
 
-            <div className="form-group">
               <input
                 type="password"
                 className={errors.password ? "error-input" : ""}
@@ -114,12 +107,14 @@ const Login = () => {
               {errors.password && (
                 <p className="error-text">El password es requerido.</p>
               )}
-            </div>
-            {/* achicar los botones */}
+              
             <button type="submit">Iniciar sesión</button>
-            <button type="button" onClick={handleNavigateToRegister}>
-              Registrarse
-            </button>
+            <p>
+              ¿No tiene una cuenta?{" "}
+              <Link to="/register" id="redireccion">
+                Registrarse
+              </Link>
+            </p>
           </form>
         </div>
       </div>

@@ -84,18 +84,6 @@ const Register = () => {
       post(newUser);
       console.log('Reza malena ', newUser);
 
-      /* const res = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser)
-      });
-
-      if (!res.ok) {
-        errorToast("Error al registrar usuario.")
-      }
-
-      const userId = await res.json(); */
-
       successToast("Usuario registrado exitosamente. Inicie sesion para continuar.")
       navigate("/login");
 
