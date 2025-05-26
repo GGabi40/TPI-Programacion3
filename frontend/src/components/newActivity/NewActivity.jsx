@@ -1,70 +1,34 @@
 import React from 'react';
 
 import LeftNav from '../nav/LeftNav';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 import FooterSmall from '../footer/FooterSmall';
 
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link } from "react-router";
+import { useFetch } from '../hook/UseFetch';
+
+const { post } = useFetch("/activities");
 
 const NewActivity = () => {
 
     const navigate = useNavigate();
+    const [newActivity, setNewActivity] = useState("");
+    const [allActivities, setAllActivities] = useState([]);
 
-    const [nameBook, setNameBook] = useState("");
-    const [progress, setProgress] = useState("");
-    const [fechaInicio, setFechaInicio] = useState("");
-    const [fechaFin, setFechaFin] = useState("");
-
-    const handleNameBookChange = (e) => {
-        setNameBook(e.target.value);
-    };
-
-    const handleProgressChange = (event) => {
-        setProgress(event.target.value);
-    };
-
-    const handleFechaInicioChange = (event) => {
-        setFechaInicio(event.target.value);
-    };
-
-    const handleFechaFinChange = (event) => {
-        setFechaFin(event.target.value);
-    };
-
-    const handleAddActivity = async (e) => {
-        e.preventDefault();
-
-        const ActivityData = {
-            nameBook,
-            progress,
-            fechaInicio,
-            fechaFin
-        };
-
-        try {
-            const res = await fetch("http://localhost:3000/activities", {
-                method: "POST",
-                headers: { "Context-Type": "application/json" },
-                body: JSON.stringify(NewActivity)
-            });
-            
-            if (!res.ok) throw new Error("Fallo crear nueva actividad!!");
-
-            const newActivity = await res.json();
-            onActivityAdded(newActivity);
-            setNameBook("");
-            setProgress("");
-            setFechaInicio("");
-            setFechaFin("");
-        } catch (error) {
-            console.error(error);
-        }
-
+    const handleSubmit = async (data) => {
+        const response = await post(data);
+        console.log(response);
+        const activities = await getAll();
+        setAllActivities(activities);
+        setNewActivity({
+            name: "",
+            progress: "",
+            dateStart: "",
+            dateEnd: ""
+        });
     }
-
-
     return (
         <div>
             <LeftNav />
@@ -83,7 +47,7 @@ const NewActivity = () => {
                 <br />
                 <form>
                     <label>Ingrese el Nombre del Libro Actual:</label>
-                    <input type="text" id="nameBook" placeholder="Ej: El Nombre del Viento" />
+                    <input type="text" name="nameBook" placeholder="Ej: El Nombre del Viento" />
 
                     <label>Ingrese el Sistema de Progreso:</label>
                     <select name="progress" id="progress">
@@ -92,13 +56,13 @@ const NewActivity = () => {
                         <option value="asincronica">Forma Asincrónica</option>
                     </select>
 
-                    <label  id="fechaInicio" >Fecha Inicio:</label>
-                    <input type="date" value={fechaInicio} onChange={handleFechaInicioChange}/>
+                    <label name="fechaInicio" >Fecha Inicio:</label>
+                    <input type="date" value={fechaInicio} onChange={handleFechaInicioChange} />
 
-                    <label id="fechaFin">Fecha Fin:</label>
-                    <input type="date" value={fechaFin} onChange={handleFechaFinChange}/>
+                    <label name="fechaFin">Fecha Fin:</label>
+                    <input type="date" value={fechaFin} onChange={handleFechaFinChange} />
 
-                    <button type="submit">Crear Actividad</button>
+                    <button type="submit" onSubmit={handleSubmit} >Crear Actividad</button>
                 </form>
             </div>
 

@@ -35,7 +35,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
 
             {/* Acá todas estarán protegidas x Login */}
-            <Route element={<Protected />}> 
+            {/*<Route element={<Protected />}>*/} 
               <Route path="/dashboard" element={<Dashboard />} />
               <Route path="/mi-perfil" element={<Profile />} />
               <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
@@ -44,7 +44,7 @@ function App() {
               <Route path="/mis-clubes" element={<MisClubes />} />
               <Route path="/newact" element={<NewActivity />} />
               <Route path="/descubre" element={<Descubre />} />
-            </Route>
+            {/*</Route>*/}
             
 
 

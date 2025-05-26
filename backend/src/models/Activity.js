@@ -8,6 +8,10 @@ export const Activity = sequelize.define("activity", {
         primaryKey: true,
         autoIncrement: true
     },
+    nameBook: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
     progress: {
         type: DataTypes.STRING,
         allowNull: false
