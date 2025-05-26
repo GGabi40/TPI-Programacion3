@@ -14,7 +14,11 @@ const { post } = useFetch("/login");
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({ email: false, password: false });
+  const [errors, setErrors] = useState({
+    email: false,
+    password: false,
+    message: "",
+  });
   const navigate = useNavigate();
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -39,14 +43,16 @@ const Login = () => {
       setErrors({ ...errors, email: false });
     }
 
-    if (!validatePassword(password, 1)) {
+    /* Si el post no anda, tira error de credenciales: Verificar si esto va
+
+    if (!validatePassword(password, 6, null, false, true)) {
       setErrors({ ...errors, password: true });
       errorToast("La contraseña es requerida");
       passwordRef.current.focus();
       return;
     } else {
       setErrors({ ...errors, password: false });
-    }
+    } */
 
     const userData = {
       email,
@@ -59,19 +65,19 @@ const Login = () => {
 
       if (token) {
         localStorage.setItem("inklink-token", token);
-        
+
         successToast("Inicio de sesión exitoso.");
         navigate("/dashboard");
       } else {
         errorToast("Credenciales inválidas o respuesta inesperada.");
+        setErrors({
+          ...errors,
+          message: "Credenciales inválidas o respuesta inesperada.",
+        });
       }
     } catch (e) {
       console.error("error ", e);
     }
-  };
-
-  const handleNavigateToRegister = () => {
-    navigate("/register");
   };
 
   return (
@@ -88,38 +94,33 @@ const Login = () => {
         <div className="form">
           <h3 className="title-form">NOS ALEGRA VERTE OTRA VEZ</h3>
           <form onSubmit={handleSubmit}>
-            <div className=".">
-              <input
-                type="email"
-                className={errors.email ? "error-input" : ""}
-                placeholder="Ingrese su email:"
-                onChange={handleEmailChange}
-                value={email}
-                ref={emailRef}
-              />
-              {errors.email && (
-                <p className="error-text">El email es requerido.</p>
-              )}
-            </div>
+            <input
+              type="email"
+              className={errors.email ? "error-input" : ""}
+              placeholder="Ingrese su email:"
+              onChange={handleEmailChange}
+              value={email}
+              ref={emailRef}
+            />
+            {errors.email && <p className="error">El email es requerido.</p>}
 
-            <div className="form-group">
-              <input
-                type="password"
-                className={errors.password ? "error-input" : ""}
-                placeholder="Ingrese su clave:"
-                onChange={handlePasswordChange}
-                value={password}
-                ref={passwordRef}
-              />
-              {errors.password && (
-                <p className="error-text">El password es requerido.</p>
-              )}
-            </div>
-            {/* achicar los botones */}
+            <input
+              type="password"
+              className={errors.password ? "error-input" : ""}
+              placeholder="Ingrese su clave:"
+              onChange={handlePasswordChange}
+              value={password}
+              ref={passwordRef}
+            />
+
+            {errors.message && <p className="error">{errors.message}</p>}
             <button type="submit">Iniciar sesión</button>
-            <button type="button" onClick={handleNavigateToRegister}>
-              Registrarse
-            </button>
+            <p>
+              ¿No tiene una cuenta?{" "}
+              <Link to="/register" id="redireccion">
+                Registrarse
+              </Link>
+            </p>
           </form>
         </div>
       </div>

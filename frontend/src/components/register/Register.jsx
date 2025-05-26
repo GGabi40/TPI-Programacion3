@@ -4,7 +4,7 @@ import TopNav from "../nav/TopNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link, useNavigate } from "react-router";
 import { useState } from "react";
-import { errorToast, successToast } from '../toast/NotificationToast';
+import { errorToast, successToast } from "../toast/NotificationToast";
 
 import { useFetch } from "../hook/UseFetch";
 
@@ -15,58 +15,101 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [birthdate, setBirthdate] = useState("");
   const [avatar, setAvatar] = useState("");
-  const [errors, setErrors] = useState({ email: false, password: false });
+  const [errors, setErrors] = useState({
+    userName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    birthdate: "",
+    backend: "",
+  });
   const navigate = useNavigate();
-  
+
   const handleUserNameChange = (event) => {
-    setUserName(event.target.value)
-  }
+    setUserName(event.target.value);
+  };
 
   const handleEmailChange = (event) => {
-    setEmail(event.target.value)
-  }
+    setEmail(event.target.value);
+  };
 
   const handlePasswordChange = (event) => {
-    setPassword(event.target.value)
-  }
+    setPassword(event.target.value);
+  };
 
   const handleConfirmPasswordChange = (event) => {
-    setConfirmPassword(event.target.value)
-  }
+    setConfirmPassword(event.target.value);
+  };
 
   const handleBirthdateChange = (event) => {
-    setBirthdate(event.target.value)
-  }
-
-  const handleAvatarChange = (event) => {
-    setAvatar(event.target.value)
-  }
+    setBirthdate(event.target.value);
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
+    setErrors({
+      userName: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      birthdate: "",
+      backend: "",
+    });
+
+    let formIsValid = true;
+    const newErrors = {};
+
     if (!userName) {
       errorToast("El nombre de usuario es requerido.");
-      return;
+      newErrors.userName = "El nombre de usuario es requerido.";
+      formIsValid = false;
+    }
+
+    if(userName.length < 3) {
+      errorToast("El nombre de usuario debe contener por lo menos 4 caracteres.");
+      newErrors.userName = "El nombre de usuario debe contener por lo menos 4 caracteres.";
+      formIsValid = false;
     }
 
     if (!email) {
-      setErrors({ ...errors, email: true });
-      return;
+      errorToast("El email es requerido.");
+      newErrors.email = "El email es requerido.";
+      formIsValid = false;
     }
 
     if (!password) {
-      setErrors({ ...errors, password: true });
-      return;
+      errorToast("La contraseña es requerida.");
+      newErrors.password = "La contraseña es requerida.";
+      formIsValid = false;
+    }
+
+    if (password.length < 5) {
+      errorToast("La contraseña debe contener por lo menos 5 caracteres y 1 numero.");
+      newErrors.password = "La contraseña debe contener por lo menos 5 caracteres y 1 numero.";
+      formIsValid = false;
     }
 
     if (!confirmPassword) {
+      errorToast("Por favor confirme su contraseña.");
+      newErrors.confirmPassword = "Por favor confirme su contraseña.";
+      formIsValid = false;
+    }
+
+    if (password && confirmPassword && password !== confirmPassword) {
       errorToast("Las contraseñas no coinciden.");
-      return;
+      newErrors.confirmPassword = "Las contraseñas no coinciden.";
+      formIsValid = false;
     }
 
     if (!birthdate) {
       errorToast("La fecha de nacimiento es requerida.");
+      newErrors.birthdate = "La fecha de nacimiento es requerida.";
+      formIsValid = false;
+    }
+
+    if (!formIsValid) {
+      setErrors((prev) => ({ ...prev, ...newErrors }));
       return;
     }
 
@@ -75,34 +118,30 @@ const Register = () => {
       email,
       password,
       birthday: birthdate,
-      avatar
+      avatar: avatar || "/avatars/avatar1.png", // si avatar está vacío, pone el enlace
     };
 
     try {
-      const { post } = useFetch('/register');
+      const { post } = useFetch("/register");
 
-      post(newUser);
-      console.log('Reza malena ', newUser);
+      const response = await post(newUser);
 
-      /* const res = await fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newUser)
-      });
-
-      if (!res.ok) {
-        errorToast("Error al registrar usuario.")
+      // si respuesta es un mensaje de backend que incluye:
+      // "ya está" (ya está registrado) o "inválid" (algo inválido)
+      // devuelve error en backend, no va a login
+      if (response.message.includes("ya está") || response.message.includes("inválid")) {
+        setErrors((prev) => ({ ...prev, backend: response.message }));
+        errorToast(response.message);
+        return;
       }
 
-      const userId = await res.json(); */
-
-      successToast("Usuario registrado exitosamente. Inicie sesion para continuar.")
+      successToast("Usuario registrado exitosamente. Inicie sesión para continuar.");
       navigate("/login");
-
     } catch (err) {
-      errorToast("Error al registrar usuario.");
+      console.log("Error inesperado: ", err);
+      return;
     }
-  }
+  };
 
   const avatarList = [
     "/avatars/avatar1.png",
@@ -110,7 +149,7 @@ const Register = () => {
     "/avatars/avatar3.png",
     "/avatars/avatar4.png",
     "/avatars/avatar5.png",
-    "/avatars/avatar6.png"
+    "/avatars/avatar6.png",
   ];
 
   return (
@@ -137,6 +176,7 @@ const Register = () => {
             value={userName}
             onChange={handleUserNameChange}
           />
+          {errors.userName && <p className="error">{errors.userName}</p>}
 
           <label>Ingrese su email:</label>
           <input
@@ -145,6 +185,7 @@ const Register = () => {
             value={email}
             onChange={handleEmailChange}
           />
+          {errors.email && <p className="error">{errors.email}</p>}
 
           <label>Ingrese su clave:</label>
           <input
@@ -153,6 +194,7 @@ const Register = () => {
             value={password}
             onChange={handlePasswordChange}
           />
+          {errors.password && <p className="error">{errors.password}</p>}
 
           <label>Confirmar clave:</label>
           <input
@@ -161,6 +203,9 @@ const Register = () => {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
+          {errors.confirmPassword && (
+            <p className="error">{errors.confirmPassword}</p>
+          )}
 
           <label>Fecha de nacimiento</label>
           <input
@@ -168,6 +213,7 @@ const Register = () => {
             value={birthdate}
             onChange={handleBirthdateChange}
           />
+          {errors.birthdate && <p className="error">{errors.birthdate}</p>}
 
           <label>Seleccione un Avatar:</label>
           <div className="avatar-selector">
@@ -178,10 +224,16 @@ const Register = () => {
                 alt={`Avatar ${index + 1}`}
                 onClick={() => setAvatar(avatarPath)}
                 className={avatar === avatarPath ? "selected" : ""}
-                style={{ width: "80px", height: "80px", cursor: "pointer", margin: "10px" }}
+                style={{
+                  width: "80px",
+                  height: "80px",
+                  cursor: "pointer",
+                  margin: "10px",
+                }}
               />
             ))}
           </div>
+          {errors.backend && <p className="error">{errors.backend}</p>}
 
           <button type="submit">Crear Cuenta</button>
 
