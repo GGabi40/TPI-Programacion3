@@ -11,7 +11,7 @@ export const useFetch = (endpoint) => {
     try {
       const res = await fetch(complete_url);
       if (!res.ok) {
-        throw new Error("Error al obtener libros.");
+        throw new Error("Error al obtener datos.");
       }
 
       const data = await res.json();
@@ -26,7 +26,7 @@ export const useFetch = (endpoint) => {
       const res = await fetch(`${complete_url}/${id}`);
 
       if (!res.ok) {
-        throw new Error("Error al obtener libro específico.");
+        throw new Error("Error al obtener dato específico.");
       }
       const data = await res.json();
       return data;
@@ -97,10 +97,9 @@ export const useFetch = (endpoint) => {
 
       if (res.status === 204) {
         return { success: true };
+      } else {
+        return { success: false }
       }
-
-      const dataResponse = await res.json();
-      return dataResponse;
     } catch (error) {
       console.error("Error al hacer DELETE: ", error);
     }

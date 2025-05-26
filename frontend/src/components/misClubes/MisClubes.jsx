@@ -20,13 +20,18 @@ const MisClubes = () => {
     navigate("/newclub");
   }
 
+
   useEffect(() => {
     const fetchData = async () => {
       const clubs = await getAll();
-      setAllClubs(clubs);
+
+      if(clubs) {
+        setAllClubs(clubs);
+      }
     };
+
     fetchData();
-  }, [allClubs]);
+  }, []);
 
   const handleSearch = (query) => {
     console.log("Buscando desde Dashboard:", query);
@@ -43,9 +48,13 @@ const MisClubes = () => {
 
       <div className="hero-container">
         <div className="hero-club">
-          <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} />
+          {allClubs.length > 0 ?
+           <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} /> : 
+           (<h2>No hay nada aquí...</h2>)
+          }
+          
 
-          <button class="cssbuttons-io-button" onClick={handleClickCreate}>
+          <button className="cssbuttons-io-button" onClick={handleClickCreate}>
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
             <span>Club</span>
           </button>
