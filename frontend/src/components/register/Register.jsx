@@ -66,13 +66,27 @@ const Register = () => {
       formIsValid = false;
     }
 
+    if(userName.length < 3) {
+      errorToast("El nombre de usuario debe contener por lo menos 4 caracteres.");
+      newErrors.userName = "El nombre de usuario debe contener por lo menos 4 caracteres.";
+      formIsValid = false;
+    }
+
     if (!email) {
+      errorToast("El email es requerido.");
       newErrors.email = "El email es requerido.";
       formIsValid = false;
     }
 
     if (!password) {
+      errorToast("La contraseña es requerida.");
       newErrors.password = "La contraseña es requerida.";
+      formIsValid = false;
+    }
+
+    if (password.length < 5) {
+      errorToast("La contraseña debe contener por lo menos 5 caracteres y 1 numero.");
+      newErrors.password = "La contraseña debe contener por lo menos 5 caracteres y 1 numero.";
       formIsValid = false;
     }
 
@@ -83,11 +97,13 @@ const Register = () => {
     }
 
     if (password && confirmPassword && password !== confirmPassword) {
+      errorToast("Las contraseñas no coinciden.");
       newErrors.confirmPassword = "Las contraseñas no coinciden.";
       formIsValid = false;
     }
 
     if (!birthdate) {
+      errorToast("La fecha de nacimiento es requerida.");
       newErrors.birthdate = "La fecha de nacimiento es requerida.";
       formIsValid = false;
     }
@@ -109,7 +125,11 @@ const Register = () => {
       const { post } = useFetch("/register");
 
       const response = await post(newUser);
-      if (response.message.includes("ya está")) {
+
+      // si respuesta es un mensaje de backend que incluye:
+      // "ya está" (ya está registrado) o "inválid" (algo inválido)
+      // devuelve error en backend, no va a login
+      if (response.message.includes("ya está") || response.message.includes("inválid")) {
         setErrors((prev) => ({ ...prev, backend: response.message }));
         errorToast(response.message);
         return;
@@ -118,7 +138,7 @@ const Register = () => {
       successToast("Usuario registrado exitosamente. Inicie sesión para continuar.");
       navigate("/login");
     } catch (err) {
-      console.log("Error: ", err);
+      console.log("Error inesperado: ", err);
       return;
     }
   };

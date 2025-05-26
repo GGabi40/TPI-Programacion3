@@ -11,12 +11,13 @@ import ModifyClub from "./components/modifyClub/ModifyClub"; //modify club
 
 import ClubDetails from "./components/clubDetails/ClubDetails";
 import MisClubes from "./components/misClubes/MisClubes";
-import Clubes from "./components/clubes/Clubes";
 import Profile from "./components/profile/Profile";
 import NewActivity from "./components/newActivity/NewActivity";
 import Descubre from "./components/descubre/DescubreClubes";
 import Books from "./components/Books";
 import 'sweetalert2/dist/sweetalert2.min.css';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
@@ -24,7 +25,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-
+      <ToastContainer />
         <Routes>
           {/* Ruta sin proteger - Home y NotFound */}
           {/* agregue el register para que sea publica aunque no este logged */}
