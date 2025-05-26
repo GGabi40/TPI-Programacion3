@@ -10,8 +10,12 @@ export const useFetch = (endpoint) => {
   const getAll = async () => {
     try {
       const res = await fetch(complete_url);
+
       if (!res.ok) {
-        throw new Error("Error al obtener datos.");
+        if (res.status === 404) {
+          // No hay clubes, retorno array vacío para evitar error
+          return [];
+        }
       }
 
       const data = await res.json();
@@ -98,7 +102,7 @@ export const useFetch = (endpoint) => {
       if (res.status === 204) {
         return { success: true };
       } else {
-        return { success: false }
+        return { success: false };
       }
     } catch (error) {
       console.error("Error al hacer DELETE: ", error);

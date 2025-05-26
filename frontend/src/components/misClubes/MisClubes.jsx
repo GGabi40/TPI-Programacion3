@@ -9,23 +9,21 @@ import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
 import { useFetch } from "../hook/useFetch";
 
-const {getAll} = useFetch("/clubs");
+const { getAll } = useFetch("/clubs");
 
 const MisClubes = () => {
-
   const [allClubs, setAllClubs] = useState([]);
   const navigate = useNavigate();
 
   const handleClickCreate = () => {
     navigate("/newclub");
-  }
-
+  };
 
   useEffect(() => {
     const fetchData = async () => {
       const clubs = await getAll();
 
-      if(clubs) {
+      if (clubs) {
         setAllClubs(clubs);
       }
     };
@@ -40,19 +38,19 @@ const MisClubes = () => {
   return (
     <>
       <LeftNav />
-      <Search 
-          onSearch={handleSearch} 
-          placeholder='Buscar...' 
-          showButton={true} 
+      <Search
+        onSearch={handleSearch}
+        placeholder="Buscar..."
+        showButton={true}
       />
 
       <div className="hero-container">
         <div className="hero-club">
-          {allClubs.length > 0 ?
-           <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} /> : 
-           (<h2>No hay nada aquí...</h2>)
-          }
-          
+          {allClubs.length > 0 ? (
+            <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} />
+          ) : (
+            <h2>No hay nada aquí...</h2>
+          )}
 
           <button className="cssbuttons-io-button" onClick={handleClickCreate}>
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
