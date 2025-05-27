@@ -117,7 +117,7 @@ const validateClubData = (req) => {
       message: "el nombre no cumple los requisitos.",
     };
   }
-  if (!description || !validateString(description, 10, 200)) {
+  if (!description || !validateString(description, 5, 200)) {
     return {
       error: true,
       message: "la descripcion no cumple los requisitos.",

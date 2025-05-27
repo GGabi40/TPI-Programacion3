@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
+import { errorToast, successToast } from "../toast/NotificationToast";
 
 const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
   const navigate = useNavigate();
@@ -13,6 +14,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
   const [interest, setInterest] = useState("");
   const [restriction, setRestriction] = useState(false);
   const [color, setColor] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     if (mode === "edit" && initialData) {
@@ -25,8 +27,48 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
     }
   }, [initialData, mode]);
 
+  const validateForm = () => {
+    let valid = true;
+    const newErrors = {};
+
+    if (!name.trim() || name.length <= 3 ) {
+      newErrors.name = "El nombre no cumple con los requisitos.";
+      errorToast("El nombre no cumple con los requisitos.");
+      valid = false;
+    }
+
+    if (!description.trim() || description.length <= 5 || description.length >= 200) {
+      newErrors.description = "La descripción no cumple con los requisitos.";
+      errorToast("La descripción no cumple con los requisitos.");
+      valid = false;
+    }
+
+    if (!gender) {
+      newErrors.gender = "Seleccione un género.";
+      errorToast("Seleccione un género.");
+      valid = false;
+    }
+
+    if (!interest.trim()) {
+      newErrors.interest = "Debe indicar al menos un interés.";
+      errorToast("Debe indicar al menos un interés.");
+      valid = false;
+    }
+
+    if (!color) {
+      newErrors.color = "Debe seleccionar un color.";
+      errorToast("Debe seleccionar un color.");
+      valid = false;
+    }
+
+    setErrors(newErrors);
+    return valid;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!validateForm()) return;
 
     const clubData = {
       name,
@@ -39,6 +81,11 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
     };
 
     onSubmit(clubData);
+    if (mode === "create") {
+      successToast("Club creado correctamente.");
+    } else if (mode === "edit") {
+      successToast("Club actualizado correctamente.");
+    }
   };
 
   const colorOptions = [
@@ -95,6 +142,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
             onChange={(e) => setName(e.target.value)}
             placeholder="Club de ..."
           />
+          {errors.name && <p className="error">{errors.name}</p>}
 
           <label>Descripción:</label>
           <input
@@ -104,6 +152,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
             maxLength={200}
             placeholder="Este club es sobre..."
           />
+          {errors.description && <p className="error">{errors.description}</p>}
 
           <label>Género:</label>
           <select
@@ -123,6 +172,8 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
             <option value="policial">Policial</option>
             <option value="otro">Otro</option>
           </select>
+          {errors.gender && <p className="error">{errors.gender}</p>}
+
 
           <label>Interés:</label>
           <input
@@ -131,6 +182,8 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
             onChange={(e) => setInterest(e.target.value)}
             placeholder="Vampiros, medieval..."
           />
+          {errors.interest && <p className="error">{errors.interest}</p>}
+
 
           <label>Seleccione el Color del Club:</label>
           <div className="colorSelector" id="colorSelector">
@@ -146,6 +199,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
               ></div>
             ))}
           </div>
+          {errors.description && <p className="error">{errors.description}</p>}
 
           <div className="checkbox-input">
             <label>
@@ -153,7 +207,8 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
                 type="checkbox"
                 checked={restriction}
                 onChange={(e) => setRestriction(e.target.checked)}
-              /> {"  "}
+              />{" "}
+              {"  "}
               Restricción de Edad
             </label>
           </div>
