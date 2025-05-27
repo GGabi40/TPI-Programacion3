@@ -6,6 +6,7 @@ import GoToTop from '../goToTop/GoToTop'
 import MisClubes from '../misClubes/MisClubes'
 import Search from '../search/Search'
 import Profile from '../profile/Profile'
+import FooterSmall from '../footer/FooterSmall'
 
 const Dashboard = () => {
 
@@ -31,6 +32,7 @@ const Dashboard = () => {
         </Routes>
 
         <GoToTop />
+        <FooterSmall />
     </div>
   )
 }

@@ -20,6 +20,8 @@ const MisClubes = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0); // vuelve al top de la pagina
+    
     const fetchData = async () => {
       const clubs = await getAll();
 
@@ -47,9 +49,9 @@ const MisClubes = () => {
       <div className="hero-container">
         <div className="hero-club">
           {allClubs.length > 0 ? (
-            <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} />
+            <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} setAllClubs={setAllClubs} allClubs={allClubs} />
           ) : (
-            <h2>No hay nada aquí...</h2>
+            <h2 className="text-align">No hay nada aquí...</h2>
           )}
 
           <button className="cssbuttons-io-button" onClick={handleClickCreate}>
