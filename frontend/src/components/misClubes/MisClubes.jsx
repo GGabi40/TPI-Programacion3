@@ -20,6 +20,8 @@ const MisClubes = () => {
   };
 
   useEffect(() => {
+    window.scrollTo(0, 0); // vuelve al top de la pagina
+    
     const fetchData = async () => {
       const clubs = await getAll();
 
