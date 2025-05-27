@@ -47,7 +47,7 @@ const MisClubes = () => {
       <div className="hero-container">
         <div className="hero-club">
           {allClubs.length > 0 ? (
-            <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} />
+            <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} setAllClubs={setAllClubs} allClubs={allClubs} />
           ) : (
             <h2>No hay nada aquí...</h2>
           )}
