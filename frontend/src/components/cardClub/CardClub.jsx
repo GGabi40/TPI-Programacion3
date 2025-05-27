@@ -7,7 +7,7 @@ import "sweetalert2/dist/sweetalert2.min.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
-import { useFetch } from "../hook/UseFetch";
+import { useFetch } from "../hook/useFetch";
 
 const { del } = useFetch("/clubs");
 

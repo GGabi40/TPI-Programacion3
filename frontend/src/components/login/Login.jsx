@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router";
 import { validateEmail, validatePassword } from "../auth/Auth.services";
 import { errorToast, successToast } from "../toast/NotificationToast";
 
-import { useFetch } from "../hook/UseFetch";
+import { useFetch } from "../hook/useFetch";
 
 const { post } = useFetch("/login");
 

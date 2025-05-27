@@ -7,7 +7,7 @@ import ClubList from "../clubList/ClubList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
-import { useFetch } from "../hook/UseFetch";
+import { useFetch } from "../hook/useFetch";
 
 const { getAll } = useFetch("/clubs");
 
