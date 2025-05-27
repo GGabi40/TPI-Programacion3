@@ -7,19 +7,19 @@ import {
   deleteActivity,
 } from "../services/activity.services.js";
 
-//import { verifyToken, roleMiddleware } from "../middleware/authMiddleware.js";
+import { verifyToken, roleMiddleware } from "../middleware/authMiddleware.js";
 
 const router = Router();
 
 
 //            endpoints
-router.get("/activities", getAllActivities);
-router.get("/activities/:id", getActivityById);
+router.get("/activities", verifyToken, getAllActivities);
+router.get("/activities/:id", verifyToken, getActivityById);
 
 // ruta de admin/superadmin
-router.post("/clubs/:clubId/activities", createNewActivity);
-router.put("/activities/:id", updateActivity);
-router.delete("/activities/:id", deleteActivity);
+router.post("/clubs/:clubId/activities", verifyToken, roleMiddleware(['admin', 'superadmin']), createNewActivity);
+router.put("/activities/:id", verifyToken, roleMiddleware(['admin', 'superadmin']), updateActivity);
+router.delete("/activities/:id", verifyToken, roleMiddleware(['admin', 'superadmin']), deleteActivity);
 
 export default router;
 
