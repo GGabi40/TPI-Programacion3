@@ -405,6 +405,7 @@ button[type="submit"]:hover {
   margin-left: 200px;
   margin-right: 20px;
   padding: 1.5rem;
+  height: 100vh;
 }
 
 .break {
@@ -494,7 +495,7 @@ footer .contacto {
   cursor: pointer;
 }
 
-/* Probando footer mas pequeño */
+/* Footer mas pequeño */
 
 .nombre-pagina {
   display: flex;
@@ -505,9 +506,6 @@ footer .contacto {
 }
 
 footer.footer-small {
-  /* position: absolute;
-  bottom: 0;
-  height: 200px; */
   display: flex;
   flex-direction: row;
   gap: 1px;

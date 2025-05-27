@@ -7,7 +7,7 @@ import ClubList from "../clubList/ClubList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
-import { useFetch } from "../hook/useFetch";
+import { useFetch } from "../hook/UseFetch";
 
 const { getAll } = useFetch("/clubs");
 
@@ -49,7 +49,7 @@ const MisClubes = () => {
           {allClubs.length > 0 ? (
             <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} setAllClubs={setAllClubs} allClubs={allClubs} />
           ) : (
-            <h2>No hay nada aquí...</h2>
+            <h2 className="text-align">No hay nada aquí...</h2>
           )}
 
           <button className="cssbuttons-io-button" onClick={handleClickCreate}>
