@@ -59,6 +59,11 @@
     transform: scale(1.005);
 }
 
+a.card-ad {
+    color: var(--font-color-light);
+    text-decoration: none;
+}
+
 .card-ad h4 {
     font-size: 1.8rem;
     font-family: 'Nunito', sans-serif;
