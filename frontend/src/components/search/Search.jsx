@@ -12,6 +12,7 @@ const Search = ({ onSearch, placeholder, showButton }) => {
     onSearch(input);
   }, [input]);
 
+  // idea de customHook -> buscador dinámico (por segundo o cant letras)
   const handleSearch = (e) => {
     // falta la funcionalidad
     setInput(e.target.value);

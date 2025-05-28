@@ -1,8 +1,7 @@
-import { useState } from "react";
-
 const API_URL = import.meta.env.VITE_BASE_SERVER_URL; // URL de API en variable de entorno
 
 // ejemplo: useFetch("/activities" )
+// buscar como utilizar hook de react - para que sea un custom hook
 
 export const useFetch = (endpoint) => {
   const complete_url = `${API_URL}${endpoint}`;

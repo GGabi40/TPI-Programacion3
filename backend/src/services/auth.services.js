@@ -73,7 +73,7 @@ export const loginUser = async (req, res) => {
 
     // Crear token JWT
     const token = jwt.sign(
-      { id: user.id, role: user.role }, // payload
+      { id: user.id, role: user.role }, // payload -- username (hacer otro controlador getById)
       process.env.JWT_SECRET, // clave secreta en dotenv*
       { expiresIn: "1d" } // expira en 1 dia
     );
