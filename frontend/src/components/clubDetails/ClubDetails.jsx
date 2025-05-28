@@ -1,25 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router";
-import { useEffect } from "react";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import NotFound from "../error/notFound/NotFound";
 
 const ClubDetails = () => {
     const { id } = useParams(); // más sencillo que useLocation
+    const navigate = useNavigate();
     const [club, setClub] = useState(null);
-    // const navigate = useNavigate();
+    const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        /* Acá consultamos con fetch por el ID
-        Ejemplo:
-        useEffect(() => {
-            fetch(`/api/clubs/${id}`)
-                .then((res) => res.json())
-                .then((data) => setClub(data))
-                .catch(() => setClub(null));
-        }, [id]);
-        */
+       fetch(`/api/clubs/${id}`)
+        .then((res) => res.ok ? res.json() : Promise.reject())
+        .then((data) => setClub(data))
+        .catch(() => setClub(null));
+    }, [id]);
+
+    useEffect(() => {
+        fetch(`/api/reviews?activityId=${id}`)
+            .then((res) => res.ok ? res.json() : Promise.reject())
+            .then((data) => setReviews(data))
+            .catch((err) => {
+                console.error("Error al obtener reseñas: ", err);
+                setReviews([]);
+            });
     }, [id]);
 
     if(!club) {
@@ -60,7 +65,24 @@ const ClubDetails = () => {
                     <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
                     <br />
                 </div>
-                <button onClick={() => navigate("/clubes")}>Volver a Clubes</button>
+
+                <div className="reviews-container">
+                    <h3>Reseñas</h3>
+                    {reviews.length === 0 ? (
+                        <p>No hay reseñas aún.</p>
+                    ) : (
+                        <ul>
+                            {reviews.map((r) => (
+                                <li key={r.id}>
+                                    <p><strong>Usuario ID:</strong> {r.userId}</p>
+                                    <p>{r.content}</p>
+                                </li>
+                            ))}
+                        </ul>
+                    )}
+                </div>
+
+                <button onClick={() => navigate("/clubes")}>Volver a Clubs</button>
             </div>
         </div>
     );
