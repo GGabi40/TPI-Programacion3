@@ -24,9 +24,15 @@ export const useFetch = (endpoint) => {
     }
   };
 
-  const getById = async (id) => {
+  const getById = async (id, token = null) => {
     try {
-      const res = await fetch(`${complete_url}/${id}`);
+      const res = await fetch(`${complete_url}/${id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : ""
+        }
+      });
 
       if (!res.ok) {
         throw new Error("Error al obtener dato específico.");

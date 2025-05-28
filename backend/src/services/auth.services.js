@@ -73,7 +73,7 @@ export const loginUser = async (req, res) => {
 
     // Crear token JWT
     const token = jwt.sign(
-      { id: user.id, role: user.role }, // payload -- username (hacer otro controlador getById)
+      { id: user.id, role: user.role }, // payload
       process.env.JWT_SECRET, // clave secreta en dotenv*
       { expiresIn: "1d" } // expira en 1 dia
     );
@@ -145,6 +145,28 @@ export const updateProfileAndPassword = async (req, res) => {
     res.status(500).json({ message: "Error al actualizar el perfil" });
   }
 };
+
+// Muestra un usuario
+export const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['password'] }
+    });
+
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado ' });
+
+    if (user.id !== Number(id)) return res.status(400).json({ message: 'No tienes permiso para ver este usuario.' });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error al buscar el usuario:', error.message);
+    res.status(500).json({ message: 'Error del servidor' });
+  }
+
+};
+
 
 // --------
 // Funciones de validación
