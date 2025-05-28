@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useFetch } from './hook/UseFetch';
+import { useFetch } from './hook/useFetch';
 import { useNavigate } from 'react-router';
 
 const { getAll, put, del, post } = useFetch("/clubs");
