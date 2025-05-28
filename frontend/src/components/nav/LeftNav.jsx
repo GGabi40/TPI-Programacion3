@@ -52,7 +52,6 @@ const LeftNav = () => {
 
       <nav id="leftNav" className={isOpen ? "open" : "collapsed"}>
         <div className="logo">
-
           <Link to="/dashboard">
             <img src={logo} alt="Logo Inklink" className="imgLogo" />
           </Link>
@@ -60,7 +59,15 @@ const LeftNav = () => {
           <h1>InkLink</h1>
 
           <h3 className="nav-usuario">
-            <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px" }} />
+            {user ? (
+              <img 
+                src={user.avatar} 
+                className="img-avatar-nav"
+                alt='Avatar de usuario'   
+                />
+              ) :
+              <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px" }} />
+            }
             {user ? user.username : "Cargando..."}
           </h3>
         </div>
