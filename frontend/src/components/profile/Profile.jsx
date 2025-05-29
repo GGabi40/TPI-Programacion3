@@ -33,21 +33,27 @@ const Profile = () => {
           <UserTable />
 
           <h3 className="superadmin-title">Gestión de Clubes (SuperAdmin)</h3>
-          <ClubsTable /> 
+          <ClubsTable />
         </div>
       )}
 
       {user.role === "admin" && (
         <div className="tools">
           <h3 className="superadmin-title">Gestión de Clubes (Admin)</h3>
-          <ClubsTable /> 
+          <ClubsTable />
         </div>
       )}
 
-      {user.role === "user" && (
+      {user.role === "user" && user &&(
         <div className="tools">
-          <h3 className="superadmin-title">Actualizar mis Datos</h3>
-          <p>Acá tendría el formulario para modificar datos</p>
+          {/* <p>Acá tendría el formulario para modificar datos</p> */}
+          <div className="form">
+            <h3 className="superadmin-title"> Editar perfil
+            </h3>
+             {/* <ProfileForm user={user} /> */}
+
+          </div>
+
         </div>
       )}
     </LayoutProfile>
