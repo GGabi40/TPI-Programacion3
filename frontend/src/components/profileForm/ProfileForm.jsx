@@ -5,12 +5,15 @@ import { useFetch } from "../hook/UseFetch";
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
+import { validateString, validateEmail } from "../validations";
+
 
 const ProfileForm = () => {
     const [userName, setUserName] = useState("");
     const [email, setEmail] = useState("");
     const [birthdate, setBirthdate] = useState("");
     const [avatar, setAvatar] = useState("");
+    const [errors, setErrors] = useState({});
 
     const { put } = useFetch("/profile");
     const navigate = useNavigate();
@@ -23,12 +26,39 @@ const ProfileForm = () => {
         "/avatars/avatar6.png",
     ];
 
+    const validateForm = () => {
+        const newErrors = {};
+
+        if (!validateString(userName, 3, 20)) {
+            newErrors.userName = "El nombre de usuario debe tener entre 3 y 20 caracteres.";
+        }
+
+        if (!validateEmail(email)) {
+            newErrors.email = "El email no es válido.";
+        }
+
+        if (!avatar) {
+            newErrors.avatar = "Debes seleccionar un avatar.";
+        }
+
+        setErrors(newErrors);
+
+        return Object.keys(newErrors).length === 0;
+    };
+
+
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        if (!validateForm()) {
+            errorToast("Por favor corrige los errores en el formulario.");
+            return;
+        }
+
         try {
+            // falta enviar a la api 
             successToast("Perfil actualizado correctamente.");
-            setTimeout(() => navigate("/mi-perfil"), 1500); // 👈 
+            setTimeout(() => navigate("/mi-perfil"), 1500);
         } catch (err) {
             errorToast("Error al actualizar el perfil.");
         }

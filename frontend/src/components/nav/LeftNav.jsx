@@ -60,12 +60,12 @@ const LeftNav = () => {
 
           <h3 className="nav-usuario">
             {user ? (
-              <img 
-                src={user.avatar} 
+              <img
+                src={user.avatar}
                 className="img-avatar-nav"
-                alt='Avatar de usuario'   
-                />
-              ) :
+                alt='Avatar de usuario'
+              />
+            ) :
               <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px" }} />
             }
             {user ? user.username : "Cargando..."}
@@ -86,6 +86,10 @@ const LeftNav = () => {
             <Link to="/descubre" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
             </Link>
+            <Link to="/actualizar-perfil" className="link-button nav-btn" onClick={closeMenu}>
+              Actualizar Perfil
+            </Link>
+
           </div>
 
           <div className="btns-2">

@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-      <ToastContainer />
+        <ToastContainer />
         <Routes>
           {/* Ruta sin proteger - Home y NotFound */}
           {/* agregue el register para que sea publica aunque no este logged */}
@@ -34,26 +34,21 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
-{/*  */}
-        
-
-            {/* Acá todas estarán protegidas x Login */}
-            <Route element={<Protected />}> 
-              <Route path="/dashboard" element={<Dashboard />} />
-              <Route path="/mi-perfil" element={<Profile />} />
-              <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
-              <Route path="/modifyclub/:id" element={<ModifyClub />} />
-              <Route path="/newclub" element={<NewClub />} />
-              <Route path="/mis-clubes" element={<MisClubes />} />
-              <Route path="/newact" element={<NewActivity />} />
-              <Route path="/descubre" element={<Descubre />} />
-            </Route>
-            
 
 
 
-
-
+          {/* Acá todas estarán protegidas x Login */}
+          <Route element={<Protected />}>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/mi-perfil" element={<Profile />} />
+            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
+            <Route path="/modifyclub/:id" element={<ModifyClub />} />
+            <Route path="/newclub" element={<NewClub />} />
+            <Route path="/mis-clubes" element={<MisClubes />} />
+            <Route path="/newact" element={<NewActivity />} />
+            <Route path="/descubre" element={<Descubre />} />
+            <Route path="/actualizar-perfil" element={<ProfileForm />} />
+          </Route>
 
           {/* </Route> */}
         </Routes>
