@@ -162,11 +162,24 @@ form {
   font-family: var(--body-font);
 }
 
+.error {
+  background-color: #e74c3c;
+  color: #fff;
+  font-size: 15px;
+  padding: 6px 8px;
+  border-radius: var(--border-radius);
+}
+
 .logo-form {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-bottom: 1.5rem;
+}
+
+.select-gender {
+  background-color: var(--bg-color-footer);
+  color: var(--bg-color-light);
 }
 
 .logo-form>img {
@@ -328,6 +341,10 @@ button[type="submit"]:hover {
   margin-bottom: 10px;
 }
 
+.space {
+  min-height: 20px;
+}
+
 /* Fondo animado de Register */
 .background-animated {
   position: fixed;
@@ -388,6 +405,7 @@ button[type="submit"]:hover {
   margin-left: 200px;
   margin-right: 20px;
   padding: 1.5rem;
+  height: 100vh;
 }
 
 .break {
@@ -477,7 +495,7 @@ footer .contacto {
   cursor: pointer;
 }
 
-/* Probando footer mas pequeño */
+/* Footer mas pequeño */
 
 .nombre-pagina {
   display: flex;
@@ -488,9 +506,6 @@ footer .contacto {
 }
 
 footer.footer-small {
-  /* position: absolute;
-  bottom: 0;
-  height: 200px; */
   display: flex;
   flex-direction: row;
   gap: 1px;

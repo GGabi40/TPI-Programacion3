@@ -5,6 +5,7 @@ import "../../styles/profile/profile.css";
 import LayoutProfile from "./layoutProfile/LayoutProfile"; // layout general
 import UserTable from "./AdminManagement/UsersTable"; // tabla de usuarios
 import ClubsTable from "./AdminManagement/ClubsTable"; // tabla de clubes
+import FooterSmall from "../footer/FooterSmall";
 
 
 /* Renderiza perfiles dependiendo de ROL de USUARIO */
@@ -24,6 +25,7 @@ const Profile = () => {
     /* Layout de Perfil: recibe usuario
       dependiendo del rol, se renderiza distintos elementos y componentes 
     */
+   <>
     <LayoutProfile user={user}>
       {user.role === "superadmin" && (
         <div className="tools">
@@ -55,6 +57,10 @@ const Profile = () => {
         </div>
       )}
     </LayoutProfile>
+    
+    <FooterSmall />
+   </>
+
   );
 };
 

@@ -1,6 +1,6 @@
-import React, {useState} from "react";
+import React, { useEffect, useState } from "react";
 import ClubForm from "../clubForm/ClubForm";
-import { useFetch } from "../hook/UseFetch";
+import { useFetch } from "../hook/useFetch";
 import { useNavigate } from "react-router";
 
 const { post, getAll } = useFetch("/clubs");
@@ -12,20 +12,11 @@ const NewClub = () => {
 
   const handleSubmit = async (data) => {
     const response = await post(data);
-    console.log(response);
-    const clubs = await getAll();
-        setAllClubs(clubs);
-        setNewClub({
-            name: "",
-            description: "",
-            restricted: "",
-            interest: "",
-            gender: "",
-            color: "",
-        });
-    //navigate(`/clubDetails/${created.id}`);
-  }
-  return <ClubForm mode="create" onSubmit={handleSubmit} />
-}
+    // console.log(response);
 
-export default NewClub
+    navigate(`/mis-clubes`);
+  };
+  return <ClubForm mode="create" onSubmit={handleSubmit} />;
+};
+
+export default NewClub;

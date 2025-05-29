@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { createNewClub, getClubById, getAllClubs, updateClub, deleteClub } from "../services/club.services.js";
 
-import { verifyToken, roleMiddleware } from "../middleware/authMiddleware.js";
+//import { verifyToken, roleMiddleware } from "../middleware/authMiddleware.js";
 
 const router = Router();
 

@@ -8,7 +8,7 @@ import './models/User.js';
 import './models/Review.js';
 import './models/Club.js';
 import './models/Activity.js';
-// import './models/ReviewRating.js';
+import './models/ReviewRating.js';
 import './models/relation.js';
 
 import BookRoutes from './routes/books.routes.js';
@@ -23,7 +23,8 @@ const app = express();
 
 app.use(cors({
     origin: 'http://localhost:5173',
-    credentials: true
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
 }));
 
 app.use(express.json());

@@ -1,25 +1,29 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router";
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router";
+import ReviewList from "./Reviews/ReviewList";
+import ReviewForm from "./Reviews/ReviewForm";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import NotFound from "../error/notFound/NotFound";
 
-const ClubDetails = () => {
+const ClubDetails = ({ userId }) => {
     const { id } = useParams(); // más sencillo que useLocation
+    const navigate = useNavigate();
     const [club, setClub] = useState(null);
-    // const navigate = useNavigate();
+    const [activities, setActivities] = useState([]);
 
     useEffect(() => {
-        /* Acá consultamos con fetch por el ID
-        Ejemplo:
-        useEffect(() => {
-            fetch(`/api/clubs/${id}`)
-                .then((res) => res.json())
-                .then((data) => setClub(data))
-                .catch(() => setClub(null));
-        }, [id]);
-        */
+        //trae los detalles del club
+       fetch(`/api/clubs/${id}`)
+        .then((res) => res.json())
+        .then((data) => setClub(data))
+        .catch(() => setClub(null));
+
+        //trae las actividades
+        fetch(`/api/clubs/${id}/activities`)
+            .then((res) => res.json())
+            .then((data) => setActivities(data))
+            .catch(() => setActivities([]));
     }, [id]);
 
     if(!club) {
@@ -31,7 +35,6 @@ const ClubDetails = () => {
     return (
         <div>
             <LeftNav />
-
             <div className="background-animated">
                 <div className="light-orb"></div>
             </div>
@@ -60,7 +63,16 @@ const ClubDetails = () => {
                     <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
                     <br />
                 </div>
-                <button onClick={() => navigate("/clubes")}>Volver a Clubes</button>
+
+                {activities.map((activity) => (
+                    <div key={activity.id} className="mt-4">
+                        <h4>ACtividad: {activity.name}</h4>
+                        <ReviewList activityId={activity.id} userId={userId}/>
+                        <ReviewForm activityId={activity.id} userId={userId}/>
+                    </div>
+                ))}
+
+                <button onClick={() => navigate("/clubes")}>Volver a Clubs</button>
             </div>
         </div>
     );

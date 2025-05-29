@@ -15,7 +15,7 @@ COMPLETO -- Ver prioridades [!prioridades](./ReadmePrioridades.md)
 [OK] Review
 [OK] Activity
 [] Comments
-[] ReviewRating (verif si mismo usuario verifica +1 vez)
+[OK] ReviewRating (verif si mismo usuario verifica +1 vez)
 
 VER belongsTo, hasMany, belongsToMany -- FOREIGN KEY en Express
 
@@ -64,6 +64,7 @@ Usuario - Club [OK]
 -- DELETE es un destroy
 
 
+// Prioridad
 [] POST api/clubs/:id/join   // POST a TABLA INTERMEDIA UsersClub
 [] GET api/users/:id/clubs
 
@@ -96,7 +97,7 @@ Usuario - Club [OK]
     [OK] ClubsController
     [OK] ReviewsController
     [] CommentsController
-    [] RatingsController
+    [OK] RatingsController
 
 🔁 Routes
     [OK] Rutas de autenticación (register, login)
@@ -121,15 +122,15 @@ Usuario - Club [OK]
  - [] Panel de Usuario (perfil, clubes) - Editar perfil
  - [OK] Home Page (Lista de clubes)
  - [] Detalle de Club     -- Falta
- - [] Dashboard de Moderadores de Club -- [OK] SuperAdmin [] Admin [] UserComun
+ - [] Dashboard de Moderadores de Club -- [OK] SuperAdmin [OK] Admin [] UserComun
  - [OK] Crear Club
  - [] Crear reseña -> textarea
  - [] Crear Comentario -> textarea
  - [] Valorar reseñas (incluir vista de promedio de rating)
- - [] Validaciones de formularios
+ - [OK] Validaciones de formularios
  - [OK] Filtro y búsqueda de clubes
- - [] Mensajes de éxito / error con React-Toastify
- - [] Componente NewActivity 
+ - [OK] Mensajes de éxito / error con React-Toastify
+ - [OK] Componente NewActivity 
 
 [] Proteccion de rutas segun rol
 [X] Manejo de 404 / 500

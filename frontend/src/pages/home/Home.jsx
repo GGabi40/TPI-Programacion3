@@ -39,14 +39,14 @@ const Home = () => {
 
       <main className="container">
         <section className="cards">
-          <div className="card-ad">
+          <Link className="card-ad" to="/register">
             <div className="icon">
               <FontAwesomeIcon icon={faUsers} size="2x" />
             </div>
             <h4>Únase a Clubes de Lectura</h4>
             <p>Explore clubes temáticos según tus géneros favoritos.</p>
-          </div>
-          <div className="card-ad">
+          </Link>
+          <Link className="card-ad" to="/register">
             <div className="icon">
               <FontAwesomeIcon icon={faComments} size="2x" />
             </div>
@@ -55,8 +55,8 @@ const Home = () => {
               Participe en debates, dejá tus opiniones y descubra nuevos puntos
               de vista.
             </p>
-          </div>
-          <div className="card-ad">
+          </Link>
+          <Link className="card-ad" to="/register">
             <div className="icon">
               <FontAwesomeIcon icon={faCalendarAlt} size="2x" />
             </div>
@@ -65,7 +65,7 @@ const Home = () => {
               Siga el ritmo del club con calendarios, fechas de discusión y
               recordatorios.
             </p>
-          </div>
+          </Link>
         </section>
       </main>
 
