@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
+import ReviewList from "./Reviews/ReviewList";
+import ReviewForm from "./Reviews/ReviewForm";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import NotFound from "../error/notFound/NotFound";
 
-const ClubDetails = () => {
+const ClubDetails = ({ userId }) => {
     const { id } = useParams(); // más sencillo que useLocation
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
-    const [reviews, setReviews] = useState([]);
+    const [activities, setActivities] = useState([]);
 
     useEffect(() => {
+        //trae los detalles del club
        fetch(`/api/clubs/${id}`)
-        .then((res) => res.ok ? res.json() : Promise.reject())
+        .then((res) => res.json())
         .then((data) => setClub(data))
         .catch(() => setClub(null));
-    }, [id]);
 
-    useEffect(() => {
-        fetch(`/api/reviews?activityId=${id}`)
-            .then((res) => res.ok ? res.json() : Promise.reject())
-            .then((data) => setReviews(data))
-            .catch((err) => {
-                console.error("Error al obtener reseñas: ", err);
-                setReviews([]);
-            });
+        //trae las actividades
+        fetch(`/api/clubs/${id}/activities`)
+            .then((res) => res.json())
+            .then((data) => setActivities(data))
+            .catch(() => setActivities([]));
     }, [id]);
 
     if(!club) {
@@ -36,7 +35,6 @@ const ClubDetails = () => {
     return (
         <div>
             <LeftNav />
-
             <div className="background-animated">
                 <div className="light-orb"></div>
             </div>
@@ -66,21 +64,13 @@ const ClubDetails = () => {
                     <br />
                 </div>
 
-                <div className="reviews-container">
-                    <h3>Reseñas</h3>
-                    {reviews.length === 0 ? (
-                        <p>No hay reseñas aún.</p>
-                    ) : (
-                        <ul>
-                            {reviews.map((r) => (
-                                <li key={r.id}>
-                                    <p><strong>Usuario ID:</strong> {r.userId}</p>
-                                    <p>{r.content}</p>
-                                </li>
-                            ))}
-                        </ul>
-                    )}
-                </div>
+                {activities.map((activity) => (
+                    <div key={activity.id} className="mt-4">
+                        <h4>ACtividad: {activity.name}</h4>
+                        <ReviewList activityId={activity.id} userId={userId}/>
+                        <ReviewForm activityId={activity.id} userId={userId}/>
+                    </div>
+                ))}
 
                 <button onClick={() => navigate("/clubes")}>Volver a Clubs</button>
             </div>
