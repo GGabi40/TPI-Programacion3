@@ -146,6 +146,28 @@ export const updateProfileAndPassword = async (req, res) => {
   }
 };
 
+// Muestra un usuario
+export const getUserById = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const user = await User.findByPk(id, {
+      attributes: { exclude: ['password'] }
+    });
+
+    if (!user) return res.status(404).json({ message: 'Usuario no encontrado ' });
+
+    if (user.id !== Number(id)) return res.status(400).json({ message: 'No tienes permiso para ver este usuario.' });
+
+    res.status(200).json(user);
+  } catch (error) {
+    console.error('Error al buscar el usuario:', error.message);
+    res.status(500).json({ message: 'Error del servidor' });
+  }
+
+};
+
+
 // --------
 // Funciones de validación
 const validateRegisterUser = (req) => {

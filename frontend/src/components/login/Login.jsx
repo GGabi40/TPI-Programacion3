@@ -2,16 +2,19 @@ import React from "react";
 import Footer from "../footer/Footer";
 import TopNav from "../nav/TopNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
-import { useState, useRef } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router";
-import { validateEmail, validatePassword } from "../auth/Auth.services";
+import { validateEmail } from "../auth/Auth.services";
 import { errorToast, successToast } from "../toast/NotificationToast";
+import { AuthenticationContext } from '../services/auth.context';
 
 import { useFetch } from "../hook/useFetch";
 
 const { post } = useFetch("/login");
 
 const Login = () => {
+  const { handleUserLogin } = useContext(AuthenticationContext);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({
@@ -19,10 +22,11 @@ const Login = () => {
     password: false,
     message: "",
   });
-  const navigate = useNavigate();
-  const emailRef = useRef(null);
-  const passwordRef = useRef(null);
 
+  const navigate = useNavigate();
+
+
+  // Validaciones:
   const handleEmailChange = (event) => {
     setEmail(event.target.value);
   };
@@ -36,23 +40,11 @@ const Login = () => {
 
     if (!validateEmail(email)) {
       setErrors({ ...errors, email: true });
-      emailRef.current.focus();
       errorToast("Email invalido");
       return;
     } else {
       setErrors({ ...errors, email: false });
     }
-
-    /* Si el post no anda, tira error de credenciales: Verificar si esto va
-
-    if (!validatePassword(password, 6, null, false, true)) {
-      setErrors({ ...errors, password: true });
-      errorToast("La contraseña es requerida");
-      passwordRef.current.focus();
-      return;
-    } else {
-      setErrors({ ...errors, password: false });
-    } */
 
     const userData = {
       email,
@@ -63,8 +55,11 @@ const Login = () => {
       const response = await post(userData);
       const { token } = response;
 
+
       if (token) {
         localStorage.setItem("inklink-token", token);
+
+        handleUserLogin(token); // actualiza contexto
 
         successToast("Inicio de sesión exitoso.");
         navigate("/dashboard");
@@ -100,7 +95,6 @@ const Login = () => {
               placeholder="Ingrese su email:"
               onChange={handleEmailChange}
               value={email}
-              ref={emailRef}
             />
             {errors.email && <p className="error">El email es requerido.</p>}
 
@@ -110,7 +104,6 @@ const Login = () => {
               placeholder="Ingrese su clave:"
               onChange={handlePasswordChange}
               value={password}
-              ref={passwordRef}
             />
 
             {errors.message && <p className="error">{errors.message}</p>}
@@ -124,7 +117,7 @@ const Login = () => {
           </form>
         </div>
       </div>
-      <Footer></Footer>
+      <Footer />
     </div>
   );
 };
