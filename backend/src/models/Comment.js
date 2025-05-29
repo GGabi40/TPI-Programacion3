@@ -1,7 +1,8 @@
 import { DataTypes } from "sequelize";
-import { sequelize } from "../../config.js"; // Ajustá el path si usás otra ruta
+import { sequelize } from "../config/db.js"; 
 
-export const Comment = sequelize.define("Comment", {
+
+export const Comment = sequelize.define('comment', {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
