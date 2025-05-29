@@ -4,6 +4,7 @@ import { Activity } from "./Activity.js";
 import { Club } from "./Club.js";
 import { Review } from "./Review.js";
 import { ReviewRating } from "./ReviewRating.js";
+import { Comment } from "./Comment.js";
 /* Agg comentario de review */
 
 // 1:N
@@ -24,6 +25,12 @@ ReviewRating.belongsTo(Review, { foreignKey: 'reviewId' });
 
 User.hasMany(ReviewRating, { foreignKey: 'userId' });
 Review.hasMany(ReviewRating, { foreignKey: 'reviewId' });
+
+Review.hasMany(Comment, { foreignKey: 'reviewId' });
+Comment.belongsTo(Review, { foreignKey: 'reviewId' });
+
+User.hasMany(Comment, { foreignKey: 'userId' });
+Comment.belongsTo(User, { foreignKey: 'userId' });
 
 // N:M
 User.belongsToMany(Club, { through: 'UserClubs', foreignKey: 'userId' });
