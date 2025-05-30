@@ -37,7 +37,7 @@
   font-size: 1.2rem;
   margin-top: 15px;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 15px
 }
 
 #leftNav > .buttons {
@@ -87,7 +87,8 @@
 
 img.img-avatar-nav {
   border: 1px solid black;
-  height: 40px;
+  max-height: 40px;
+  width: 40px;
   border-radius: 100%;
   display: block;
 }
@@ -137,6 +138,7 @@ img.img-avatar-nav {
     font-size: 1.2rem;
     margin-top: 15px;
     text-align: center;
+    
   }
 
   #leftNav > .buttons {

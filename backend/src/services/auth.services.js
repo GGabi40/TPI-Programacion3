@@ -113,6 +113,23 @@ export const updateProfileAndPassword = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado " });
     }
 
+    // verifica si el mail está siendo utilizado
+    if (email && email !== user.email) {
+      const emailInUse = await User.findOne({ where: { email } });
+
+      if (emailInUse) {
+        return res.status(400).json({ message: "Este email ya está registrado." });
+      }
+    }
+
+    if (username && username !== user.username) {
+      const usernameInUse = await User.findOne({ where: { username } });
+
+      if (usernameInUse) {
+        return res.status(400).json({ message: "Este email ya está registrado." });
+      }
+    }
+
     user.username = username || user.username;
     user.email = email || user.email;
     user.birthday = birthday || user.birthday;
@@ -235,7 +252,7 @@ const validateUpdateProfileData = (req) => {
     message: "",
   };
 
-  const { username, email, password } = req;
+  const { username, email, password, birthday } = req;
 
   // En este código, se validan los datos solo si se envían
 

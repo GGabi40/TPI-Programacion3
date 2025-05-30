@@ -8,7 +8,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 import { AuthenticationContext } from '../services/auth.context';
-import { useFetch } from "../hook/UseFetch";
+import { useFetch } from "../hook/useFetch";
 
 const { getById } = useFetch("/users");
 
@@ -85,9 +85,6 @@ const LeftNav = () => {
             </Link>
             <Link to="/descubre" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
-            </Link>
-            <Link to="/actualizar-perfil" className="link-button nav-btn" onClick={closeMenu}>
-              Actualizar Perfil
             </Link>
 
           </div>

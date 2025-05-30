@@ -58,6 +58,19 @@
   border-radius: 8px;
 }
 
+.profile-edit {
+  top: 0;
+  z-index: 9;
+}
+
+.profile-container-user {
+  display: none;
+}
+
+.profile-container-user.show {
+  display: block;
+}
+
 @media (max-width: 1010px) {
   .profile-card {
     margin-left: 250px;

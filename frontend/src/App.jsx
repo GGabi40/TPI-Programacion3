@@ -14,7 +14,6 @@ import MisClubes from "./components/misClubes/MisClubes";
 import Profile from "./components/profile/Profile";
 import NewActivity from "./components/newActivity/NewActivity";
 import Descubre from "./components/descubre/DescubreClubes";
-import Books from "./components/Books";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -28,8 +27,6 @@ function App() {
         <ToastContainer />
         <Routes>
           {/* Ruta sin proteger - Home y NotFound */}
-          {/* agregue el register para que sea publica aunque no este logged */}
-          {/* agregar nav y footer en ambas */}
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
@@ -47,10 +44,9 @@ function App() {
             <Route path="/mis-clubes" element={<MisClubes />} />
             <Route path="/newact" element={<NewActivity />} />
             <Route path="/descubre" element={<Descubre />} />
-            <Route path="/actualizar-perfil" element={<ProfileForm />} />
+            {/* <Route path="/actualizar-perfil" element={<ProfileForm />} /> */}
           </Route>
 
-          {/* </Route> */}
         </Routes>
       </BrowserRouter>
 
