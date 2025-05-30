@@ -3,9 +3,10 @@ import ClubForm from "../clubForm/ClubForm";
 import { useFetch } from "../hook/useFetch";
 import { useNavigate } from "react-router";
 
-const { post, getAll } = useFetch("/clubs");
+
 
 const NewClub = () => {
+  const { post, getAll } = useFetch("/clubs");
   const navigate = useNavigate();
   const [allClubs, setAllClubs] = useState([]);
   const [newClub, setNewClub] = useState("");

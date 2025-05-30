@@ -9,10 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "../hook/useFetch";
 
-const { del } = useFetch("/clubs");
+
 
 /* Acá están los cards de cada club */
 const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
+  const { del } = useFetch("/clubs");
   const navigate = useNavigate();
 
   const handleClickEdit = (id) => {

@@ -10,9 +10,10 @@ import { AuthenticationContext } from '../services/auth.context';
 
 import { useFetch } from "../hook/useFetch";
 
-const { post } = useFetch("/login");
+
 
 const Login = () => {
+  const { post } = useFetch("/login");
   const { handleUserLogin } = useContext(AuthenticationContext);
 
   const [email, setEmail] = useState("");

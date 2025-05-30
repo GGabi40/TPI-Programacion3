@@ -9,9 +9,9 @@ const ErrorLayout = ({ code, title, description, image }) => {
       {image && (
         <img src={image} alt="Error illustration" className="error-image" />
       )}
-      <h1 className="error-code">{code}</h1>
-      <h2 className="error-title">{title}</h2>
-      <p className="error-description">{description}</p>
+      <h1 className="error-code">{code ? code : ''}</h1>
+      <h2 className="error-title">{title ? title : ''}</h2>
+      <p className="error-description">{description ? description : ''}</p>
 
       <Link to="/dashboard" className="link-button">
         Volver al inicio

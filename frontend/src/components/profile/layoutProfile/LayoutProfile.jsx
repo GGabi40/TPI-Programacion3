@@ -12,37 +12,37 @@ const LayoutProfile = ({ user, children }) => {
   };
 
   return (
-    <div>
+    <>
       <LeftNav />
+      <div className="hero-container">
+        <section className="profile-container">
+          <div className="profile-card">
+            <div className="profile-avatar">
+              <img src={user.avatar} alt={`Avatar de ${user.username}`} />
+            </div>
 
-      <section className="profile-container">
-        <div className="profile-card">
-          <div className="profile-avatar">
-            <img src={user.avatar} alt={`Avatar de ${user.username}`} />
+            <h1>Datos de Usuario</h1>
+            <h2 className="profile-username">
+              <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px", color: 'white' }} />
+              {user.username}
+            </h2>
+            <p className="profile-email">📧 {user.email}</p>
+            <p className="profile-role">🛡️ Rol: <strong>{user.role.toUpperCase()}</strong></p>
+            <p className="profile-birthday">
+              🎂 Cumpleaños: {formatDate(user.birthday)}
+            </p>
+            <p
+              className={`profile-status ${user.isActive ? "active" : "inactive"
+                }`}
+            >
+              {user.isActive ? "🟢 Activo" : "🔴 Inactivo"}
+            </p>
+
+            {children}
           </div>
-
-          <h1>Datos de Usuario</h1>
-          <h2 className="profile-username">
-            <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px", color:'white' }} />
-            {user.username}
-          </h2>
-          <p className="profile-email">📧 {user.email}</p>
-          <p className="profile-role">🛡️ Rol: <strong>{user.role.toUpperCase()}</strong></p>
-          <p className="profile-birthday">
-            🎂 Cumpleaños: {formatDate(user.birthday)}
-          </p>
-          <p
-            className={`profile-status ${
-              user.isActive ? "active" : "inactive"
-            }`}
-          >
-            {user.isActive ? "🟢 Activo" : "🔴 Inactivo"}
-          </p>
-
-          {children}
-        </div>
-      </section>
-    </div>
+        </section>
+      </div>
+    </>
   );
 };
 
