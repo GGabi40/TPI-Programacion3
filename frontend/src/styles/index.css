@@ -623,6 +623,24 @@ footer.footer-small {
   transform: scale(0.98);
 }
 
+.nada-aqui-container {
+  padding-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  gap: 30px;
+}
+
+.img-nada-aqui {
+  height: 200px;
+  width: 200px;
+  animation: float 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 15px rgba(136, 80, 255, 0.8));
+}
+
+
 /* MEDIA QUERY */
 
 @media (max-width: 900px) {

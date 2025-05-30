@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const API_URL = import.meta.env.VITE_BASE_SERVER_URL; // URL de API en variable de entorno
 
 // ejemplo: useFetch("/activities" )
@@ -5,6 +7,7 @@ const API_URL = import.meta.env.VITE_BASE_SERVER_URL; // URL de API en variable 
 
 export const useFetch = (endpoint) => {
   const complete_url = `${API_URL}${endpoint}`;
+  const [isLoading, setIsLoading] = useState(true);
 
   const getAll = async () => {
     try {
@@ -21,6 +24,10 @@ export const useFetch = (endpoint) => {
       return data;
     } catch (error) {
       console.error("Algo pasó con getAll: ", error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
 
@@ -41,6 +48,10 @@ export const useFetch = (endpoint) => {
       return data;
     } catch (error) {
       console.error("Algo pasó con getById: ", error);
+    } finally {
+      setTimeout(() => {
+        setIsLoading(false);
+      }, 1000);
     }
   };
 
@@ -114,5 +125,5 @@ export const useFetch = (endpoint) => {
     }
   };
 
-  return { getAll, getById, post, put, del };
+  return { getAll, getById, post, put, del, isLoading};
 };

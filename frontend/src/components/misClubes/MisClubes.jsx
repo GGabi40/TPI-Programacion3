@@ -8,22 +8,28 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import Search from "../search/Search";
 import { useFetch } from "../hook/useFetch";
+import Loading from "../error/loading/Loading";
+import nadaAquiImage from "../../assets/img/error-img/nada-aqui.webp"
 
-const { getAll } = useFetch("/clubs");
+
 
 const MisClubes = () => {
   const [allClubs, setAllClubs] = useState([]);
   const navigate = useNavigate();
+  const { getAll, isLoading } = useFetch("/clubs");
 
   const handleClickCreate = () => {
     navigate("/newclub");
   };
 
+
   useEffect(() => {
     window.scrollTo(0, 0); // vuelve al top de la pagina
-    
+
     const fetchData = async () => {
       const clubs = await getAll();
+
+      console.log("Armando componente ", isLoading);
 
       if (clubs) {
         setAllClubs(clubs);
@@ -36,6 +42,8 @@ const MisClubes = () => {
   const handleSearch = (query) => {
     console.log("Buscando desde Dashboard:", query);
   };
+
+  if (isLoading) return <Loading />
 
   return (
     <>
@@ -51,8 +59,16 @@ const MisClubes = () => {
           {allClubs.length > 0 ? (
             <ClubList clubs={allClubs} title="Mis Clubes" showButtons={true} setAllClubs={setAllClubs} allClubs={allClubs} />
           ) : (
-            <h2 className="text-align">No hay nada aquí...</h2>
-          )}
+            <div className="nada-aqui-container">
+              <h2 className="text-align">No hay nada aquí...</h2>
+              <img 
+                src={nadaAquiImage} 
+                alt="imagen de un gatito corriendo una lana" 
+                className="img-nada-aqui" 
+              />
+            </div>
+          )
+          }
 
           <button className="cssbuttons-io-button" onClick={handleClickCreate}>
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />

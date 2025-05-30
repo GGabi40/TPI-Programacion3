@@ -7,11 +7,12 @@ import FooterSmall from '../footer/FooterSmall';
 
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { Link } from "react-router";
-import { useFetch } from '../hook/UseFetch';
+import { useFetch } from '../hook/useFetch';
 
-const { post } = useFetch("/activities");
+
 
 const NewActivity = () => {
+    const { post } = useFetch("/activities");
 
     const navigate = useNavigate();
     const [newActivity, setNewActivity] = useState("");

@@ -10,11 +10,13 @@ import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { AuthenticationContext } from '../services/auth.context';
 import { useFetch } from "../hook/useFetch";
 
-const { getById } = useFetch("/users");
+
 
 const LeftNav = () => {
+  const { getById } = useFetch("/users");
   const navigate = useNavigate();
   const { handleUserLogout, token, userId } = useContext(AuthenticationContext);
+  
   const [user, setUser] = useState('');
   const [isOpen, setIsOpen] = useState(false);
 

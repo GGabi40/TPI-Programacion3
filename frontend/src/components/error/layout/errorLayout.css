@@ -1,10 +1,8 @@
 .error-container {
   min-height: 100vh;
-  background: linear-gradient(
-    135deg,
-    var(--violeta-robado),
-    var(--violeta-claro)
-  );
+  background: linear-gradient(135deg,
+      var(--violeta-robado),
+      var(--violeta-claro));
   color: var(--font-color-dark);
   display: flex;
   flex-direction: column;
@@ -34,6 +32,7 @@
   100% {
     transform: translateY(0px);
   }
+
   50% {
     transform: translateY(-10px);
   }
@@ -59,11 +58,159 @@
     opacity: 0;
     transform: translateY(-10px);
   }
+
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+
+/* LOADING */
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: auto;
+  opacity: 0;
+  transform: scale(0.98);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.loading-container.fade-in {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.spinner {
+  position: absolute;
+  width: 25px;
+  height: 40px;
+}
+
+.spinner div {
+  position: absolute;
+  width: 50%;
+  height: 150%;
+  background: transparent;
+  transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+  animation: spinner-fzua35 1s calc(var(--delay) * 1s) infinite ease;
+  color: var(--violeta-oscuro);
+  text-align: end;
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.spinner div:nth-child(1) {
+  --delay: 0.1;
+  --rotation: 36;
+  --translation: 150;
+}
+
+.spinner .middle {
+  position: relative;
+  background: transparent;
+  top: 15px;
+  left: -30px;
+  color: var(--font-color-light);
+}
+
+.spinner div:nth-child(2) {
+  --delay: 0.2;
+  --rotation: 72;
+  --translation: 150;
+}
+
+.spinner div:nth-child(3) {
+  --delay: 0.3;
+  --rotation: 108;
+  --translation: 150;
+}
+
+.spinner div:nth-child(4) {
+  --delay: 0.4;
+  --rotation: 144;
+  --translation: 150;
+}
+
+.spinner div:nth-child(5) {
+  --delay: 0.5;
+  --rotation: 180;
+  --translation: 150;
+}
+
+.spinner div:nth-child(6) {
+  --delay: 0.6;
+  --rotation: 216;
+  --translation: 150;
+}
+
+.spinner div:nth-child(7) {
+  --delay: 0.7;
+  --rotation: 252;
+  --translation: 150;
+}
+
+.spinner div:nth-child(8) {
+  --delay: 0.8;
+  --rotation: 288;
+  --translation: 150;
+}
+
+.spinner div:nth-child(9) {
+  --delay: 0.9;
+  --rotation: 324;
+  --translation: 150;
+}
+
+.spinner div:nth-child(10) {
+  --delay: 1;
+  --rotation: 360;
+  --translation: 150;
+}
+
+div.icon-1,
+div.icon-2 {
+  background: transparent;
+}
+
+.icon-1 svg,
+.icon-2 svg {
+  color: var(--violeta-oscuro);
+}
+
+.icon-1 svg {
+  transform: rotate(180deg);
+  position: relative;
+  left: -15px;
+}
+
+.icon-2 svg {
+  position: relative;
+  left: -15px;
+}
+
+@keyframes spinner-fzua35 {
+
+  0%,
+  10%,
+  20%,
+  30%,
+  50%,
+  60%,
+  70%,
+  80%,
+  90%,
+  100% {
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1%));
+  }
+
+  50% {
+    transform: rotate(calc(var(--rotation) * 1deg)) translate(0, calc(var(--translation) * 1.5%));
+  }
+}
+
 
 @media (max-width: 480px) {
   .error-code {
