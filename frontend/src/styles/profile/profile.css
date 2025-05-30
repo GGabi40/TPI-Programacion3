@@ -63,6 +63,10 @@
   z-index: 9;
 }
 
+.profile-container-container {
+  height: 100vh;
+}
+
 .profile-container-user {
   display: none;
 }

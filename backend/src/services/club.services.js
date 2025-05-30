@@ -1,4 +1,5 @@
 import { Club } from "../models/Club.js";
+import { User } from "../models/User.js";
 import { validateString } from "../helper/validations.js";
 
 //logica del negocio
@@ -23,6 +24,53 @@ export const getClubById = async (req, res) => {
   res.json(clubById);
 };
 
+// GET Clubs By User
+export const getClubsByUser = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // hace un JOIN a la tabla UserClubs,
+    // para buscar todos los clubes relacionados con ese userId
+    const user = await User.findByPk(userId, {
+      include: {
+        model: Club,
+        through: { attributes: [] },
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+
+    res.json(user.Clubs);
+  } catch (error) {
+    console.error("Error al obtener clubes del usuario:", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+};
+
+// POST users/:userId/clubs/:clubId
+export const joinClub = async (req,res) => {
+  const { userId, clubId } = req.params;
+
+  try {
+    const user = await User.findByPk(userId);
+    const club = await Club.findByPk(clubId);
+
+    if(!user || !club) {
+      res.status(404).json({ message: 'Usuario o Club no encontrado' });
+    }
+
+    await user.addClub(club);
+
+    return res.json({ message: 'Usuario unido al club exitosamente!' });
+  } catch (error) {
+    console.error('Error al unir usuario al club:', error);
+    return res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
 //POST
 export const createNewClub = async (req, res) => {
   const result = validateClubData(req.body);
@@ -37,7 +85,9 @@ export const createNewClub = async (req, res) => {
   const existingClub = await Club.findOne({ where: { name: name.trim() } });
 
   if (existingClub) {
-    return res.status(400).json({ message: "Ya existe un club con ese nombre." });
+    return res
+      .status(400)
+      .json({ message: "Ya existe un club con ese nombre." });
   }
 
   const newClub = await Club.create({
@@ -49,7 +99,7 @@ export const createNewClub = async (req, res) => {
     color,
     isActive,
   });
-  
+
   res.json(newClub);
 };
 

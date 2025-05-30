@@ -68,20 +68,18 @@ const Profile = () => {
                 {show ? 'Cerrar Edición' : 'Editar Perfil'}
               </button>
 
-              <ProfileForm
+              {show && <ProfileForm
                 user={user}
                 setUser={setUser}
                 show={show}
                 setShow={setShow}
                 className={show ? 'profile-edit' : ''}
-              />
+              />}
             </div>
 
           </div>
         )}
       </LayoutProfile>
-
-      <FooterSmall />
     </>
 
   );
