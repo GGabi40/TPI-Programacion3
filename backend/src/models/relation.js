@@ -5,7 +5,7 @@ import { Club } from "./Club.js";
 import { Review } from "./Review.js";
 import { ReviewRating } from "./ReviewRating.js";
 import { Comment } from "./Comment.js";
-/* Agg comentario de review */
+
 
 // 1:N
 User.hasMany(Review, { foreignKey: 'userId' });

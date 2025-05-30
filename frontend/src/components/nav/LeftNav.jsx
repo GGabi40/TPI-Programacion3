@@ -70,7 +70,7 @@ const LeftNav = () => {
             ) :
               <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px" }} />
             }
-            {user ? user.username : "Cargando..."}
+            {user ? user.username : ""}
           </h3>
         </div>
 

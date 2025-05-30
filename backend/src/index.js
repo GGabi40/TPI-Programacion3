@@ -19,7 +19,7 @@ import ReviewRoutes from './routes/review.routes.js';
 import ClubRoutes from './routes/club.routes.js';
 import ActivityRoutes from './routes/activity.routes.js';
 import ReviewRatingRoutes from './routes/reviewRating.routes.js'
-import  CommentRoutes from './routes/comment.routes.js';
+import CommentRoutes from './routes/comment.routes.js';
 
 dotenv.config();
 const app = express();
