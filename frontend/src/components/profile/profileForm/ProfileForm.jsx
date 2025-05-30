@@ -9,6 +9,7 @@ import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
 
 const ProfileForm = ({ user, setUser, show, setShow }) => {
+  const { put } = useFetch("/profile");
   const navigate = useNavigate();
   const { token, userId } = useContext(AuthenticationContext);
   const [userName, setUserName] = useState("");
@@ -24,7 +25,6 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
     backend: "",
   });
 
-  const { put } = useFetch("/profile");
 
   const avatarList = [
     "/avatars/avatar1.png",
@@ -69,10 +69,10 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
       formIsValid = false;
     }
 
-    if (!birthdate) {
+    /* if (!birthdate) {
       newErrors.birthdate = "La fecha de nacimiento es requerida.";
       formIsValid = false;
-    }
+    } */
 
     if (!avatar) {
       newErrors.avatar = "Debes seleccionar un avatar.";
@@ -99,7 +99,6 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
     if (
       userName === user.username &&
       email === user.email &&
-      birthdate === user.birthday &&
       avatar === user.avatar
     ) {
       setShow(false);
@@ -109,7 +108,6 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
     const updatedUser = {
       username: userName,
       email,
-      birthday: birthdate,
       avatar: avatar,
     };
 
@@ -129,8 +127,7 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
         ...prevUser,
         username: userName,
         email,
-        birthday: birthdate,
-        avatar,
+        avatar
       }));
 
       setTimeout(() => setShow(false), 1500);
@@ -170,14 +167,14 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
             />
             {errors.email && <p className="error">{errors.email}</p>}
 
-            <label>Fecha de nacimiento</label>
+            {/* <label>Fecha de nacimiento</label>
             <input
               type="date"
               placeholder={user.birthday}
               value={birthdate}
               onChange={(e) => setBirthdate(e.target.value)}
             />
-            {errors.birthdate && <p className="error">{errors.birthdate}</p>}
+            {errors.birthdate && <p className="error">{errors.birthdate}</p>} */}
 
             <label>Editar Avatar:</label>
             <div className="avatar-selector">
