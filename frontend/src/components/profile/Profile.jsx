@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 
 import "../../styles/profile/profile.css";
 
@@ -6,20 +6,33 @@ import LayoutProfile from "./layoutProfile/LayoutProfile"; // layout general
 import UserTable from "./AdminManagement/UsersTable"; // tabla de usuarios
 import ClubsTable from "./AdminManagement/ClubsTable"; // tabla de clubes
 import FooterSmall from "../footer/FooterSmall";
+import ProfileForm from "./profileForm/ProfileForm";
 
+import { useFetch } from "../hook/useFetch";
+import { AuthenticationContext } from '../services/auth.context';
+
+const { getById } = useFetch("/users");
 
 /* Renderiza perfiles dependiendo de ROL de USUARIO */
 const Profile = () => {
-  // const { user } = useAuth(); // iría con un contexto
+  const { token, userId } = useContext(AuthenticationContext);
+  const [user, setUser] = useState(null);
+  const [show, setShow] = useState(false);
+  
+  useEffect(() => {
+    const fetchUser = async () => {
+      if (userId) {
+        const userData = await getById(userId, token);
+        setUser(userData);
+      }
+    };
+    fetchUser();
+  }, [userId]);
+  
+  // Agg isLoading
+  {if (!user) return (<p>Cargando perfil...</p>)};
 
-  const user = { // ejemplo de usuario
-    username: "papas",
-    email: "papas@email.com",
-    birthday: "2000-02-14",
-    avatar: "/avatars/avatar1.png",
-    isActive: true,
-    role: "superadmin",
-  };
+  const handleEditProfile = () => setShow(!show);
 
   return (
     /* Layout de Perfil: recibe usuario
@@ -46,12 +59,20 @@ const Profile = () => {
 
       {user.role === "user" && user &&(
         <div className="tools">
-          {/* <p>Acá tendría el formulario para modificar datos</p> */}
           <div className="form">
-            <h3 className="superadmin-title"> Editar perfil
-            </h3>
-             {/* <ProfileForm user={user} /> */}
-
+            <button 
+              className="link-button" 
+              onClick={handleEditProfile}>
+              {show ? 'Cerrar Edición' : 'Editar Perfil'}
+            </button>
+            
+            <ProfileForm 
+              user={user} 
+              setUser={setUser} 
+              show={show} 
+              setShow={setShow} 
+              className={show ? 'profile-edit' : '' } 
+            />
           </div>
 
         </div>

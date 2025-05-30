@@ -23,7 +23,7 @@ const router = Router();
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 
-router.put("/profile", verifyToken, updateProfileAndPassword);
+router.put("/profile/:id", verifyToken, updateProfileAndPassword);
 router.get("/users/:id", verifyToken, getUserById);
 
 // Rutas para Admin y SuperAdmin
