@@ -14,7 +14,7 @@ const LayoutProfile = ({ user, children }) => {
   return (
     <>
       <LeftNav />
-      <div className="hero-container">
+      <div className="profile-container-container">
         <section className="profile-container">
           <div className="profile-card">
             <div className="profile-avatar">
