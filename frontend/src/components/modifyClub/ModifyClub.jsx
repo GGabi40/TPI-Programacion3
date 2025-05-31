@@ -22,7 +22,7 @@ const ModifyClub = () => {
 
   const handleEdit = async (data) => {
     const updated = await put(data, clubData.id);
-    navigate('/mis-clubes');
+    navigate('/joined-clubs');
   };
 
   if (!clubData) return <p className='dark'>Cargando datos del club...</p>

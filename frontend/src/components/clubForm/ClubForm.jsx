@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
@@ -216,6 +216,10 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
           <button type="submit">
             {mode === "edit" ? "Actualizar Club" : "Crear Club"}
           </button>
+
+          <Link to="/joined-clubs" className="link-button secondary margin text-align">
+              Cancelar
+          </Link>
         </form>
       </div>
 

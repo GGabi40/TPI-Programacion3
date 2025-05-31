@@ -10,10 +10,10 @@ import NewClub from "./components/newclub/NewClub"; //create club
 import ModifyClub from "./components/modifyClub/ModifyClub"; //modify club
 
 import ClubDetails from "./components/clubDetails/ClubDetails";
-import MisClubes from "./components/misClubes/MisClubes";
+import JoinedClubs from "./components/joinedClubs/JoinedClubs";
 import Profile from "./components/profile/Profile";
 import NewActivity from "./components/newActivity/NewActivity";
-import Descubre from "./components/descubre/DescubreClubes";
+import Discover from "./components/discoverClubs/DiscoverClubs";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -36,14 +36,13 @@ function App() {
           {/* Acá todas estarán protegidas x Login */}
           <Route element={<Protected />}>
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/mi-perfil" element={<Profile />} />
-            <Route path="/clubDetails/:id" element={<ClubDetails />} /> {/* UseParams */}
-            <Route path="/modifyclub/:id" element={<ModifyClub />} />
-            <Route path="/newclub" element={<NewClub />} />
-            <Route path="/mis-clubes" element={<MisClubes />} />
-            <Route path="/newact" element={<NewActivity />} />
-            <Route path="/descubre" element={<Descubre />} />
-            {/* <Route path="/actualizar-perfil" element={<ProfileForm />} /> */}
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/club-details/:id" element={<ClubDetails />} /> {/* UseParams */}
+            <Route path="/modify-club/:id" element={<ModifyClub />} />
+            <Route path="/new-club" element={<NewClub />} />
+            <Route path="/joined-clubs" element={<JoinedClubs />} />
+            <Route path="/new-activity" element={<NewActivity />} />
+            <Route path="/discover-clubs" element={<Discover />} />
           </Route>
 
         </Routes>

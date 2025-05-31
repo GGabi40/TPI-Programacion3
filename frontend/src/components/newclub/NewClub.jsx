@@ -15,7 +15,7 @@ const NewClub = () => {
     const response = await post(data);
     // console.log(response);
 
-    navigate(`/mis-clubes`);
+    navigate(`/joined-clubs`);
   };
   return <ClubForm mode="create" onSubmit={handleSubmit} />;
 };

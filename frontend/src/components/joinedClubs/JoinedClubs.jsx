@@ -13,7 +13,7 @@ import { useFetch } from "../hook/useFetch";
 
 import { AuthenticationContext } from "../services/auth.context";
 
-const MisClubes = () => {
+const JoinedClubs = () => {
   const { getAll, isLoading } = useFetch("/clubs");
   const { token, userId } = useContext(AuthenticationContext);
   const { getById } = useFetch("/users");
@@ -22,7 +22,7 @@ const MisClubes = () => {
   const navigate = useNavigate();
 
   const handleClickCreate = () => {
-    navigate("/newclub");
+    navigate("/new-club");
   };
 
   useEffect(() => {
@@ -108,4 +108,4 @@ const MisClubes = () => {
   );
 };
 
-export default MisClubes;
+export default JoinedClubs;
