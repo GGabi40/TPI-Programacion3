@@ -5,33 +5,33 @@ import ReviewForm from "./Reviews/ReviewForm";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import NotFound from "../error/notFound/NotFound";
+import { useFetch } from "../hook/useFetch";
+import Activities from "./activities/Activities";
+import Loading from "../error/loading/Loading";
 
-const ClubDetails = ({ userId }) => {
+const ClubDetails = () => {
+    const { getById, isLoading } = useFetch("/clubs");
     const { id } = useParams(); // más sencillo que useLocation
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
-    const [activities, setActivities] = useState([]);
+
     const handleClickJoin = () => {
         navigate("/mis-clubes");
     }
 
     useEffect(() => {
         //trae los detalles del club
-       fetch(`/api/clubs/${id}`)
-        .then((res) => res.json())
-        .then((data) => setClub(data))
-        .catch(() => setClub(null));
-
-        //trae las actividades
-        fetch(`/api/clubs/${id}/activities`)
-            .then((res) => res.json())
-            .then((data) => setActivities(data))
-            .catch(() => setActivities([]));
+        const fetchClub = async () => {
+            const clubData = await getById(id)
+            setClub(clubData)
+        }
+        fetchClub();
     }, [id]);
 
-    if(!club) {
-        return <NotFound />;
-    }
+
+    if(isLoading) return <Loading />
+
+    if (!club) return <NotFound />;
 
     const { name, description, gender, interest, restriction } = club;
 
@@ -39,38 +39,34 @@ const ClubDetails = ({ userId }) => {
     return (
         <div>
             <LeftNav />
-            <div className="form-container margin">
-                <div className="logo-form">
-                    <img src={logo} alt="Logo Inklink" />
-                </div>
-
-                <h2 id="detalleClub" className="text-align">
-                    DETALLES DEL CLUB {id}
-                </h2>
-                <br />
-                <div className="details-container">
-                    <p><strong>Nombre:</strong> {name}</p>
-                    <br />
-                    <p><strong>Descripción:</strong> {description}</p>
-                    <br />
-                    <p><strong>Género:</strong> {gender}</p>
-                    <br />
-                    <p><strong>Interés:</strong> {interest}</p>
-                    <br />
-                    <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
-                    <br />
-                </div>
-
-                {activities.map((activity) => (
-                    <div key={activity.id} className="mt-4">
-                        <h4>ACtividad: {activity.name}</h4>
-                        <ReviewList activityId={activity.id} userId={userId}/>
-                        <ReviewForm activityId={activity.id} userId={userId}/>
+            <div className="profile-container margin">
+                <div className="profile-card">
+                    <div className="logo-form">
+                        <img src={logo} alt="Logo Inklink" />
                     </div>
-                ))}
 
-                <button type="submit" className="btn-card" onClick={handleClickJoin}>Unirse!</button>
-                <button onClick={() => navigate("/clubes")}>Volver a Clubs</button>
+                    <h2 id="detalleClub" className="text-align">
+                        {name}
+                    </h2>
+                    <br />
+                    <div className="details-container">
+                        <p><strong>Descripción:</strong> {description}</p>
+                        <br />
+                        <p><strong>Género:</strong> {gender}</p>
+                        <br />
+                        <p><strong>Interés:</strong> {interest}</p>
+                        <br />
+                        <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
+                        <br />
+                    </div>
+
+                    <div className="button-separate">
+                        <button type="submit" className="btn-card" onClick={handleClickJoin}>Unirse!</button>
+                        <button onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
+                    </div>
+                    
+                    <Activities clubId={id} />
+                </div>
             </div>
         </div>
     );

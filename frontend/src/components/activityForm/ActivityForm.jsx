@@ -1,12 +1,30 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
 import { errorToast, successToast } from "../toast/NotificationToast";
 
+import { useFetch } from "../hook/useFetch";
+
 const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
+    const { getAll } = useFetch('/books');
+    const [books, setBooks] = useState([]);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchBooks = async () => {
+            try {
+                const response = await getAll();
+                setBooks(response);
+            } catch (error) {
+                errorToast("Error al cargar libros.");
+            }
+        };
+
+        fetchBooks();
+    }, []);
 
     const [nameBook, setNameBook] = useState("");
     const [progress, setProgress] = useState("");
@@ -14,12 +32,20 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
     const [dateEnd, setDateEnd] = useState("");
     const [errors, setErrors] = useState("");
 
+    const handleDateStartChange = (e) => {
+        setDateStart(e.target.value);
+    }
+
+    const handleDateEndChange = (e) => {
+        setDateEnd(e.target.value);
+    }
+
     useEffect(() => {
-        if (mode === "edit" && initialData){
+        if (mode === "edit" && initialData) {
             setNameBook(initialData.nameBook || "");
             setProgress(initialData.progress || "");
             setDateStart(initialData.dateStart || "");
-            setDateEnd(initialData.setDateEnd || "");
+            setDateEnd(initialData.dateEnd || "");
         }
     }, [initialData, mode]);
 
@@ -55,12 +81,14 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
         if (!validateForm()) return;
 
         const activityData = {
-            nameBook,
+            bookId: nameBook,
             progress,
-            fechaInicio: dateStart,
-            fechaFin: dateEnd,
+            dateStart,
+            dateEnd,
             isActive: true,
         };
+
+        console.log(activityData);
 
         onSubmit(activityData);
         if (mode === "create") {
@@ -74,10 +102,9 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
         <div>
             <LeftNav />
 
-            <div className="background-animated">
-                <div className="light-orb"></div>
-            </div>
-            <div className="form-container margin">
+            <div className="space"></div>
+
+            <div className="form-container">
                 <div className="logo-form">
                     <img src={logo} alt="Logo Inklink" />
                 </div>
@@ -87,34 +114,50 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
                 </h2>
                 <br />
                 <form onSubmit={handleSubmit}>
-                    {/* Agg lo del buscador para conectar la base de datos de libros con la actividad*/}
-                    <label>Ingrese el Nombre del Libro Actual:</label>
-                    <input type="text" name="nameBook" placeholder="Ej: El Nombre del Viento" />
+                    <label>Seleccione un libro:</label>
+                    <select
+                        className="select-gender"
+                        name="nameBook"
+                        value={nameBook}
+                        onChange={(e) => setNameBook(e.target.value)}
+                    >
+                        <option value="">Seleccione un libro</option>
+                        {books.map((book) => (
+                            <option key={book.id} value={book.id}>
+                                {book.title}
+                            </option>
+                        ))}
+                    </select>
                     {errors.nameBook && <p className="error">{errors.nameBook}</p>}
 
                     <label>Ingrese el Sistema de Progreso:</label>
-                    <select name="progress" id="progress">
+                    <select name="progress" id="progress" className="select-gender" onChange={(e) => setProgress(e.target.value)}>
                         <option value="">Seleccione una opción</option>
                         <option value="sincronica">Forma Sincrónica</option>
                         <option value="asincronica">Forma Asincrónica</option>
                     </select>
-                    {errors.progress && <p className="error">{errors.progress}</p> }
+                    {errors.progress && <p className="error">{errors.progress}</p>}
 
-                    <label name="fechaInicio" >Fecha Inicio:</label>
-                    <input type="date" value={fechaInicio} onChange={handleFechaInicioChange} />
+                    <label>Fecha Inicio:</label>
+                    <input type="date" value={dateStart} onChange={handleDateStartChange} />
                     {errors.dateStart && <p className="error"
-                    >{errors.dateStart}</p> }
+                    >{errors.dateStart}</p>}
 
                     <label name="fechaFin">Fecha Fin:</label>
-                    <input type="date" value={fechaFin} onChange={handleFechaFinChange} />
+                    <input type="date" value={dateEnd} onChange={handleDateEndChange} />
                     {errors.dateEnd && <p className="error"
-                    >{errors.dateEnd}</p> }
+                    >{errors.dateEnd}</p>}
 
                     <button type="submit">
                         {mode === "edit" ? "Actualizar Actividad" : "Crear Actividad"}
                     </button>
+                    <Link to="/joined-clubs" className="link-button secondary text-align">
+                        Cancelar
+                    </Link>
                 </form>
             </div>
+
+            <div className="space"></div>
 
             <FooterSmall />
         </div>

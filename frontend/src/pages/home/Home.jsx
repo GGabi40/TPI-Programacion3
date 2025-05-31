@@ -20,20 +20,20 @@ const Home = () => {
 
       <main className="container">
         <h2 className="text-align">
-          La comunidad de lectores más grande de Latinoamérica
+          La comunidad de lectores más grande de Latinoamérica.
         </h2>
       </main>
 
       <div className="banner">
         <h3 className="text-align">
-          Descubra nuevos mundos, comparta sus historias y unase a los clubes de
+          Descubrí nuevos mundos, compartí tus historias favoritas y unite a los clubes de
           lectura que más te apasionen.
         </h3>
 
         <p className="banner-text">
           Desde novelas clásicas hasta ciencia ficción, pasando por poesía o
-          manga — aquí encontrá un espacio para leer, debatir y conectar con
-          otras personas lectoras.
+          manga — aquí encontrarás un espacio para leer, debatir y conectar con
+          otros lectores.
         </p>
       </div>
 
@@ -43,16 +43,16 @@ const Home = () => {
             <div className="icon">
               <FontAwesomeIcon icon={faUsers} size="2x" />
             </div>
-            <h4>Únase a Clubes de Lectura</h4>
-            <p>Explore clubes temáticos según tus géneros favoritos.</p>
+            <h4>Unite a Clubes de Lectura</h4>
+            <p>Explorá clubes temáticos según tus géneros favoritos.</p>
           </Link>
           <Link className="card-ad" to="/register">
             <div className="icon">
               <FontAwesomeIcon icon={faComments} size="2x" />
             </div>
-            <h4>Comente y Comparta</h4>
+            <h4>Comentá y Compartí</h4>
             <p>
-              Participe en debates, dejá tus opiniones y descubra nuevos puntos
+              Participá en debates, dejá tus opiniones y descubrí nuevos puntos
               de vista.
             </p>
           </Link>
@@ -62,7 +62,7 @@ const Home = () => {
             </div>
             <h4>Agenda de Lectura</h4>
             <p>
-              Siga el ritmo del club con calendarios, fechas de discusión y
+              Seguí el ritmo del club con calendarios, fechas de discusión y
               recordatorios.
             </p>
           </Link>
@@ -70,8 +70,8 @@ const Home = () => {
       </main>
 
       <div className="banner-action">
-        <h2>¿List@ para unirse a nuestra comunidad?</h2>
-        <p>Cree su cuenta y empiece a compartir lecturas hoy mismo</p>
+        <h2>¿Listo/a para unirte a nuestra comunidad?</h2>
+        <p>Creá tu cuenta y empezá a compartir lecturas hoy mismo.</p>
         <Link className="link-button secondary" to="/register">Crear Cuenta</Link>
       </div>
 

@@ -19,9 +19,9 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
   const [errors, setErrors] = useState({
     userName: "",
     email: "",
-    password: "",
-    confirmPassword: "",
-    birthdate: "",
+    // password: "",
+    // confirmPassword: "",
+    // birthdate: "",
     backend: "",
   });
 
@@ -81,7 +81,7 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
 
     if (!formIsValid) {
       setErrors((prev) => ({ ...prev, ...newErrors }));
-      return;
+      return false;
     }
 
     return formIsValid;
@@ -201,6 +201,8 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
             {errors.backend && <p className="error">{errors.backend}</p>}
 
             <button type="submit">Actualizar Perfil</button>
+            <button type="button" onClick={() => setShow(false)}>  Cancelar </button>
+
           </form>
         </div>
       </div>

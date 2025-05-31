@@ -82,19 +82,19 @@ const Clubs = () => {
                 <div key={index}>
                     <p className='dark'>{c.id}</p>
                     <p className='dark'>{c.name}</p>
-                    <button onClick={() => handleModify(c)}>Edita</button>
-                    <button onClick={() => handleDelete(c)}>Elimina</button>
+                    <button onClick={() => handleModify(c)}>Editar</button>
+                    <button onClick={() => handleDelete(c)}>Eliminar</button>
                 </div>
             ))}
             {isEdit && clubToEdit && (
                 <form className='form-container' onSubmit={handleSubmit}>
                     <input type="text" name="name" placeholder='Nombre del Club' value={clubToEdit.name} onChange={handleInputChange} required
                     />
-                    <textarea name="description" placeholder='Descripcion del Club' value={clubToEdit.description} onChange={handleInputChange} required>
+                    <textarea name="description" placeholder='Descripción del Club' value={clubToEdit.description} onChange={handleInputChange} required>
                     </textarea>
                     <input type="checkbox" name="restricted" checked={clubToEdit.restricted} onChange={handleInputChange}/>
                     <input type="text" name="interest" placeholder='Intereses del Club' value={clubToEdit.interest} onChange={handleInputChange} required/>
-                    <input type="text" name="gender" placeholder='Genero. EJ: Fantasía' value={clubToEdit.gender} onChange={handleInputChange} required/>
+                    <input type="text" name="gender" placeholder='Género. EJ: Fantasía' value={clubToEdit.gender} onChange={handleInputChange} required/>
                     <input type="text" name='color' value={clubToEdit.color} onChange={handleInputChange}/>
                     <button type='submit'>Guardar Cambios</button>
                     <button type='button' onClick={() => setIsEdit(false)}>
