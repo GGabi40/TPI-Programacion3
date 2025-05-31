@@ -20,14 +20,14 @@ const ModifyClub = () => {
     fetchClub();
   }, [id]);
 
-  const handleEdit = async (data) => {
+  const handleClickEdit = async (data) => {
     const updated = await put(data, clubData.id);
     navigate('/mis-clubes');
   };
 
   if (!clubData) return <p className='dark'>Cargando datos del club...</p>
 
-  return <ClubForm mode="edit" initialData={clubData} onSubmit={handleEdit} />
+  return <ClubForm mode="edit" initialData={clubData} onSubmit={handleClickEdit} />
 }
 
 export default ModifyClub

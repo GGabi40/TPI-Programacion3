@@ -11,6 +11,9 @@ const ClubDetails = ({ userId }) => {
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
     const [activities, setActivities] = useState([]);
+    const handleClickJoin = () => {
+        navigate("/mis-clubes");
+    }
 
     useEffect(() => {
         //trae los detalles del club
@@ -30,7 +33,7 @@ const ClubDetails = ({ userId }) => {
         return <NotFound />;
     }
 
-    const { name, description, progress, gender, interest, privacy, restriction } = club;
+    const { name, description, gender, interest, restriction } = club;
 
     // Agg botón para unirse al Club
     return (
@@ -50,13 +53,9 @@ const ClubDetails = ({ userId }) => {
                     <br />
                     <p><strong>Descripción:</strong> {description}</p>
                     <br />
-                    <p><strong>Progreso:</strong> {progress === "sincronica" ? "Sincrónica" : "Asincrónica"}</p>
-                    <br />
                     <p><strong>Género:</strong> {gender}</p>
                     <br />
                     <p><strong>Interés:</strong> {interest}</p>
-                    <br />
-                    <p><strong>Privacidad:</strong> {privacy ? "Privado" : "Público"}</p>
                     <br />
                     <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
                     <br />
@@ -70,6 +69,7 @@ const ClubDetails = ({ userId }) => {
                     </div>
                 ))}
 
+                <button type="submit" className="btn-card" onClick={handleClickJoin}>Unirse!</button>
                 <button onClick={() => navigate("/clubes")}>Volver a Clubs</button>
             </div>
         </div>
