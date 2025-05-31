@@ -34,7 +34,7 @@ export const getClubsByUser = async (req, res) => {
     const user = await User.findByPk(userId, {
       include: {
         model: Club,
-        through: { attributes: [] },
+        as: 'misClubes'
       },
     });
 
@@ -42,7 +42,7 @@ export const getClubsByUser = async (req, res) => {
       return res.status(404).json({ message: "Usuario no encontrado." });
     }
 
-    res.json(user.Clubs);
+    res.json(user.misClubes);
   } catch (error) {
     console.error("Error al obtener clubes del usuario:", error);
     res.status(500).json({ message: "Error interno del servidor." });

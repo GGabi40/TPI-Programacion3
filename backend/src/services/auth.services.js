@@ -15,8 +15,7 @@ export const registerUser = async (req, res) => {
 
   if (result.error) return res.status(400).json({ message: result.message });
 
-  const { username, email, password, birthday, avatar, isActive, role } =
-    req.body;
+  const { username, email, password, birthday, avatar, isActive, role } = req.body;
 
   try {
     const existingEmail = await User.findOne({ where: { email } });

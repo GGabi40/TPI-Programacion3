@@ -1,67 +1,33 @@
-import React from "react";
+import React, { useState, useEffect, useContext } from "react";
 import ClubList from "../clubList/ClubList";
+
+import { useFetch } from "../hook/useFetch";
+import { AuthenticationContext } from "../services/auth.context";
 
 /* Acá se visualizarán todos los clubes,
 utilizando ClubList y CardClub */
-const Clubes = () => {
+const Clubes = ({ clubs }) => {
+  const { userId } = useContext(AuthenticationContext);
+  const { getAll } = useFetch(`/clubs/user/${userId}`);
+  const [usersClubs, setUsersClubs] = useState([]);
 
-  /* EJEMPLO CON MOCK */
-  const misClubes = [
-    {
-      id: 1,
-      name: "Club de Lectura",
-      description: "Un club para amantes de la lectura.",
-      progress: "sincronica",
-      gender: "ficcion",
-      interest: "Novelas clásicas",
-      privacy: false,
-      restriction: false,
-      color: "violet",
-    },
-    {
-      id: 2,
-      name: "Club de Misterio",
-      description: "Lectura de novelas de misterio y suspenso.",
-      progress: "asincronica",
-      gender: "misterio",
-      interest: "Sherlock Holmes, Agatha Christie",
-      privacy: false,
-      restriction: false,
-      color: "violet",
-    },
-    {
-      id:3,
-      name: "Club de Romance",
-      description: "Historias de amor y drama.",
-      progress: "sincronica",
-      gender: "romance",
-      interest: "Jane Austen, Nicholas Sparks",
-      privacy: true,
-      restriction: false,
-      color: "red",
-    },
-  ];
-
-  const descubreClubes = [
-    {
-      id: 1,
-      name: "Club de Sherlock Holmes",
-      description: "Amantes del detective más famoso.",
-      progress: "asincronica",
-      gender: "misterio",
-      interest: "Arthur Conan Doyle",
-      privacy: false,
-      restriction: false,
-      color: "blue",
-    },
-  ];
+  useEffect(() => {
+    const fetchData = async () => {
+      const uClubs = await getAll();
+      if (uClubs) {
+        setUsersClubs(uClubs);
+      }
+    };
+    fetchData();
+  }, []);
 
   return (
     <div className="hero-container">
-      
-      <ClubList clubs={misClubes} title='Mis Clubes' showButtons={false} />
-      <ClubList clubs={descubreClubes} title='Descubre' showButtons={false} />
-      
+      {/* Club al que está unido usuario */}
+      <ClubList clubs={usersClubs} title="Mis Clubes" showButtons={false} />
+
+      {/* Todos los clubes */}
+      <ClubList clubs={clubs} title="Descubre" showButtons={false} />
     </div>
   );
 };

@@ -20,7 +20,6 @@ import "react-toastify/dist/ReactToastify.css";
 
 
 function App() {
-  const [isLogged, setIsLogged] = useState(false);
   return (
     <>
       <BrowserRouter>
