@@ -15,6 +15,7 @@ const Clubes = ({ clubs }) => {
     const fetchData = async () => {
       const uClubs = await getAll();
       if (uClubs) {
+        console.log('Hola ', uClubs)
         setUsersClubs(uClubs);
       }
     };
@@ -28,6 +29,7 @@ const Clubes = ({ clubs }) => {
 
       {/* Todos los clubes */}
       <ClubList clubs={clubs} title="Descubre" showButtons={false} />
+
     </div>
   );
 };

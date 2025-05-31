@@ -17,11 +17,11 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
   const navigate = useNavigate();
 
   const handleClickEdit = (id) => {
-    navigate(`/modifyclub/${id}`);
+    navigate(`/modify-club/${id}`);
   };
 
   const handleClickActivity = () => {
-    navigate("/newact");
+    navigate("/new-activity");
   };
 
   const handleDelete = async (id) => {

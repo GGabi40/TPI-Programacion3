@@ -13,7 +13,8 @@ import { useFetch } from "../hook/useFetch";
 
 import { AuthenticationContext } from "../services/auth.context";
 
-const MisClubes = () => {
+/* Exporta clubs Admin */
+const JoinedClubsAdmin = () => {
   const { getAll, isLoading } = useFetch("/clubs");
   const { token, userId } = useContext(AuthenticationContext);
   const { getById } = useFetch("/users");
@@ -22,7 +23,7 @@ const MisClubes = () => {
   const navigate = useNavigate();
 
   const handleClickCreate = () => {
-    navigate("/newclub");
+    navigate("/new-club");
   };
 
   useEffect(() => {
@@ -71,7 +72,7 @@ const MisClubes = () => {
             <ClubList
               clubs={allClubs}
               title="Mis Clubes"
-              showButtons={user.role.includes('admin')}
+              showButtons={user.role.includes("admin")}
               setAllClubs={setAllClubs}
               allClubs={allClubs}
             />
@@ -86,19 +87,10 @@ const MisClubes = () => {
             </div>
           )}
 
-          {user.role !== 'user' ? (
-            <>
-              <button
-                className="cssbuttons-io-button"
-                onClick={handleClickCreate}
-              >
-                <FontAwesomeIcon icon={faPlus} id="btn-plus" />
-                <span>Club</span>
-              </button>
-            </>
-          ) : (
-            ""
-          )}
+          <button className="cssbuttons-io-button" onClick={handleClickCreate}>
+            <FontAwesomeIcon icon={faPlus} id="btn-plus" />
+            <span>Club</span>
+          </button>
 
           <div className="break"></div>
         </div>
@@ -108,4 +100,4 @@ const MisClubes = () => {
   );
 };
 
-export default MisClubes;
+export default JoinedClubsAdmin;

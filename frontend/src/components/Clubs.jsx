@@ -21,7 +21,7 @@ const Clubs = () => {
     }, []);
 
     const handleModify = (club) => {
-        navigate(`/modifyclub/${club.id}`);
+        navigate(`/modify-club/${club.id}`);
     };
 
     const handleDelete = async (club) => {

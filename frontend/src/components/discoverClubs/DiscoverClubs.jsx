@@ -9,13 +9,13 @@ import ClubList from "../clubList/ClubList";
 import Loading from "../error/loading/Loading";
 import { useFetch } from "../hook/useFetch";
 
-const Descubre = () => {
+const DiscoverClubs = () => {
   const { getAll, isLoading } = useFetch("/clubs");
   const [allClubs, setAllClubs] = useState([]);
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate("/mis-clubes");
+    navigate("/joined-clubs");
   };
 
   useEffect(() => {
@@ -58,4 +58,4 @@ const Descubre = () => {
   );
 };
 
-export default Descubre;
+export default DiscoverClubs;

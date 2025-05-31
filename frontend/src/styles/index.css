@@ -130,6 +130,7 @@ button.action:hover {
 }
 
 .form-container {
+  flex-direction: column;
   background: rgba(44, 44, 52, 0.9);
   margin: auto;
   padding: 3rem;

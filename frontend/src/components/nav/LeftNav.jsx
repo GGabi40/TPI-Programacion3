@@ -79,13 +79,13 @@ const LeftNav = () => {
             <Link to="/dashboard" className="link-button nav-btn" onClick={closeMenu}>
               Inicio
             </Link>
-            <Link to="/mi-perfil" className="link-button nav-btn" onClick={closeMenu}>
+            <Link to="/profile" className="link-button nav-btn" onClick={closeMenu}>
               Mi Perfil
             </Link>
-            <Link to="/mis-clubes" className="link-button nav-btn" onClick={closeMenu}>
+            <Link to="/joined-clubs" className="link-button nav-btn" onClick={closeMenu}>
               Mis Clubes
             </Link>
-            <Link to="/descubre" className="link-button nav-btn" onClick={closeMenu}>
+            <Link to="/discover-clubs" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
             </Link>
 

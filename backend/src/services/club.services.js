@@ -61,7 +61,7 @@ export const joinClub = async (req,res) => {
       res.status(404).json({ message: 'Usuario o Club no encontrado' });
     }
 
-    await user.addClub(club);
+    await user.addMisClubes(club);
 
     return res.json({ message: 'Usuario unido al club exitosamente!' });
   } catch (error) {
