@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useFetch } from './hook/UseFetch';
+import { useFetch } from './hook/useFetch';
 
 const { getAll, put, del } = useFetch("/activities");
 
