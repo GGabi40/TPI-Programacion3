@@ -65,8 +65,8 @@ const Books = () => {
           <p className="dark">{b.id}</p>
           <p className="dark">{b.title}</p>
           <p className="dark">{b.author}</p>
-          <button onClick={() => handleModify(b)}>Modifica</button>
-          <button onClick={() => handleDelete(b)}>Elimina</button>
+          <button onClick={() => handleModify(b)}>Modificar</button>
+          <button onClick={() => handleDelete(b)}>Eliminar</button>
         </div>
       ))}
       {isEdit && bookToEdit && (

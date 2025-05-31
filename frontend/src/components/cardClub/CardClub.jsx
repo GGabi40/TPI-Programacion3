@@ -20,8 +20,8 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
     navigate(`/modify-club/${id}`);
   };
 
-  const handleClickActivity = () => {
-    navigate("/new-activity");
+  const handleClickActivity = (id) => {
+    navigate(`/new-activity/${id}`);
   };
 
   const handleDelete = async (id) => {
@@ -35,10 +35,9 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
 
   return (
     <div
-      to={`/clubDetails/${club.id}`}
       className={`club-card-child ${club.color}`}
     >
-      <FontAwesomeIcon icon={faBook} size="3x" />
+      {/*<FontAwesomeIcon icon={faBook} size="3x" />*/}
       <p>{club.name}</p>
       {showButtons && (
         <div className="btn-cards">
@@ -59,13 +58,14 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
           <button
             type="submit"
             className="btn-card"
-            onClick={handleClickActivity}
+            onClick={() => handleClickActivity(club.id)}
             title="Agregar Nueva Actividad"
           >
             <FontAwesomeIcon icon={faPlus} id="btn-plus" />
           </button>
         </div>
       )}
+      <Link to={`/club-details/${club.id}`} className="link-button secondary">Ver detalles</Link>
     </div>
   );
 };

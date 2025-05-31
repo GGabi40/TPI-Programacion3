@@ -41,7 +41,7 @@ function App() {
             <Route path="/modify-club/:id" element={<ModifyClub />} />
             <Route path="/new-club" element={<NewClub />} />
             <Route path="/joined-clubs" element={<JoinedClubs />} />
-            <Route path="/new-activity" element={<NewActivity />} />
+            <Route path="/new-activity/:id" element={<NewActivity />} />
             <Route path="/discover-clubs" element={<Discover />} />
           </Route>
 

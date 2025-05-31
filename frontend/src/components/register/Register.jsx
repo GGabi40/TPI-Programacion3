@@ -67,7 +67,7 @@ const Register = () => {
       formIsValid = false;
     }
 
-    if(userName.length < 3) {
+    if(userName.length < 4) {
       errorToast("El nombre de usuario debe contener por lo menos 4 caracteres.");
       newErrors.userName = "El nombre de usuario debe contener por lo menos 4 caracteres.";
       formIsValid = false;
@@ -85,9 +85,9 @@ const Register = () => {
       formIsValid = false;
     }
 
-    if (password.length < 5) {
-      errorToast("La contraseña debe contener por lo menos 5 caracteres y 1 numero.");
-      newErrors.password = "La contraseña debe contener por lo menos 5 caracteres y 1 numero.";
+    if (password.length < 5 || !/\d/.test(password)) {
+      errorToast("La contraseña debe contener por lo menos 5 caracteres y 1 número.");
+      newErrors.password = "La contraseña debe contener por lo menos 5 caracteres y 1 número.";
       formIsValid = false;
     }
 
@@ -134,7 +134,7 @@ const Register = () => {
         return;
       }
 
-      successToast("Usuario registrado exitosamente. Inicie sesión para continuar.");
+      successToast("El usuario se registró exitosamente. Iniciá sesión para continuar.");
       navigate("/login");
     } catch (err) {
       console.log("Error inesperado: ", err);
@@ -164,7 +164,7 @@ const Register = () => {
         </div>
 
         <h2 id="crearCuenta" className="text-align">
-          CREE SU CUENTA
+          CREÁ TU CUENTA
         </h2>
         <br />
         <form onSubmit={handleSubmit}>
@@ -177,7 +177,7 @@ const Register = () => {
           />
           {errors.userName && <p className="error">{errors.userName}</p>}
 
-          <label>Ingrese su email:</label>
+          <label>Ingresá tu email:</label>
           <input
             type="email"
             placeholder="email@ejemplo.com"
@@ -186,7 +186,7 @@ const Register = () => {
           />
           {errors.email && <p className="error">{errors.email}</p>}
 
-          <label>Ingrese su clave:</label>
+          <label>Ingresá tu clave:</label>
           <input
             type="password"
             placeholder="Contraseña segura"
@@ -214,7 +214,7 @@ const Register = () => {
           />
           {errors.birthdate && <p className="error">{errors.birthdate}</p>}
 
-          <label>Seleccione un Avatar:</label>
+          <label>Seleccioná un avatar:</label>
           <div className="avatar-selector">
             {avatarList.map((avatarPath, index) => (
               <img
@@ -237,7 +237,7 @@ const Register = () => {
           <button type="submit">Crear Cuenta</button>
 
           <p>
-            ¿Ya tiene una cuenta?{" "}
+            ¿Ya tenés una cuenta?{" "}
             <Link to="/login" id="redireccion">
               Iniciar sesión
             </Link>

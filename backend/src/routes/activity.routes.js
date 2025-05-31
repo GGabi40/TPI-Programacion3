@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   createNewActivity,
   getActivityById,
+  getActivitiesByClub,
   getAllActivities,
   updateActivity,
   deleteActivity,
@@ -15,6 +16,8 @@ const router = Router();
 //            endpoints
 router.get("/activities", getAllActivities);
 router.get("/activities/:id", getActivityById);
+
+router.get("/clubs/:clubId/activities", getActivitiesByClub);
 
 // ruta de admin/superadmin
 router.post("/clubs/:clubId/activities", createNewActivity);

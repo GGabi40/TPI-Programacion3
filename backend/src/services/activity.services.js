@@ -1,6 +1,7 @@
 import { validateDate, validateString } from "../helper/validations.js";
 import { Activity } from "../models/Activity.js";
 import { Club } from "../models/Club.js";
+import { Book } from "../models/Book.js";
 
 //GET
 export const getAllActivities = async (req, res) => {
@@ -23,21 +24,57 @@ export const getActivityById = async (req, res) => {
   res.json(activityById);
 };
 
+
+// GET /clubs/:clubId/activities
+export const getActivitiesByClub = async (req,res) => {
+  const { clubId } = req.params;
+
+  try {
+    const club = await Club.findByPk(clubId);
+
+    if(!club) return res.status(404).json({ message: "No se encontró club." });
+
+    const activities = await Activity.findAll({
+      where: { clubId }
+    });
+
+    if(!activities || activities.length === 0) {
+      return res.status(404).json({ message: 'Actividad no encontrada.' });
+    }
+
+    res.status(200).json(activities);
+  } catch (error) {
+    console.error("Error al obtener actividad");
+    res.status(500).json({ message: "Error del servidor." });
+  }
+};
+
+
 //POST /clubs/:clubId/activities
-/* SEGUIR CON ESTO */
 export const createNewActivity = async (req, res) => {
   const { clubId } = req.params;
   const { progress, isActive, dateStart, dateEnd, bookId } = req.body;
+
+  console.log("Datos para crear la actividad:", {
+        progress,
+        isActive,
+        dateStart,
+        dateEnd,
+        bookId,
+        clubId
+      });
 
   try {
     const club = await Club.findByPk(clubId);
 
     if (!club) {
-      res.status(404).json({ message: "No se encontró el club." });
+      return res.status(404).json({ message: "No se encontró el club." });
     }
 
-    if (!progress || !bookId || !dateStart) {
-      return res.status(400).send({ message: "Los campos son requeridos!" });
+    const book = await Book.findByPk(bookId);
+
+    if (!book) {
+      return res.status(404).json({ message: "No se encontró el libro." });
     }
 
     const newActivity = await Activity.create({
@@ -46,13 +83,13 @@ export const createNewActivity = async (req, res) => {
       dateStart,
       dateEnd,
       bookId,
-      clubId,
+      clubId
     });
 
     res.json(newActivity);
   } catch (e) {
-    console.error("Error al crear la actividad:", error);
-    res.status(500).json({ message: "Error al crear la actividad.", error });
+    console.error("Error al crear la actividad:", e);
+    res.status(500).json({ message: "Error al crear la actividad.", e });
   }
 };
 
