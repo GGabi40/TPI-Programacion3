@@ -1,8 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { useNavigate } from "react-router";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
 import ClubList from "../clubList/ClubList";
@@ -31,7 +28,7 @@ const JoinedClubs = () => {
 
     fetchUser();
   }, [userId]);
-  
+
   useEffect(() => {
     window.scrollTo(0, 0); // vuelve al top de la pagina
 
