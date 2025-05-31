@@ -15,8 +15,7 @@ export const registerUser = async (req, res) => {
 
   if (result.error) return res.status(400).json({ message: result.message });
 
-  const { username, email, password, birthday, avatar, isActive, role } =
-    req.body;
+  const { username, email, password, birthday, avatar, isActive, role } = req.body;
 
   try {
     const existingEmail = await User.findOne({ where: { email } });
@@ -92,7 +91,6 @@ export const updateProfileAndPassword = async (req, res) => {
     const {
       username,
       email,
-      birthday,
       avatar,
       isActive,
       currentPassword,
@@ -132,7 +130,7 @@ export const updateProfileAndPassword = async (req, res) => {
 
     user.username = username || user.username;
     user.email = email || user.email;
-    user.birthday = birthday || user.birthday;
+    // user.birthday = birthday || user.birthday;
     user.avatar = avatar || user.avatar;
     user.isActive = isActive !== undefined ? isActive : user.isActive;
 
@@ -277,12 +275,12 @@ const validateUpdateProfileData = (req) => {
     };
   }
 
-  if (birthday && !validateDate(birthday, false)) {
+  /* if (birthday && !validateDate(birthday, false)) {
     return {
       error: true,
       message: "Fecha de nacimiento inválida",
-    };
-  }
+    }; 
+  }*/
 
   return result;
 };

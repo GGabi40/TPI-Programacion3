@@ -9,6 +9,7 @@ import { errorToast, successToast } from "../toast/NotificationToast";
 import { useFetch } from "../hook/useFetch";
 
 const Register = () => {
+  const { post } = useFetch("/register");
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -122,8 +123,6 @@ const Register = () => {
     };
 
     try {
-      const { post } = useFetch("/register");
-
       const response = await post(newUser);
 
       // si respuesta es un mensaje de backend que incluye:

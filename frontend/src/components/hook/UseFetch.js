@@ -34,11 +34,11 @@ export const useFetch = (endpoint) => {
   const getById = async (id, token = null) => {
     try {
       const res = await fetch(`${complete_url}/${id}`, {
-        method: 'GET',
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: token ? `Bearer ${token}` : ""
-        }
+          Authorization: token ? `Bearer ${token}` : "",
+        },
       });
 
       if (!res.ok) {
@@ -125,5 +125,5 @@ export const useFetch = (endpoint) => {
     }
   };
 
-  return { getAll, getById, post, put, del, isLoading};
+  return { getAll, getById, post, put, del, isLoading };
 };

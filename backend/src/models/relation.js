@@ -33,8 +33,8 @@ User.hasMany(Comment, { foreignKey: 'userId' });
 Comment.belongsTo(User, { foreignKey: 'userId' });
 
 // N:M
-User.belongsToMany(Club, { through: 'UserClubs', foreignKey: 'userId' });
-Club.belongsToMany(User, { through: 'UserClubs', foreignKey: 'clubId' });
+User.belongsToMany(Club, { through: 'UserClubs', as: 'misClubes', foreignKey: 'userId' });
+Club.belongsToMany(User, { through: 'UserClubs', as: 'usuarios', foreignKey: 'clubId' });
 
 
 export default { User, Book, Activity, Club, Review, ReviewRating };

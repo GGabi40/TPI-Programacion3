@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import CommentList from "../Comments/CommentList";
-import CommentForm from "../Comments/CommentFrom";
+import CommentForm from "../Comments/CommentForm";
 
 const ReviewList = ({ activityId, userId }) => {
     const [reviews, setReviews] = useState([]);

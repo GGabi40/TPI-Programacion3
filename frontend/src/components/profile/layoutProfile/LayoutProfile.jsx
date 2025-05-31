@@ -7,8 +7,14 @@ import LeftNav from "../../nav/LeftNav";
 
 const LayoutProfile = ({ user, children }) => {
   const formatDate = (dateString) => {
-    const options = { year: "numeric", month: "long", day: "numeric" };
-    return new Date(dateString).toLocaleDateString("es-AR", options);
+    const [year, month, day] = dateString.split("-");
+    const date = new Date(year, month - 1, day);
+
+    return date.toLocaleDateString("es-AR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
   };
 
   return (
@@ -23,17 +29,23 @@ const LayoutProfile = ({ user, children }) => {
 
             <h1>Datos de Usuario</h1>
             <h2 className="profile-username">
-              <FontAwesomeIcon icon={faUser} style={{ marginRight: "10px", color: 'white' }} />
+              <FontAwesomeIcon
+                icon={faUser}
+                style={{ marginRight: "10px", color: "white" }}
+              />
               {user.username}
             </h2>
             <p className="profile-email">📧 {user.email}</p>
-            <p className="profile-role">🛡️ Rol: <strong>{user.role.toUpperCase()}</strong></p>
+            <p className="profile-role">
+              🛡️ Rol: <strong>{user.role.toUpperCase()}</strong>
+            </p>
             <p className="profile-birthday">
               🎂 Cumpleaños: {formatDate(user.birthday)}
             </p>
             <p
-              className={`profile-status ${user.isActive ? "active" : "inactive"
-                }`}
+              className={`profile-status ${
+                user.isActive ? "active" : "inactive"
+              }`}
             >
               {user.isActive ? "🟢 Activo" : "🔴 Inactivo"}
             </p>

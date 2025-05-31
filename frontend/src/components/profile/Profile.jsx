@@ -5,14 +5,12 @@ import "../../styles/profile/profile.css";
 import LayoutProfile from "./layoutProfile/LayoutProfile"; // layout general
 import UserTable from "./AdminManagement/UsersTable"; // tabla de usuarios
 import ClubsTable from "./AdminManagement/ClubsTable"; // tabla de clubes
-import FooterSmall from "../footer/FooterSmall";
 import ProfileForm from "./profileForm/ProfileForm";
 
 import { useFetch } from "../hook/useFetch";
-import { AuthenticationContext } from '../services/auth.context';
+import { AuthenticationContext } from "../services/auth.context";
 
 import Loading from "../error/loading/Loading";
-
 
 /* Renderiza perfiles dependiendo de ROL de USUARIO */
 const Profile = () => {
@@ -32,7 +30,7 @@ const Profile = () => {
   }, [userId]);
 
   // isLoading
-  if (isLoading) return <Loading />
+  if (isLoading) return <Loading />;
 
   const handleEditProfile = () => setShow(!show);
 
@@ -44,7 +42,24 @@ const Profile = () => {
       <LayoutProfile user={user}>
         {user.role === "superadmin" && (
           <div className="tools">
-            <h3 className="superadmin-title">Gestión de Usuarios (SuperAdmin)</h3>
+            <div className="form">
+              <button className="link-button" onClick={handleEditProfile}>
+                {show ? "Cerrar Edición" : "Editar Perfil"}
+              </button>
+
+              {show && (
+                <ProfileForm
+                  user={user}
+                  setUser={setUser}
+                  show={show}
+                  setShow={setShow}
+                  className={show ? "profile-edit" : ""}
+                />
+              )}
+            </div>
+            <h3 className="superadmin-title">
+              Gestión de Usuarios (SuperAdmin)
+            </h3>
             <UserTable />
 
             <h3 className="superadmin-title">Gestión de Clubes (SuperAdmin)</h3>
@@ -54,6 +69,22 @@ const Profile = () => {
 
         {user.role === "admin" && (
           <div className="tools">
+            <div className="form">
+              <button className="link-button" onClick={handleEditProfile}>
+                {show ? "Cerrar Edición" : "Editar Perfil"}
+              </button>
+
+              {show && (
+                <ProfileForm
+                  user={user}
+                  setUser={setUser}
+                  show={show}
+                  setShow={setShow}
+                  className={show ? "profile-edit" : ""}
+                />
+              )}
+            </div>
+
             <h3 className="superadmin-title">Gestión de Clubes (Admin)</h3>
             <ClubsTable />
           </div>
@@ -62,26 +93,24 @@ const Profile = () => {
         {user.role === "user" && user && (
           <div className="tools">
             <div className="form">
-              <button
-                className="link-button"
-                onClick={handleEditProfile}>
-                {show ? 'Cerrar Edición' : 'Editar Perfil'}
+              <button className="link-button" onClick={handleEditProfile}>
+                {show ? "Cerrar Edición" : "Editar Perfil"}
               </button>
 
-              {show && <ProfileForm
-                user={user}
-                setUser={setUser}
-                show={show}
-                setShow={setShow}
-                className={show ? 'profile-edit' : ''}
-              />}
+              {show && (
+                <ProfileForm
+                  user={user}
+                  setUser={setUser}
+                  show={show}
+                  setShow={setShow}
+                  className={show ? "profile-edit" : ""}
+                />
+              )}
             </div>
-
           </div>
         )}
       </LayoutProfile>
     </>
-
   );
 };
 

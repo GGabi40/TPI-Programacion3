@@ -32,12 +32,10 @@ const ClubDetails = ({ userId }) => {
 
     const { name, description, progress, gender, interest, privacy, restriction } = club;
 
+    // Agg botón para unirse al Club
     return (
         <div>
             <LeftNav />
-            <div className="background-animated">
-                <div className="light-orb"></div>
-            </div>
             <div className="form-container margin">
                 <div className="logo-form">
                     <img src={logo} alt="Logo Inklink" />
