@@ -10,34 +10,16 @@ import Search from "../search/Search";
 import Loading from "../error/loading/Loading";
 import nadaAquiImage from "../../assets/img/error-img/nada-aqui.webp";
 import { useFetch } from "../hook/useFetch";
+import JoinedClubsAdmin from "./JoinedClubsAdmin";
 
 import { AuthenticationContext } from "../services/auth.context";
 
 const JoinedClubs = () => {
-  const { getAll, isLoading } = useFetch("/clubs");
-  const { token, userId } = useContext(AuthenticationContext);
+  const { userId, token } = useContext(AuthenticationContext);
+  const { getAll, isLoading } = useFetch(`/clubs/user/${userId}`);
+  const [usersClubs, setUsersClubs] = useState([]);
   const { getById } = useFetch("/users");
-  const [allClubs, setAllClubs] = useState([]);
   const [user, setUser] = useState("");
-  const navigate = useNavigate();
-
-  const handleClickCreate = () => {
-    navigate("/new-club");
-  };
-
-  useEffect(() => {
-    window.scrollTo(0, 0); // vuelve al top de la pagina
-
-    const fetchData = async () => {
-      const clubs = await getAll();
-
-      if (clubs) {
-        setAllClubs(clubs);
-      }
-    };
-
-    fetchData();
-  }, []);
 
   useEffect(() => {
     const fetchUser = async () => {
@@ -49,6 +31,22 @@ const JoinedClubs = () => {
 
     fetchUser();
   }, [userId]);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0); // vuelve al top de la pagina
+
+    const fetchData = async () => {
+      if (!userId) return;
+
+      const uClubs = await getAll();
+      if (uClubs) {
+        setUsersClubs(uClubs);
+      }
+    };
+    fetchData();
+  }, [userId]);
+
+  
 
   const handleSearch = (query) => {
     console.log("Buscando desde Dashboard:", query);
@@ -58,52 +56,44 @@ const JoinedClubs = () => {
 
   return (
     <>
-      <LeftNav />
-      <Search
-        onSearch={handleSearch}
-        placeholder="Buscar..."
-        showButton={true}
-      />
+      {user.role.includes("admin") ? (
+        <JoinedClubsAdmin />
+      ) : (
+        <>
+          <LeftNav />
+          <Search
+            onSearch={handleSearch}
+            placeholder="Buscar..."
+            showButton={true}
+          />
 
-      <div className="hero-container">
-        <div className="hero-club">
-          {allClubs.length > 0 ? (
-            <ClubList
-              clubs={allClubs}
-              title="Mis Clubes"
-              showButtons={user.role.includes('admin')}
-              setAllClubs={setAllClubs}
-              allClubs={allClubs}
-            />
-          ) : (
-            <div className="nada-aqui-container">
-              <h2 className="text-align">No hay nada aquí...</h2>
-              <img
-                src={nadaAquiImage}
-                alt="imagen de un gatito corriendo una lana"
-                className="img-nada-aqui"
-              />
+          <div className="hero-container">
+            <div className="hero-club">
+              {usersClubs.length > 0 ? (
+                <ClubList
+                  clubs={usersClubs}
+                  title="Mis Clubes"
+                  showButtons={user.role.includes("admin")}
+                  setAllClubs={usersClubs}
+                  allClubs={usersClubs}
+                />
+              ) : (
+                <div className="nada-aqui-container">
+                  <h2 className="text-align">No hay nada aquí...</h2>
+                  <img
+                    src={nadaAquiImage}
+                    alt="imagen de un gatito corriendo una lana"
+                    className="img-nada-aqui"
+                  />
+                </div>
+              )}
+
+              <div className="break"></div>
             </div>
-          )}
-
-          {user.role !== 'user' ? (
-            <>
-              <button
-                className="cssbuttons-io-button"
-                onClick={handleClickCreate}
-              >
-                <FontAwesomeIcon icon={faPlus} id="btn-plus" />
-                <span>Club</span>
-              </button>
-            </>
-          ) : (
-            ""
-          )}
-
-          <div className="break"></div>
-        </div>
-      </div>
-      <FooterSmall />
+          </div>
+          <FooterSmall />
+        </>
+      )}
     </>
   );
 };

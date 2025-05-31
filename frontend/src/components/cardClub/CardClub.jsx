@@ -21,7 +21,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
   };
 
   const handleClickActivity = () => {
-    navigate("/newact");
+    navigate("/new-activity");
   };
 
   const handleDelete = async (id) => {
