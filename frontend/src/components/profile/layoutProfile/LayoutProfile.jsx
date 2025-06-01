@@ -7,7 +7,6 @@ import LeftNav from "../../nav/LeftNav";
 
 const LayoutProfile = ({ user, children }) => {
     const formatDate = (dateString) => {
-      console.log(user);
     if (!dateString) return "Fecha inválida";
 
     const [year, month, day] = dateString.split("-");
