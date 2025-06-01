@@ -48,7 +48,7 @@ const ClubDetails = () => {
                     <button className="btn-back" onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
                 </section>
 
-
+                <section >
                     <h2 id="detalleClub" className="text-align">
                         {name}
                     </h2>
@@ -74,7 +74,7 @@ const ClubDetails = () => {
                     <Activities clubId={id} />
                 </section>
             </main>
-        </div>
+        </div >
     );
 };
 
