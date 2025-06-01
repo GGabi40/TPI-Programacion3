@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFetch } from '../../hook/useFetch';
 
-const PastActivity = ({ key, activity }) => {
+const PastActivity = ({ activity }) => {
   const { getById } = useFetch('/books');
   const [book, setBook] = useState(null);
 

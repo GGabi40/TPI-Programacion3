@@ -329,3 +329,80 @@
   color: #ccc;
   font-size: 0.9rem;
 }
+
+.review-list {
+  background-color: transparent;
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin-top: 2rem;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.review-list h5 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+#username-review {
+  color: var(--violeta-claro);
+}
+
+.review-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.review-list li {
+  background-color: #282c3f;
+  border: 1px solid #e2e2e2;
+  border-radius: 0.75rem;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: background 0.3s ease;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: pre-wrap;
+}
+
+.review-list li:hover {
+  background-color: #1c2034;
+}
+
+.review-list p {
+  margin: 0.25rem 0;
+}
+
+.review-buttons {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.review-buttons button {
+  color: white;
+  padding: 0.4rem 0.7rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: rgb(32, 32, 32);
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.review-buttons button:hover {
+  background-color: rgb(68, 68, 68);
+}
+
+.comment-section {
+  margin-top: 0.75rem;
+  background-color: transparent;
+  padding: 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  color: #444;
+  border-left: 4px solid var(--accent-color, #007bff);
+}

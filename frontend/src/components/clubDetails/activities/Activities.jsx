@@ -111,7 +111,7 @@ const Activities = ({ clubId }) => {
               (act) => !act.isActive || new Date(act.dateEnd) < new Date()
             )
             .map((pastAct) => (
-              <PastActivity key={pastAct.id} activity={pastAct} />
+              <PastActivity activity={pastAct} />
             ))}
         </div>
       )}

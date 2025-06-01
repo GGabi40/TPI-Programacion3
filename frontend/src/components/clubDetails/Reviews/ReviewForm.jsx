@@ -1,25 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-const ReviewForm = ({ activityId, userId }) => {
+import { useFetch } from '../../hook/useFetch';
+import { AuthenticationContext } from '../../services/auth.context';
+
+const ReviewForm = ({ activityId }) => {
+    const { token } = useContext(AuthenticationContext);
+    const { post } = useFetch('/reviews');
     const [content, setContent] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch(`/api/reviews`, {
-            method: "POST",
-            headers: { "Content-Type" : "application/json" },
-            body: JSON.stringify({
-                content,
-                userId,
-                activityId
-            }),
-        })
-            .then(res => {
-                if (res.ok) {
-                    setContent("");
-                }
-            });
+        const result = await post({ content, activityId }, token)
+
+        if (result && !result.error) {
+          setContent("");
+        } else {
+          alert('No')
+        }
     };
 
   return (

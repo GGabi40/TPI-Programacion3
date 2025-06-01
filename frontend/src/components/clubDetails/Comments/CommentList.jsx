@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+
+import { useFetch } from '../../hook/useFetch';
+import { AuthenticationContext } from '../../services/auth.context';
 
 const CommentList = ({ reviewId }) => {
+    const { token } = useContext(AuthenticationContext);
+    const { getAll } = useFetch(`/comments/${reviewId}`);
     const [comments, setComments] = useState([]);
 
     useEffect(() => {
-        fetch(`/api/reviews/${reviewId}/comments`)
-            .then(res => res.json())
-            .then(data => setComments(data))
-            .catch(() => setComments([]));
+        const fetchComments = async () => {
+            const allComments = await getAll(token);
+            console.log("Comentarios recibidos:", allComments);
+            setComments([allComments]);
+        }
+        
+        fetchComments();
     }, [reviewId]);
 
   return (
@@ -19,7 +27,7 @@ const CommentList = ({ reviewId }) => {
             <ul>
                 {comments.map(comment => (
                     <li key={comment.id}>
-                        <p><strong>Usuario ID:</strong>{comment.userId}</p>
+                        <p><strong>{comment.user?.username}</strong></p>
                         <p>{comment.content}</p>
                     </li>
                 ))}
