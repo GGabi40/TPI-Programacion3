@@ -3,7 +3,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 export const showConfirmAlert = (id, onDelete) => {
     Swal.fire({
-        title: "¿Realmente querés eliminar este club?",
+        title: "¿Realmente querés eliminarlo?",
         text: "Esta acción es irreversible!",
         icon: "warning",
         showCancelButton: true,
@@ -14,7 +14,7 @@ export const showConfirmAlert = (id, onDelete) => {
             onDelete(id)
             Swal.fire({
                 title: "¡Eliminado!",
-                text: "Has eliminado el club.",
+                text: "Lo has eliminado.",
                 icon: "warning"
             });
         }

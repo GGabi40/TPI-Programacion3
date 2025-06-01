@@ -75,6 +75,21 @@
   display: block;
 }
 
+.edit-user-rol {
+  border: 1px solid black;
+  color: black;
+}
+
+button:disabled {
+  background: gray;
+  border: 1px solid gray;
+}
+
+button:disabled:hover {
+  background: gray;
+  cursor:no-drop;
+}
+
 @media (max-width: 1010px) {
   .profile-card {
     margin-left: 250px;
