@@ -1,0 +1,276 @@
+.club-details-container {
+  margin-left: 200px;
+  padding: 2rem 3rem;
+  min-height: 100vh;
+  color: #eee;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+.club-header {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  background: var(--violeta-oscuro);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  flex-wrap: wrap;
+}
+
+.logo-wrapper img {
+  height: 80px;
+  width: auto;
+  border-radius: 10px;
+  filter: drop-shadow(0 0 10px var(--violeta-robado));
+}
+
+.club-title {
+  font-size: 28px;
+  font-weight: 700;
+  flex-grow: 1;
+  color: white;
+  user-select: none;
+}
+
+.btn-join {
+  background: var(--violeta-robado);
+  color: #fff;
+  padding: 1rem 2rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  flex-shrink: 0;
+}
+
+.btn-join:hover {
+  background-color: #9e44ffcc;
+}
+
+.club-info {
+  background: #29294b;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+  line-height: 1.6;
+  font-size: 1.1rem;
+}
+
+.club-info p {
+  margin-bottom: 0.8rem;
+  color: #ddd;
+}
+
+.club-info strong {
+  color: var(--btn-bgc-primary);
+  padding-right: 10px;
+  font-weight: bold;
+}
+
+.btn-back {
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  padding: 0.6rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-back:hover {
+  background-color: var(--violeta-robado);
+  color: #fff;
+}
+
+
+.club-activities {
+  background: #29294b;
+  padding: 1rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.7);
+  min-height: 200px;
+}
+
+@media (max-width: 768px) {
+  .club-details-container {
+    margin-left: 0;
+    padding: 1rem 1.5rem;
+  }
+
+  .club-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .club-title {
+    font-size: 2rem;
+  }
+}
+
+.club-activities {
+  background: #29294b;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.activities-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.activities-subtitle {
+  font-size: 20px;
+  color: #ccc;
+  margin-bottom: 1rem;
+}
+
+.activity-card {
+  background: #1f1f33;
+  border-left: 6px solid var(--violeta-robado);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.activity-card.current {
+  background: #331a4b;
+  border-left-color: var(--btn-bgc-primary);
+}
+
+.activity-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.activity-header h4 {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+}
+
+.activity-date {
+  font-size: 0.95rem;
+  color: #aaa;
+}
+
+.activity-title {
+  font-size: 20px;
+  margin-bottom: 15px;
+}
+
+.activity-desc {
+  font-size: 1rem;
+  color: #ddd;
+  line-height: 1.5;
+}
+
+.reviews-section {
+  margin-top: 1rem;
+  border-top: 1px solid #444;
+  padding-top: 1rem;
+}
+
+.reviews-title {
+  color: var(--btn-bgc-primary);
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.book-details h4 {
+  margin-bottom: 0.3rem;
+}
+
+.book-cover {
+  width: 100px;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+}
+
+.no-activities {
+  padding: 1rem;
+  font-style: italic;
+  color: #bbb;
+  background: #1f1f33;
+  border-radius: 8px;
+}
+
+.highlighted-book {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  background-color: #282c3f;
+  padding: 1rem;
+  border-left: 5px solid var(--btn-bgc-primary);
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  flex-wrap: wrap;
+}
+
+.book-section-title {
+  font-size: 1.3rem;
+  color: var(--btn-bgc-primary);
+  margin-bottom: 0.5rem;
+}
+
+
+/* Actividades Pasadas */
+
+.past-activities {
+  margin-top: 2rem;
+  background-color: #1f1f2f;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+}
+
+.section-title {
+  font-size: 1.4rem;
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.past-activity-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #2d2d40;
+  padding: 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
+.past-book-cover {
+  width: 60px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.past-activity-info h4 {
+  margin: 0;
+  color: white;
+  font-size: 1.1rem;
+}
+
+.activity-dates {
+  color: #ccc;
+  font-size: 0.9rem;
+}

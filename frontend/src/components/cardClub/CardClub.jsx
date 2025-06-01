@@ -37,7 +37,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
     <div
       className={`club-card-child ${club.color}`}
     >
-      {/*<FontAwesomeIcon icon={faBook} size="3x" />*/}
+      <FontAwesomeIcon icon={faBook} size="3x" />
       <p>{club.name}</p>
       {showButtons && (
         <div className="btn-cards">
@@ -65,7 +65,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
           </button>
         </div>
       )}
-      <Link to={`/club-details/${club.id}`} className="link-button secondary">Ver detalles</Link>
+      <Link to={`/club-details/${club.id}`} className="link-button">Ver detalles</Link>
     </div>
   );
 };
