@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import ReviewList from "./Reviews/ReviewList";
 import ReviewForm from "./Reviews/ReviewForm";
@@ -8,16 +8,16 @@ import NotFound from "../error/notFound/NotFound";
 import { useFetch } from "../hook/useFetch";
 import Activities from "./activities/Activities";
 import Loading from "../error/loading/Loading";
+import JoinClubButton from "./JoinClubButton";
+import { AuthenticationContext } from "../services/auth.context";
 
 const ClubDetails = () => {
     const { getById, isLoading } = useFetch("/clubs");
     const { id } = useParams(); // más sencillo que useLocation
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
+    const { userId } = useContext(AuthenticationContext);
 
-    const handleClickJoin = () => {
-        navigate("/mis-clubes");
-    }
 
     useEffect(() => {
         //trae los detalles del club
@@ -28,12 +28,11 @@ const ClubDetails = () => {
         fetchClub();
     }, [id]);
 
-
-    if(isLoading) return <Loading />
+    if (isLoading) return <Loading />
 
     if (!club) return <NotFound />;
 
-    const { name, description, gender, interest, restriction } = club;
+    const { name, description, gender, interest, restricted } = club;
 
     // Agg botón para unirse al Club
     return (
@@ -56,15 +55,15 @@ const ClubDetails = () => {
                         <br />
                         <p><strong>Interés:</strong> {interest}</p>
                         <br />
-                        <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
+                        <p><strong>Restricción de Edad:</strong> {club.restricted ? "Sí" : "No"}</p>
                         <br />
                     </div>
 
                     <div className="button-separate">
-                        <button type="submit" className="btn-card" onClick={handleClickJoin}>Unirse!</button>
-                        <button onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
+                        <JoinClubButton userId={userId} clubId={id} />
+                        <button onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
                     </div>
-                    
+
                     <Activities clubId={id} />
                 </div>
             </div>

@@ -15,7 +15,7 @@ const Clubes = ({ clubs }) => {
     const fetchData = async () => {
       const uClubs = await getAll();
       if (uClubs) {
-        console.log('Hola ', uClubs)
+        //console.log('Hola ', uClubs)
         setUsersClubs(uClubs);
       }
     };

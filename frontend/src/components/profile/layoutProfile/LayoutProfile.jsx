@@ -6,7 +6,7 @@ import "../../../styles/profile/profile.css";
 import LeftNav from "../../nav/LeftNav";
 
 const LayoutProfile = ({ user, children }) => {
-  const formatDate = (dateString) => {
+    const formatDate = (dateString) => {
     const [year, month, day] = dateString.split("-");
     const date = new Date(year, month - 1, day);
 
