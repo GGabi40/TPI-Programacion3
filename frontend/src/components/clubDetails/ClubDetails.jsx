@@ -48,16 +48,7 @@ const ClubDetails = () => {
                     <button className="btn-back" onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
                 </section>
 
-<<<<<<<<< Temporary merge branch 1
-                <section className="club-info">
-                    <p><strong>Descripción:</strong> {description}</p>
-                    <p><strong>Género:</strong> {gender}</p>
-                    <p><strong>Interés:</strong> {interest}</p>
-                    <p><strong>Restricción de Edad:</strong> {restriction ? "Sí" : "No"}</p>
-                </section>
 
-                <section className="club-activities">
-=========
                     <h2 id="detalleClub" className="text-align">
                         {name}
                     </h2>
@@ -78,11 +69,11 @@ const ClubDetails = () => {
                         <button onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
                     </div>
 
->>>>>>>>> Temporary merge branch 2
+
                     <Activities clubId={id} />
-                </section>
+          
             </main>
-        </div>
+        </div >
     );
 };
 

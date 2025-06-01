@@ -17,7 +17,7 @@ const Footer = () => {
       <div className="footer nosotros">
         <h3>Sobre Nosotros</h3>
         <Link to="/" className="link-subrayado">
-          Quienes Somos
+          Quiénes Somos
         </Link>
       </div>
 
@@ -66,7 +66,7 @@ const Footer = () => {
       </div>
 
       <div className="grupo">
-        <span>Hecho con 💖 por Grupo 1 | TPI Programacion 3</span>
+        <span>Hecho con 💖 por Grupo 1 | TPI Programación 3</span>
       </div>
     </footer>
   );

@@ -77,7 +77,7 @@ export const useFetch = (endpoint) => {
         throw new Error(errorData.message || "Error al hacer un POST.");
       }
       if (res.status === 204) {
-        return {message: "operacion existosa , sin contenido"};
+        return {message: "operación existosa , sin contenido"};
       }
       //hasta aca
 

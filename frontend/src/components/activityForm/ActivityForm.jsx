@@ -60,14 +60,14 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
         }
 
         if (!progress) {
-            newErrors.progress = "Seleccione una opcion de progreso.";
-            errorToast("Seleccione una opcion de progreso.");
+            newErrors.progress = "Seleccione una opción de progreso.";
+            errorToast("Seleccione una opción de progreso.");
             valid = false;
         }
 
         if (!dateStart) {
-            newErrors.dateStart = "Debes colocar una fecha de inicio.";
-            errorToast("Debes colocar una fecha de inicio.");
+            newErrors.dateStart = "Debe colocar una fecha de inicio.";
+            errorToast("Debe colocar una fecha de inicio.");
             valid = false;
         }
 
@@ -110,7 +110,7 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
                 </div>
 
                 <h2 className="text-align title-form">
-                    {mode === "edit" ? "ACTUALIZAR ACTIVIDAD" : "CREE UNA NUEVA ACTIVIDAD"}
+                    {mode === "edit" ? "ACTUALIZAR ACTIVIDAD" : "CREAR UNA NUEVA ACTIVIDAD"}
                 </h2>
                 <br />
                 <form onSubmit={handleSubmit}>
