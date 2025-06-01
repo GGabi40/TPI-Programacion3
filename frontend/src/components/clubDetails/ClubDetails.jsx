@@ -44,11 +44,9 @@ const ClubDetails = () => {
                         <img src={logo} alt="Logo Inklink" />
                     </div>
                     <h2 className="club-title">{name}</h2>
-                    <button className="btn-join" onClick={handleClickJoin}>Unirse al Club</button>
-                    <button className="btn-back" onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
                 </section>
+                <section className="club-info">
 
-                <section >
                     <h2 id="detalleClub" className="text-align">
                         {name}
                     </h2>
@@ -68,11 +66,11 @@ const ClubDetails = () => {
                         <JoinClubButton userId={userId} clubId={id} />
                         <button onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
                     </div>
-
-
-
+                </section>
+                <section className="club-activities">
                     <Activities clubId={id} />
                 </section>
+
             </main>
         </div >
     );
