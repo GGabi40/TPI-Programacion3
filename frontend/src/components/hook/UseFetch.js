@@ -71,9 +71,15 @@ export const useFetch = (endpoint) => {
         body: JSON.stringify(data),
       });
 
-      //if (!res.ok) {
-      //  throw new Error("Error al hacer un POST.");
-      //}
+      //agrege esto para probar si lo recibe vacio al join club
+      if (!res.ok) {
+        const errorData = await res.json();
+        throw new Error(errorData.message || "Error al hacer un POST.");
+      }
+      if (res.status === 204) {
+        return {message: "operacion existosa , sin contenido"};
+      }
+      //hasta aca
 
       const dataResponse = await res.json();
       return dataResponse;

@@ -12,7 +12,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
   const [description, setDescription] = useState("");
   const [gender, setGender] = useState("");
   const [interest, setInterest] = useState("");
-  const [restriction, setRestriction] = useState(false);
+  const [restricted, setRestricted] = useState(false);
   const [color, setColor] = useState("");
   const [errors, setErrors] = useState({});
 
@@ -22,7 +22,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
       setDescription(initialData.description || "");
       setGender(initialData.gender || "");
       setInterest(initialData.interest || "");
-      setRestriction(initialData.restriction || false);
+      setRestricted(initialData.restricted || false);
       setColor(initialData.color || "");
     }
   }, [initialData, mode]);
@@ -75,7 +75,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
       description,
       gender,
       interest,
-      restricted: restriction,
+      restricted,
       color,
       isActive: true,
     };
@@ -205,8 +205,8 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
             <label>
               <input
                 type="checkbox"
-                checked={restriction}
-                onChange={(e) => setRestriction(e.target.checked)}
+                checked={restricted}
+                onChange={(e) => setRestricted(e.target.checked)}
               />{" "}
               {"  "}
               Restricción de Edad
