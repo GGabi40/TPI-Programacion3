@@ -1,7 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
-import ReviewList from "./Reviews/ReviewList";
-import ReviewForm from "./Reviews/ReviewForm";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
 import NotFound from "../error/notFound/NotFound";
@@ -11,9 +9,11 @@ import Loading from "../error/loading/Loading";
 import JoinClubButton from "./JoinClubButton";
 import { AuthenticationContext } from "../services/auth.context";
 
+import './clubDetails.css';
+
 const ClubDetails = () => {
     const { getById, isLoading } = useFetch("/clubs");
-    const { id } = useParams(); // más sencillo que useLocation
+    const { id } = useParams();
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
     const { userId } = useContext(AuthenticationContext);
@@ -38,11 +38,16 @@ const ClubDetails = () => {
     return (
         <div>
             <LeftNav />
-            <div className="profile-container margin">
-                <div className="profile-card">
-                    <div className="logo-form">
+            <main className="club-details-container">
+                <section className="club-header">
+                    <div className="logo-wrapper">
                         <img src={logo} alt="Logo Inklink" />
                     </div>
+                    <h2 className="club-title">{name}</h2>
+                    <button className="btn-join" onClick={handleClickJoin}>Unirse al Club</button>
+                    <button className="btn-back" onClick={() => navigate("/dashboard")}>Volver a Clubs</button>
+                </section>
+
 
                     <h2 id="detalleClub" className="text-align">
                         {name}
@@ -64,9 +69,11 @@ const ClubDetails = () => {
                         <button onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
                     </div>
 
+
+
                     <Activities clubId={id} />
-                </div>
-            </div>
+                </section>
+            </main>
         </div>
     );
 };
