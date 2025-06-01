@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 
-import { useFetch } from "./hook/UseFetch";
+import { useFetch } from "./hook/useFetch";
 
-const { getAll, put, del } = useFetch("/books");
 
 const Books = () => {
+  const { getAll, put, del } = useFetch("/books");
   const [allBooks, setAllBooks] = useState([]);
   const [bookToEdit, setBookToEdit] = useState("");
   const [isEdit, setIsEdit] = useState(false);

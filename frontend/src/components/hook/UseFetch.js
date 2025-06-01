@@ -4,10 +4,10 @@ const API_URL = import.meta.env.VITE_BASE_SERVER_URL; // URL de API en variable 
 
 export const useFetch = (endpoint) => {
   const complete_url = `${API_URL}${endpoint}`;
-  const [isLoading, setIsLoading] = useState(true); 
+  const [isLoading, setIsLoading] = useState(true);
   // Error 500
 
-  const getAll = async (token=null) => {
+  const getAll = async (token = null) => {
     try {
       const res = await fetch(complete_url, {
         method: 'GET',
@@ -60,7 +60,7 @@ export const useFetch = (endpoint) => {
   };
 
   //                 objeto
-  const post = async (data, token = null) => {
+  const post = async (data = null, token = null) => {
     try {
       const res = await fetch(complete_url, {
         method: "POST",
@@ -68,18 +68,25 @@ export const useFetch = (endpoint) => {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(data)
       });
 
-      //agrege esto para probar si lo recibe vacio al join club
-      if (!res.ok) {
-        const errorData = await res.json();
-        throw new Error(errorData.message || "Error al hacer un POST.");
-      }
-      if (res.status === 204) {
-        return {message: "operación existosa , sin contenido"};
-      }
-      //hasta aca
+      const dataResponse = await res.json();
+      return dataResponse;
+    } catch (error) {
+      console.error("Error al hacer POST: ", error);
+    }
+  };
+
+  const postWithoutData = async (token = null) => {
+    try {
+      const res = await fetch(complete_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        }
+      });
 
       const dataResponse = await res.json();
       return dataResponse;
@@ -118,8 +125,9 @@ export const useFetch = (endpoint) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
-        },
-      });
+        }
+      })
+
 
       if (!res.ok) {
         throw new Error("Error al hacer un DELETE.");
@@ -130,10 +138,36 @@ export const useFetch = (endpoint) => {
       } else {
         return { success: false };
       }
+
     } catch (error) {
       console.error("Error al hacer DELETE: ", error);
     }
   };
 
-  return { getAll, getById, post, put, del, isLoading };
+  const delWithoutId = async (token = null) => {
+    try {
+      const res = await fetch(`${complete_url}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        }
+      })
+
+      if (!res.ok) {
+        throw new Error("Error al hacer un DELETE.");
+      }
+
+      if (res.status === 204) {
+        return { success: true };
+      } else {
+        return { success: false };
+      }
+
+    } catch (error) {
+      console.error("Error al hacer DELETE: ", error);
+    }
+  };
+
+  return { getAll, getById, post, postWithoutData, delWithoutId, put, del, isLoading };
 };

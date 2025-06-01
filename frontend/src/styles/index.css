@@ -266,8 +266,10 @@ button[type="submit"]:hover {
   color: white;
   font-family: var(--principal-font);
   text-align: center;
-  font-size: 2rem;
+  font-size: 2.4rem;
+  letter-spacing: 6px;
   margin-bottom: 1rem;
+  text-transform: uppercase;
 }
 
 #redireccion {

@@ -7,6 +7,9 @@ import LeftNav from "../../nav/LeftNav";
 
 const LayoutProfile = ({ user, children }) => {
     const formatDate = (dateString) => {
+      console.log(user);
+    if (!dateString) return "Fecha inválida";
+
     const [year, month, day] = dateString.split("-");
     const date = new Date(year, month - 1, day);
 
@@ -40,7 +43,7 @@ const LayoutProfile = ({ user, children }) => {
               🛡️ Rol: <strong>{user.role.toUpperCase()}</strong>
             </p>
             <p className="profile-birthday">
-              🎂 Cumpleaños: {formatDate(user.birthday)}
+              🎂 Cumpleaños: {user.birthday ? formatDate(user.birthday) : "No especificado"}
             </p>
             <p
               className={`profile-status ${

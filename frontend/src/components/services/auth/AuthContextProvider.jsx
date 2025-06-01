@@ -25,7 +25,6 @@ const AuthContextProvider = ({ children }) => {
   const handleUserLogout = () => {
     localStorage.removeItem("inklink-token");
     setToken(null);
-    navigate("/");
   };
 
   return (
