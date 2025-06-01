@@ -8,7 +8,7 @@ import {
 
 import {
   getAllUsers,
-  
+  updateUserByAdmin,
   deleteUser
 } from '../services/admin.services.js';
 
@@ -28,6 +28,7 @@ router.get("/users/:id", verifyToken, getUserById);
 
 // Rutas para Admin y SuperAdmin
 router.get("/users", verifyToken, roleMiddleware(['superadmin']), getAllUsers); // será solo para superadmin
+router.put("/users/:id", verifyToken, roleMiddleware(['superadmin']), updateUserByAdmin); // ruta para cambiar usuarios desde superadmin
 
 router.delete('/users/:id', verifyToken, roleMiddleware(['superadmin']), deleteUser);
 

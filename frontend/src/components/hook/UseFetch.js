@@ -7,9 +7,15 @@ export const useFetch = (endpoint) => {
   const [isLoading, setIsLoading] = useState(true); 
   // Error 500
 
-  const getAll = async () => {
+  const getAll = async (token=null) => {
     try {
-      const res = await fetch(complete_url);
+      const res = await fetch(complete_url, {
+        method: 'GET',
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        }
+      });
 
       if (!res.ok) {
         if (res.status === 404) {
