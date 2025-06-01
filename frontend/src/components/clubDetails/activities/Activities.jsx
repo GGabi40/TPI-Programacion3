@@ -1,11 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useFetch } from "../../hook/useFetch";
 import ReviewForm from "../Reviews/ReviewForm";
 import ReviewList from "../Reviews/ReviewList";
 import PastActivity from "./PastActivity";
+import { AuthenticationContext } from "../../services/auth.context";
 
 
 const Activities = ({ clubId }) => {
+  const { token } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
   const { getById } = useFetch("/books");
 
@@ -109,7 +111,7 @@ const Activities = ({ clubId }) => {
               (act) => !act.isActive || new Date(act.dateEnd) < new Date()
             )
             .map((pastAct) => (
-              <PastActivity key={pastAct.id} activity={pastAct} />
+              <PastActivity activity={pastAct} />
             ))}
         </div>
       )}

@@ -53,7 +53,7 @@ export const getReviewsByActivityId = async (req, res) => {
       include: [
         {
           model: Activity,
-          attributes: ["id", "progess", "dateStart", "dateEnd"],
+          attributes: ["id", "progress", "dateStart", "dateEnd"],
         },
         {
           model: User,
@@ -156,7 +156,7 @@ const validateContent = (reqBody) => {
 
   const { content } = reqBody;
 
-  if (!content || !validateString(content, 4, 200)) {
+  if (!content || !validateString(content, 4, 5000)) {
     return {
       error: true,
       message: "El contenido no cumple los requisitos.",

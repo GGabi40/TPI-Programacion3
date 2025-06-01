@@ -73,6 +73,7 @@ export const getCommentsByReviewId = async (req, res) => {
     res.status(500).json({ message: "Error interno." });
   }
 };
+
 export const getCommentById = async (req, res) => {
   const { id } = req.params;
 

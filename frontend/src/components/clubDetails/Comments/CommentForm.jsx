@@ -1,25 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-const CommentFrom = ({ reviewId, userId }) => {
+import { useFetch } from '../../hook/useFetch';
+import { AuthenticationContext } from '../../services/auth.context';
+
+const CommentForm = ({ reviewId }) => {
+    const { post } = useFetch('/comments');
+    const { token } = useContext(AuthenticationContext);
     const [content, setContent] = useState("");
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        fetch(`/api/comments`, {
-            method: "POST",
-            headers: { "Content-Type" : "application/json"},
-            body: JSON.stringify({
-                content,
-                userId,
-                reviewId
-            }),
-        })
-            .then(res => {
-                if(res.ok) {
-                    setContent("");
-                }
-            });
+        const response = await post({content, reviewId}, token)
+
+        if (response.message?.error) {
+            console.log('Algo pasó')
+        }
+
+        /* Se puede incluit toast */
+        setContent("");
     };
 
   return (
@@ -35,4 +34,4 @@ const CommentFrom = ({ reviewId, userId }) => {
   );
 };
 
-export default CommentFrom;
+export default CommentForm;

@@ -9,13 +9,10 @@ import { Comment } from "./Comment.js";
 
 // 1:N
 User.hasMany(Review, { foreignKey: 'userId' });
-Review.belongsTo(User, { foreignKey: 'userId', targetKey: 'id' });
+Review.belongsTo(User, { foreignKey: 'userId' });
 
-/* Review.belongsTo(Activity, { foreignKey: 'activityId' });
-Activity.hasMany(Review, { foreignKey: 'userId' }); */
-
-Review.belongsTo(Activity, { foreignKey: 'activityId' });
 Activity.hasMany(Review, { foreignKey: 'activityId' });
+Review.belongsTo(Activity, { foreignKey: 'activityId' });
 
 Book.hasMany(Activity, { foreignKey: 'bookId' });
 Activity.belongsTo(Book, { foreignKey: 'bookId', targetKey: 'id' })
