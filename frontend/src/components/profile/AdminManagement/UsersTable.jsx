@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 import { errorToast, successToast } from "../../toast/NotificationToast";
+import { showConfirmAlert } from "../../sweetAlert/ConfirmAlert";
+import "sweetalert2/dist/sweetalert2.min.css";
 
 import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
 
 const UsersTable = () => {
-  const { getAll, put } = useFetch("/users");
+  const { getAll, put, del } = useFetch("/users");
   const { token, userId } = useContext(AuthenticationContext);
   const [allUsers, setAllUsers] = useState([]);
   const [editedRole, setEditedRole] = useState(null);
@@ -68,7 +70,19 @@ const UsersTable = () => {
   };
 
   const handleDeleteUser = (id) => {
-    console.log("Eliminar usuario", id);
+    showConfirmAlert(id, async (idToDelete) => {
+      try {
+        const deleted = await del(idToDelete, token);
+        if (deleted) {
+          const updatedUsers = allUsers.filter((u) => u.id !== idToDelete);
+          setAllUsers(updatedUsers);
+          successToast("Usuario eliminado correctamente");
+        }
+      } catch (error) {
+        console.error("Error eliminando usuario:", error);
+        errorToast("Error eliminando usuario");
+      }
+    });
   };
 
   return (

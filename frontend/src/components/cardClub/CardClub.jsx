@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router";
 import "./cardClub.css";
 import { showConfirmAlert } from "../sweetAlert/ConfirmAlert";
-import Swal from "sweetalert2";
 import "sweetalert2/dist/sweetalert2.min.css";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
