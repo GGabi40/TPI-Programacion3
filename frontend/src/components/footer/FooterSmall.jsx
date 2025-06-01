@@ -54,7 +54,7 @@ const FooterSmall = () => {
          
       
             <div className="grupo">
-              <span>Hecho con 💖 por Grupo 1 | TPI Programacion 3</span>
+              <span>Hecho con 💖 por Grupo 1 | TPI Programación 3</span>
             </div>  
       </footer>
   )

@@ -130,7 +130,7 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
         </div>
 
         <h2 className="text-align title-form">
-          {mode === "edit" ? "ACTUALIZAR CLUB" : "CREE UN NUEVO CLUB"}
+          {mode === "edit" ? "ACTUALIZAR CLUB" : "CREAR UN NUEVO CLUB"}
         </h2>
         <br />
 

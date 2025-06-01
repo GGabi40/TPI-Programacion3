@@ -91,7 +91,7 @@ const ClubsTable = () => {
                 </tr>
               ))
             ) : (
-              <p className="dark">No se encontraron clubs</p>
+              <p className="dark">No se encontraron clubes</p>
             )}
           </tbody>
         </table>

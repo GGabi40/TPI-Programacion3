@@ -47,7 +47,7 @@ const UsersTable = () => {
 
   const handleSaveRole = async (id) => {
     if (userId === id) {
-      errorToast("No puedes cambiar tu propio rol.");
+      errorToast("No es posible cambiar tu propio rol.");
       return;
     }
 

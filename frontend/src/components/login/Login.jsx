@@ -110,7 +110,7 @@ const Login = () => {
             {errors.message && <p className="error">{errors.message}</p>}
             <button type="submit">Iniciar sesión</button>
             <p>
-              ¿No tiene una cuenta?{" "}
+              ¿No tenes una cuenta?{" "}
               <Link to="/register" id="redireccion">
                 Registrarse
               </Link>
