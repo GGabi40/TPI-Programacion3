@@ -15,19 +15,24 @@ export const registerUser = async (req, res) => {
 
   if (result.error) return res.status(400).json({ message: result.message });
 
-  const { username, email, password, birthday, avatar, isActive, role } = req.body;
+  const { username, email, password, birthday, avatar, isActive, role } =
+    req.body;
 
   try {
     const existingEmail = await User.findOne({ where: { email } });
 
     if (existingEmail) {
-      return res.status(400).json({ message: "Este email ya está registrado." });
+      return res
+        .status(400)
+        .json({ message: "Este email ya está registrado." });
     }
 
     const existingUsername = await User.findOne({ where: { username } });
 
     if (existingUsername) {
-      return res.status(400).json({ message: "Este nombre de usuario ya está en uso." });
+      return res
+        .status(400)
+        .json({ message: "Este nombre de usuario ya está en uso." });
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
@@ -41,7 +46,9 @@ export const registerUser = async (req, res) => {
       role: role || "user",
     });
 
-    res.status(201).json({ message: "Usuario registrado correctamente", user: newUser.id });
+    res
+      .status(201)
+      .json({ message: "Usuario registrado correctamente", user: newUser.id });
   } catch (error) {
     res.status(500).json({ message: "Error al registrar usuario" });
   }
@@ -95,6 +102,7 @@ export const updateProfileAndPassword = async (req, res) => {
       isActive,
       currentPassword,
       newPassword,
+      role,
     } = req.body;
 
     const validationResult = validateUpdateProfileData(req);
@@ -116,16 +124,25 @@ export const updateProfileAndPassword = async (req, res) => {
       const emailInUse = await User.findOne({ where: { email } });
 
       if (emailInUse) {
-        return res.status(400).json({ message: "Este email ya está registrado." });
+        return res
+          .status(400)
+          .json({ message: "Este email ya está registrado." });
       }
     }
 
+    // verifica si el username está siendo utilizado
     if (username && username !== user.username) {
       const usernameInUse = await User.findOne({ where: { username } });
 
       if (usernameInUse) {
-        return res.status(400).json({ message: "Este email ya está registrado." });
+        return res
+          .status(400)
+          .json({ message: "Este nombre de usuario ya está registrado." });
       }
+    }
+
+    if (role && req.user.role !== "superadmin") {
+      return res.status(401).json({ message: "No tienes permiso para cambiar roles." });
     }
 
     user.username = username || user.username;
@@ -133,6 +150,7 @@ export const updateProfileAndPassword = async (req, res) => {
     // user.birthday = birthday || user.birthday;
     user.avatar = avatar || user.avatar;
     user.isActive = isActive !== undefined ? isActive : user.isActive;
+    user.role = role || user.role;
 
     // si se envían datos para cambiar la contraseña:
     if (currentPassword && newPassword) {
@@ -161,27 +179,30 @@ export const updateProfileAndPassword = async (req, res) => {
   }
 };
 
+
 // Muestra un usuario
 export const getUserById = async (req, res) => {
   try {
     const { id } = req.params;
 
     const user = await User.findByPk(id, {
-      attributes: { exclude: ['password'] }
+      attributes: { exclude: ["password"] },
     });
 
-    if (!user) return res.status(404).json({ message: 'Usuario no encontrado ' });
+    if (!user)
+      return res.status(404).json({ message: "Usuario no encontrado " });
 
-    if (user.id !== Number(id)) return res.status(400).json({ message: 'No tienes permiso para ver este usuario.' });
+    if (user.id !== Number(id))
+      return res
+        .status(400)
+        .json({ message: "No tienes permiso para ver este usuario." });
 
     res.status(200).json(user);
   } catch (error) {
-    console.error('Error al buscar el usuario:', error.message);
-    res.status(500).json({ message: 'Error del servidor' });
+    console.error("Error al buscar el usuario:", error.message);
+    res.status(500).json({ message: "Error del servidor" });
   }
-
 };
-
 
 // --------
 // Funciones de validación
