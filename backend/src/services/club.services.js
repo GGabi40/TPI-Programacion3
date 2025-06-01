@@ -24,52 +24,6 @@ export const getClubById = async (req, res) => {
   res.json(clubById);
 };
 
-// GET Clubs By User
-export const getClubsByUser = async (req, res) => {
-  const { userId } = req.params;
-
-  try {
-    // hace un JOIN a la tabla UserClubs,
-    // para buscar todos los clubes relacionados con ese userId
-    const user = await User.findByPk(userId, {
-      include: {
-        model: Club,
-        as: 'misClubes'
-      },
-    });
-
-    if (!user) {
-      return res.status(404).json({ message: "Usuario no encontrado." });
-    }
-
-    res.json(user.misClubes);
-  } catch (error) {
-    console.error("Error al obtener clubes del usuario:", error);
-    res.status(500).json({ message: "Error interno del servidor." });
-  }
-};
-
-// POST users/:userId/clubs/:clubId
-export const joinClub = async (req,res) => {
-  const { userId, clubId } = req.params;
-
-  try {
-    const user = await User.findByPk(userId);
-    const club = await Club.findByPk(clubId);
-
-    if(!user || !club) {
-      res.status(404).json({ message: 'Usuario o Club no encontrado' });
-    }
-
-    await user.addMisClubes(club);
-
-    return res.json({ message: 'Usuario unido al club exitosamente!' });
-  } catch (error) {
-    console.error('Error al unir usuario al club:', error);
-    return res.status(500).json({ message: 'Error interno del servidor' });
-  }
-};
-
 
 //POST
 export const createNewClub = async (req, res) => {
@@ -102,6 +56,7 @@ export const createNewClub = async (req, res) => {
 
   res.json(newClub);
 };
+
 
 //PUT-UPDATE(ES LO MISMO)
 export const updateClub = async (req, res) => {
@@ -137,6 +92,7 @@ export const updateClub = async (req, res) => {
   }
 };
 
+
 //DELETE
 export const deleteClub = async (req, res) => {
   const { id } = req.params;
@@ -153,6 +109,79 @@ export const deleteClub = async (req, res) => {
     return res.status(500).send({ message: "Algo fallo!" });
   }
 };
+
+
+// --- Servicios para club-usuario
+
+// GET Clubs By User
+export const getClubsByUser = async (req, res) => {
+  const { userId } = req.params;
+
+  try {
+    // hace un JOIN a la tabla UserClubs,
+    // para buscar todos los clubes relacionados con ese userId
+    const user = await User.findByPk(userId, {
+      include: {
+        model: Club,
+        as: 'misClubes'
+      },
+    });
+
+    if (!user) {
+      return res.status(404).json({ message: "Usuario no encontrado." });
+    }
+
+    res.json(user.misClubes);
+  } catch (error) {
+    console.error("Error al obtener clubes del usuario:", error);
+    res.status(500).json({ message: "Error interno del servidor." });
+  }
+};
+
+// POST users/:userId/clubs/:clubId
+export const joinClub = async (req, res) => {
+  const { userId, clubId } = req.params;
+
+  try {
+    const user = await User.findByPk(userId);
+    const club = await Club.findByPk(clubId);
+
+    if (!user || !club) {
+      res.status(404).json({ message: 'Usuario o Club no encontrado' });
+    }
+
+    await user.addMisClubes(club);
+
+    return res.json({ message: 'Usuario unido al club exitosamente!' });
+  } catch (error) {
+    console.error('Error al unir usuario al club:', error);
+    return res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
+// DELETE users/:userId/clubs/:clubId
+export const deleteJoinedUserClub = async (req, res) => {
+  const { userId, clubId } = req.params;
+
+  try {
+    const user = await User.findByPk(userId);
+    const club = await Club.findByPk(clubId);
+
+    if (!user || !club) {
+      res.status(404).json({ message: 'Usuario o Club no encontrado' });
+    }
+
+    await user.removeMisClubes(club);
+
+    return res.json({ message: 'Usuario eliminado al club exitosamente!' });
+  } catch (error) {
+    console.error('Error al eliminado usuario al club:', error);
+    return res.status(500).json({ message: 'Error interno del servidor' });
+  }
+};
+
+
 
 //validacion
 const validateClubData = (req) => {

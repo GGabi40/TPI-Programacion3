@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useNavigate } from "react-router";
 import "./cardClub.css";
 import { showConfirmAlert } from "../sweetAlert/ConfirmAlert";
@@ -8,10 +8,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook } from "@fortawesome/free-solid-svg-icons";
 import { useFetch } from "../hook/useFetch";
 
+import { AuthenticationContext } from "../services/auth.context";
+
 
 
 /* Acá están los cards de cada club */
 const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
+  const { token } = useContext(AuthenticationContext);
   const { del } = useFetch("/clubs");
   const navigate = useNavigate();
 
@@ -24,7 +27,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
   };
 
   const handleDelete = async (id) => {
-    const deleteClub = await del(id);
+    const deleteClub = await del(id, token);
 
     if(deleteClub) {
       const updatedClubs = allClubs.filter((c) => c.id !== id);

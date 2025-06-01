@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router";
 import LeftNav from "../nav/LeftNav";
 import logo from '../../assets/img/logo/Logo-InkLink.webp';
@@ -7,7 +7,7 @@ import { useFetch } from "../hook/useFetch";
 import Activities from "./activities/Activities";
 import Loading from "../error/loading/Loading";
 import JoinClubButton from "./JoinClubButton";
-import { AuthenticationContext } from "../services/auth.context";
+
 
 import './clubDetails.css';
 
@@ -16,8 +16,6 @@ const ClubDetails = () => {
     const { id } = useParams();
     const navigate = useNavigate();
     const [club, setClub] = useState(null);
-    const { userId } = useContext(AuthenticationContext);
-
 
     useEffect(() => {
         //trae los detalles del club
@@ -63,8 +61,8 @@ const ClubDetails = () => {
                     </div>
 
                     <div className="button-separate">
-                        <JoinClubButton userId={userId} clubId={id} />
-                        <button onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
+                        <JoinClubButton clubId={id} />
+                        <button className="btn-back" onClick={() => navigate("/joined-clubs")}>Volver a Clubs</button>
                     </div>
                 </section>
                 <section className="club-activities">

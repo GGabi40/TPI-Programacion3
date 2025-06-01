@@ -20,6 +20,60 @@
   flex-wrap: wrap;
 }
 
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  border-radius: 16px;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-size: 1rem;
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+  transition: all 0.3s ease-in-out;
+}
+
+.button-separate {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.details-container p {
+  flex: 1 1 45%;
+  border: 1px solid #eaeaea;
+  background-color: #280b46cc;
+  border-radius: 12px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+}
+
+.details-container p:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.details-container strong {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+
+@media (max-width: 768px) {
+  .details-container p {
+    flex: 1 1 100%;
+  }
+}
+
 .logo-wrapper img {
   height: 80px;
   width: auto;
@@ -28,6 +82,7 @@
 }
 
 .club-title {
+  text-transform: capitalize;
   font-size: 28px;
   font-weight: 700;
   flex-grow: 1;

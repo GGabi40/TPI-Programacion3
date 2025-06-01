@@ -1,36 +1,67 @@
-import React from 'react'
+import React, { useContext, useState, useEffect } from 'react'
+import { AuthenticationContext } from '../services/auth.context'
 import { useNavigate } from 'react-router'
 import { useFetch } from '../hook/useFetch'
 import { successToast, errorToast } from '../toast/NotificationToast'
 
-const JoinClubButton = ({ userId, clubId }) => {
-    const { post } = useFetch("/users");
+
+const JoinClubButton = ({ clubId }) => {
+    const { token, userId } = useContext(AuthenticationContext);
+    const { postWithoutData, delWithoutId } = useFetch(`/users/${userId}/clubs/${clubId}`);
+    const { getById } = useFetch(`/clubs/user`);
+    const [joined, setJoined] = useState(false);
+
     const navigate = useNavigate();
+
+    useEffect(() => {
+        const fetchUserMember = async () => {
+            const member = await getById(userId, token);
+            const isJoined = member.some(club => club.id === Number(clubId))
+            setJoined(isJoined);
+        }
+
+        fetchUserMember();
+    }, [userId, clubId])
 
     const handleClickJoin = async () => {
         try {
-            const response = await post(`/${userId}/clubs/${clubId}`);
-            console.log("Respuesta del backend:", response);
+            const response = await postWithoutData(token);
 
             if (response?.message) {
                 successToast(response.message);
             } else {
                 successToast("¡Te uniste a este club correctamente!");
-                setTimeout(() => navigate("/joined-clubs"), 1500);
             }
             
+            setJoined(true);
         } catch (error) {
             console.error("Error al unirse al club:", error);
             errorToast("Hubo un problema al unirse al club.")
         }
     };
 
+    const handleDeleteJoin = async () => {
+        try {
+            const response = await delWithoutId();
+
+            if (response?.message) {
+                successToast(response.message);
+            } else {
+                successToast("¡Te vamos a extrañar! Te eliminaste de este club correctamente");
+                setTimeout(() => navigate("/joined-clubs"), 1000);
+            } 
+
+            setJoined(false);
+        } catch (error) {
+            console.error("Error al eliminarse del club:", error);
+            errorToast("Hubo un problema al eliminarse del club.")
+        }
+    }
+
     return (
-        <div className="button-separate">
-            <button type="submit" className="btn-card" onClick={handleClickJoin}>
-                Unirse!
-            </button>
-        </div>
+        <button type="submit" className={joined ? 'btn-card btn-leave' : 'btn-card'} onClick={joined ? handleDeleteJoin : handleClickJoin}>
+            {joined ? "Salir del club" : "¡Unirse!"}
+        </button>
     )
 }
 
