@@ -103,7 +103,7 @@ p {
   color: white;
 }
 
-p.dark {
+p.dark, .dark {
   color: var(--font-color-light);
 }
 
@@ -293,7 +293,7 @@ button[type="submit"]:hover {
   color: var(--font-color-dark);
 }
 
-.link-subrayado.oscuro {
+.link-subrayado.dark {
   color: var(--font-color-light);
 }
 

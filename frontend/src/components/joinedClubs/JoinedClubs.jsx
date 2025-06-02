@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router";
 
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
@@ -60,10 +61,8 @@ const JoinedClubs = () => {
       ) : (
         <>
           <LeftNav />
-          <Search
-            onSearch={setSearchTerm}
-            placeholder="Buscar..."
-          />
+          <div className="space"></div>
+          <div className="space"></div>
 
           <div className="hero-container">
             <div className="hero-club">
@@ -83,6 +82,7 @@ const JoinedClubs = () => {
                     alt="imagen de un gatito corriendo una lana"
                     className="img-nada-aqui"
                   />
+                  <Link to="/discover-clubs" className="link-subrayado dark">¡Descubre nuevas comunidades!</Link>
                 </div>
               )}
 
