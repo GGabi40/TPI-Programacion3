@@ -60,7 +60,7 @@ export const useFetch = (endpoint) => {
   };
 
   //                 objeto
-  const post = async (data = null, token = null) => {
+  const post = async (data, token = null) => {
     try {
       const res = await fetch(complete_url, {
         method: "POST",

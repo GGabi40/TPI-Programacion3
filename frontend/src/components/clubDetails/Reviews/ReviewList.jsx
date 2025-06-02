@@ -5,12 +5,15 @@ import CommentList from "../Comments/CommentList";
 
 import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
+import { successToast } from "../../toast/NotificationToast";
 
 const ReviewList = ({ activityId }) => {
-  const { token } = useContext(AuthenticationContext);
-  const { getAll } = useFetch(`/reviews/activity/${activityId}`);
+  const { token, userId } = useContext(AuthenticationContext);
+  const { getAll, put, del } = useFetch(`/reviews/activity/${activityId}`);
   const [allReviews, setAllReviews] = useState([]);
   const [visibleComments, setVisibleComments] = useState({});
+  const [editingReview, setEditingReview] = useState(null);
+  const [editedContent, setEditedContent] = useState("");
 
   useEffect(() => {
     const reviewsData = async () => {
@@ -20,6 +23,12 @@ const ReviewList = ({ activityId }) => {
 
     reviewsData();
   }, [activityId, allReviews]);
+
+  //y esta const
+  const refreshReviews = async () => {
+    const updated = await getAll(token);
+    setAllReviews(updated);
+  };
 
   // cambia la visibilidad de comentarios
   const toggleComments = (reviewId) => {
@@ -39,6 +48,30 @@ const ReviewList = ({ activityId }) => {
     console.log("Dislike en", reviewId);
     // Acá podrías llamar a tu API para registrar el dislike
   };
+
+
+  //aca esta lo que agregue
+  const handleEdit = (review) => {
+    setEditingReview(review.id);
+    setEditedContent(review.content);
+  };
+
+  const handleSave = async (reviewId) => {
+    await put({ content: editedContent }, reviewId, token);
+    setEditingReview(null);
+    setEditedContent("");
+    successToast("¡Editaste la reseña correctamente!");
+    refreshReviews();
+  };
+
+  const handleDelete = async (reviewId) => {
+    if (confirm("¿Estás seguro de que querés eliminar esta reseña?")) {
+      await del(reviewId, token);
+      successToast("Eliminaste la reseña con exito");
+      refreshReviews();
+    }
+  };
+  //hasta aca
 
   return (
     /* Mejorar estilo */
@@ -65,6 +98,36 @@ const ReviewList = ({ activityId }) => {
                     : "Mostrar comentarios"}
                 </button>
               </div>
+
+              {/* y esta condicion */}
+
+              {editingReview === review.id ? (
+                <>
+                  <textarea
+                    value={editedContent}
+                    onChange={(e) => setEditedContent(e.target.value)}
+                  />
+                  <button onClick={() => handleSave(review.id)}>Guardar</button>
+                  <button onClick={() => setEditingReview(null)}>Cancelar</button>
+                </>
+              ) : (
+                <p>{review.content}</p>
+              )}
+
+              {userId?.id === review.userId?.id &&
+                editingReview === review.id ? (
+                <>
+                  <button onClick={() => handleSave(review.id)}>Guardar</button>
+                  <button onClick={() => setEditingReview(null)}>Cancelar</button>
+                </>
+              ) : (
+                <>
+                  <button onClick={() => handleEdit(review)}>Editar</button>
+                  <button onClick={() => handleDelete(review.id)}>Eliminar</button>
+                </>
+              )}
+              
+              {/* y esta condicion */}
 
               {visibleComments[review.id] && (
                 <div className="comment-section">
