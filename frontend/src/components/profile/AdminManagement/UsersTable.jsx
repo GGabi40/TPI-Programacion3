@@ -90,8 +90,8 @@ const UsersTable = () => {
       <Search
         onSearch={setSearchTerm}
         placeholder="Buscar Username o email..."
-        showButton={false}
       />
+
       <div className="user-table-container">
         <table className="user-table">
           <thead>
@@ -114,7 +114,7 @@ const UsersTable = () => {
                   <td>
                     {editingUserId === u.id ? (
                       <select
-                        className="edit-user-rol"
+                        className="select-gender"
                         value={editedRole}
                         onChange={(e) => setEditedRole(e.target.value)}
                       >

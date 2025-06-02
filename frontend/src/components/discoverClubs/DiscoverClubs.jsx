@@ -30,6 +30,13 @@ const DiscoverClubs = () => {
     fetchData();
   }, []);
 
+  // Los clubes que son inactivos, no aparecen en "mis clubes"
+  const filteredActiveClubs = allClubs.filter(c => {
+    if (c.isActive) {
+      return c;
+    }
+  })
+
   if (isLoading) return <Loading />
 
   return (
@@ -40,7 +47,7 @@ const DiscoverClubs = () => {
 
       <div className="hero-container">
         <div className="hero-club">
-          <ClubList clubs={allClubs} title="Descubre" showButtons={false} />
+          <ClubList clubs={filteredActiveClubs} title="Descubre" showButtons={false} />
 
           <div className="break"></div>
         </div>

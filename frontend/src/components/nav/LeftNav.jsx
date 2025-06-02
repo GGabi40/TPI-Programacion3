@@ -16,7 +16,7 @@ const LeftNav = () => {
   const navigate = useNavigate();
   const { handleUserLogout, token, userId } = useContext(AuthenticationContext);
   
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -82,7 +82,7 @@ const LeftNav = () => {
               Mi Perfil
             </Link>
             <Link to="/joined-clubs" className="link-button nav-btn" onClick={closeMenu}>
-              Mis Clubes
+              {user?.role?.includes('admin') ? "Administrar" : "Mis Clubes"}
             </Link>
             <Link to="/discover-clubs" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
