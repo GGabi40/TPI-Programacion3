@@ -186,10 +186,11 @@ form {
   margin-bottom: 1.5rem;
 }
 
-.select-gender {
+.select-gender, .select-gender:focus {
   background-color: var(--bg-color-footer);
   color: var(--bg-color-light);
 }
+
 
 .logo-form>img {
   height: 90px;
