@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { successToast, errorToast } from "../../toast/NotificationToast";
 import { validateString, validateEmail } from "../../auth/Auth.services";
-import { useNavigate } from "react-router";
 
 import logo from "../../../assets/img/logo/Logo-InkLink.webp";
 
@@ -10,8 +9,8 @@ import { AuthenticationContext } from "../../services/auth.context";
 
 const ProfileForm = ({ user, setUser, show, setShow }) => {
   const { put } = useFetch("/profile");
-  const navigate = useNavigate();
   const { token, userId } = useContext(AuthenticationContext);
+
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [birthdate, setBirthdate] = useState("");
@@ -19,9 +18,6 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
   const [errors, setErrors] = useState({
     userName: "",
     email: "",
-    // password: "",
-    // confirmPassword: "",
-    // birthdate: "",
     backend: "",
   });
 
@@ -37,11 +33,7 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
 
   // cada vez que cambie show, hace scroll o no
   useEffect(() => {
-    if (show) {
-      window.scrollTo({ top: 300, behavior: "smooth" });
-    } else {
-      window.scrollTo({ top: 0 });
-    }
+    window.scrollTo({ top: show ? 300 : 0, behavior: "smooth"});
   }, [show]);
 
   // llena estados cuando cambie user
@@ -84,7 +76,7 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
       return false;
     }
 
-    return formIsValid;
+    return true;
   };
 
   const handleSubmit = async (e) => {
@@ -108,7 +100,7 @@ const ProfileForm = ({ user, setUser, show, setShow }) => {
     const updatedUser = {
       username: userName,
       email,
-      avatar: avatar,
+      avatar,
     };
 
     try {
