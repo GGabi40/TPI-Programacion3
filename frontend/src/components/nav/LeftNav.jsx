@@ -11,7 +11,6 @@ import { AuthenticationContext } from '../services/auth.context';
 import { useFetch } from "../hook/useFetch";
 
 
-
 const LeftNav = () => {
   const { getById } = useFetch("/users");
   const navigate = useNavigate();

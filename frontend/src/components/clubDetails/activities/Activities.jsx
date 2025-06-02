@@ -15,17 +15,7 @@ const Activities = ({ clubId }) => {
   const [currentBook, setCurrentBook] = useState("");
   const [currentActivity, setCurrentActivity] = useState("");
 
-  /* FALTA AGREGAR DIFERENCIACION POR ROL
-  ADMIN: Puede crear nueva actividad
-  {isAdmin && (
-    <div className="admin-actions">
-      <button className="btn-admin" onClick={navigate(/new-activity)}>➕ Nueva Actividad</button>
-    </div>
-  )}
   
-  USER COMUN: si está unido al club: Botón muestra: unido al club con att disabled
-  */
-
   useEffect(() => {
     const fetchActivity = async () => {
       const response = await getAll();

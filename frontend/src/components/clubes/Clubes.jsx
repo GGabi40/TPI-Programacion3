@@ -1,5 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router";
 import ClubList from "../clubList/ClubList";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 import { useFetch } from "../hook/useFetch";
 import { AuthenticationContext } from "../services/auth.context";
@@ -10,6 +13,11 @@ const Clubes = ({ clubs }) => {
   const { userId } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/user/${userId}`);
   const [usersClubs, setUsersClubs] = useState([]);
+  const navigate = useNavigate();
+
+  const handleClickCreate = () => {
+    navigate("/new-club");
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -23,12 +31,16 @@ const Clubes = ({ clubs }) => {
 
   return (
     <div className="hero-container">
+      <button className="cssbuttons-io-button" onClick={handleClickCreate}>
+        <FontAwesomeIcon icon={faPlus} id="btn-plus" />
+        <span>Club</span>
+      </button>
+
       {/* Club al que está unido usuario */}
       <ClubList clubs={usersClubs} title="Mis Clubes" showButtons={false} />
 
       {/* Todos los clubes */}
       <ClubList clubs={clubs} title="Descubre" showButtons={false} />
-
     </div>
   );
 };

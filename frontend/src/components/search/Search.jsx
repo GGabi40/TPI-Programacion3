@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const Search = ({ onSearch, placeholder, showButton }) => {
+const Search = ({ onSearch, placeholder }) => {
   const [input, setInput] = useState("");
 
   /* Cada vez que "input" cambie, se volverá a ejecutar el efecto y 
@@ -28,11 +28,6 @@ const Search = ({ onSearch, placeholder, showButton }) => {
           value={input}
           onChange={(e) => setInput(e.target.value)}
         />
-        {showButton && (
-          <button onClick={handleSearch} className="search-btn">
-            <FontAwesomeIcon icon={faMagnifyingGlass} />
-          </button>
-        )}
       </div>
     </div>
   );

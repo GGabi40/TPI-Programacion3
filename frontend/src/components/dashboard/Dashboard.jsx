@@ -15,10 +15,7 @@ import DiscoverClubs from "../discoverClubs/DiscoverClubs";
 const Dashboard = () => {
   const { getAll, isLoading } = useFetch("/clubs");
   const [allClubs, setAllClubs] = useState([]);
-
-  const handleSearch = (query) => {
-    console.log("Buscando desde Dashboard:", query);
-  };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -37,12 +34,6 @@ const Dashboard = () => {
   return (
     <div>
       <LeftNav />
-
-      <Search
-        onSearch={handleSearch}
-        placeholder="Buscar..."
-        showButton={true}
-      />
 
       <Routes>
         <Route index element={<Clubes clubs={allClubs} />} />{" "}

@@ -42,6 +42,7 @@ const ClubsTable = () => {
     setEditedName(currentName);
   };
 
+  /* QUE FUNCIONE */
   const handleSaveClub = async (id) => {
     try {
       await put({ name: editedName }, id, token);
@@ -81,7 +82,6 @@ const ClubsTable = () => {
       <Search
         onSearch={setSearchTerm}
         placeholder="Buscar Club..."
-        showButton={false}
       />
       <div className="user-table-container">
         <table className="user-table">

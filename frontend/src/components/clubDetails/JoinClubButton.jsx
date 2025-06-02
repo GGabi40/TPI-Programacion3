@@ -28,7 +28,7 @@ const JoinClubButton = ({ clubId }) => {
             const response = await postWithoutData(token);
 
             if (response?.message) {
-                successToast(response.message);
+                errorToast(response.message);
             } else {
                 successToast("¡Te uniste a este club correctamente!");
             }

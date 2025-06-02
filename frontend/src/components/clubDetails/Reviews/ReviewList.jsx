@@ -9,7 +9,8 @@ import { successToast } from "../../toast/NotificationToast";
 
 const ReviewList = ({ activityId }) => {
   const { token, userId } = useContext(AuthenticationContext);
-  const { getAll, put, del } = useFetch(`/reviews/activity/${activityId}`);
+  const { getAll, del } = useFetch(`/reviews/activity/${activityId}`);
+  /* Put tiene otra ruta /reviews/:id */
   const [allReviews, setAllReviews] = useState([]);
   const [visibleComments, setVisibleComments] = useState({});
   const [editingReview, setEditingReview] = useState(null);
@@ -22,7 +23,7 @@ const ReviewList = ({ activityId }) => {
     };
 
     reviewsData();
-  }, [activityId, allReviews]);
+  }, [activityId, token]);
 
   //y esta const
   const refreshReviews = async () => {
@@ -39,7 +40,7 @@ const ReviewList = ({ activityId }) => {
   };
 
   // Like o Dislike
-  const handleLike = (reviewId) => {
+  /* const handleLike = (reviewId) => {
     console.log("Like en", reviewId);
     // Acá podrías llamar a tu API para registrar el like
   };
@@ -47,8 +48,7 @@ const ReviewList = ({ activityId }) => {
   const handleDislike = (reviewId) => {
     console.log("Dislike en", reviewId);
     // Acá podrías llamar a tu API para registrar el dislike
-  };
-
+  }; */
 
   //aca esta lo que agregue
   const handleEdit = (review) => {
@@ -74,8 +74,6 @@ const ReviewList = ({ activityId }) => {
   //hasta aca
 
   return (
-    /* Mejorar estilo */
-    /* Agregar boton de editar y eliminar */
     <div className="review-list">
       <h5>Reseñas</h5>
       {allReviews.length === 0 ? (
@@ -90,8 +88,6 @@ const ReviewList = ({ activityId }) => {
               <p>{review.content}</p>
 
               <div className="review-buttons">
-                <button onClick={() => handleLike(review.id)}>👍</button>
-                <button onClick={() => handleDislike(review.id)}>👎</button>
                 <button onClick={() => toggleComments(review.id)}>
                   {visibleComments[review.id]
                     ? "Ocultar comentarios"
@@ -99,34 +95,38 @@ const ReviewList = ({ activityId }) => {
                 </button>
               </div>
 
+              {
+                userId === review.userId && (
+                  <>
+                    <button onClick={() => handleEdit(review)}>Editar</button>
+                    <button onClick={() => handleDelete(review.id)}>
+                      Eliminar
+                    </button>
+                  </>
+                )
+              }
+
               {/* y esta condicion */}
 
-              {editingReview === review.id ? (
+              {editingReview === review.id ?? (
                 <>
                   <textarea
                     value={editedContent}
                     onChange={(e) => setEditedContent(e.target.value)}
                   />
-                  <button onClick={() => handleSave(review.id)}>Guardar</button>
-                  <button onClick={() => setEditingReview(null)}>Cancelar</button>
+                  {userId?.id === review.userId?.id && (
+                    <>
+                      <button onClick={() => handleSave(review.id)}>
+                        Guardar
+                      </button>
+                      <button onClick={() => setEditingReview(null)}>
+                        Cancelar
+                      </button>
+                    </>
+                  )}
                 </>
-              ) : (
-                <p>{review.content}</p>
               )}
 
-              {userId?.id === review.userId?.id &&
-                editingReview === review.id ? (
-                <>
-                  <button onClick={() => handleSave(review.id)}>Guardar</button>
-                  <button onClick={() => setEditingReview(null)}>Cancelar</button>
-                </>
-              ) : (
-                <>
-                  <button onClick={() => handleEdit(review)}>Editar</button>
-                  <button onClick={() => handleDelete(review.id)}>Eliminar</button>
-                </>
-              )}
-              
               {/* y esta condicion */}
 
               {visibleComments[review.id] && (

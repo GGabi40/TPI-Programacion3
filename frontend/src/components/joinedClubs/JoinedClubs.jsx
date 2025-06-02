@@ -18,6 +18,9 @@ const JoinedClubs = () => {
   const { getById } = useFetch("/users");
   const [user, setUser] = useState("");
 
+  const [searchTerm, setSearchTerm] = useState("");
+
+
   useEffect(() => {
     const fetchUser = async () => {
       if (userId) {
@@ -43,11 +46,10 @@ const JoinedClubs = () => {
     fetchData();
   }, [userId]);
 
-  
+  const filteredClubs = usersClubs.filter((c) =>
+    c.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
-  const handleSearch = (query) => {
-    console.log("Buscando desde Dashboard:", query);
-  };
 
   if (isLoading) return <Loading />;
 
@@ -59,14 +61,13 @@ const JoinedClubs = () => {
         <>
           <LeftNav />
           <Search
-            onSearch={handleSearch}
+            onSearch={setSearchTerm}
             placeholder="Buscar..."
-            showButton={true}
           />
 
           <div className="hero-container">
             <div className="hero-club">
-              {usersClubs.length > 0 ? (
+              {filteredClubs.length > 0 ? (
                 <ClubList
                   clubs={usersClubs}
                   title="Mis Clubes"
