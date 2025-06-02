@@ -22,9 +22,6 @@ const JoinedClubsAdmin = () => {
   const [user, setUser] = useState("");
   const navigate = useNavigate();
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-
   const handleClickCreate = () => {
     navigate("/new-club");
   };
@@ -54,23 +51,17 @@ const JoinedClubsAdmin = () => {
     fetchUser();
   }, [userId]);
 
-  const filteredClubs = allClubs.filter((c) =>
-    c.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
   if (isLoading) return <Loading />;
 
   return (
     <>
       <LeftNav />
-      <Search
-        onSearch={setSearchTerm}
-        placeholder="Buscar..."
-      />
+      <div className="space"></div>
+      <div className="space"></div>
 
       <div className="hero-container">
         <div className="hero-club">
-          {filteredClubs.length > 0 ? (
+          {allClubs.length > 0 ? (
             <ClubList
               clubs={allClubs}
               title="Mis Clubes"
@@ -97,7 +88,6 @@ const JoinedClubsAdmin = () => {
           <div className="break"></div>
         </div>
       </div>
-      <FooterSmall />
     </>
   );
 };

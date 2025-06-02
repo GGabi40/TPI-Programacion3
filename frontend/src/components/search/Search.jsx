@@ -1,7 +1,5 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
 const Search = ({ onSearch, placeholder }) => {
   const [input, setInput] = useState("");
@@ -11,12 +9,6 @@ const Search = ({ onSearch, placeholder }) => {
   useEffect(() => {
     onSearch(input);
   }, [input]);
-
-  const handleSearch = (e) => {
-    // falta la funcionalidad
-    // filtrado o get - filtro
-    setInput(e.target.value);
-  };
 
   return (
     <div className="search-bar-container">

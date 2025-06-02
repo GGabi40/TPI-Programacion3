@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router";
+import Search from "../search/Search";
+
 import ClubList from "../clubList/ClubList";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
@@ -15,10 +17,6 @@ const Clubes = ({ clubs }) => {
   const [usersClubs, setUsersClubs] = useState([]);
   const navigate = useNavigate();
 
-  const handleClickCreate = () => {
-    navigate("/new-club");
-  };
-
   useEffect(() => {
     const fetchData = async () => {
       const uClubs = await getAll();
@@ -31,10 +29,7 @@ const Clubes = ({ clubs }) => {
 
   return (
     <div className="hero-container">
-      <button className="cssbuttons-io-button" onClick={handleClickCreate}>
-        <FontAwesomeIcon icon={faPlus} id="btn-plus" />
-        <span>Club</span>
-      </button>
+      <div className="space"></div>
 
       {/* Club al que está unido usuario */}
       <ClubList clubs={usersClubs} title="Mis Clubes" showButtons={false} />
