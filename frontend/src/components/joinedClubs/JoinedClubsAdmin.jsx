@@ -51,20 +51,13 @@ const JoinedClubsAdmin = () => {
     fetchUser();
   }, [userId]);
 
-  const handleSearch = (query) => {
-    console.log("Buscando desde Dashboard:", query);
-  };
-
   if (isLoading) return <Loading />;
 
   return (
     <>
       <LeftNav />
-      <Search
-        onSearch={handleSearch}
-        placeholder="Buscar..."
-        showButton={true}
-      />
+      <div className="space"></div>
+      <div className="space"></div>
 
       <div className="hero-container">
         <div className="hero-club">
@@ -95,7 +88,6 @@ const JoinedClubsAdmin = () => {
           <div className="break"></div>
         </div>
       </div>
-      <FooterSmall />
     </>
   );
 };

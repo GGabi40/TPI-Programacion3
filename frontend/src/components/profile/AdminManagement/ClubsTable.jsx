@@ -15,7 +15,7 @@ const ClubsTable = () => {
   const { token } = useContext(AuthenticationContext);
   const [allClubs, setAllClubs] = useState([]);
   const [editingClubId, setEditingClubId] = useState(null);
-  const [editedName, setEditedName] = useState("");
+  const [editedClub, setEditedClub] = useState({});
 
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -37,22 +37,28 @@ const ClubsTable = () => {
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const handleEditClub = (id, currentName) => {
-    setEditingClubId(id);
-    setEditedName(currentName);
+  const handleEditClub = (club) => {
+    setEditingClubId(club.id);
+    setEditedClub({ ...club });
+  };
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    const newValue = type === "checkbox" ? checked : value;
+    setEditedClub({ ...editedClub, [name]: newValue });
   };
 
   const handleSaveClub = async (id) => {
     try {
-      await put({ name: editedName }, id, token);
+      await put(editedClub, id, token);
 
       const updatedClubs = allClubs.map((club) =>
-        club.id === id ? { ...club, name: editedName } : club
+        club.id === id ? { ...editedClub } : club
       );
+
       setAllClubs(updatedClubs);
       setEditingClubId(null);
-      setEditedName("");
-
+      setEditedClub({});
       successToast("Club actualizado correctamente");
     } catch (error) {
       console.error("Error al actualizar club:", error);
@@ -78,11 +84,7 @@ const ClubsTable = () => {
 
   return (
     <>
-      <Search
-        onSearch={setSearchTerm}
-        placeholder="Buscar Club..."
-        showButton={false}
-      />
+      <Search onSearch={setSearchTerm} placeholder="Buscar Club..." />
       <div className="user-table-container">
         <table className="user-table">
           <thead>
@@ -104,25 +106,86 @@ const ClubsTable = () => {
                   <td>
                     {editingClubId === club.id ? (
                       <input
-                        value={editedName}
-                        onChange={(e) => setEditedName(e.target.value)}
-                        className="edit-user-rol"
+                        name="name"
+                        value={editedClub.name}
+                        onChange={handleChange}
+                        className="select-gender"
                       />
                     ) : (
                       club.name
                     )}
                   </td>
-                  <td>{club.restricted ? "Sí" : "No"}</td>
-                  <td>{club.interest}</td>
-                  <td>{club.gender}</td>
                   <td>
-                    <span
-                      className={
-                        club.isActive ? "status-active" : "status-inactive"
-                      }
-                    >
-                      {club.isActive ? "Activo" : "Inactivo"}
-                    </span>
+                    {editingClubId === club.id ? (
+                      <select
+                        className="select-gender"
+                        name="restricted"
+                        value={editedClub.restricted ? "true" : "false"}
+                        onChange={(e) =>
+                          setEditedClub({
+                            ...editedClub,
+                            restricted: e.target.value === "true",
+                          })
+                        }
+                      >
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                      </select>
+                    ) : club.restricted ? (
+                      "Sí"
+                    ) : (
+                      "No"
+                    )}
+                  </td>
+                  <td>
+                    {editingClubId === club.id ? (
+                      <input
+                        className="select-gender"
+                        name="interest"
+                        value={editedClub.interest}
+                        onChange={handleChange}
+                      />
+                    ) : (
+                      club.interest
+                    )}
+                  </td>
+                  <td>
+                    {editingClubId === club.id ? (
+                      <input
+                        className="select-gender"
+                        name="gender"
+                        value={editedClub.gender}
+                        onChange={handleChange}
+                      />
+                    ) : (
+                      club.gender
+                    )}
+                  </td>
+                  <td>
+                    {editingClubId === club.id ? (
+                      <select
+                        className="select-gender"
+                        name="isActive"
+                        value={editedClub.isActive ? "true" : "false"}
+                        onChange={(e) =>
+                          setEditedClub({
+                            ...editedClub,
+                            isActive: e.target.value === "true",
+                          })
+                        }
+                      >
+                        <option value="true">Activo</option>
+                        <option value="false">Inactivo</option>
+                      </select>
+                    ) : (
+                      <span
+                        className={
+                          club.isActive ? "status-active" : "status-inactive"
+                        }
+                      >
+                        {club.isActive ? "Activo" : "Inactivo"}
+                      </span>
+                    )}
                   </td>
                   <td>
                     {editingClubId === club.id ? (
@@ -135,7 +198,7 @@ const ClubsTable = () => {
                     ) : (
                       <button
                         className="btn-edit"
-                        onClick={() => handleEditClub(club.id, club.name)}
+                        onClick={() => handleEditClub(club)}
                       >
                         Editar
                       </button>
@@ -152,7 +215,10 @@ const ClubsTable = () => {
               ))
             ) : (
               <tr>
-                <td colSpan="7" style={{ textAlign: "center", padding: "1rem" }}>
+                <td
+                  colSpan="7"
+                  style={{ textAlign: "center", padding: "1rem" }}
+                >
                   No se encontraron clubes
                 </td>
               </tr>

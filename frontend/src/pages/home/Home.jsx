@@ -26,8 +26,8 @@ const Home = () => {
 
       <div className="banner">
         <h3 className="text-align">
-          Descubrí nuevos mundos, compartí tus historias favoritas y unite a los clubes de
-          lectura que más te apasionen.
+          Descubrí nuevos mundos, compartí tus historias favoritas y unite a los
+          clubes de lectura que más te apasionen.
         </h3>
 
         <p className="banner-text">
@@ -60,10 +60,10 @@ const Home = () => {
             <div className="icon">
               <FontAwesomeIcon icon={faCalendarAlt} size="2x" />
             </div>
-            <h4>Agenda de Lectura</h4>
+            <h4>Impulsá tu hábito lector</h4>
             <p>
-              Seguí el ritmo del club con calendarios, fechas de discusión y
-              recordatorios.
+              Motiváte a leer más con desafíos, recomendaciones y actividades
+              semanales.
             </p>
           </Link>
         </section>
@@ -72,7 +72,9 @@ const Home = () => {
       <div className="banner-action">
         <h2>¿Listo/a para unirte a nuestra comunidad?</h2>
         <p>Creá tu cuenta y empezá a compartir lecturas hoy mismo.</p>
-        <Link className="link-button secondary" to="/register">Crear Cuenta</Link>
+        <Link className="link-button secondary" to="/register">
+          Crear Cuenta
+        </Link>
       </div>
 
       <GoToTop />

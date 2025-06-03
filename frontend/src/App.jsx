@@ -17,6 +17,11 @@ import Discover from "./components/discoverClubs/DiscoverClubs";
 import 'sweetalert2/dist/sweetalert2.min.css';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AboutUs from "./pages/AboutUs";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import JoinAdmin from "./pages/joinAdmin/JoinAdmin";
+import ModifyActivity from "./components/modifyActivity/ModifyActivity";
 
 
 function App() {
@@ -29,6 +34,9 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/terms-and-conditions" element={<TermsAndConditions />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicy />} />
           <Route path="*" element={<NotFound />} />
 
 
@@ -42,7 +50,9 @@ function App() {
             <Route path="/new-club" element={<NewClub />} />
             <Route path="/joined-clubs" element={<JoinedClubs />} />
             <Route path="/new-activity/:id" element={<NewActivity />} />
+            <Route path="/edit-activity/:id" element={<ModifyActivity />} />
             <Route path="/discover-clubs" element={<Discover />} />
+            <Route path="/join-us" element={<JoinAdmin />} />
           </Route>
 
         </Routes>

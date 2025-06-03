@@ -1,57 +1,149 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useFetch } from "../../hook/useFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPenToSquare,
+  faPlus,
+  faTrash,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router";
 import ReviewForm from "../Reviews/ReviewForm";
 import ReviewList from "../Reviews/ReviewList";
 import PastActivity from "./PastActivity";
+import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
+import { errorToast, successToast } from "../../toast/NotificationToast";
 
 
 const Activities = ({ clubId }) => {
-  const { token } = useContext(AuthenticationContext);
+  const { token, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
+  const { del, put } = useFetch(`/activities`);
   const { getById } = useFetch("/books");
+  const navigate = useNavigate();
 
   const [activities, setActivities] = useState([]);
   const [currentBook, setCurrentBook] = useState("");
   const [currentActivity, setCurrentActivity] = useState("");
 
-  /* FALTA AGREGAR DIFERENCIACION POR ROL
-  ADMIN: Puede crear nueva actividad
-  {isAdmin && (
-    <div className="admin-actions">
-      <button className="btn-admin" onClick={navigate(/new-activity)}>➕ Nueva Actividad</button>
-    </div>
-  )}
-  
-  USER COMUN: si está unido al club: Botón muestra: unido al club con att disabled
-  */
-
   useEffect(() => {
     const fetchActivity = async () => {
-      const response = await getAll();
-      setActivities(response);
+      try {
+        const activitiesList = await getAll(token);
+        setActivities(activitiesList);
 
-      const active = response.find((act) => act.isActive);
-      setCurrentActivity(active);
+        const active = activitiesList.find((act) => act.isActive);
+        setCurrentActivity(active);
 
-      if (active?.bookId) {
-        const book = await getById(active.bookId, token);
-        setCurrentBook(book);
+        if (active?.bookId) {
+          const book = await getById(active.bookId, token);
+          setCurrentBook(book);
+        }
+      } catch (error) {
+        console.error("Error al obtener actividades:", error);
       }
     };
 
     fetchActivity();
   }, []);
 
-  const pastActivities = activities.filter((a) => !a.isActive);
+  const pastActivities = activities
+    .filter((a) => !a.isActive)
+    .sort((a, b) => new Date(b.dateEnd) - new Date(a.dateEnd));
 
-  if (activities.length === 0)
+  if (activities.length === 0) {
     return (
-      <p className="no-activities">No hay actividades en este club todavía.</p>
+      <>
+        {role.includes("admin") && (
+          <div className="edit-club-btn">
+            <Link to={`/new-activity/${clubId}`} className="create-button">
+              <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+            </Link>
+          </div>
+        )}
+        <p className="no-activities">
+          No hay actividades en este club todavía.
+        </p>
+      </>
     );
+  }
+
+  const handleFinish = async (activityId) => {
+    if (!window.confirm("¿Deseas marcar esta actividad como finalizada?"))
+      return;
+
+    try {
+      await put(activityId, { isActive: false }, token);
+      successToast("Actividad marcada como finalizada.");
+
+      setActivities((prev) =>
+        prev.map((act) =>
+          act.id === activityId ? { ...act, isActive: false } : act
+        )
+      );
+      setCurrentActivity(null);
+      setCurrentBook(null);
+    } catch (error) {
+      console.error("Error al finalizar actividad:", error);
+      errorToast("No se pudo finalizar la actividad.");
+    }
+  };
+
+  const handleDelete = async (activityId) => {
+    if (!window.confirm("¿Estás seguro de borrar esta actividad?")) {
+      return;
+    }
+
+    try {
+      await del(activityId, token);
+      setActivities((prev) => prev.filter((act) => act.id !== activityId));
+
+      if (currentActivity?.id === activityId) {
+        setCurrentActivity(null);
+        setCurrentBook(null);
+      }
+
+      successToast("Actividad borrada correctamente.");
+    } catch (error) {
+      console.error("Error al borrar la actividad:", error);
+      errorToast("No se pudo borrar la actividad. Intenta más tarde.");
+    }
+  };
 
   return (
     <div className="club-activities">
+      {role.includes("admin") && currentActivity && (
+        <div
+          className="edit-club-btn"
+          style={{ display: "flex", gap: "1rem", margin: "auto" }}
+        >
+          <Link
+            to={`/edit-activity/${currentActivity.id}`}
+            className="edit-button"
+          >
+            <FontAwesomeIcon icon={faPenToSquare} /> Editar Actividad
+          </Link>
+
+          <Link to={`/new-activity/${clubId}`} className="create-button">
+            <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+          </Link>
+
+          <button
+            className="end-button"
+            onClick={() => handleFinish(currentActivity.id)}
+          >
+            <FontAwesomeIcon icon={faCheckCircle} /> Finalizar Actividad
+          </button>
+
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(currentActivity.id)}
+          >
+            <FontAwesomeIcon icon={faTrash} /> Borrar Actividad
+          </button>
+        </div>
+      )}
+
       {/* Actividad Actual */}
       {currentActivity ? (
         <section className="current-activity">
@@ -67,7 +159,8 @@ const Activities = ({ clubId }) => {
               </p>
               <br />
               <p className="progress">
-                <strong>Progreso:</strong> {currentActivity.progress.toUpperCase()}
+                <strong>Progreso:</strong>{" "}
+                {currentActivity.progress.toUpperCase()}
               </p>
             </div>
 
@@ -99,20 +192,27 @@ const Activities = ({ clubId }) => {
           </div>
         </section>
       ) : (
-        <p className="no-active">Actualmente no hay ninguna lectura activa.</p>
+        <>
+          {role.includes("admin") && (
+            <div className="edit-club-btn">
+              <Link to={`/new-activity/${clubId}`} className="create-button">
+                <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+              </Link>
+            </div>
+          )}
+          <p className="no-active">
+            Actualmente no hay ninguna lectura activa.
+          </p>
+        </>
       )}
 
-      {/* Actividad pasada */}
+      {/* Actividades pasadas */}
       {pastActivities.length > 0 && (
         <div className="past-activities">
           <h3 className="section-title">📚 Actividades Finalizadas</h3>
-          {activities
-            .filter(
-              (act) => !act.isActive || new Date(act.dateEnd) < new Date()
-            )
-            .map((pastAct) => (
-              <PastActivity activity={pastAct} />
-            ))}
+          {pastActivities.map((pastAct) => (
+            <PastActivity key={pastAct.id} activity={pastAct} />
+          ))}
         </div>
       )}
     </div>

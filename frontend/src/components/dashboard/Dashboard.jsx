@@ -15,10 +15,7 @@ import DiscoverClubs from "../discoverClubs/DiscoverClubs";
 const Dashboard = () => {
   const { getAll, isLoading } = useFetch("/clubs");
   const [allClubs, setAllClubs] = useState([]);
-
-  const handleSearch = (query) => {
-    console.log("Buscando desde Dashboard:", query);
-  };
+  
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,20 +29,22 @@ const Dashboard = () => {
     fetchData();
   }, [])
 
+
+  // Los clubes que son inactivos, no aparecen en "mis clubes"
+  const filteredActiveClubs = allClubs.filter(c => {
+    if (c.isActive) {
+      return c;
+    }
+  })
+
   if (isLoading) return <Loading />
 
   return (
     <div>
       <LeftNav />
 
-      <Search
-        onSearch={handleSearch}
-        placeholder="Buscar..."
-        showButton={true}
-      />
-
       <Routes>
-        <Route index element={<Clubes clubs={allClubs} />} />{" "}
+        <Route index element={<Clubes clubs={filteredActiveClubs} />} />{" "}
         {/* /* PRINCIPAL - donde estan los clubes */}
         <Route path="/profile" element={<Profile />} />
         <Route path="/joined-clubs" element={<MisClubes clubs={allClubs} setAllClubs={setAllClubs} />} />
@@ -53,7 +52,8 @@ const Dashboard = () => {
       </Routes>
 
       <GoToTop />
-      <FooterSmall />
+      <div className="space"></div>
+      <div className="space"></div>
     </div>
   );
 };

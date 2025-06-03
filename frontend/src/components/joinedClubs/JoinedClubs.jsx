@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router";
 
 import LeftNav from "../nav/LeftNav";
 import FooterSmall from "../footer/FooterSmall";
@@ -43,12 +44,6 @@ const JoinedClubs = () => {
     fetchData();
   }, [userId]);
 
-  
-
-  const handleSearch = (query) => {
-    console.log("Buscando desde Dashboard:", query);
-  };
-
   if (isLoading) return <Loading />;
 
   return (
@@ -58,14 +53,14 @@ const JoinedClubs = () => {
       ) : (
         <>
           <LeftNav />
-          <Search
-            onSearch={handleSearch}
-            placeholder="Buscar..."
-            showButton={true}
-          />
+          <div className="space"></div>
 
           <div className="hero-container">
             <div className="hero-club">
+              <Link to="/join-us" className="link-subrayado dark crear-club">
+                ¿Querés crear tus propios clubes?
+              </Link>
+              
               {usersClubs.length > 0 ? (
                 <ClubList
                   clubs={usersClubs}
@@ -82,6 +77,9 @@ const JoinedClubs = () => {
                     alt="imagen de un gatito corriendo una lana"
                     className="img-nada-aqui"
                   />
+                  <Link to="/discover-clubs" className="link-subrayado dark">
+                    ¡Descubre nuevas comunidades!
+                  </Link>
                 </div>
               )}
 

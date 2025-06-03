@@ -103,7 +103,7 @@ p {
   color: white;
 }
 
-p.dark {
+p.dark, .dark {
   color: var(--font-color-light);
 }
 
@@ -172,11 +172,11 @@ form {
 }
 
 .error {
-  background-color: #e74c3c;
+  background-color: red;
   color: #fff;
   font-size: 15px;
   padding: 6px 8px;
-  border-radius: var(--border-radius);
+  border-radius: 4px;
 }
 
 .logo-form {
@@ -186,10 +186,11 @@ form {
   margin-bottom: 1.5rem;
 }
 
-.select-gender {
+.select-gender, .select-gender:focus {
   background-color: var(--bg-color-footer);
   color: var(--bg-color-light);
 }
+
 
 .logo-form>img {
   height: 90px;
@@ -292,8 +293,12 @@ button[type="submit"]:hover {
   color: var(--font-color-dark);
 }
 
-.link-subrayado.oscuro {
+.link-subrayado.dark {
   color: var(--font-color-light);
+}
+
+.crear-club {
+  text-align: right;
 }
 
 .link-subrayado:hover {

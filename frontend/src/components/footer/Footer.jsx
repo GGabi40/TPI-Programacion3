@@ -16,7 +16,7 @@ const Footer = () => {
 
       <div className="footer nosotros">
         <h3>Sobre Nosotros</h3>
-        <Link to="/" className="link-subrayado">
+        <Link to="/about-us" className="link-subrayado">
           Quiénes Somos
         </Link>
       </div>
@@ -57,10 +57,10 @@ const Footer = () => {
 
       <div className="footer legal">
         <h3>Legal</h3>
-        <Link to="/" className="link-subrayado">
+        <Link to="/terms-and-conditions" className="link-subrayado">
           Términos y Condiciones
         </Link>
-        <Link to="/" className="link-subrayado">
+        <Link to="/privacy-policy" className="link-subrayado">
           Política de Privacidad
         </Link>
       </div>

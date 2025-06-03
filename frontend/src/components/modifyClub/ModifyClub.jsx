@@ -3,8 +3,6 @@ import ClubForm from '../clubForm/ClubForm';
 import { useNavigate, useParams } from 'react-router';
 import { useFetch } from '../hook/useFetch';
 
-
-
 const ModifyClub = () => {
   const { put, getById } = useFetch("/clubs");
   const { id } = useParams();

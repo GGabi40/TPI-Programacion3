@@ -11,13 +11,12 @@ import { AuthenticationContext } from '../services/auth.context';
 import { useFetch } from "../hook/useFetch";
 
 
-
 const LeftNav = () => {
   const { getById } = useFetch("/users");
   const navigate = useNavigate();
   const { handleUserLogout, token, userId } = useContext(AuthenticationContext);
   
-  const [user, setUser] = useState('');
+  const [user, setUser] = useState({});
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleMenu = () => setIsOpen(!isOpen);
@@ -83,12 +82,11 @@ const LeftNav = () => {
               Mi Perfil
             </Link>
             <Link to="/joined-clubs" className="link-button nav-btn" onClick={closeMenu}>
-              Mis Clubes
+              {user?.role?.includes('admin') ? "Administrar" : "Mis Clubes"}
             </Link>
             <Link to="/discover-clubs" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
             </Link>
-
           </div>
 
           <div className="btns-2">
