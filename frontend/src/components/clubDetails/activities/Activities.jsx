@@ -17,7 +17,7 @@ import { errorToast, successToast } from "../../toast/NotificationToast";
 import {
   showConfirmAlert,
   showConfirmFinish,
-  showSweetNewActivity
+  showSweetNewActivity,
 } from "../../sweetAlert/ConfirmAlert";
 
 const Activities = ({ clubId }) => {
@@ -55,7 +55,6 @@ const Activities = ({ clubId }) => {
   const pastActivities = activities
     .filter((a) => !a.isActive)
     .sort((a, b) => new Date(b.dateEnd) - new Date(a.dateEnd));
-    
 
   if (activities.length === 0) {
     return (
@@ -109,6 +108,14 @@ const Activities = ({ clubId }) => {
     }
   };
 
+  const formatDate = (dateStr) => {
+    return new Date(dateStr).toLocaleDateString("es-AR", {
+      day: "numeric",
+      month: "long",
+      year: "numeric",
+    });
+  };
+
   return (
     <div className="club-activities">
       {role.includes("admin") && currentActivity && (
@@ -123,7 +130,17 @@ const Activities = ({ clubId }) => {
             <FontAwesomeIcon icon={faPenToSquare} /> Editar Actividad
           </Link>
 
-          <button onClick={() => showSweetNewActivity(currentActivity.id, handleFinish, navigate, clubId)} className="create-button">
+          <button
+            onClick={() =>
+              showSweetNewActivity(
+                currentActivity.id,
+                handleFinish,
+                navigate,
+                clubId
+              )
+            }
+            className="create-button"
+          >
             <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
           </button>
 
@@ -146,47 +163,41 @@ const Activities = ({ clubId }) => {
       {/* Actividad Actual */}
       {currentActivity ? (
         <section className="current-activity">
-          <h3 className="activity-title">Lectura en curso</h3>
+          <h3 className="activity-title text-align">Lectura en curso</h3>
           <div className="activity-card current">
-            <div className="activity-info">
+            <div className="activity-dates">
               <p className="dates">
-                <strong>Del:</strong>{" "}
-                {new Date(currentActivity.dateStart).toLocaleDateString()}{" "}
+                <strong>📅 Del:</strong> {formatDate(currentActivity.dateStart)}{" "}
                 <br />
-                <strong>al:</strong>{" "}
-                {new Date(currentActivity.dateEnd).toLocaleDateString()}
-              </p>
-              <br />
-              <p className="progress">
-                <strong>Progreso:</strong>{" "}
-                {currentActivity.progress.toUpperCase()}
+                <strong>🗓️ al:</strong> {formatDate(currentActivity.dateEnd)}
               </p>
             </div>
 
             {currentBook && (
-              <div className="book-details highlighted-book">
-                {currentBook.image && (
-                  <img
-                    src={currentBook.image}
-                    alt={`Portada de ${currentBook.title}`}
-                    className="book-cover"
-                  />
-                )}
-                <div className="book-text">
-                  <h3 className="book-section-title">📚 Lectura Actual</h3>
-                  <h2 className="book-title">{currentBook.title}</h2>
-                  <p className="book-author">
-                    <em>{currentBook.author}</em>
-                  </p>
-                  <p>{currentBook.summary}</p>
+              <div className="book-details-container">
+                <div className="book-details highlighted-book">
+                  {currentBook.image && (
+                    <img
+                      src={currentBook.image}
+                      alt={`Portada de ${currentBook.title}`}
+                      className="book-cover"
+                    />
+                  )}
+
+                  <div className="book-text">
+                    <h3 className="book-section-title">📚 Lectura Actual</h3>
+                    <h2 className="book-title">{currentBook.title}</h2>
+                    <p className="book-author">
+                      <em>{currentBook.author}</em>
+                    </p>
+                    <p>{currentBook.summary}</p>
+                  </div>
                 </div>
               </div>
             )}
 
             <div className="reviews-section">
-              <h5>📝 Reseñas de la comunidad</h5>
               <ReviewForm activityId={currentActivity.id} />
-              <ReviewList activityId={currentActivity.id} />
             </div>
           </div>
         </section>

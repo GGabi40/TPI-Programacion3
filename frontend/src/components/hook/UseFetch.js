@@ -10,11 +10,11 @@ export const useFetch = (endpoint) => {
   const getAll = async (token = null) => {
     try {
       const res = await fetch(complete_url, {
-        method: 'GET',
+        method: "GET",
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
-        }
+        },
       });
 
       if (!res.ok) {
@@ -32,6 +32,29 @@ export const useFetch = (endpoint) => {
       setTimeout(() => {
         setIsLoading(false);
       }, 800);
+    }
+  };
+
+  const getRatings = async (id, token = null) => {
+    try {
+      const res = await fetch(`${complete_url}/${id}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+      });
+
+      if (!res.ok) {
+        if (res.status === 404) {
+          return [];
+        }
+      }
+
+      const data = await res.json();
+      return data;
+    } catch (error) {
+      console.error("Algo pasó con getAll: ", error);
     }
   };
 
@@ -68,7 +91,7 @@ export const useFetch = (endpoint) => {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
         },
-        body: JSON.stringify(data)
+        body: JSON.stringify(data),
       });
 
       const dataResponse = await res.json();
@@ -85,13 +108,35 @@ export const useFetch = (endpoint) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
-        }
+        },
       });
 
       const dataResponse = await res.json();
       return dataResponse;
     } catch (error) {
       console.error("Error al hacer POST: ", error);
+    }
+  };
+
+  const postReaction = async (data, token = null) => {
+    try {
+      const res = await fetch(complete_url, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: token ? `Bearer ${token}` : "",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (!res.ok) {
+        throw new Error("Error al registrar reacción.");
+      }
+
+      const dataResponse = await res.json();
+      return dataResponse;
+    } catch (error) {
+      console.error("Error al hacer POST de reacción:", error);
     }
   };
 
@@ -125,9 +170,8 @@ export const useFetch = (endpoint) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
-        }
-      })
-
+        },
+      });
 
       if (!res.ok) {
         throw new Error("Error al hacer un DELETE.");
@@ -138,7 +182,6 @@ export const useFetch = (endpoint) => {
       } else {
         return { success: false };
       }
-
     } catch (error) {
       console.error("Error al hacer DELETE: ", error);
     }
@@ -151,8 +194,8 @@ export const useFetch = (endpoint) => {
         headers: {
           "Content-Type": "application/json",
           Authorization: token ? `Bearer ${token}` : "",
-        }
-      })
+        },
+      });
 
       if (!res.ok) {
         throw new Error("Error al hacer un DELETE.");
@@ -163,11 +206,21 @@ export const useFetch = (endpoint) => {
       } else {
         return { success: false };
       }
-
     } catch (error) {
       console.error("Error al hacer DELETE: ", error);
     }
   };
 
-  return { getAll, getById, post, postWithoutData, delWithoutId, put, del, isLoading };
+  return {
+    getAll,
+    getById,
+    post,
+    postWithoutData,
+    delWithoutId,
+    put,
+    del,
+    postReaction,
+    isLoading,
+    getRatings
+  };
 };
