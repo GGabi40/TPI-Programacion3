@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPenToSquare, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import {
+  faPenToSquare,
+  faPlus,
+  faTrash,
+  faCheckCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router";
 import ReviewForm from "../Reviews/ReviewForm";
 import ReviewList from "../Reviews/ReviewList";
@@ -9,10 +14,11 @@ import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
 import { errorToast, successToast } from "../../toast/NotificationToast";
 
+
 const Activities = ({ clubId }) => {
   const { token, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
-  const { del } = useFetch(`/activities`);
+  const { del, put } = useFetch(`/activities`);
   const { getById } = useFetch("/books");
   const navigate = useNavigate();
 
@@ -55,10 +61,33 @@ const Activities = ({ clubId }) => {
             </Link>
           </div>
         )}
-        <p className="no-activities">No hay actividades en este club todavía.</p>
+        <p className="no-activities">
+          No hay actividades en este club todavía.
+        </p>
       </>
     );
   }
+
+  const handleFinish = async (activityId) => {
+    if (!window.confirm("¿Deseas marcar esta actividad como finalizada?"))
+      return;
+
+    try {
+      await put(activityId, { isActive: false }, token);
+      successToast("Actividad marcada como finalizada.");
+
+      setActivities((prev) =>
+        prev.map((act) =>
+          act.id === activityId ? { ...act, isActive: false } : act
+        )
+      );
+      setCurrentActivity(null);
+      setCurrentBook(null);
+    } catch (error) {
+      console.error("Error al finalizar actividad:", error);
+      errorToast("No se pudo finalizar la actividad.");
+    }
+  };
 
   const handleDelete = async (activityId) => {
     if (!window.confirm("¿Estás seguro de borrar esta actividad?")) {
@@ -84,7 +113,10 @@ const Activities = ({ clubId }) => {
   return (
     <div className="club-activities">
       {role.includes("admin") && currentActivity && (
-        <div className="edit-club-btn" style={{ display: "flex", gap: "1rem" }}>
+        <div
+          className="edit-club-btn"
+          style={{ display: "flex", gap: "1rem", margin: "auto" }}
+        >
           <Link
             to={`/edit-activity/${currentActivity.id}`}
             className="edit-button"
@@ -95,6 +127,13 @@ const Activities = ({ clubId }) => {
           <Link to={`/new-activity/${clubId}`} className="create-button">
             <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
           </Link>
+
+          <button
+            className="end-button"
+            onClick={() => handleFinish(currentActivity.id)}
+          >
+            <FontAwesomeIcon icon={faCheckCircle} /> Finalizar Actividad
+          </button>
 
           <button
             className="delete-button"
@@ -113,7 +152,8 @@ const Activities = ({ clubId }) => {
             <div className="activity-info">
               <p className="dates">
                 <strong>Del:</strong>{" "}
-                {new Date(currentActivity.dateStart).toLocaleDateString()} <br />
+                {new Date(currentActivity.dateStart).toLocaleDateString()}{" "}
+                <br />
                 <strong>al:</strong>{" "}
                 {new Date(currentActivity.dateEnd).toLocaleDateString()}
               </p>

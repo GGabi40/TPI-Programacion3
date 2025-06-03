@@ -1,6 +1,7 @@
 import Swal from "sweetalert2";
 import 'sweetalert2/dist/sweetalert2.min.css';
 
+/* Para Clubs */
 export const showConfirmAlert = (id, onDelete) => {
     Swal.fire({
         title: "¿Realmente querés eliminarlo?",
