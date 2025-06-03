@@ -297,6 +297,10 @@ button[type="submit"]:hover {
   color: var(--font-color-light);
 }
 
+.crear-club {
+  text-align: right;
+}
+
 .link-subrayado:hover {
   cursor: pointer;
 }

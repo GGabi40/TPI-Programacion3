@@ -20,6 +20,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AboutUs from "./pages/AboutUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
+import JoinAdmin from "./pages/joinAdmin/JoinAdmin";
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/joined-clubs" element={<JoinedClubs />} />
             <Route path="/new-activity/:id" element={<NewActivity />} />
             <Route path="/discover-clubs" element={<Discover />} />
+            <Route path="/join-us" element={<JoinAdmin />} />
           </Route>
 
         </Routes>

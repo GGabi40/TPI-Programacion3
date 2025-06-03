@@ -19,9 +19,6 @@ const JoinedClubs = () => {
   const { getById } = useFetch("/users");
   const [user, setUser] = useState("");
 
-  const [searchTerm, setSearchTerm] = useState("");
-
-
   useEffect(() => {
     const fetchUser = async () => {
       if (userId) {
@@ -47,11 +44,6 @@ const JoinedClubs = () => {
     fetchData();
   }, [userId]);
 
-  const filteredClubs = usersClubs.filter((c) =>
-    c.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
-
   if (isLoading) return <Loading />;
 
   return (
@@ -62,11 +54,14 @@ const JoinedClubs = () => {
         <>
           <LeftNav />
           <div className="space"></div>
-          <div className="space"></div>
 
           <div className="hero-container">
             <div className="hero-club">
-              {filteredClubs.length > 0 ? (
+              <Link to="/join-us" className="link-subrayado dark crear-club">
+                ¿Querés crear tus propios clubes?
+              </Link>
+              
+              {usersClubs.length > 0 ? (
                 <ClubList
                   clubs={usersClubs}
                   title="Mis Clubes"
@@ -82,7 +77,9 @@ const JoinedClubs = () => {
                     alt="imagen de un gatito corriendo una lana"
                     className="img-nada-aqui"
                   />
-                  <Link to="/discover-clubs" className="link-subrayado dark">¡Descubre nuevas comunidades!</Link>
+                  <Link to="/discover-clubs" className="link-subrayado dark">
+                    ¡Descubre nuevas comunidades!
+                  </Link>
                 </div>
               )}
 
