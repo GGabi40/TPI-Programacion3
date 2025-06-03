@@ -1,0 +1,16 @@
+.swal-title {
+  font-size: 2rem;
+}
+
+.swal-popup {
+  font-size: 1.6rem;
+}
+
+.swal-confirm-btn,
+.swal-cancel-btn {
+  font-size: 1.3rem;
+}
+
+.swal-content {
+  font-size: 1.2rem;
+}

@@ -14,6 +14,11 @@ import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
 import { errorToast, successToast } from "../../toast/NotificationToast";
 
+import {
+  showConfirmAlert,
+  showConfirmFinish,
+  showSweetNewActivity
+} from "../../sweetAlert/ConfirmAlert";
 
 const Activities = ({ clubId }) => {
   const { token, role } = useContext(AuthenticationContext);
@@ -50,6 +55,7 @@ const Activities = ({ clubId }) => {
   const pastActivities = activities
     .filter((a) => !a.isActive)
     .sort((a, b) => new Date(b.dateEnd) - new Date(a.dateEnd));
+    
 
   if (activities.length === 0) {
     return (
@@ -69,9 +75,6 @@ const Activities = ({ clubId }) => {
   }
 
   const handleFinish = async (activityId) => {
-    if (!window.confirm("¿Deseas marcar esta actividad como finalizada?"))
-      return;
-
     try {
       await put(activityId, { isActive: false }, token);
       successToast("Actividad marcada como finalizada.");
@@ -90,10 +93,6 @@ const Activities = ({ clubId }) => {
   };
 
   const handleDelete = async (activityId) => {
-    if (!window.confirm("¿Estás seguro de borrar esta actividad?")) {
-      return;
-    }
-
     try {
       await del(activityId, token);
       setActivities((prev) => prev.filter((act) => act.id !== activityId));
@@ -124,20 +123,20 @@ const Activities = ({ clubId }) => {
             <FontAwesomeIcon icon={faPenToSquare} /> Editar Actividad
           </Link>
 
-          <Link to={`/new-activity/${clubId}`} className="create-button">
+          <button onClick={() => showSweetNewActivity(currentActivity.id, handleFinish, navigate, clubId)} className="create-button">
             <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
-          </Link>
+          </button>
 
           <button
             className="end-button"
-            onClick={() => handleFinish(currentActivity.id)}
+            onClick={() => showConfirmFinish(currentActivity.id, handleFinish)}
           >
             <FontAwesomeIcon icon={faCheckCircle} /> Finalizar Actividad
           </button>
 
           <button
             className="delete-button"
-            onClick={() => handleDelete(currentActivity.id)}
+            onClick={() => showConfirmAlert(currentActivity.id, handleDelete)}
           >
             <FontAwesomeIcon icon={faTrash} /> Borrar Actividad
           </button>
