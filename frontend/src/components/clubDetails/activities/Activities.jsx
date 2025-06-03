@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link, useNavigate } from "react-router";
 import ReviewForm from "../Reviews/ReviewForm";
-import ReviewList from "../Reviews/ReviewList";
 import PastActivity from "./PastActivity";
 import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
