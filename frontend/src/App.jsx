@@ -21,6 +21,7 @@ import AboutUs from "./pages/AboutUs";
 import TermsAndConditions from "./pages/TermsAndConditions";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import JoinAdmin from "./pages/joinAdmin/JoinAdmin";
+import ModifyActivity from "./components/modifyActivity/ModifyActivity";
 
 
 function App() {
@@ -49,6 +50,7 @@ function App() {
             <Route path="/new-club" element={<NewClub />} />
             <Route path="/joined-clubs" element={<JoinedClubs />} />
             <Route path="/new-activity/:id" element={<NewActivity />} />
+            <Route path="/edit-activity/:id" element={<ModifyActivity />} />
             <Route path="/discover-clubs" element={<Discover />} />
             <Route path="/join-us" element={<JoinAdmin />} />
           </Route>
