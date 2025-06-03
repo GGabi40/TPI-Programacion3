@@ -11,7 +11,7 @@
   border-radius: var(--border-radius);
   padding: 2rem;
   width: 90%;
-  max-width: 900px;
+  max-width: 1050px;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(8px);
   text-align: center;
@@ -245,3 +245,45 @@ p.dark {
   color: var(--font-color-light);
   text-align: center;
 }
+
+#btn-save {
+  font-size: 16px;
+}
+
+.new-club-row {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.btn-card.add {
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  background-color: var(--violeta-robado);
+  border: 1px solid var(violeta-oscuro);
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  display: inline-block;
+  backdrop-filter: blur(4px);
+}
+
+.btn-card.add:hover {
+  background-color: rgb(66, 12, 66);
+  transform: scale(1.05);
+  box-shadow: 0 0 12px rgba(0, 255, 128, 0.4);
+}
+
+.btn-link {
+  background-color: transparent;
+  border: none;
+  color: var(--violeta-oscuro);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.btn-link:hover {
+  color: #0056b3;
+}
+

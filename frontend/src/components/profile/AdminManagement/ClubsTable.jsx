@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faArrowUpRightFromSquare, faFloppyDisk, faPenSquare } from "@fortawesome/free-solid-svg-icons";
+import { Link } from 'react-router'
 
 import Search from "../../search/Search";
 import { useFetch } from "../../hook/useFetch";
@@ -29,7 +30,7 @@ const ClubsTable = () => {
         const activitiesData = await getAllActivities(token);
 
         setAllActivities(activitiesData);
-        
+
         // array de clubs con actividades en hasActivity
         const clubsWithActivity = clubsData.map((club) => ({
           ...club,
@@ -104,9 +105,7 @@ const ClubsTable = () => {
         <table className="user-table">
           <thead>
             <tr>
-              <th>ID</th>
               <th>Nombre</th>
-              <th>Restringido</th>
               <th>Interés</th>
               <th>Género</th>
               <th>Actividad</th>
@@ -118,7 +117,6 @@ const ClubsTable = () => {
             {filteredClubs.length > 0 ? (
               filteredClubs.map((club) => (
                 <tr key={club.id}>
-                  <td>{club.id}</td>
                   <td>
                     {editingClubId === club.id ? (
                       <input
@@ -129,28 +127,6 @@ const ClubsTable = () => {
                       />
                     ) : (
                       club.name
-                    )}
-                  </td>
-                  <td>
-                    {editingClubId === club.id ? (
-                      <select
-                        className="select-gender"
-                        name="restricted"
-                        value={editedClub.restricted ? "true" : "false"}
-                        onChange={(e) =>
-                          setEditedClub({
-                            ...editedClub,
-                            restricted: e.target.value === "true",
-                          })
-                        }
-                      >
-                        <option value="true">Sí</option>
-                        <option value="false">No</option>
-                      </select>
-                    ) : club.restricted ? (
-                      "Sí"
-                    ) : (
-                      "No"
                     )}
                   </td>
                   <td>
@@ -214,14 +190,17 @@ const ClubsTable = () => {
                     {editingClubId === club.id ? (
                       <button
                         className="btn-save"
+                        id="btn-save"
                         onClick={() => handleSaveClub(club.id)}
+                        title="Guardar cambios"
                       >
-                        Guardar
+                        {<FontAwesomeIcon icon={faFloppyDisk} />}
                       </button>
                     ) : (
                       <button
                         className="btn-edit"
                         onClick={() => handleEditClub(club)}
+                        title="Editar club"
                       >
                         Editar
                       </button>
@@ -233,6 +212,15 @@ const ClubsTable = () => {
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
+                    <Link
+                      href={`/club-details/${club.id}`}
+                      className="btn-link"
+                      id="btn-link"
+                      title="Ver detalles del club"
+                      style={{ marginLeft: "0.5rem" }}
+                    >
+                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+                    </Link>
                   </td>
                 </tr>
               ))
@@ -246,6 +234,13 @@ const ClubsTable = () => {
                 </td>
               </tr>
             )}
+            <tr className="new-club-row">
+              <td colSpan="8" style={{ textAlign: "center", padding: "1rem" }}>
+                <a href="/new-club" className="btn-card add">
+                  + Crear nuevo club
+                </a>
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>

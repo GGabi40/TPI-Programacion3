@@ -201,18 +201,6 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
           </div>
           {errors.description && <p className="error">{errors.description}</p>}
 
-          <div className="checkbox-input">
-            <label>
-              <input
-                type="checkbox"
-                checked={restricted}
-                onChange={(e) => setRestricted(e.target.checked)}
-              />{" "}
-              {"  "}
-              Restricción de Edad
-            </label>
-          </div>
-
           <button type="submit">
             {mode === "edit" ? "Actualizar Club" : "Crear Club"}
           </button>
