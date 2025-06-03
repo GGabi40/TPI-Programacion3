@@ -33,16 +33,14 @@ const ReviewList = ({ activityId, refreshFlag }) => {
 
     // reviewId
     // Filtrado o ver como setear otra vez el setAll
-    const fetchRatings = async () => {
-      const allRatings = await getRatings(reviewId, token);
-      setTotalRatings(allRatings);
-    }
+    // const fetchRatings = async () => {
+    //   const allRatings = await getRatings(reviewId, token);
+    //   setTotalRatings(allRatings);
+    // }
     
     fetchReviews();
-    fetchRatings(); // todas las valoraciones
-  }, [activityId, token, refreshFlag]);
-
-  console.log(totalRatings);
+    // fetchRatings(); // todas las valoraciones
+  }, [activityId, refreshFlag]);
 
   const refreshReviews = async () => {
     const updated = await getAll(token);
@@ -150,9 +148,9 @@ const ReviewList = ({ activityId, refreshFlag }) => {
     if (confirm("¿Estás seguro de que querés eliminar esta reseña?")) {
       await delReview(reviewId, token);
       successToast("Reseña Eliminada");
-      const updatedReviews = allReviews.filter(c => c.reviewId !== reviewId);
+      const updatedReviews = allReviews.filter(c => c.id !== reviewId);
       setAllReviews(updatedReviews);
-      refreshReviews();
+      // refreshReviews();
     }
   };
 
