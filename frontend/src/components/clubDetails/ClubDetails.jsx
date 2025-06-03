@@ -52,10 +52,6 @@ const ClubDetails = () => {
           <br />
           <div className="details-container">
             <p>
-              <strong>Descripción:</strong> {description}
-            </p>
-            <br />
-            <p>
               <strong>Género:</strong> {gender}
             </p>
             <br />
@@ -64,8 +60,7 @@ const ClubDetails = () => {
             </p>
             <br />
             <p>
-              <strong>Restricción de Edad:</strong>{" "}
-              {club.restricted ? "Sí" : "No"}
+              <strong>Descripción:</strong> {description}
             </p>
             <br />
           </div>

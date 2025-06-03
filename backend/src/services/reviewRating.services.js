@@ -16,11 +16,6 @@ export const ratingReview = async (req, res) => {
             res.status(404).json({ message: 'La reseña no existe' });
         }
 
-        // Evita que un usuario ponga like en su propia reseña
-        if(review.userId === userId) {
-            return res.status(403).json({ message: 'No podés votar en tu propia reseña' });
-        }
-
         // Revisa si ya existe un rating del user para esta reseña
         const existingRating = await ReviewRating.findOne({
             where: { userId, reviewId }
@@ -34,6 +29,7 @@ export const ratingReview = async (req, res) => {
         }
 
         const newRating = await ReviewRating.create({ userId, reviewId, type });
+
         return res.status(200).json({ message: 'Rating registrado', rating: newRating });
     } catch (error) {
         console.error("Error en review-rating:", error);
