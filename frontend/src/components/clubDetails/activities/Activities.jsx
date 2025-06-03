@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useFetch } from "../../hook/useFetch";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPenToSquare, faPlus, faTrash } from "@fortawesome/free-solid-svg-icons";
+import { Link, useNavigate } from "react-router";
 import ReviewForm from "../Reviews/ReviewForm";
 import ReviewList from "../Reviews/ReviewList";
 import PastActivity from "./PastActivity";
-import { Link, useNavigate } from "react-router";
-
+import { useFetch } from "../../hook/useFetch";
 import { AuthenticationContext } from "../../services/auth.context";
+import { errorToast, successToast } from "../../toast/NotificationToast";
 
 const Activities = ({ clubId }) => {
   const { token, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
+  const { del } = useFetch(`/activities`);
   const { getById } = useFetch("/books");
   const navigate = useNavigate();
 
@@ -19,40 +22,89 @@ const Activities = ({ clubId }) => {
 
   useEffect(() => {
     const fetchActivity = async () => {
-      const response = await getAll();
-      setActivities(response);
+      try {
+        const activitiesList = await getAll(token);
+        setActivities(activitiesList);
 
-      const active = response.find((act) => act.isActive);
-      setCurrentActivity(active);
+        const active = activitiesList.find((act) => act.isActive);
+        setCurrentActivity(active);
 
-      if (active?.bookId) {
-        const book = await getById(active.bookId, token);
-        setCurrentBook(book);
+        if (active?.bookId) {
+          const book = await getById(active.bookId, token);
+          setCurrentBook(book);
+        }
+      } catch (error) {
+        console.error("Error al obtener actividades:", error);
       }
     };
 
     fetchActivity();
   }, []);
 
-  const pastActivities = activities.filter((a) => !a.isActive);
+  const pastActivities = activities
+    .filter((a) => !a.isActive)
+    .sort((a, b) => new Date(b.dateEnd) - new Date(a.dateEnd));
 
-  if (activities.length === 0)
+  if (activities.length === 0) {
     return (
-      <p className="no-activities">No hay actividades en este club todavía.</p>
+      <>
+        {role.includes("admin") && (
+          <div className="edit-club-btn">
+            <Link to={`/new-activity/${clubId}`} className="create-button">
+              <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+            </Link>
+          </div>
+        )}
+        <p className="no-activities">No hay actividades en este club todavía.</p>
+      </>
     );
+  }
+
+  const handleDelete = async (activityId) => {
+    if (!window.confirm("¿Estás seguro de borrar esta actividad?")) {
+      return;
+    }
+
+    try {
+      await del(activityId, token);
+      setActivities((prev) => prev.filter((act) => act.id !== activityId));
+
+      if (currentActivity?.id === activityId) {
+        setCurrentActivity(null);
+        setCurrentBook(null);
+      }
+
+      successToast("Actividad borrada correctamente.");
+    } catch (error) {
+      console.error("Error al borrar la actividad:", error);
+      errorToast("No se pudo borrar la actividad. Intenta más tarde.");
+    }
+  };
 
   return (
     <div className="club-activities">
-      {role.includes('admin') && (
-        <div className="edit-club-btn">
+      {role.includes("admin") && currentActivity && (
+        <div className="edit-club-btn" style={{ display: "flex", gap: "1rem" }}>
           <Link
             to={`/edit-activity/${currentActivity.id}`}
             className="edit-button"
           >
-            ✏️ Editar Actividad
+            <FontAwesomeIcon icon={faPenToSquare} /> Editar Actividad
           </Link>
+
+          <Link to={`/new-activity/${clubId}`} className="create-button">
+            <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+          </Link>
+
+          <button
+            className="delete-button"
+            onClick={() => handleDelete(currentActivity.id)}
+          >
+            <FontAwesomeIcon icon={faTrash} /> Borrar Actividad
+          </button>
         </div>
       )}
+
       {/* Actividad Actual */}
       {currentActivity ? (
         <section className="current-activity">
@@ -61,8 +113,7 @@ const Activities = ({ clubId }) => {
             <div className="activity-info">
               <p className="dates">
                 <strong>Del:</strong>{" "}
-                {new Date(currentActivity.dateStart).toLocaleDateString()}{" "}
-                <br />
+                {new Date(currentActivity.dateStart).toLocaleDateString()} <br />
                 <strong>al:</strong>{" "}
                 {new Date(currentActivity.dateEnd).toLocaleDateString()}
               </p>
@@ -101,20 +152,27 @@ const Activities = ({ clubId }) => {
           </div>
         </section>
       ) : (
-        <p className="no-active">Actualmente no hay ninguna lectura activa.</p>
+        <>
+          {role.includes("admin") && (
+            <div className="edit-club-btn">
+              <Link to={`/new-activity/${clubId}`} className="create-button">
+                <FontAwesomeIcon icon={faPlus} /> Nueva Actividad
+              </Link>
+            </div>
+          )}
+          <p className="no-active">
+            Actualmente no hay ninguna lectura activa.
+          </p>
+        </>
       )}
 
-      {/* Actividad pasada */}
+      {/* Actividades pasadas */}
       {pastActivities.length > 0 && (
         <div className="past-activities">
           <h3 className="section-title">📚 Actividades Finalizadas</h3>
-          {activities
-            .filter(
-              (act) => !act.isActive || new Date(act.dateEnd) < new Date()
-            )
-            .map((pastAct) => (
-              <PastActivity activity={pastAct} />
-            ))}
+          {pastActivities.map((pastAct) => (
+            <PastActivity key={pastAct.id} activity={pastAct} />
+          ))}
         </div>
       )}
     </div>

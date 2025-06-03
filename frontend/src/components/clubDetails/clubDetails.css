@@ -15,7 +15,7 @@
   gap: 2rem;
   background: var(--violeta-oscuro);
   padding: 1.5rem 2rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 12px rgba(0,0,0,0.6);
   flex-wrap: wrap;
 }
@@ -26,7 +26,7 @@
   justify-content: space-between;
   gap: 1.5rem;
   padding: 2rem;
-  border-radius: 16px;
+  border-radius: var(--border-radius);
   border: 1px solid #ccc;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   font-size: 1rem;
@@ -49,7 +49,7 @@
   flex: 1 1 45%;
   border: 1px solid #eaeaea;
   background-color: #280b46cc;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   padding: 1rem;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
   transition: transform 0.2s ease;
@@ -77,7 +77,7 @@
 .logo-wrapper img {
   height: 80px;
   width: auto;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   filter: drop-shadow(0 0 10px var(--violeta-robado));
 }
 
@@ -96,7 +96,7 @@
   padding: 1rem 2rem;
   font-weight: 600;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   transition: background-color 0.3s ease;
   flex-shrink: 0;
@@ -109,7 +109,7 @@
 .club-info {
   background: #29294b;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 14px rgba(0,0,0,0.7);
   line-height: 1.6;
   font-size: 1.1rem;
@@ -131,7 +131,7 @@
   border: 2px solid white;
   color: white;
   padding: 0.6rem 1.5rem;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -146,7 +146,7 @@
 .club-activities {
   background: #29294b;
   padding: 1rem 2rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 14px rgba(0,0,0,0.7);
   min-height: 200px;
 }
@@ -171,7 +171,7 @@
 .club-activities {
   background: #29294b;
   padding: 2rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.7);
   display: flex;
   flex-direction: column;
@@ -195,7 +195,7 @@
   background: #1f1f33;
   border-left: 6px solid var(--violeta-robado);
   padding: 1.5rem;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
   display: flex;
   flex-direction: column;
@@ -254,7 +254,7 @@
 
 .book-cover {
   width: 100px;
-  border-radius: 6px;
+  border-radius: var(--border-radius);
   margin-top: 0.5rem;
 }
 
@@ -263,7 +263,7 @@
   font-style: italic;
   color: #bbb;
   background: #1f1f33;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
 }
 
 .highlighted-book {
@@ -273,7 +273,7 @@
   background-color: #282c3f;
   padding: 1rem;
   border-left: 5px solid var(--btn-bgc-primary);
-  border-radius: 12px;
+  border-radius: var(--border-radius);
   margin-bottom: 1.5rem;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   flex-wrap: wrap;
@@ -292,7 +292,7 @@
   margin-top: 2rem;
   background-color: #1f1f2f;
   padding: 1rem 1.5rem;
-  border-radius: 12px;
+  border-radius: var(--border-radius);
 }
 
 .section-title {
@@ -307,7 +307,7 @@
   gap: 1rem;
   background-color: #2d2d40;
   padding: 1rem;
-  border-radius: 10px;
+  border-radius: var(--border-radius);
   margin-bottom: 1rem;
   box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
@@ -315,7 +315,7 @@
 .past-book-cover {
   width: 60px;
   height: auto;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   object-fit: cover;
 }
 
@@ -333,7 +333,7 @@
 .review-list {
   background-color: transparent;
   padding: 1.5rem;
-  border-radius: 1rem;
+  border-radius: var(--border-radius);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
   margin-top: 2rem;
   max-width: 700px;
@@ -359,7 +359,7 @@
 .review-list li {
   background-color: #282c3f;
   border: 1px solid #e2e2e2;
-  border-radius: 0.75rem;
+  border-radius: var(--border-radius);
   padding: 1rem;
   margin-bottom: 1rem;
   transition: background 0.3s ease;
@@ -387,7 +387,7 @@
   color: white;
   padding: 0.4rem 0.7rem;
   border: none;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   background-color: rgb(32, 32, 32);
   cursor: pointer;
   transition: background 0.3s ease;
@@ -401,24 +401,46 @@
   margin-top: 0.75rem;
   background-color: transparent;
   padding: 0.8rem;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   font-size: 0.9rem;
   color: #444;
   border-left: 4px solid var(--accent-color, #007bff);
 }
 
-.edit-button {
+.edit-button,.create-button, .delete-button {
   padding: 8px 12px;
-  background-color: #4a90e2;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--border-radius);
   cursor: pointer;
   margin-top: 10px;
   text-decoration: none;
   display: inline-block;
   font-size: 14px;
+  transition: background-color 0.3s ease;
 }
+
+.edit-button {
+  background-color: #4a90e2;
+}
+
 .edit-button:hover {
   background-color: #357ab7;
+}
+
+.create-button {
+  color: black;
+  background-color: var(--btn-bgc-primary);
+}
+
+.create-button:hover {
+  background-color: var(--btn-bgc-primary-hover);
+}
+
+.delete-button {
+  background-color: rgb(198, 71, 71);
+}
+
+.delete-button:hover {
+  background-color: rgb(146, 52, 52);
 }

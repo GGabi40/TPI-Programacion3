@@ -24,22 +24,21 @@ export const getActivityById = async (req, res) => {
   res.json(activityById);
 };
 
-
 // GET /clubs/:clubId/activities
-export const getActivitiesByClub = async (req,res) => {
+export const getActivitiesByClub = async (req, res) => {
   const { clubId } = req.params;
 
   try {
     const club = await Club.findByPk(clubId);
 
-    if(!club) return res.status(404).json({ message: "No se encontró club." });
+    if (!club) return res.status(404).json({ message: "No se encontró club." });
 
     const activities = await Activity.findAll({
-      where: { clubId }
+      where: { clubId },
     });
 
-    if(!activities || activities.length === 0) {
-      return res.status(404).json({ message: 'Actividad no encontrada.' });
+    if (!activities || activities.length === 0) {
+      return res.status(404).json({ message: "Actividad no encontrada." });
     }
 
     res.status(200).json(activities);
@@ -49,20 +48,10 @@ export const getActivitiesByClub = async (req,res) => {
   }
 };
 
-
 //POST /clubs/:clubId/activities
 export const createNewActivity = async (req, res) => {
   const { clubId } = req.params;
   const { progress, isActive, dateStart, dateEnd, bookId } = req.body;
-
-  console.log("Datos para crear la actividad:", {
-        progress,
-        isActive,
-        dateStart,
-        dateEnd,
-        bookId,
-        clubId
-      });
 
   try {
     const club = await Club.findByPk(clubId);
@@ -77,13 +66,26 @@ export const createNewActivity = async (req, res) => {
       return res.status(404).json({ message: "No se encontró el libro." });
     }
 
+    // busca si ya hay una actividad activa
+    const activeExists = await Activity.findOne({
+      where: {
+        clubId,
+        isActive: true,
+      },
+    });
+
+    // No permite su creación si hay actividad activa
+    if (activeExists && isActive) {
+      return res.status(400).json({message: "Ya hay una actividad activa para este club. Debe finalizarse antes de crear otra." });
+    }
+
     const newActivity = await Activity.create({
       progress,
       isActive,
       dateStart,
       dateEnd,
       bookId,
-      clubId
+      clubId,
     });
 
     res.json(newActivity);
