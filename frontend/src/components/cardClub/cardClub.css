@@ -31,26 +31,48 @@ a.club-card-child {
   text-decoration: none;
 }
 
+.red,
+.blue,
+.violet,
+.green,
+.purple,
+.acqua {
+  background-size: 200% 200%;
+  animation: gradientShift 10s ease infinite;
+}
+
 .red {
-  background: linear-gradient(45deg, red, rgb(255, 86, 128));
+  background-image: linear-gradient(45deg, red, rgb(255, 86, 128));
 }
 
 .blue {
-  background: linear-gradient(45deg, blue, rgb(141, 226, 255));
+  background-image: linear-gradient(45deg, blue, rgb(141, 226, 255));
 }
 
 .violet {
-  background: linear-gradient(45deg, rgb(147, 74, 147), rgb(85, 4, 125));
+  background-image: linear-gradient(45deg, rgb(147, 74, 147), rgb(85, 4, 125));
 }
 
 .green {
-  background: linear-gradient(45deg, rgb(8, 66, 8), rgb(98, 183, 98));
+  background-image: linear-gradient(45deg, rgb(8, 66, 8), rgb(98, 183, 98));
 }
 
 .purple {
-  background: linear-gradient(45deg, rgb(146, 30, 90), rgb(87, 52, 120));
+  background-image: linear-gradient(45deg, rgb(146, 30, 90), rgb(87, 52, 120));
 }
 
 .acqua {
-  background: linear-gradient(45deg, rgb(22, 112, 133), rgb(58, 198, 216));
+  background-image: linear-gradient(45deg, rgb(22, 112, 133), rgb(58, 198, 216));
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
