@@ -12,7 +12,7 @@ import { AuthenticationContext } from "../services/auth.context";
 /* Acá se visualizarán todos los clubes,
 utilizando ClubList y CardClub */
 const Clubes = ({ clubs }) => {
-  const { userId } = useContext(AuthenticationContext);
+  const { userId, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/user/${userId}`);
   const [usersClubs, setUsersClubs] = useState([]);
   const navigate = useNavigate();
@@ -27,19 +27,34 @@ const Clubes = ({ clubs }) => {
     fetchData();
   }, []);
 
+  const handleClickCreate = () => {
+    navigate("/new-club");
+  };
+
   // Los clubes que son inactivos, no aparecen en "mis clubes"
-  const filteredActiveClubs = usersClubs.filter(c => {
+  const filteredActiveClubs = usersClubs.filter((c) => {
     if (c.isActive) {
       return c;
     }
-  })
+  });
 
   return (
     <div className="hero-container">
       <div className="space"></div>
 
+      {role.includes("admin") ? (
+        <button className="cssbuttons-io-button" onClick={handleClickCreate}>
+          <FontAwesomeIcon icon={faPlus} id="btn-plus" />
+          <span>Club</span>
+        </button>
+      ) : ""}
+
       {/* Club al que está unido usuario */}
-      <ClubList clubs={filteredActiveClubs} title="Mis Clubes" showButtons={false} />
+      <ClubList
+        clubs={filteredActiveClubs}
+        title="Mis Clubes"
+        showButtons={false}
+      />
 
       {/* Todos los clubes */}
       <ClubList clubs={clubs} title="Descubre" showButtons={false} />
