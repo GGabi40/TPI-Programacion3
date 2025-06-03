@@ -87,7 +87,6 @@ const LeftNav = () => {
             <Link to="/discover-clubs" className="link-button nav-btn" onClick={closeMenu}>
               Descubre
             </Link>
-
           </div>
 
           <div className="btns-2">

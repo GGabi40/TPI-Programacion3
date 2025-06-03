@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { useNavigate } from "react-router";
 
 import LeftNav from "../nav/LeftNav";
 import ClubList from "../clubList/ClubList";
@@ -15,12 +14,6 @@ const DiscoverClubs = () => {
   const { getById } = useFetch('/clubs/user');
   const [allClubs, setAllClubs] = useState([]);
   const [joinedClubs, setJoinedClubs] = useState([]);
-
-  const navigate = useNavigate();
-
-  const handleClick = () => {
-    navigate("/joined-clubs");
-  };
 
   useEffect(() => {
     const fetchData = async () => {
