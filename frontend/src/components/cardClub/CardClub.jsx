@@ -11,10 +11,9 @@ import { useFetch } from "../hook/useFetch";
 import { AuthenticationContext } from "../services/auth.context";
 
 
-
 /* Acá están los cards de cada club */
 const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
-  const { token } = useContext(AuthenticationContext);
+  const { token, role } = useContext(AuthenticationContext);
   const { del } = useFetch("/clubs");
   const navigate = useNavigate();
 
@@ -47,6 +46,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
             type="submit"
             className="btn-card"
             onClick={() => handleClickEdit(club.id)}
+            title="Modificar Club"
           >
             Modificar
           </button>
@@ -54,6 +54,7 @@ const CardClub = ({ club, showButtons, setAllClubs, allClubs }) => {
             type="submit"
             className="btn-card"
             onClick={() => showConfirmAlert(club.id, handleDelete)}
+            title="Eliminar Club"
           >
             Eliminar
           </button>
