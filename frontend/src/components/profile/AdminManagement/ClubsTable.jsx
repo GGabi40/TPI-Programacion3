@@ -12,7 +12,10 @@ import "sweetalert2/dist/sweetalert2.min.css";
 
 const ClubsTable = () => {
   const { getAll, put, del } = useFetch("/clubs");
+  const { getAll: getAllActivities } = useFetch("/activities");
   const { token } = useContext(AuthenticationContext);
+
+  const [allActivities, setAllActivities] = useState([]);
   const [allClubs, setAllClubs] = useState([]);
   const [editingClubId, setEditingClubId] = useState(null);
   const [editedClub, setEditedClub] = useState({});
@@ -23,7 +26,19 @@ const ClubsTable = () => {
     const fetchClubs = async () => {
       try {
         const clubsData = await getAll(token);
-        setAllClubs(clubsData);
+        const activitiesData = await getAllActivities(token);
+
+        setAllActivities(activitiesData);
+        
+        // array de clubs con actividades en hasActivity
+        const clubsWithActivity = clubsData.map((club) => ({
+          ...club,
+          hasActivity: activitiesData.some(
+            (activity) => activity.clubId === club.id
+          ),
+        }));
+
+        setAllClubs(clubsWithActivity);
       } catch (error) {
         console.error("Error al cargar clubes:", error);
         errorToast("Error al cargar clubes");
@@ -31,7 +46,7 @@ const ClubsTable = () => {
     };
 
     fetchClubs();
-  }, [token]);
+  }, [token, getAll, getAllActivities]);
 
   const filteredClubs = allClubs.filter((c) =>
     c.name.toLowerCase().includes(searchTerm.toLowerCase())
@@ -94,6 +109,7 @@ const ClubsTable = () => {
               <th>Restringido</th>
               <th>Interés</th>
               <th>Género</th>
+              <th>Actividad</th>
               <th>Activo</th>
               <th>Acciones</th>
             </tr>
@@ -159,6 +175,13 @@ const ClubsTable = () => {
                       />
                     ) : (
                       club.gender
+                    )}
+                  </td>
+                  <td>
+                    {club.hasActivity ? (
+                      <span className="status-active">Tiene Actividad</span>
+                    ) : (
+                      <span className="status-inactive">Sin Actividad</span>
                     )}
                   </td>
                   <td>
