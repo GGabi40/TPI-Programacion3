@@ -3,19 +3,20 @@ import { useFetch } from "../../hook/useFetch";
 import ReviewForm from "../Reviews/ReviewForm";
 import ReviewList from "../Reviews/ReviewList";
 import PastActivity from "./PastActivity";
+import { Link, useNavigate } from "react-router";
+
 import { AuthenticationContext } from "../../services/auth.context";
 
-
 const Activities = ({ clubId }) => {
-  const { token } = useContext(AuthenticationContext);
+  const { token, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
   const { getById } = useFetch("/books");
+  const navigate = useNavigate();
 
   const [activities, setActivities] = useState([]);
   const [currentBook, setCurrentBook] = useState("");
   const [currentActivity, setCurrentActivity] = useState("");
 
-  
   useEffect(() => {
     const fetchActivity = async () => {
       const response = await getAll();
@@ -42,6 +43,16 @@ const Activities = ({ clubId }) => {
 
   return (
     <div className="club-activities">
+      {role.includes('admin') && (
+        <div className="edit-club-btn">
+          <Link
+            to={`/edit-activity/${currentActivity.id}`}
+            className="edit-button"
+          >
+            ✏️ Editar Actividad
+          </Link>
+        </div>
+      )}
       {/* Actividad Actual */}
       {currentActivity ? (
         <section className="current-activity">
@@ -57,7 +68,8 @@ const Activities = ({ clubId }) => {
               </p>
               <br />
               <p className="progress">
-                <strong>Progreso:</strong> {currentActivity.progress.toUpperCase()}
+                <strong>Progreso:</strong>{" "}
+                {currentActivity.progress.toUpperCase()}
               </p>
             </div>
 

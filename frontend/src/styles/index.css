@@ -172,11 +172,11 @@ form {
 }
 
 .error {
-  background-color: #e74c3c;
+  background-color: red;
   color: #fff;
   font-size: 15px;
   padding: 6px 8px;
-  border-radius: var(--border-radius);
+  border-radius: 4px;
 }
 
 .logo-form {

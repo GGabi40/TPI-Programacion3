@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useParams, useNavigate } from "react-router";
 import LeftNav from "../nav/LeftNav";
 import logo from "../../assets/img/logo/Logo-InkLink.webp";
@@ -8,10 +8,13 @@ import Activities from "./activities/Activities";
 import Loading from "../error/loading/Loading";
 import JoinClubButton from "./JoinClubButton";
 
+import { AuthenticationContext } from "../services/auth.context";
+
 import "./clubDetails.css";
 
 const ClubDetails = () => {
   const { getById, isLoading } = useFetch("/clubs");
+  const { token, role } = useContext(AuthenticationContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [club, setClub] = useState(null);
@@ -24,10 +27,6 @@ const ClubDetails = () => {
     };
     fetchClub();
   }, [id]);
-
-  /* const handleEditActivity = (activityId) => {
-    navigate(`/edit-activity/${activityId}`);
-  }; */
 
   if (isLoading) return <Loading />;
 
@@ -83,16 +82,6 @@ const ClubDetails = () => {
         </section>
         <section className="club-activities">
           <Activities clubId={id} />
-          {token && currentActivity && (
-            <div className="activity-actions">
-              <button
-                className="btn-edit-activity"
-                onClick={() => handleEditActivity(currentActivity.id)}
-              >
-                ✏️ Modificar Actividad
-              </button>
-            </div>
-          )}
         </section>
       </main>
     </div>

@@ -8,11 +8,13 @@ const tokenValue = localStorage.getItem("inklink-token");
 const AuthContextProvider = ({ children }) => {
   const [token, setToken] = useState(tokenValue);
   const [userId, setUserId] = useState(null);
+  const [role, setRole] = useState(null);
 
   useEffect(() => {
     if (token) {
       const decoded = jwtDecode(token);
       setUserId(decoded.id);
+      setRole(decoded.role);
     }
   }, [token]);
 
@@ -29,7 +31,7 @@ const AuthContextProvider = ({ children }) => {
 
   return (
     <AuthenticationContext.Provider
-      value={{ token, userId, handleUserLogin, handleUserLogout }}
+      value={{ token, userId, role, handleUserLogin, handleUserLogout }}
     >
       {children}
     </AuthenticationContext.Provider>
