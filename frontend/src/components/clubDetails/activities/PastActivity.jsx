@@ -16,7 +16,7 @@ const PastActivity = ({ activity }) => {
 
   return (
     <div className="past-activity-card">
-      <img src={book.cover} alt={book.title} className="past-book-cover" />
+      <img src={`/${book.image}`} alt={book.title} className="past-book-cover" />
       <div className="past-activity-info">
         <h4>{book.title}</h4>
         <p><em>{book.author}</em></p>

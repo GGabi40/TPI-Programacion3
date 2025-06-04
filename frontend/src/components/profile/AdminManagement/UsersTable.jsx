@@ -100,7 +100,6 @@ const UsersTable = () => {
               <th>Usuario</th>
               <th>Email</th>
               <th>Rol</th>
-              <th>Estado</th>
               <th>Acciones</th>
             </tr>
           </thead>
@@ -125,15 +124,6 @@ const UsersTable = () => {
                     ) : (
                       u.role
                     )}
-                  </td>
-                  <td>
-                    <span
-                      className={
-                        u.isActive ? "status-active" : "status-inactive"
-                      }
-                    >
-                      {u.isActive ? "Activo" : "Inactivo"}
-                    </span>
                   </td>
                   <td>
                     {editingUserId === u.id ? (

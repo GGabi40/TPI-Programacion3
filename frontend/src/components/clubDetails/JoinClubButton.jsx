@@ -4,7 +4,7 @@ import { useNavigate } from "react-router";
 import { useFetch } from "../hook/useFetch";
 import { successToast, errorToast, infoToast } from "../toast/NotificationToast";
 
-const JoinClubButton = ({ clubId }) => {
+const JoinClubButton = ({ clubId, onJoinChange }) => {
   const { token, userId } = useContext(AuthenticationContext);
   const { postWithoutData, delWithoutId } = useFetch(
     `/users/${userId}/clubs/${clubId}`
@@ -36,6 +36,7 @@ const JoinClubButton = ({ clubId }) => {
       } else {
         successToast("¡Te uniste a este club correctamente!");
         setJoined(true);
+        onJoinChange?.(true);
       }
     } catch (error) {
       console.error("Error al unirse al club:", error);
@@ -58,6 +59,7 @@ const JoinClubButton = ({ clubId }) => {
             "¡Te vamos a extrañar! Te eliminaste de este club correctamente"
         );
         setJoined(false);
+        onJoinChange?.(true);
         setTimeout(() => navigate("/joined-clubs"), 1000);
       }
     } catch (error) {

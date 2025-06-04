@@ -15,31 +15,19 @@ import { errorToast, successToast } from "../../toast/NotificationToast";
 const ReviewList = ({ activityId, refreshFlag }) => {
   const { token, userId } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/reviews/activity/${activityId}`);
-  const { getRatings } = useFetch("/review-rating");
   const { put, del: delReview } = useFetch("/reviews");
-  const { postReaction } = useFetch(`/review-rating`);
 
   const [allReviews, setAllReviews] = useState([]);
   const [editingReview, setEditingReview] = useState(null);
   const [editedContent, setEditedContent] = useState("");
-  const [reactions, setReactions] = useState({});
-  const [totalRatings, setTotalRatings] = useState({});
 
   useEffect(() => {
     const fetchReviews = async () => {
       const reviews = await getAll(token);
       setAllReviews(reviews);
     };
-
-    // reviewId
-    // Filtrado o ver como setear otra vez el setAll
-    // const fetchRatings = async () => {
-    //   const allRatings = await getRatings(reviewId, token);
-    //   setTotalRatings(allRatings);
-    // }
     
     fetchReviews();
-    // fetchRatings(); // todas las valoraciones
   }, [activityId, refreshFlag]);
 
   const refreshReviews = async () => {
@@ -47,85 +35,6 @@ const ReviewList = ({ activityId, refreshFlag }) => {
     setAllReviews(updated);
   };
 
-  // Like o Dislike
-  const handleLike = async (reviewId) => {
-    const likeObj = {
-      reviewId,
-      type: "like",
-    };
-
-    console.log(likeObj)
-
-    if (!["like", "dislike"].includes(likeObj.type)) {
-      console.error("Tipo de reacción inválido");
-      return;
-    }
-
-    // Guardar en back
-    await postReaction(likeObj, token);
-    setReactions((prev) => {
-      const current = prev[reviewId] || {
-        likes: 0,
-        dislikes: 0,
-        userReaction: null,
-      };
-      let { likes, dislikes, userReaction } = current;
-
-      if (userReaction === "like") {
-        likes--;
-        userReaction = null;
-      } else {
-        likes++;
-        if (userReaction === "dislike") dislikes--;
-        userReaction = "like";
-      }
-
-      return {
-        ...prev,
-        [reviewId]: { likes, dislikes, userReaction },
-      };
-    });
-  };
-
-  const handleDislike = async (reviewId) => {
-    const dislikeObj = {
-      reviewId,
-      type: "dislike",
-    };
-
-    if (!["like", "dislike"].includes(dislikeObj.type)) {
-      console.error("Tipo de reacción inválido");
-      return;
-    }
-
-    // Guardar en back
-    const response = await postReaction(dislikeObj, token);
-
-    console.log(response);
-
-    setReactions((prev) => {
-      const current = prev[reviewId] || {
-        likes: 0,
-        dislikes: 0,
-        userReaction: null,
-      };
-      let { likes, dislikes, userReaction } = current;
-
-      if (userReaction === "dislike") {
-        dislikes--;
-        userReaction = null;
-      } else {
-        dislikes++;
-        if (userReaction === "like") likes--;
-        userReaction = "dislike";
-      }
-
-      return {
-        ...prev,
-        [reviewId]: { likes, dislikes, userReaction },
-      };
-    });
-  };
 
   const handleEdit = (review) => {
     setEditingReview(review.id);
@@ -204,24 +113,6 @@ const ReviewList = ({ activityId, refreshFlag }) => {
                   )}
                 </div>
               )}
-              <div className="review-actions">
-                <button
-                  className="like-button"
-                  onClick={() => handleLike(review.id)}
-                  title="Me gusta"
-                >
-                  <FontAwesomeIcon icon={faThumbsUp} />{" "}
-                  {reactions[review.id]?.likes || 0}
-                </button>
-                <button
-                  className="dislike-button"
-                  onClick={() => handleDislike(review.id)}
-                  title="No me gusta"
-                >
-                  <FontAwesomeIcon icon={faThumbsDown} />{" "}
-                  {reactions[review.id]?.dislikes || 0}
-                </button>
-              </div>
             </li>
           ))}
         </ul>

@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./terms.css";
 import TopNav from "../components/nav/TopNav";
 import Footer from "../components/footer/Footer";
+import GoToTop from "../components/goToTop/GoToTop";
 
 const TermsAndConditions = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
   return (
     <>
       <TopNav />
@@ -50,6 +55,8 @@ const TermsAndConditions = () => {
           términos. ¡Gracias por ser parte de nuestra comunidad literaria!
         </p>
       </div>
+
+      <GoToTop />
       <Footer />
     </>
   );

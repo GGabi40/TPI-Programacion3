@@ -64,7 +64,7 @@ const JoinedClubsAdmin = () => {
           {allClubs.length > 0 ? (
             <ClubList
               clubs={allClubs}
-              title="Mis Clubes"
+              title="Administrador de Clubs"
               showButtons={user.role.includes("admin")}
               setAllClubs={setAllClubs}
               allClubs={allClubs}
@@ -85,7 +85,7 @@ const JoinedClubsAdmin = () => {
             <span>Club</span>
           </button>
 
-          <div className="break"></div>
+          <div className="space"></div>
         </div>
       </div>
     </>

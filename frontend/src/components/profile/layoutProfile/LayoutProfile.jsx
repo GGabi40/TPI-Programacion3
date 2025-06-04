@@ -42,14 +42,7 @@ const LayoutProfile = ({ user, children }) => {
               🛡️ Rol: <strong>{user.role.toUpperCase()}</strong>
             </p>
             <p className="profile-birthday">
-              🎂 Cumpleaños: {user.birthday ? formatDate(user.birthday) : "No especificado"}
-            </p>
-            <p
-              className={`profile-status ${
-                user.isActive ? "active" : "inactive"
-              }`}
-            >
-              {user.isActive ? "🟢 Activo" : "🔴 Inactivo"}
+              🎂 Fecha de Nacimiento: {user.birthday ? formatDate(user.birthday) : "No especificado"}
             </p>
 
             {children}

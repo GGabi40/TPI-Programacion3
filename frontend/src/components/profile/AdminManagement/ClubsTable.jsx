@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTrash, faArrowUpRightFromSquare, faFloppyDisk, faPenSquare } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faFloppyDisk, faPenSquare } from "@fortawesome/free-solid-svg-icons";
 import { Link } from 'react-router'
 
 import Search from "../../search/Search";
@@ -212,15 +212,6 @@ const ClubsTable = () => {
                     >
                       <FontAwesomeIcon icon={faTrash} />
                     </button>
-                    <Link
-                      href={`/club-details/${club.id}`}
-                      className="btn-link"
-                      id="btn-link"
-                      title="Ver detalles del club"
-                      style={{ marginLeft: "0.5rem" }}
-                    >
-                      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                    </Link>
                   </td>
                 </tr>
               ))

@@ -83,10 +83,9 @@ const JoinedClubs = () => {
                 </div>
               )}
 
-              <div className="break"></div>
+              <div className="space"></div>
             </div>
           </div>
-          <FooterSmall />
         </>
       )}
     </>

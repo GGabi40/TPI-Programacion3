@@ -18,11 +18,11 @@ export const Activity = sequelize.define("activity", {
         defaultValue: true
     },
     dateStart: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: false,
     },
     dateEnd: {
-        type: DataTypes.DATE,
+        type: DataTypes.DATEONLY,
         allowNull: true
     },
     bookId: {

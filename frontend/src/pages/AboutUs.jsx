@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./terms.css";
 import TopNav from "../components/nav/TopNav";
 import Footer from "../components/footer/Footer";
+import GoToTop from '../components/goToTop/GoToTop'
 
 const AboutUs = () => {
+  useEffect(() => {
+      window.scrollTo({ top: 0, behavior: "smooth"});
+    }, []);
+
   return (
     <div className="home-container">
       <TopNav />
@@ -30,6 +35,7 @@ const AboutUs = () => {
         </p>
       </div>
 
+      <GoToTop />
       <Footer />
     </div>
   );

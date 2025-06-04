@@ -1,11 +1,10 @@
 import { useState } from "react";
 
-const API_URL = import.meta.env.VITE_BASE_SERVER_URL; // URL de API en variable de entorno
+const API_URL = import.meta.env.VITE_BASE_SERVER_URL;
 
 export const useFetch = (endpoint) => {
   const complete_url = `${API_URL}${endpoint}`;
   const [isLoading, setIsLoading] = useState(true);
-  // Error 500
 
   const getAll = async (token = null) => {
     try {
@@ -19,7 +18,6 @@ export const useFetch = (endpoint) => {
 
       if (!res.ok) {
         if (res.status === 404) {
-          // No hay clubes, retorno array vacío para evitar error
           return [];
         }
       }
@@ -140,7 +138,7 @@ export const useFetch = (endpoint) => {
     }
   };
 
-  //                objeto, id
+  
   const put = async (data, id, token = null) => {
     try {
       const res = await fetch(`${complete_url}/${id}`, {

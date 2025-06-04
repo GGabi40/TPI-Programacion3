@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./terms.css";
 import TopNav from "../components/nav/TopNav";
 import Footer from "../components/footer/Footer";
+import GoToTop from "../components/goToTop/GoToTop";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+  
   return (
     <>
       <TopNav />
@@ -49,6 +54,8 @@ const PrivacyPolicy = () => {
           podés comunicarte con nuestro equipo mediante los canales oficiales.
         </p>
       </div>
+
+      <GoToTop />
       <Footer />
     </>
   );

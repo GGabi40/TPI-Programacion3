@@ -18,6 +18,7 @@ const ClubDetails = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const [club, setClub] = useState(null);
+  const [joined, setJoined] = useState(false);
 
   useEffect(() => {
     //trae los detalles del club
@@ -27,6 +28,10 @@ const ClubDetails = () => {
     };
     fetchClub();
   }, [id]);
+
+  const handleJoinChange = (value) => {
+    setJoined(value);
+  };
 
   if (isLoading) return <Loading />;
 
@@ -66,7 +71,7 @@ const ClubDetails = () => {
           </div>
 
           <div className="button-separate">
-            <JoinClubButton clubId={id} />
+            <JoinClubButton clubId={id} onJoinChange={handleJoinChange} />
             <button
               className="btn-back"
               onClick={() => navigate("/joined-clubs")}
@@ -76,7 +81,7 @@ const ClubDetails = () => {
           </div>
         </section>
         <section className="club-activities">
-          <Activities clubId={id} />
+          <Activities clubId={id} joined={joined} />
         </section>
       </main>
     </div>

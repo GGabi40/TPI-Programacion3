@@ -19,7 +19,7 @@ import {
   showSweetNewActivity,
 } from "../../sweetAlert/ConfirmAlert";
 
-const Activities = ({ clubId }) => {
+const Activities = ({ clubId, joined }) => {
   const { token, role } = useContext(AuthenticationContext);
   const { getAll } = useFetch(`/clubs/${clubId}/activities`);
   const { del, put } = useFetch(`/activities`);
@@ -74,7 +74,7 @@ const Activities = ({ clubId }) => {
 
   const handleFinish = async (activityId) => {
     try {
-      await put(activityId, { isActive: false }, token);
+      await put({ isActive: false }, activityId, token);
       successToast("Actividad marcada como finalizada.");
 
       setActivities((prev) =>
@@ -108,11 +108,7 @@ const Activities = ({ clubId }) => {
   };
 
   const formatDate = (dateStr) => {
-    return new Date(dateStr).toLocaleDateString("es-AR", {
-      day: "numeric",
-      month: "long",
-      year: "numeric",
-    });
+    return dateStr.split("-").reverse().join("/");
   };
 
   return (
@@ -168,7 +164,12 @@ const Activities = ({ clubId }) => {
               <p className="dates">
                 <strong>📅 Del:</strong> {formatDate(currentActivity.dateStart)}{" "}
                 <br />
-                <strong>🗓️ al:</strong> {formatDate(currentActivity.dateEnd)}
+                {currentActivity.dateEnd ? (
+                  <>
+                    <strong>🗓️ al:</strong>{" "}
+                    {formatDate(currentActivity.dateEnd)}
+                  </>
+                ) : ''}
               </p>
             </div>
 
@@ -177,7 +178,7 @@ const Activities = ({ clubId }) => {
                 <div className="book-details highlighted-book">
                   {currentBook.image && (
                     <img
-                      src={currentBook.image}
+                      src={`/${currentBook.image}`}
                       alt={`Portada de ${currentBook.title}`}
                       className="book-cover"
                     />
@@ -195,9 +196,15 @@ const Activities = ({ clubId }) => {
               </div>
             )}
 
-            <div className="reviews-section">
-              <ReviewForm activityId={currentActivity.id} />
-            </div>
+            {joined ? (
+              <div className="reviews-section">
+                <ReviewForm activityId={currentActivity.id} />
+              </div>
+            ) : (
+              <p className="error">
+                Debes unirte al Club para participar de la Actividad.
+              </p>
+            )}
           </div>
         </section>
       ) : (

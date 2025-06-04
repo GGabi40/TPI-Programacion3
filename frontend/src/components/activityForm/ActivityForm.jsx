@@ -177,8 +177,8 @@ const ActivityForm = ({ mode = "create", initialData = {}, onSubmit }) => {
       </div>
 
       <div className="space"></div>
+      <div className="space"></div>
 
-      <FooterSmall />
     </div>
   );
 };
