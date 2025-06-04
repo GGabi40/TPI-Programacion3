@@ -212,8 +212,6 @@ const ClubForm = ({ mode = "create", initialData = {}, onSubmit }) => {
       </div>
 
       <div className="space"></div>
-
-      <FooterSmall />
     </div>
   );
 };
