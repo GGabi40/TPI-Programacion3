@@ -49,7 +49,7 @@ const Activities = ({ clubId, joined }) => {
     };
 
     fetchActivity();
-  }, []);
+  }, [clubId, token]);
 
   const pastActivities = activities
     .filter((a) => !a.isActive)
@@ -164,12 +164,12 @@ const Activities = ({ clubId, joined }) => {
               <p className="dates">
                 <strong>📅 Del:</strong> {formatDate(currentActivity.dateStart)}{" "}
                 <br />
-                {currentActivity.dateEnd ? (
+                {!currentActivity.dateEnd.includes("Inv") && (
                   <>
                     <strong>🗓️ al:</strong>{" "}
                     {formatDate(currentActivity.dateEnd)}
                   </>
-                ) : ''}
+                )}
               </p>
             </div>
 

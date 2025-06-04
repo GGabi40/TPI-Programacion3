@@ -14,7 +14,7 @@ import "./clubDetails.css";
 
 const ClubDetails = () => {
   const { getById, isLoading } = useFetch("/clubs");
-  const { token, role } = useContext(AuthenticationContext);
+  const { userId } = useContext(AuthenticationContext);
   const { id } = useParams();
   const navigate = useNavigate();
   const [club, setClub] = useState(null);
@@ -25,9 +25,12 @@ const ClubDetails = () => {
     const fetchClub = async () => {
       const clubData = await getById(id);
       setClub(clubData);
+
+      const isJoined = localStorage.getItem(`joined_${userId}_${id}`) === "true";
+      setJoined(isJoined);
     };
     fetchClub();
-  }, [id]);
+  }, [id, userId]);
 
   const handleJoinChange = (value) => {
     setJoined(value);
@@ -37,7 +40,7 @@ const ClubDetails = () => {
 
   if (!club) return <NotFound />;
 
-  const { name, description, gender, interest, restricted } = club;
+  const { name, description, gender, interest } = club;
 
   // Agg botón para unirse al Club
   return (

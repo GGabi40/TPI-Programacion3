@@ -37,6 +37,7 @@ const JoinClubButton = ({ clubId, onJoinChange }) => {
         successToast("¡Te uniste a este club correctamente!");
         setJoined(true);
         onJoinChange?.(true);
+        localStorage.setItem(`joined_${userId}_${clubId}`, "true");
       }
     } catch (error) {
       console.error("Error al unirse al club:", error);
@@ -59,7 +60,8 @@ const JoinClubButton = ({ clubId, onJoinChange }) => {
             "¡Te vamos a extrañar! Te eliminaste de este club correctamente"
         );
         setJoined(false);
-        onJoinChange?.(true);
+        onJoinChange?.(false);
+        localStorage.removeItem(`joined_${userId}_${clubId}`);
         setTimeout(() => navigate("/joined-clubs"), 1000);
       }
     } catch (error) {
